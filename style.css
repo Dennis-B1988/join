@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "PT Sans";
+  font-family: 'PT Sans';
 }
 
 body {
@@ -10,4 +10,5 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: #f6f7f8;
 }
