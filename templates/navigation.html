@@ -1,59 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Navigation</title>
-    <link rel="stylesheet" href="../assets/fonts/fonts.css" />
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="stylesheet" href="template.css" />
-    <link
-      rel="shortcut icon"
-      href="../assets/img/join_logo.png"
-      type="image/x-icon"
-    />
-    <script src="template.js"></script>
-  </head>
-
-  <body>
-    <div class="big-screen">
-      <header>
-        <span>Kanban Project Managment Tool</span>
-        <div class="header-username-container">
-          <img
-            class="header-username-img"
-            src="../assets/img/help.png"
-            alt="Help-img"
-          />
-          <div class="header-username">UN</div>
-        </div>
-      </header>
-
-      <section class="side-bar">
-        <img class="side-bar-logo" src="../assets/img/join_logo.png" alt="" />
-        <div class="side-bar-container">
-          <a class="category active" href="../summary/summary.html">
-            <img src="../assets/img/summary.png" alt="" />
-            <span>Summary</span>
-          </a>
-          <a class="category" href="../add_task/add_task.html">
-            <img src="../assets/img/add_task.png" alt="" />
-            <span>Add Task</span>
-          </a>
-          <a class="category" href="../board/board.html">
-            <img src="../assets/img/board.png" alt="" />
-            <span>Board</span>
-          </a>
-          <a class="category" href="../contacts/contacts.html">
-            <img src="../assets/img/contacts.png" alt="" />
-            <span>Contacts</span>
-          </a>
-        </div>
-        <div class="side-bar-information-container">
-          <a href="../legal_information/privacy_policy.html">Privacy Policy</a>
-          <a href="../legal_information/legal_notice.html">Legal notice</a>
-        </div>
-      </section>
+<header>
+  <span>Kanban Project Managment Tool</span>
+  <div class="header-username-container">
+    <a id="headerHelp" href="../legal_information/help.html"><img class="header-username-img" src="../assets/img/help.png"
+        alt="Help-img" /></a>
+    <div id="headerUsername" class="header-username">UN</div>
+  </div>
+</header>
+<section class="side-bar">
+  <img class="side-bar-logo" src="../assets/img/join_logo.png" alt="" />
+  <div class="side-bar-main">
+    <div class="side-bar-container">
+      <a id="summary" class="category" href="../summary/summary.html">
+        <img src="../assets/img/summary.png" alt="" />
+        <span>Summary</span>
+      </a>
+      <a id="addTask" class="category" href="../add_task/add_task.html">
+        <img src="../assets/img/add_task.png" alt="" />
+        <span>Add Task</span>
+      </a>
+      <a id="board" class="category" href="../board/board.html">
+        <img src="../assets/img/board.png" alt="" />
+        <span>Board</span>
+      </a>
+      <a id="contact" class="category" href="../contacts/contacts.html">
+        <img src="../assets/img/contacts.png" alt="" />
+        <span>Contacts</span>
+      </a>
     </div>
-  </body>
-</html>
+    <div class="side-bar-information-container">
+      <a id="privacyPolicy" class="hover" href="../legal_information/privacy_policy.html">Privacy Policy</a>
+      <a id="legalNotice" class="hover" href="../legal_information/legal_notice.html">Legal notice</a>
+    </div>
+  </div>
+</section>
