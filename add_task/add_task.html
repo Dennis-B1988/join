@@ -1,23 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Task</title>
-    <link rel="stylesheet" href="../assets/fonts/fonts.css">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="add_task.css">
+    <link rel="stylesheet" href="../assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="add_task.css" />
     <link rel="stylesheet" href="../templates/template.css" />
-    <link rel="shortcut icon" href="../assets/img/join_logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/img/join_logo.png" type="image/x-icon" />
     <script src="../templates/template.js"></script>
     <script src="../script.js"></script>
     <script src="add_task.js"></script>
-</head>
+  </head>
 
-<body onload="init()">
+  <body onload="init()">
     <div class="big-screen" w3-include-html="../templates/navigation.html"></div>
-    add task
-</body>
-
+    <section class="add-task">
+      <div class="task-information">
+        <h1 class="task-title">Add Task</h1>
+        <div class="task-form-container">
+          <form id="add-task-form" class="add-task-form">
+            <div class="form-left">
+              <span>Title<span class="red">*</span></span>
+              <input type="text" name="title" placeholder="Enter a title" />
+              <span>Description</span>
+              <textarea name="description" placeholder="Enter a description" cols="30" rows="5"></textarea>
+              <span>Assigned To</span>
+              <input type="text" name="assigned-to" placeholder="Assigned To" />
+            </div>
+            <div class="form-split"></div>
+            <div class="form-right">
+              <span>Due date<span class="red">*</span></span>
+              <input type="text" name="date" placeholder="dd/mm/yyyy" />
+              <span>Prio</span>
+              <div class="priority">
+                <span class="urgent">Urgent <img src="../assets/img/urgent_red.png" alt="" /></span>
+                <span class="medium">Medium <img src="../assets/img/equal_orange.png" alt="" /></span>
+                <span class="low">Low <img src="../assets/img/low_green.png" alt="" /></span>
+              </div>
+              <span>Category<span class="red">*</span></span>
+              <input type="text" name="category" placeholder="Select task category" />
+              <span>Subtasks</span>
+              <input type="text" name="subtasks" placeholder="add new subtask" />
+            </div>
+          </form>
+        </div>
+        <div class="task-bottom">
+          <span class="field-required"><span class="red">*</span>This field is required</span>
+          <div class="task-buttons">
+            <button class="task-clear">Clear <span>X</span></button>
+            <button class="task-add">Create Task <img class="task-add-img" src="../assets/img/mark.png" alt="" /></button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>

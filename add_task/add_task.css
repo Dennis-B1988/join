@@ -1,0 +1,146 @@
+.add-task {
+  height: calc(100vh - 96px);
+  width: 100%;
+  max-width: 1440px;
+  /* width: 1208px; */
+  /* margin-left: 232px; */
+  position: relative;
+}
+
+.red {
+  color: #ff8090;
+}
+
+.task-information {
+  width: 976.25px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 110px;
+  margin-left: 328px;
+}
+
+.task-title {
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.task-form-container {
+  height: 424px;
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+}
+
+.add-task-form {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-task-form input {
+  height: 48px;
+  width: 440px;
+  padding: 12px 21px 12px 21px;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+}
+
+.add-task-form textarea {
+  width: 440px;
+  height: 120px;
+  padding: 18px 16px 18px 16px;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+}
+
+.form-left {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.form-split {
+  height: 100%;
+  border: 1px solid #d1d1d1;
+}
+
+.form-right {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.priority {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.priority span {
+  height: 56px;
+  width: 136px;
+  padding: 16px 10px 16px 10px;
+  gap: 8px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.task-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.field-required {
+  display: flex;
+  justify-content: start;
+  align-items: end;
+}
+
+.task-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.task-clear {
+  height: 56px;
+  width: 110px;
+  border: 1px solid #2a3647;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  gap: 4px;
+}
+
+.task-add {
+  height: 56px;
+  width: 183px;
+  background: #2a3647;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  gap: 4px;
+}
+
+.task-add-img {
+  width: 15.49px;
+  height: 11.22px;
+}
