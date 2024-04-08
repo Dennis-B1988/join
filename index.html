@@ -7,83 +7,17 @@
     <title>Log in</title>
     <link rel="stylesheet" href="./assets/fonts/fonts.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./login_signup/login_signup.css">
     <link rel="shortcut icon" href="./assets/img/join_logo.png" type="image/x-icon">
     <script src="script.js"></script>
+    <script src="./login_signup/login_signup.js"></script>
 </head>
 
 <body onload="initLogin()">
     <div class="logo-container-effect">
         <img class="logo-effect" src="./assets/img/join_logo_blue.png" alt="join logo">
     </div>
-    <div class="form-container">
-        <div class="signup-container">
-            <span>Not a Join user?</span>
-            <button onclick="handleSignupOrLogin('login', 'signup')">Sign up</button>
-        </div>
-        <form id="login" class="login-form-container" onsubmit="" return false;>
-            <div class="login-header-container">
-                <h2>Log in</h2>
-                <svg width="154" height="3" viewBox="0 0 154 3" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M152 1.5L2 1.5" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
-                </svg>
-            </div>
-            <div class="input-container">
-                <input type="email" id="emailLogin" placeholder="Email">
-                <img class="form-position email-img" src="./assets/img/email.png" alt="email icon">
-            </div>
-            <div class="input-container">
-                <input type="password" id="passwordLogin" placeholder="Password">
-                <img class="form-position password-img" src="./assets/img/lock.png" alt="lock icon">
-            </div>
-            <div class="remember-me-container">
-                <img src="./assets/img/checkmark-empty_dark.png" alt="checkmark icon">
-                <span>Remember me</span>
-            </div>
-            <div class="login-button-container">
-                <button class="login">Log in</button>
-                <button class="guest-login">Guest Log in</button>
-            </div>
-        </form>
-        <form id="signup" style="display: none;" class="signup-form-container" onsubmit="" return false;>
-            <div class="back-arrow-container">
-                <img onclick="handleSignupOrLogin('signup', 'login')" src="./assets/img/back_arrow.png"
-                    alt="back arrow icon">
-            </div>
-            <div class="login-header-container">
-                <h2>Sign up</h2>
-                <svg width="154" height="3" viewBox="0 0 154 3" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M152 1.5L2 1.5" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
-                </svg>
-            </div>
-            <div class="input-container">
-                <input type="text" id="name" placeholder="Name">
-                <img class="form-position name-img" src="./assets/img/person.png" alt="person icon">
-            </div>
-            <div class="input-container">
-                <input type="email" id="emailSignup" placeholder="Email">
-                <img class="form-position email-img" src="./assets/img/email.png" alt="email icon">
-            </div>
-            <div class="input-container">
-                <input type="password" id="passwordSignup" placeholder="Password">
-                <img class="form-position password-img" src="./assets/img/lock.png" alt="lock icon">
-            </div>
-            <div class="input-container">
-                <input type="password" id="confirmPassword" placeholder="Confirm Password">
-                <img class="form-position password-img" src="./assets/img/lock.png" alt="lock icon">
-            </div>
-            <div class="privacy-policy-container">
-                <img src="./assets/img/checkmark-empty_dark.png" alt="checkmark icon">
-                <span>I accept the
-                    <a onclick="savePage()" href="./legal_information/privacy_policy.html">Privacy
-                        Policy</a></span></span>
-            </div>
-            <button class="login">Sign up</button>
-        </form>
-        <div class="information-container">
-            <a onclick="savePage()" href="./legal_information/privacy_policy.html">Privacy Policy</a>
-            <a onclick="savePage()" href="./legal_information/legal_notice.html">Legal notice</a>
-        </div>
-    </div>
+    <div class="form-container" w3-include-html="./login_signup/login_signup.html"></div>
 </body>
 
 </html>

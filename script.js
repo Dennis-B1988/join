@@ -22,49 +22,16 @@ function goBack() {
 }
 
 
-function initLogin() {
-    animationLogo();
-    removePageFromLocalStorage();
-}
-
-
-function animationLogo() {
-    document.querySelector('.logo-container-effect').classList.add('logo-container');
-    document.querySelector('.logo-effect').classList.add('logo');
-}
-
-
-function removePageFromLocalStorage() {
-    if (window.location.pathname === '/index.html') {
-        localStorage.removeItem('page');
-    }
-}
-
-
-function handleSignupOrLogin(hideClass, showClass) {
-    let hideClassContainer = document.getElementById(hideClass);
-    let showClassContainer = document.getElementById(showClass);
-    let signupContainer = document.querySelector('.signup-container');
-    hideClassContainer.style.display = 'none';
-    showClassContainer.style = '';
-    signupContainer.style.opacity = hideClass === 'login' ? '0' : '1';
-}
-
-
-function showCurrentInformationFromLogin() {
-    let comeFromPage = loadPage();
-    document.querySelector('.side-bar-container').style.opacity = comeFromPage === 'index.html' ? '0' : '1';
-}
-
-
-function savePage() {
-    localStorage.setItem('page', JSON.stringify('index.html'));
-}
-
-
-function loadPage() {
-    let loadNotes = localStorage.getItem('page');
-    if (loadNotes) {
-        return JSON.parse(loadNotes);
+async function includeHTML() {
+    let includeElements = document.querySelectorAll('[w3-include-html]');
+    for (let i = 0; i < includeElements.length; i++) {
+        const element = includeElements[i];
+        file = element.getAttribute("w3-include-html");
+        let resp = await fetch(file);
+        if (resp.ok) {
+            element.innerHTML = await resp.text();
+        } else {
+            element.innerHTML = 'Page not found';
+        }
     }
 }
