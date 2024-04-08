@@ -22,6 +22,26 @@ function goBack() {
 }
 
 
+function showCurrentInformationFromLogin() {
+    let comeFromPage = loadPage();
+    document.querySelector('.side-bar-container').style.opacity = comeFromPage === 'index.html' ? '0' : '1';
+    document.querySelector('.side-bar-container').style.pointerEvents = comeFromPage === 'index.html' ? 'none' : '';
+}
+
+
+function savePage() {
+    localStorage.setItem('page', JSON.stringify('index.html'));
+}
+
+
+function loadPage() {
+    let loadNotes = localStorage.getItem('page');
+    if (loadNotes) {
+        return JSON.parse(loadNotes);
+    }
+}
+
+
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {

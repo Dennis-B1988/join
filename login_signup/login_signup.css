@@ -300,6 +300,15 @@
     gap: 25px;
 }
 
+.information-left {
+    width: 45%;
+    text-align: end;
+}
+
+.information-right {
+    width: 45%;
+}
+
 .information-container a {
     cursor: pointer;
     text-decoration: none;

@@ -26,22 +26,3 @@ function handleSignupOrLogin(hideClass, showClass) {
     showClassContainer.style = '';
     signupContainer.style.opacity = hideClass === 'login' ? '0' : '1';
 }
-
-
-function showCurrentInformationFromLogin() {
-    let comeFromPage = loadPage();
-    document.querySelector('.side-bar-container').style.opacity = comeFromPage === 'index.html' ? '0' : '1';
-}
-
-
-function savePage() {
-    localStorage.setItem('page', JSON.stringify('index.html'));
-}
-
-
-function loadPage() {
-    let loadNotes = localStorage.getItem('page');
-    if (loadNotes) {
-        return JSON.parse(loadNotes);
-    }
-}
