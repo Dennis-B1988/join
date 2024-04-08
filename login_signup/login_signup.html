@@ -2,12 +2,10 @@
     <span>Not a Join user?</span>
     <button onclick="handleSignupOrLogin('login', 'signup')">Sign up</button>
 </div>
-<form id="login" class="login-form-container" onsubmit="" return false;>
+<form id="login" class="login-form-container" onsubmit="return false;">
     <div class="login-header-container">
         <h2>Log in</h2>
-        <svg width="154" height="3" viewBox="0 0 154 3" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M152 1.5L2 1.5" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
-        </svg>
+        <img src="../assets/img/underline.png" alt="underline icon">
     </div>
     <div class="input-container">
         <input type="email" id="emailLogin" placeholder="Email">
@@ -26,15 +24,13 @@
         <button class="guest-login">Guest Log in</button>
     </div>
 </form>
-<form id="signup" style="display: none;" class="signup-form-container" onsubmit="" return false;>
+<form id="signup" style="display: none;" class="signup-form-container" onsubmit="return false;">
     <div class="back-arrow-container">
         <img onclick="handleSignupOrLogin('signup', 'login')" src="./assets/img/back_arrow.png" alt="back arrow icon">
     </div>
     <div class="login-header-container">
         <h2>Sign up</h2>
-        <svg width="154" height="3" viewBox="0 0 154 3" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M152 1.5L2 1.5" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
-        </svg>
+        <img src="../assets/img/underline.png" alt="underline icon">
     </div>
     <div class="input-container">
         <input type="text" id="name" placeholder="Name">
@@ -56,7 +52,8 @@
         <img src="./assets/img/checkmark-empty_dark.png" alt="checkmark icon">
         <span>I accept the
             <a onclick="savePage()" href="./legal_information/privacy_policy.html">Privacy
-                Policy</a></span></span>
+                Policy</a>
+        </span>
     </div>
     <button class="login">Sign up</button>
 </form>
