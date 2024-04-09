@@ -1,23 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Summary</title>
-    <link rel="stylesheet" href="../assets/fonts/fonts.css">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="summary.css">
+    <link rel="stylesheet" href="../assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="summary.css" />
     <link rel="stylesheet" href="../templates/template.css" />
-    <link rel="shortcut icon" href="../assets/img/join_logo.png" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="../assets/img/join_logo.png"
+      type="image/x-icon"
+    />
     <script src="../templates/template.js"></script>
     <script src="../script.js"></script>
     <script src="summary.js"></script>
-</head>
+  </head>
 
-<body onload="init()">
-    <div class="big-screen" w3-include-html="../templates/navigation.html"></div>
-    summary
-</body>
+  <body onload="init()">
+    <div
+      class="big-screen"
+      w3-include-html="../templates/navigation.html"
+    ></div>
 
+    <section class="summary-content">
+      <div class="summary-header">
+        <span class="summary-header-title">Join 360</span>
+        <img src="../assets/img/summary-separate.png" alt="" />
+        <span class="summary-header-text">Key Metrics at a Glance</span>
+      </div>
+
+      <div class="summary-main">
+        <div class="summary-main-tasks">
+          <div class="summary-card-line-1">
+            <div class="summary-todo">
+              <img src="../assets/img/edit.png" alt="" />
+            </div>
+            <div class="summary-card-text">
+              <p>1</p>
+              <span>To-do</span>
+            </div>
+          </div>
+
+          <div class="summary-card">
+            <div class="summary-todo">
+              <img src="../assets/img/mark.png" alt="" />
+            </div>
+            <div class="summary-card-text">
+              <p>1</p>
+              <span>Done</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-main">
+        <div class="summary-main-tasks">
+          <div class="summary-urgent-card">
+            <div class="summary-urgent">
+              <img src="../assets/img/low_white.png" alt="" />
+            </div>
+
+            <div class="summary-card-text">
+              <p>1</p>
+              <span>Urgent</span>
+              
+            </div>
+            <img src="../assets/img/summary-urgent-separate.png" alt="" />
+
+            <div class="summary-user">
+              <div id="currentDate"></div>
+              <span>Upcoming Deadline</span>
+            </div>
+
+            <script>
+              let currentDateElement = document.getElementById("currentDate");
+              let currentDate = new Date();
+              let options = { month: "long", day: "2-digit", year: "numeric" };
+              let formattedDate = currentDate.toLocaleDateString(
+                "en-US",
+                options
+              );
+              currentDateElement.innerHTML = formattedDate;
+            </script>
+          </div>
+        </div>
+        <div class="summary-user-345">
+          <p>Good morning,</p>
+          <span>USER</span>
+        </div>
+      </div>
+
+      <div class="summary-main-3">
+        <div class="summary-main-tasks-3">
+          <div class="tasks-card">
+            <div class="summary-card-task-text">
+              <p>5</p>
+              <span>Tasks on <br> Board</span>
+            </div>
+          </div>
+        </div>
+        <div class="summary-main-tasks-3">
+            <div class="tasks-card">
+              <div class="summary-card-task-text">
+                <p>2</p>
+                <span>Tasks In Progress</span>
+              </div>
+            </div>
+          </div>
+          <div class="summary-main-tasks-3">
+            <div class="tasks-card">
+              <div class="summary-card-task-text">
+                <p>2</p>
+                <span>Awaiting
+                    Feedback</span>
+              </div>
+            </div>
+          </div>
+
+        
+      </div>
+    </section>
+  </body>
 </html>
