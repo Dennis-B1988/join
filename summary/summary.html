@@ -8,17 +8,14 @@
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="summary.css" />
     <link rel="stylesheet" href="../templates/template.css" />
-    <link rel="shortcut icon" href="./assets/img/join_logo_blue.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/img/join_logo_blue.png" type="image/x-icon" />
     <script src="../templates/template.js"></script>
     <script src="../script.js"></script>
     <script src="summary.js"></script>
   </head>
 
   <body onload="init()">
-    <div
-      class="big-screen"
-      w3-include-html="../templates/navigation.html"
-    ></div>
+    <div class="big-screen" w3-include-html="../templates/navigation.html"></div>
 
     <section class="summary-content">
       <div class="summary-header">
@@ -61,7 +58,6 @@
             <div class="summary-card-text">
               <p>1</p>
               <span>Urgent</span>
-              
             </div>
             <img src="../assets/img/summary-urgent-separate.png" alt="" />
 
@@ -71,13 +67,10 @@
             </div>
 
             <script>
-              let currentDateElement = document.getElementById("currentDate");
+              let currentDateElement = document.getElementById('currentDate');
               let currentDate = new Date();
-              let options = { month: "long", day: "2-digit", year: "numeric" };
-              let formattedDate = currentDate.toLocaleDateString(
-                "en-US",
-                options
-              );
+              let options = { month: 'long', day: '2-digit', year: 'numeric' };
+              let formattedDate = currentDate.toLocaleDateString('en-US', options);
               currentDateElement.innerHTML = formattedDate;
             </script>
           </div>
@@ -93,29 +86,29 @@
           <div class="tasks-card">
             <div class="summary-card-task-text">
               <p>5</p>
-              <span>Tasks on <br> Board</span>
+              <span
+                >Tasks on <br />
+                Board</span
+              >
             </div>
           </div>
         </div>
         <div class="summary-main-tasks-3">
-            <div class="tasks-card">
-              <div class="summary-card-task-text">
-                <p>2</p>
-                <span>Tasks In Progress</span>
-              </div>
+          <div class="tasks-card">
+            <div class="summary-card-task-text">
+              <p>2</p>
+              <span>Tasks In Progress</span>
             </div>
           </div>
-          <div class="summary-main-tasks-3">
-            <div class="tasks-card">
-              <div class="summary-card-task-text">
-                <p>2</p>
-                <span>Awaiting
-                    Feedback</span>
-              </div>
+        </div>
+        <div class="summary-main-tasks-3">
+          <div class="tasks-card">
+            <div class="summary-card-task-text">
+              <p>2</p>
+              <span>Awaiting Feedback</span>
             </div>
           </div>
-
-        
+        </div>
       </div>
     </section>
   </body>
