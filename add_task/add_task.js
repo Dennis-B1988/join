@@ -4,7 +4,10 @@ async function initTasks(){
 }
 
 
-
+/**
+ *
+ *
+ */
 function urgent() {
     document.getElementById('urgent').style.background = '#FF3D00' 
     document.getElementById('urgent-img').src = '../assets/img/urgent_white.png';
@@ -35,10 +38,18 @@ function low() {
     document.getElementById('medium-img').src = '../assets/img/equal_orange.png';
 }
 
+/**
+ *
+ *
+ */
 function clearTaskForm(){
     document.getElementById("add-task-form").reset();
 }
 
+/**
+ *
+ *
+ */
 function getCurrentDate() { 
     let currentDate = new Date();
     let formattedDate = currentDate.getFullYear() + "-" + padZeroes(currentDate.getMonth() + 1) + "-" + padZeroes(currentDate.getDate());
@@ -55,19 +66,18 @@ function getCurrentDate() {
 
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('task-category');
-    const searchDropdown = document.getElementById('searchDropdown');
+    const searchDropdown = document.getElementById('task-category-dropdown');
     const dropdownToggle = document.getElementById('task-category-icon');
     
-    // Array of example options
     const options = ['Summary', 'Task', 'Board', 'Contact'];
   
-    // Function to populate the dropdown with options
+    // Add dropdown with data from options
     function populateDropdown() {
         searchDropdown.innerHTML = '';
         options.forEach(option => {
           const optionElement = document.createElement('div');
           optionElement.textContent = option;
-          optionElement.classList.add('search-dropdown-item');
+          optionElement.classList.add('category-dropdown-item');
           optionElement.addEventListener('click', function() {
             searchInput.value = option;
             searchDropdown.style.display = 'none';
@@ -82,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
       function toggleDropdown() {
         if (searchDropdown.style.display === 'block') {
           searchDropdown.style.display = 'none';
-          dropdownToggle.classList.remove('opened'); // Remove the opened class
+          dropdownToggle.classList.remove('opened'); 
         } else {
           populateDropdown();
           searchDropdown.style.display = 'block';
@@ -97,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.body.addEventListener('click', function(event) {
         if (event.target !== searchInput && event.target !== dropdownToggle) {
           searchDropdown.style.display = 'none';
-          dropdownToggle.classList.remove('opened'); // Remove the opened class
+          dropdownToggle.classList.remove('opened'); 
         }
       });
 });
