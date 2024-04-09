@@ -5,8 +5,6 @@ async function initLogin() {
     loadCredentialsFromLocalStorage()
 }
 
-'https://remote-storage.developerakademie.org/item?key=userSignup&token=754IWRJVXIB98URXG9ZRI56E2VA80WU1Z40SLR7S'
-
 
 function animationLogo() {
     document.querySelector('.logo-container-effect').classList.add('logo-container');
