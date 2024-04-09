@@ -1,19 +1,24 @@
-.form-container {
+.open-page {
     max-width: 1440px;
     height: 100vh;
     width: 100%;
-    background-color: #F6F7F8;
     position: relative;
+}
+
+.form-container {
+    height: 100%;
+    width: 100%;
+    background-color: #F6F7F8;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 80px 120px;
     opacity: 0;
-    animation: fadeIn 1s ease 1s forwards;
+    animation: fade-in 1s ease 1s forwards;
 }
 
-@keyframes fadeIn {
+@keyframes fade-in {
     from {
         opacity: 0;
     }
@@ -23,8 +28,28 @@
     }
 }
 
+@keyframes fade-in-mobile {
+    0% {
+        background-image: url(../assets/img/join_logo.png);
+    }
+
+    100% {
+        background-image: url(../assets/img/join_logo_blue.png);
+    }
+}
+
+@keyframes background-mobile {
+    0% {
+        background-color: #2A3647;
+    }
+
+    100% {
+        background-color: #F6F7F8;
+    }
+}
+
 .logo-container-effect {
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
     display: flex;
@@ -42,10 +67,14 @@
     height: 122px;
     width: 100px;
     top: 80px;
-    left: 77px;
+    left: 120px;
 }
 
 .logo-effect {
+    background-image: url(../assets/img/join_logo_blue.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
     height: 334px;
     width: 374px;
     object-fit: contain;
@@ -58,6 +87,14 @@
     width: 100px;
 }
 
+.signup-container-mobile {
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
 .signup-container {
     width: 100%;
     display: flex;
@@ -66,12 +103,12 @@
     gap: 30px;
 }
 
-.signup-container span {
+.signup-span {
     font-size: 20px;
     font-weight: 300;
 }
 
-.signup-container button {
+.signup-button {
     background-color: #2A3647;
     color: white;
     border: unset;
@@ -81,7 +118,7 @@
     cursor: pointer;
 }
 
-.signup-container button:hover {
+.signup-button:hover {
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
 }
@@ -116,7 +153,6 @@
 
 .input-container input {
     width: 422px;
-    height: 48px;
     padding: 12px 21px;
     border-radius: 10px;
     border: 1px solid #D1D1D1;
@@ -146,15 +182,18 @@
 
 .email-img {
     height: 16px;
+    cursor: pointer;
 }
 
 .password-img {
-    height: 21px;
-    right: 25px;
+    object-fit: contain;
+    right: 21px;
+    cursor: pointer;
 }
 
 .name-img {
     height: 16px;
+    cursor: pointer;
 }
 
 .remember-me-container {
@@ -176,12 +215,12 @@
 }
 
 .login-button-container {
+    height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
     gap: 20px;
     padding-left: 60px;
-    height: 48px;
 }
 
 .login {
@@ -283,15 +322,6 @@
     width: 25px;
 }
 
-.login-button-container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding-left: 60px;
-    height: 48px;
-}
-
 .information-container {
     width: 100%;
     display: flex;
@@ -320,19 +350,159 @@
     font-weight: 700;
 }
 
-@media(max-height: 800px) {
+@media(max-width: 900px) {
+    .form-container {
+        padding: 60px 40px;
+    }
+
+    .logo-container {
+        top: 60px;
+        left: 40px;
+    }
+}
+
+@media(max-width: 768px) {
+    .signup-form-container {
+        padding: 48px 60px;
+    }
+
+    .back-arrow-container {
+        left: 20px;
+    }
+
+    .input-container input {
+        width: 364px;
+    }
+
+    .logo-effect {
+        background-image: url(../assets/img/join_logo.png);
+        animation: fade-in-mobile 1s ease 1s forwards;
+        height: 200px;
+        width: 150px;
+    }
+
+    .open-page {
+        background-color: #2A3647;
+        animation: background-mobile 1s ease 1s forwards;
+    }
+
+    .logo-container {
+        top: 0;
+        left: 0;
+    }
+
     .logo {
-        top: 50px;
-        left: 50px;
-        height: 100px;
-        width: 80px;
+        height: 78px;
+        width: 64px;
     }
 
     .form-container {
-        padding: 50px 90px;
+        justify-content: center;
+        gap: 20px;
+        padding: 0;
+    }
+
+    .logo-container {
+        top: 10px;
     }
 
     .login-form-container {
-        margin: 40px;
+        padding: 30px;
+    }
+
+    .login-button-container {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .remember-me-container {
+        padding-left: 0;
+    }
+
+    .login {
+        width: 180px;
+    }
+
+    .guest-login {
+        width: 180px;
+        padding: 12px 0px;
+    }
+
+    .signup-container-mobile {
+        display: flex;
+    }
+
+    .signup-container {
+        display: none;
+    }
+}
+
+@media(max-width: 500px) {
+    .input-container input {
+        width: 250px;
+    }
+}
+
+@media(max-width: 400px) {
+    .signup-form-container {
+        padding: 48px 20px;
+    }
+
+    .back-arrow-container {
+        top: 20px;
+        left: 20px;
+    }
+}
+
+@media(max-height: 900px) {
+    .signup-form-container {
+        gap: 20px;
+    }
+
+    .form-container {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .logo-container {
+        top: 10px;
+    }
+}
+
+@media(max-height: 750px) {
+    .form-container {
+        padding-top: 120px;
+        gap: 20px;
+        justify-content: unset;
+    }
+
+    .login-form-container {
+        gap: 10px;
+    }
+
+    .logo-container {
+        top: 0;
+        left: 0;
+    }
+
+    .logo {
+        height: 78px;
+        width: 64px;
+    }
+
+    .signup-form-container {
+        padding: 30px 20px;
+        gap: 10px;
+    }
+
+    .signup-container {
+        position: absolute;
+        top: 30px;
+        right: 50px;
+    }
+
+    .back-arrow-container {
+        top: 10px;
+        left: 10px;
     }
 }

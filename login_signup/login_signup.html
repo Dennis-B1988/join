@@ -1,67 +1,81 @@
-<div class="signup-container">
-    <span>Not a Join user?</span>
-    <button onclick="handleSignupOrLogin('login', 'signup')">Sign up</button>
-</div>
-<form id="login" class="login-form-container" onsubmit="return false;">
-    <div class="login-header-container">
-        <h2>Log in</h2>
-        <img src="../assets/img/underline.png" alt="underline icon">
+<div class="form-container">
+    <div class="signup-container">
+        <span class="signup-span">Not a Join user?</span>
+        <button onclick="handleSignupOrLogin('login', 'signup')" class="signup-button">Sign up</button>
     </div>
-    <div class="input-container">
-        <input type="email" id="emailLogin" placeholder="Email">
-        <img class="form-position email-img" src="./assets/img/email.png" alt="email icon">
+    <form id="login" class="login-form-container" onsubmit="return false;">
+        <div class="login-header-container">
+            <h2>Log in</h2>
+            <img src="../assets/img/underline.png" alt="underline icon">
+        </div>
+        <div class="input-container">
+            <input type="email" id="emailLogin" placeholder="Email">
+            <img class="form-position email-img" src="./assets/img/email.png" alt="email icon">
+        </div>
+        <div class="input-container">
+            <input oninput="changeIcon('passwordLogin', 'loginImg')" type="password" id="passwordLogin"
+                placeholder="Password">
+            <img onclick="showPassword('passwordLogin', 'loginImg')" id="loginImg" class="form-position password-img"
+                src="./assets/img/lock.png" alt="lock icon">
+        </div>
+        <div class="remember-me-container">
+            <img src="./assets/img/checkmark-empty_dark.png" alt="checkmark icon">
+            <span>Remember me</span>
+        </div>
+        <div class="login-button-container">
+            <button class="login">Log in</button>
+            <button class="guest-login">Guest Log in</button>
+        </div>
+    </form>
+    <form id="signup" style="display: none;" class="signup-form-container" onsubmit="return false;">
+        <div class="back-arrow-container">
+            <img onclick="handleSignupOrLogin('signup', 'login')" src="./assets/img/back_arrow.png"
+                alt="back arrow icon">
+        </div>
+        <div class="login-header-container">
+            <h2>Sign up</h2>
+            <img src="../assets/img/underline.png" alt="underline icon">
+        </div>
+        <div class="input-container">
+            <input type="text" id="name" placeholder="Name">
+            <img class="form-position name-img" src="./assets/img/person.png" alt="person icon">
+        </div>
+        <div class="input-container">
+            <input type="email" id="emailSignup" placeholder="Email">
+            <img class="form-position email-img" src="./assets/img/email.png" alt="email icon">
+        </div>
+        <div class="input-container">
+            <input oninput="changeIcon('passwordSignup', 'signupImg')" type="password" id="passwordSignup"
+                placeholder="Password">
+            <img onclick="showPassword('passwordSignup', 'signupImg')" id="signupImg" class="form-position password-img"
+                src="./assets/img/lock.png" alt="lock icon">
+        </div>
+        <div class="input-container">
+            <input oninput="changeIcon('confirmPassword', 'confirmImg')" type="password" id="confirmPassword"
+                placeholder="Confirm Password">
+            <img onclick="showPassword('confirmPassword', 'confirmImg')" id="confirmImg"
+                class="form-position password-img" src="./assets/img/lock.png" alt="lock icon">
+        </div>
+        <div class="privacy-policy-container">
+            <img src="./assets/img/checkmark-empty_dark.png" alt="checkmark icon">
+            <span>I accept the
+                <a onclick="savePage()" href="./legal_information/privacy_policy.html" target="_blank">Privacy
+                    Policy</a>
+            </span>
+        </div>
+        <button class="login">Sign up</button>
+    </form>
+    <div class="signup-container-mobile">
+        <span class="signup-span">Not a Join user?</span>
+        <button onclick="handleSignupOrLogin('login', 'signup')" class="signup-button">Sign up</button>
     </div>
-    <div class="input-container">
-        <input type="password" id="passwordLogin" placeholder="Password">
-        <img class="form-position password-img" src="./assets/img/lock.png" alt="lock icon">
-    </div>
-    <div class="remember-me-container">
-        <img src="./assets/img/checkmark-empty_dark.png" alt="checkmark icon">
-        <span>Remember me</span>
-    </div>
-    <div class="login-button-container">
-        <button class="login">Log in</button>
-        <button class="guest-login">Guest Log in</button>
-    </div>
-</form>
-<form id="signup" style="display: none;" class="signup-form-container" onsubmit="return false;">
-    <div class="back-arrow-container">
-        <img onclick="handleSignupOrLogin('signup', 'login')" src="./assets/img/back_arrow.png" alt="back arrow icon">
-    </div>
-    <div class="login-header-container">
-        <h2>Sign up</h2>
-        <img src="../assets/img/underline.png" alt="underline icon">
-    </div>
-    <div class="input-container">
-        <input type="text" id="name" placeholder="Name">
-        <img class="form-position name-img" src="./assets/img/person.png" alt="person icon">
-    </div>
-    <div class="input-container">
-        <input type="email" id="emailSignup" placeholder="Email">
-        <img class="form-position email-img" src="./assets/img/email.png" alt="email icon">
-    </div>
-    <div class="input-container">
-        <input type="password" id="passwordSignup" placeholder="Password">
-        <img class="form-position password-img" src="./assets/img/lock.png" alt="lock icon">
-    </div>
-    <div class="input-container">
-        <input type="password" id="confirmPassword" placeholder="Confirm Password">
-        <img class="form-position password-img" src="./assets/img/lock.png" alt="lock icon">
-    </div>
-    <div class="privacy-policy-container">
-        <img src="./assets/img/checkmark-empty_dark.png" alt="checkmark icon">
-        <span>I accept the
-            <a onclick="savePage()" href="./legal_information/privacy_policy.html">Privacy
+    <div class="information-container">
+        <div class="information-left">
+            <a onclick="savePage()" href="./legal_information/privacy_policy.html" target="_blank">Privacy
                 Policy</a>
-        </span>
-    </div>
-    <button class="login">Sign up</button>
-</form>
-<div class="information-container">
-    <div class="information-left">
-        <a onclick="savePage()" href="./legal_information/privacy_policy.html">Privacy Policy</a>
-    </div>
-    <div class="information-right">
-        <a onclick="savePage()" href="./legal_information/legal_notice.html">Legal notice</a>
+        </div>
+        <div class="information-right">
+            <a onclick="savePage()" href="./legal_information/legal_notice.html" target="_blank">Legal notice</a>
+        </div>
     </div>
 </div>
