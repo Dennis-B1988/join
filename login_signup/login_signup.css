@@ -224,7 +224,7 @@
 }
 
 .login {
-    background-color: #2A3647;
+    background-color: #091931;
     color: white;
     border: unset;
     border-radius: 8px;
@@ -232,6 +232,16 @@
     font-weight: 700;
     font-size: 21px;
     cursor: pointer;
+}
+
+.login-disabled {
+    background-color: #2A3647;
+    color: white;
+    border: unset;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: 700;
+    font-size: 21px;
 }
 
 .login:hover {
@@ -249,7 +259,7 @@
     cursor: pointer;
 }
 
-.guest-login:hover {
+.guest-login:hover{
     border: 2px solid #29ABE2;
     color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
@@ -348,6 +358,40 @@
 .information-container a:hover {
     color: #29ABE2;
     font-weight: 700;
+}
+
+.error-message {
+    width: 100%;
+    color: #FF8190;
+    font-size: 12px;
+}
+
+.save-signup {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.signup-animation {
+    background-color: #091931;
+    color: white;
+    border: unset;
+    border-radius: 20px;
+    padding: 25px;
+    font-size: 20px;
+    position: fixed;
+    bottom: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: bottom 0.3s ease; 
+}
+
+.signup-animation.animate {
+    bottom: 50%;
 }
 
 @media(max-width: 900px) {

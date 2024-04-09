@@ -23,21 +23,21 @@ function goBack() {
 
 
 function showCurrentInformationFromLogin() {
-    let comeFromPage = loadPage();
-    document.querySelector('.side-bar-container').style.opacity = comeFromPage === 'index.html' ? '0' : '1';
-    document.querySelector('.side-bar-container').style.pointerEvents = comeFromPage === 'index.html' ? 'none' : '';
+    let comeFromPage = loadPage('page');
+    document.querySelector('.side-bar-container').style.opacity = comeFromPage === 'page' ? '0' : '1';
+    document.querySelector('.side-bar-container').style.pointerEvents = comeFromPage === 'page' ? 'none' : '';
 }
 
 
-function savePage() {
-    localStorage.setItem('page', JSON.stringify('index.html'));
+function savePage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
 }
 
 
-function loadPage() {
-    let loadNotes = localStorage.getItem('page');
-    if (loadNotes) {
-        return JSON.parse(loadNotes);
+function loadPage(key) {
+    let dataFromLocalStorage = localStorage.getItem(key);
+    if (dataFromLocalStorage) {
+        return JSON.parse(dataFromLocalStorage);
     }
 }
 
@@ -53,5 +53,12 @@ async function includeHTML() {
         } else {
             element.innerHTML = 'Page not found';
         }
+    }
+}
+
+
+function removePageFromLocalStorage() {
+    if (window.location.pathname === '/index.html') {
+        localStorage.removeItem('page');
     }
 }
