@@ -1,9 +1,8 @@
-async function init() {
-    await includeHTML();
+async function initTemplate() {
     showCategory();
     showCurrentInformation();
-    showCurrentInformationFromLogin()
     hideHelpIcon();
+    extractInitials()
 }
 
 
@@ -42,5 +41,17 @@ function showCurrentInformation() {
 function hideHelpIcon() {
     if (window.location.pathname == '/legal_information/help.html') {
         document.getElementById('headerHelp').style.display = 'none';
+    }
+}
+
+
+function extractInitials() {
+    let headerUsername = document.getElementById('headerUsername');
+    let index = parseFloat(loadPage('user'));
+    if (localStorage.getItem('user') !== null) {
+        let user = users[index];
+        let nameParts = user.name.split(' ');
+        let initials = nameParts.map(part => part.charAt(0)).join('');
+        headerUsername.innerHTML = initials;
     }
 }

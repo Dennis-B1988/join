@@ -11,10 +11,11 @@
     <link rel="shortcut icon" href="../assets/img/join_logo_blue.png" type="image/x-icon" />
     <script src="../templates/template.js"></script>
     <script src="../script.js"></script>
+    <script src="../config.js"></script>
     <script src="summary.js"></script>
   </head>
 
-  <body onload="init()">
+  <body onload="initSummary()">
     <div class="big-screen" w3-include-html="../templates/navigation.html"></div>
 
     <section class="summary-content">
@@ -77,7 +78,7 @@
         </div>
         <div class="summary-user-345">
           <p>Good morning,</p>
-          <span>USER</span>
+          <span id="userName">User</span>
         </div>
       </div>
 

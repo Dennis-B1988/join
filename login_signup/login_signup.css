@@ -244,6 +244,8 @@
 }
 
 .guest-login {
+    text-decoration: none;
+    color: black;
     background-color: white;
     border-radius: 8px;
     border: 1px solid black;

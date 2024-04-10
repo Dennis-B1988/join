@@ -6,10 +6,23 @@ async function initLogin() {
     loadCredentialsFromLocalStorage()
 }
 
+function removePageFromLocalStorage() {
+    if (window.location.pathname === '/index.html') {
+        localStorage.removeItem('page');
+    }
+}
+
 
 function animationLogo() {
     document.querySelector('.logo-container-effect').classList.add('logo-container');
     document.querySelector('.logo-effect').classList.add('logo');
+}
+
+
+function showCurrentInformationFromLogin() {
+    let comeFromPage = loadPage('page');
+    document.querySelector('.side-bar-container').style.opacity = comeFromPage === 'page' ? '0' : '1';
+    document.querySelector('.side-bar-container').style.pointerEvents = comeFromPage === 'page' ? 'none' : '';
 }
 
 
@@ -65,13 +78,6 @@ function loadCredentialsFromLocalStorage() {
         loginImg.style.zIndex = '999';
         checkmarkLogin.src = checked;
     }
-}
-
-
-function loginAsGuest() {
-    window.location.href = '../summary/summary.html';
-    savePage('guest', 'guest');
-    localStorage.removeItem('page');
 }
 
 
