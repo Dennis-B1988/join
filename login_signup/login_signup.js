@@ -1,5 +1,6 @@
 async function initLogin() {
     await includeHTML();
+    await loadUsers();
     animationLogo();
     removePageFromLocalStorage();
     loadCredentialsFromLocalStorage()
@@ -15,6 +16,25 @@ function animationLogo() {
 function userLogin() {
     let emailLogin = document.getElementById('emailLogin');
     let passwordLogin = document.getElementById('passwordLogin');
+    let noMatchEmailLogin = document.getElementById('noMatchLoginEmail');
+    let noMatchPasswordLogin = document.getElementById('noMatchLoginPassword');
+    let index = users.findIndex(user => user.email === emailLogin.value);
+    let user = users[index];
+    rememberMeUser(emailLogin, passwordLogin);
+    if (user.email === emailLogin.value && user.password === passwordLogin.value) {
+        savePage('user', index);
+        window.location.href = '../summary/summary.html';
+    }
+    if (user.email !== emailLogin.value) {
+        showErrorMessage(emailLogin, noMatchEmailLogin);
+    }
+    if (user.password !== passwordLogin.value) {
+        showErrorMessage(passwordLogin, noMatchPasswordLogin);
+    }
+}
+
+
+function rememberMeUser(emailLogin, passwordLogin) {
     let checkmarkLogin = document.getElementById('checkmarkLogin');
     if (emailLogin.value !== '' &&
         passwordLogin.value !== '' &&
@@ -96,16 +116,15 @@ function showPassword(passwordId, imageId) {
 
 
 function changeCheckmark() {
-    let singupDisabledButton = document.getElementById('signupDisabledButton');
     let signupButton = document.getElementById('signupButton');
     let checkmark = document.getElementById('checkmarkSignup');
     noteCheckmark('checkmarkSignup');
     if (isSignupValid() && checkmark.src.includes('/assets/img/checkmark_checked_dark.png')) {
-        signupButton.style = '';
-        singupDisabledButton.style.display = 'none';
+        signupButton.disabled = false;
+        signupButton.classList.add('button');
     } else {
-        signupButton.style.display = 'none';
-        singupDisabledButton.style = '';
+        signupButton.disabled = true;
+        signupButton.classList.remove('button');
     }
 }
 
@@ -151,6 +170,16 @@ function passwordMatch() {
 }
 
 
+function showErrorMessage(input, message) {
+    input.style.borderColor = 'red';
+    message.style = '';
+    setTimeout(function () {
+        input.style.borderColor = '';
+        message.style.display = 'none';
+    }, 3000);
+}
+
+
 function saveSignup() {
     let name = document.getElementById('name');
     let emailSignup = document.getElementById('emailSignup');
@@ -160,10 +189,10 @@ function saveSignup() {
     let userSignup = {
         'name': name.value,
         'email': emailSignup.value,
-        'passwordSignup': passwordSignup.value,
-        'confirmPassword': confirmPassword.value,
+        'password': passwordSignup.value,
     };
-    setItem('userSignup', userSignup);
+    users.push(userSignup);
+    setItem('user', users);
     resetValuesAndSrc(name, emailSignup, passwordSignup, confirmPassword, checkmarkSignup);
     showSignupResponse();
 }
