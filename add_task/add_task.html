@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="../assets/img/join_logo_blue.png" type="image/x-icon" />
     <script src="../templates/template.js"></script>
     <script src="../script.js"></script>
+    <script src="add_task_html.js"></script>
     <script src="add_task.js"></script>
   </head>
 
@@ -24,8 +25,9 @@
           <div class="task-form-container">
             <form onsubmit="onSubmit(); return false;" id="add-task-form" class="add-task-form">
               <div class="form-left">
-                <span>Title<span class="red">*</span></span>
-                <input id="task-title" type="text" name="title" placeholder="Enter a title" required />
+                <span id="title">Title<span class="red">*</span></span>
+                <input id="task-title" type="text" name="title" placeholder="Enter a title" />
+                <div id="title-required" class="required">This field is required</div>
                 <span>Description</span>
                 <textarea
                   id="task-description"
@@ -36,31 +38,35 @@
                   rows="5"
                 ></textarea>
                 <span>Assigned To</span>
-                <div class="assigned-to task">
-                  <input id="task-assigned-to" type="text" name="assigned-to" placeholder="Assigned To" />
-                  <img id="assigned-to-icon" class="task-icon" src="../assets/img/drop_down.png" alt="" />
+                <div id="assigned-to-task" class="assigned-to task">
+                  <input id="task-assigned-to" class="task-assigned-to" type="text" name="assigned-to" placeholder="Assigned To" readonly />
+                  <img id="assigned-to-icon" class="assigned-to-icon task-icon" src="../assets/img/drop_down.png" alt="" />
+                  <div id="task-assigned-to-dropdown" class="task-assigned-to-dropdown">
+                    <!-- Dropdown options will be dynamically populated here -->
+                  </div>
                 </div>
               </div>
 
               <div class="form-split"></div>
 
               <div class="form-right">
-                <span>Due date<span class="red">*</span></span>
+                <span id="due-date">Due date<span class="red">*</span></span>
                 <div class="task">
-                  <input id="task-date" class="task-date" type="date" name="date" placeholder="dd/mm/yyyy" required />
+                  <input id="task-date" class="task-date" type="date" name="date" placeholder="dd/mm/yyyy" />
                   <!-- <img id="task-date-icon" class="task-icon" src="../assets/img/date.png" alt="" /> -->
                 </div>
+                <div id="date-required" class="required">This field is required</div>
                 <span>Prio</span>
                 <div class="priority">
-                  <span onclick="urgentStyle()" id="urgent" class="urgent urgent-bg"
+                  <span onclick="changePriorityUrgent()" id="urgent" class="urgent urgent-bg prio-hover"
                     >Urgent
                     <img id="urgent-img" src="../assets/img/urgent_red.png" alt="" />
                   </span>
-                  <span onclick="mediumStyle()" id="medium" class="medium medium-bg"
+                  <span onclick="changePriorityMedium()" id="medium" class="medium medium-bg"
                     >Medium
                     <img id="medium-img" src="../assets/img/equal_white.png" alt="" />
                   </span>
-                  <span onclick="lowStyle()" id="low" class="low low-bg"
+                  <span onclick="changePriorityLow()" id="low" class="low low-bg prio-hover"
                     >Low
                     <img id="low-img" src="../assets/img/low_green.png" alt="" />
                   </span>
@@ -73,12 +79,14 @@
                     <!-- Dropdown options will be dynamically populated here -->
                   </div>
                 </div>
+                <div id="category-required" class="required">This field is required</div>
 
                 <span>Subtasks</span>
                 <div class="task">
-                  <input id="task-subtasks" type="text" name="subtasks" placeholder="add new subtask" />
-                  <img id="subtask-icon" class="task-icon" src="../assets/img/subtask.png" alt="" />
+                  <input id="task-subtasks" type="text" name="subtasks" placeholder="Add new subtask" />
+                  <img onclick="newSubtask()" id="subtask-icon" class="task-icon" src="../assets/img/subtask.png" alt="" />
                 </div>
+                <ul id="task-subtasks-list" class="task-subtasks-list"></ul>
               </div>
             </form>
           </div>
@@ -89,7 +97,7 @@
             <span class="field-required"><span class="red">*</span>This field is required</span>
             <div class="task-buttons">
               <button class="task-clear" onclick="clearTaskForm()">
-                Clear <span><img src="../assets/img/plus.png" alt="" /></span>
+                Clear <span><img class="task-clear-img" src="../assets/img/plus.png" alt="" /></span>
               </button>
               <button id="task-add" class="task-add" type="submit" form="add-task-form">
                 Create Task <img class="task-add-img" src="../assets/img/mark.png" alt="" />
