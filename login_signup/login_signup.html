@@ -1,7 +1,7 @@
 <div class="form-container">
     <div class="signup-container">
         <span class="signup-span">Not a Join user?</span>
-        <button onclick="handleSignupOrLogin('login', 'signup')" class="signup-button">Sign up</button>
+        <button onclick="handleSignupOrLogin('login', 'signup')" class="button">Sign up</button>
     </div>
     <form id="login" class="login-form-container" onsubmit="userLogin();return false;">
         <div class="login-header-container">
@@ -24,7 +24,7 @@
             <span>Remember me</span>
         </div>
         <div class="login-button-container">
-            <button class="login">Log in</button>
+            <button class="button">Log in</button>
             <button onclick="loginAsGuest()" class="guest-login">Guest Log in</button>
         </div>
     </form>
@@ -69,8 +69,8 @@
                     Policy</a>
             </span>
         </div>
-        <button id="signupDisabledButton" class="login-disabled" disabled>Sign up</button>
-        <button id="signupButton" style="display: none;" class="login">Sign up</button>
+        <!-- <button id="signupDisabledButton" class="login-disabled" disabled>Sign up</button> -->
+        <button id="signupButton" class="button-disabled" disabled>Sign up</button>
     </form>
     <div class="signup-container-mobile">
         <span class="signup-span">Not a Join user?</span>

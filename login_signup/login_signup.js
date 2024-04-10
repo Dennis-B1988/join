@@ -1,3 +1,6 @@
+let users = [];
+
+
 async function initLogin() {
     await includeHTML();
     animationLogo();
@@ -27,6 +30,7 @@ function userLogin() {
         localStorage.removeItem('passwordLogin');
         localStorage.removeItem('checkmarkLogin');
     }
+    window.location.href = '../summary/summary.html';
 }
 
 
@@ -96,16 +100,15 @@ function showPassword(passwordId, imageId) {
 
 
 function changeCheckmark() {
-    let singupDisabledButton = document.getElementById('signupDisabledButton');
     let signupButton = document.getElementById('signupButton');
     let checkmark = document.getElementById('checkmarkSignup');
     noteCheckmark('checkmarkSignup');
     if (isSignupValid() && checkmark.src.includes('/assets/img/checkmark_checked_dark.png')) {
-        signupButton.style = '';
-        singupDisabledButton.style.display = 'none';
+        signupButton.disabled = false;
+        signupButton.classList.add('button');
     } else {
-        signupButton.style.display = 'none';
-        singupDisabledButton.style = '';
+        signupButton.disabled = true;
+        signupButton.classList.remove('button');
     }
 }
 
@@ -160,10 +163,10 @@ function saveSignup() {
     let userSignup = {
         'name': name.value,
         'email': emailSignup.value,
-        'passwordSignup': passwordSignup.value,
-        'confirmPassword': confirmPassword.value,
+        'password': passwordSignup.value,
     };
-    setItem('userSignup', userSignup);
+    users.push(userSignup);
+    setItem('user', users);
     resetValuesAndSrc(name, emailSignup, passwordSignup, confirmPassword, checkmarkSignup);
     showSignupResponse();
 }
