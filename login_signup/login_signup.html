@@ -63,6 +63,8 @@
             <img class="form-position email-img" src="./assets/img/email.png" alt="email icon">
         </div>
 
+        <span style="display: none;" id="noMatchSignupEmail" class="error-message">This email is already in use.</span>
+
         <div class="input-container">
             <input oninput="changeIcon('passwordSignup', 'signupImg')" type="password" id="passwordSignup" minlength="8"
                 placeholder="Password" required>
@@ -102,7 +104,7 @@
             <a onclick="savePage('page', 'page')" href="./legal_information/privacy_policy.html" target="_blank">Privacy
                 Policy</a>
         </div>
-        
+
         <div class="information-right">
             <a onclick="savePage('page', 'page')" href="./legal_information/legal_notice.html" target="_blank">Legal
                 notice</a>

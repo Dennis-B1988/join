@@ -6,9 +6,11 @@ async function initLogin() {
     loadCredentialsFromLocalStorage()
 }
 
+
 function removePageFromLocalStorage() {
     if (window.location.pathname === '/index.html') {
         localStorage.removeItem('page');
+        localStorage.removeItem('user');
     }
 }
 
@@ -190,21 +192,36 @@ function showErrorMessage(input, message) {
 }
 
 
+function existingEmail(email) {
+    let index = users.findIndex(user => user.email === email.value);
+    if (index !== -1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 function saveSignup() {
     let name = document.getElementById('name');
     let emailSignup = document.getElementById('emailSignup');
     let passwordSignup = document.getElementById('passwordSignup');
     let confirmPassword = document.getElementById('confirmPassword');
     let checkmarkSignup = document.getElementById('checkmarkSignup');
-    let userSignup = {
-        'name': name.value,
-        'email': emailSignup.value,
-        'password': passwordSignup.value,
-    };
-    users.push(userSignup);
-    setItem('user', users);
-    resetValuesAndSrc(name, emailSignup, passwordSignup, confirmPassword, checkmarkSignup);
-    showSignupResponse();
+    let noMatchSignupEmail = document.getElementById('noMatchSignupEmail');
+    if (existingEmail(emailSignup)) {
+        showErrorMessage(emailSignup, noMatchSignupEmail)
+    } else {
+        let userSignup = {
+            'name': name.value,
+            'email': emailSignup.value,
+            'password': passwordSignup.value,
+        };
+        users.push(userSignup);
+        setItem('user', users);
+        resetValuesAndSrc(name, emailSignup, passwordSignup, confirmPassword, checkmarkSignup);
+        showSignupResponse();
+    }
 }
 
 
