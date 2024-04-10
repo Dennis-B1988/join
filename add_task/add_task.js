@@ -11,6 +11,7 @@ let subtaskCount = 0;
  */
 async function initTasks() {
   await includeHTML();
+  await loadUsers();
   await initTemplate();
   getCurrentDate();
   load();
