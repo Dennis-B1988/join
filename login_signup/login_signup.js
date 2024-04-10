@@ -32,17 +32,21 @@ function userLogin() {
     let noMatchEmailLogin = document.getElementById('noMatchLoginEmail');
     let noMatchPasswordLogin = document.getElementById('noMatchLoginPassword');
     let index = users.findIndex(user => user.email === emailLogin.value);
-    let user = users[index];
     rememberMeUser(emailLogin, passwordLogin);
-    if (user.email === emailLogin.value && user.password === passwordLogin.value) {
-        savePage('user', index);
-        window.location.href = '../summary/summary.html';
-    }
-    if (user.email !== emailLogin.value) {
+    if (index === -1) {
         showErrorMessage(emailLogin, noMatchEmailLogin);
-    }
-    if (user.password !== passwordLogin.value) {
-        showErrorMessage(passwordLogin, noMatchPasswordLogin);
+    } else {
+        let user = users[index];
+        if (user.email === emailLogin.value && user.password === passwordLogin.value) {
+            savePage('user', index);
+            window.location.href = '../summary/summary.html';
+        }
+        if (user.email !== emailLogin.value) {
+            showErrorMessage(emailLogin, noMatchEmailLogin);
+        }
+        if (user.password !== passwordLogin.value) {
+            showErrorMessage(passwordLogin, noMatchPasswordLogin);
+        }
     }
 }
 
