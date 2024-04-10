@@ -3,6 +3,7 @@ let urgent = false;
 let medium = true;
 let low = false;
 let priority = null;
+let subtaskCount = 0;
 
 /**
  *
@@ -20,43 +21,91 @@ async function initTasks(){
  *
  *
  */
-function urgentStyle() {
-  urgent = true;
+function changePriorityUrgent() {
   medium = false;
   low = false;
-  document.getElementById('urgent').style.background = 'rgb(255, 61, 0)' 
-  document.getElementById('urgent-img').src = '../assets/img/urgent_white.png';
+  if(urgent){
+    urgent = false;
+    document.getElementById('urgent').classList.add('prio-hover');
+    disablePriority();
+  } else {
+    urgent = true;
+    urgentStyle();
+  }
+}
 
-  document.getElementById('medium').style.background = 'rgb(255, 255, 255)' 
+function urgentStyle() {
+  document.getElementById('urgent').classList.remove('prio-hover');
+  document.getElementById('medium').classList.add('prio-hover');
+  document.getElementById('low').classList.add('prio-hover');
+  document.getElementById('urgent').style.background = '#FF3D00' 
+  document.getElementById('urgent-img').src = '../assets/img/urgent_white.png';
+  document.getElementById('medium').style.background = '#FFFFFF' 
   document.getElementById('medium-img').src = '../assets/img/equal_orange.png';
-  document.getElementById('low').style.background = 'rgb(255, 255, 255)' 
+  document.getElementById('low').style.background = '#FFFFFF' 
   document.getElementById('low-img').src = '../assets/img/low_green.png';
+}
+
+function changePriorityMedium() {
+  urgent = false;
+  low = false;
+  if(medium){
+    medium = false;
+    document.getElementById('medium').classList.add('prio-hover');
+    disablePriority();
+  } else {
+    medium = true;
+    mediumStyle();
+  }
 }
 
 function mediumStyle() {
-  urgent = false;
-  medium = true;
-  low = false;
+  document.getElementById('urgent').classList.add('prio-hover');
+  document.getElementById('medium').classList.remove('prio-hover');
+  document.getElementById('low').classList.add('prio-hover');
   document.getElementById('medium').style.background = '#FFA800' 
   document.getElementById('medium-img').src = '../assets/img/equal_white.png';
-
-  document.getElementById('urgent').style.background = 'rgb(255, 255, 255)' 
+  document.getElementById('urgent').style.background = '#FFFFFF' 
   document.getElementById('urgent-img').src = '../assets/img/urgent_red.png';
-  document.getElementById('low').style.background = 'rgb(255, 255, 255)' 
+  document.getElementById('low').style.background = '#FFFFFF' 
   document.getElementById('low-img').src = '../assets/img/low_green.png';
 }
 
-function lowStyle() {
+function changePriorityLow() {
   urgent = false;
   medium = false;
-  low = true;
-  document.getElementById('low').style.background = 'rgb(122, 226, 41)' 
-  document.getElementById('low-img').src = '../assets/img/low_white.png';
+  if(low){
+    low = false;
+    document.getElementById('low').classList.add('prio-hover');
+    disablePriority();
+  } else {
+    low = true;
+    lowStyle();
+  }
+}
 
-  document.getElementById('urgent').style.background = 'rgb(255, 255, 255)' 
+function lowStyle() {
+  document.getElementById('urgent').classList.add('prio-hover');
+  document.getElementById('medium').classList.add('prio-hover');
+  document.getElementById('low').classList.remove('prio-hover');
+  document.getElementById('low').style.background = '#7AE229' 
+  document.getElementById('low-img').src = '../assets/img/low_white.png';
+  document.getElementById('urgent').style.background = '#FFFFFF' 
   document.getElementById('urgent-img').src = '../assets/img/urgent_red.png';
-  document.getElementById('medium').style.background = 'rgb(255, 255, 255)' 
+  document.getElementById('medium').style.background = '#FFFFFF' 
   document.getElementById('medium-img').src = '../assets/img/equal_orange.png';
+}
+
+function disablePriority() {
+  urgent = false;
+  medium = false;
+  low = false;
+  document.getElementById('urgent').style.background = '#FFFFFF' 
+  document.getElementById('urgent-img').src = '../assets/img/urgent_red.png';
+  document.getElementById('medium').style.background = '#FFFFFF' 
+  document.getElementById('medium-img').src = '../assets/img/equal_orange.png';
+  document.getElementById('low').style.background = '#FFFFFF' 
+  document.getElementById('low-img').src = '../assets/img/low_green.png';
 }
 
 /**
@@ -65,6 +114,13 @@ function lowStyle() {
  */
 function clearTaskForm(){
     document.getElementById("add-task-form").reset();
+    document.getElementById("title-required").style.color = '#f6f7f8';
+    document.getElementById("date-required").style.color = '#f6f7f8';
+    document.getElementById("category-required").style.color = '#f6f7f8';
+
+    document.getElementById("task-title").style.borderColor = '#d1d1d1';
+    document.getElementById("task-date").style.borderColor = '#d1d1d1';
+    document.getElementById("task-category").style.borderColor = '#d1d1d1';
 }
 
 /**
@@ -86,6 +142,36 @@ function getCurrentDate() {
  *
  *
  */
+function newSubtask() {
+  let subtask = document.getElementById('task-subtasks').value;
+  if(subtask !== '') {
+    document.getElementById('task-subtasks-list').innerHTML += addSubtaskList(subtask, subtaskCount);
+    subtaskCount++;
+    document.getElementById('task-subtasks').value = '';
+  }
+}
+
+/**
+ *
+ * WIP
+ */
+function editSubtask(subtaskCount) {
+  document.getElementById(`subtask-${subtaskCount}`).contentEditable = true;
+}
+
+/**
+ *
+ * @param {*} subtaskCount
+ */
+function deleteSubtask(subtaskCount) {
+  document.getElementById(`subtask-${subtaskCount}`).remove();
+  subtaskCount--;
+}
+
+/**
+ *
+ *
+ */
 function onSubmit(){
   let title = document.getElementById('task-title').value;
   let description = document.getElementById('task-description').value;
@@ -97,11 +183,28 @@ function onSubmit(){
   if(title && date && category !== ''){
     tasks.push({"title": title, "description": description, "assignedTo": assignedTo, "date": date, "priority": priority, "category": category, "subtasks": subtasks});
     save();
+    clearTaskForm();
+  }else{
+    formFilled(title, date, category);
+  }
+}
+
+function formFilled(title, date, category){
+  if(title == ''){
+    document.getElementById('title-required').style.color = '#FCA7B1';
+    document.getElementById('task-title').style.borderColor = '#FCA7B1';
+  }
+  if(date == ''){
+    document.getElementById('date-required').style.color = '#FCA7B1';
+    document.getElementById('task-date').style.borderColor = '#FCA7B1';
+  }
+  if(category == ''){
+    document.getElementById('category-required').style.color = '#FCA7B1';
+    document.getElementById('task-category').style.borderColor = '#FCA7B1';
   }
 }
 
 /**
- *
  *
  * @return {*} 
  */
@@ -115,6 +218,7 @@ function taskPriority(){
   }
   return priority;
 }
+
 
 /**
  *
@@ -138,61 +242,161 @@ function load(){
 
 
 
-let options = ['Summary', 'Task', 'Board', 'Contact'];
+
+
+
+
+
+
+
+
+/**
+ *
+ * 
+ */
+let options = ['To do', 'In progress', 'Await Feedback', 'Done'];
 
 document.addEventListener('DOMContentLoaded', function() {
+  let searchInput = document.getElementById('task-category');
+  let searchDropdown = document.getElementById('task-category-dropdown');
+  let dropdownToggle = document.getElementById('task-category-icon');
   
-  
-  // Add dropdown with data from options
-  dropdownCategory();
-  
-    // Event listener to toggle the dropdown when clicking on the input or the icon
-    const searchInput = document.getElementById('task-category');
-    const dropdownToggle = document.getElementById('task-category-icon');
-    searchInput.addEventListener('click', toggleDropdown);
-    dropdownToggle.addEventListener('click', toggleDropdown);
-  
-    // Event listener to close dropdown when clicking outside of it
-    document.body.addEventListener('click', function(event) {
-      if (event.target !== searchInput && event.target !== dropdownToggle) {
+  function populateDropdown() {
+    searchDropdown.innerHTML = '';
+    options.forEach(option => {
+      const optionElement = document.createElement('div');
+      optionElement.textContent = option;
+      optionElement.classList.add('search-dropdown-item');
+      optionElement.addEventListener('click', function() {
+        searchInput.value = option;
         searchDropdown.style.display = 'none';
-        dropdownToggle.classList.remove('opened'); 
-      }
+      });
+      searchDropdown.appendChild(optionElement);
     });
+    searchDropdown.style.display = 'block';
+    dropdownToggle.classList.add('opened');
+  }
+
+  function toggleDropdown() {
+    if (searchDropdown.style.display === 'block') {
+      searchDropdown.style.display = 'none';
+      dropdownToggle.classList.remove('opened');
+    } else {
+      populateDropdown();
+      searchDropdown.style.display = 'block';
+      searchInput.focus();
+    }
+  }
+
+  function closeDropdown() {
+    searchDropdown.style.display = 'none';
+    dropdownToggle.classList.remove('opened');
+  }
+
+  function handleBodyClick(event) {
+    if (event.target !== searchInput && event.target !== dropdownToggle) {
+      closeDropdown();
+    }
+  }
+
+  searchInput.addEventListener('click', toggleDropdown);
+  dropdownToggle.addEventListener('click', toggleDropdown);
+  document.body.addEventListener('click', handleBodyClick);
+
 });
 
-function dropdownCategory(){
-  const searchInput = document.getElementById('task-category');
-  const searchDropdown = document.getElementById('task-category-dropdown');
-  const dropdownToggle = document.getElementById('task-category-icon');
-  populateDropdown(searchInput, searchDropdown, dropdownToggle);
-  toggleDropdown(searchInput, searchDropdown, dropdownToggle);
-  // return {searchInput, searchDropdown, dropdownToggle}
-}
 
-function populateDropdown(searchInput, searchDropdown, dropdownToggle) {
-  searchDropdown.innerHTML = '';
-  options.forEach(option => {
-    const optionElement = document.createElement('div');
-    optionElement.textContent = option;
-    optionElement.classList.add('category-dropdown-item');
-    optionElement.addEventListener('click', function() {
-      searchInput.value = option;
-      searchDropdown.style.display = 'none';
+
+
+
+/**
+ * 
+ * 
+ */
+const data = [
+  { firstName: 'John', lastName: 'Doe' },
+  { firstName: 'Jane', lastName: 'Smith' },
+  { firstName: 'Alice', lastName: 'Johnson' },
+  { firstName: 'Bob', lastName: 'Brown' }
+];
+
+document.addEventListener('DOMContentLoaded', function(){
+
+const inputField = document.querySelector('.task-assigned-to');
+const dropdownList = document.querySelector('.task-assigned-to-dropdown');
+
+inputField.addEventListener('input', () => {
+  const inputValue = inputField.value.toLowerCase();
+  const filteredData = data.filter(item =>
+    item.firstName.toLowerCase().includes(inputValue) || 
+    item.lastName.toLowerCase().includes(inputValue)
+  );
+
+  renderDropdownList(filteredData);
+});
+
+function renderDropdownList(items) {
+  dropdownList.innerHTML = '';
+  items.forEach(item => {
+    const fullName = `${item.firstName} ${item.lastName}`;
+    const initials = `${item.firstName.charAt(0)}${item.lastName.charAt(0)}`;
+    const listItem = document.createElement('div');
+    listItem.classList.add('dropdown-item');
+    listItem.innerHTML = `
+      <div class="initials">${initials}</div>
+      <span>${fullName}</span>
+      <img src="../assets/img/back_arrow.png" alt="Arrow" class="arrow-icon">
+    `;
+    listItem.addEventListener('click', () => {
+      inputField.value = fullName;
+      dropdownList.innerHTML = '';
     });
-    searchDropdown.appendChild(optionElement);
+    dropdownList.appendChild(listItem);
   });
-  searchDropdown.style.display = 'block'; // Always show dropdown
-  dropdownToggle.classList.add('opened'); // Add the opened class to the dropdown icon
 }
 
-function toggleDropdown(searchInput, searchDropdown, dropdownToggle) {
-  if (searchDropdown.style.display === 'block') {
-    searchDropdown.style.display = 'none';
-    dropdownToggle.classList.remove('opened'); 
-  } else {
-    populateDropdown();
-    searchDropdown.style.display = 'block';
-    searchInput.focus();
+document.addEventListener('click', (event) => {
+  const dropdown = document.getElementById('assigned-to-task');
+  if (!dropdown.contains(event.target)) {
+    dropdownList.innerHTML = '';
   }
-}
+});
+});
+
+
+
+// function dropdownCategory(){
+//   let searchInput = document.getElementById('task-category');
+//   let searchDropdown = document.getElementById('task-category-dropdown');
+//   let dropdownToggle = document.getElementById('task-category-icon');
+//   populateDropdown(searchDropdown, searchInput,  dropdownToggle);
+//   toggleDropdown(searchDropdown, dropdownToggle, searchInput);
+//   // return {searchInput, searchDropdown, dropdownToggle}
+// }
+
+// function populateDropdown(searchDropdown, searchInput,  dropdownToggle) {
+//   searchDropdown.innerHTML = '';
+//   options.forEach(option => {
+//     let optionElement = document.createElement('div');
+//     optionElement.textContent = option;
+//     optionElement.classList.add('category-dropdown-item');
+//     optionElement.addEventListener('click', function() {
+//       searchInput.value = option;
+//       searchDropdown.style.display = 'none';
+//     });
+//     searchDropdown.appendChild(optionElement);
+//   });
+//   searchDropdown.style.display = 'block'; // Always show dropdown
+//   dropdownToggle.classList.add('opened'); // Add the opened class to the dropdown icon
+// }
+
+// function toggleDropdown(searchDropdown, dropdownToggle, searchInput) {
+//   if (searchDropdown.style.display === 'block') {
+//     searchDropdown.style.display = 'none';
+//     dropdownToggle.classList.remove('opened'); 
+//   } else {
+//     populateDropdown();
+//     searchDropdown.style.display = 'block';
+//     searchInput.focus();
+//   }
+// }
