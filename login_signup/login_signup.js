@@ -1,8 +1,6 @@
-let users = [];
-
-
 async function initLogin() {
     await includeHTML();
+    await loadUsers();
     animationLogo();
     removePageFromLocalStorage();
     loadCredentialsFromLocalStorage()
@@ -18,6 +16,25 @@ function animationLogo() {
 function userLogin() {
     let emailLogin = document.getElementById('emailLogin');
     let passwordLogin = document.getElementById('passwordLogin');
+    let noMatchEmailLogin = document.getElementById('noMatchLoginEmail');
+    let noMatchPasswordLogin = document.getElementById('noMatchLoginPassword');
+    let index = users.findIndex(user => user.email === emailLogin.value);
+    let user = users[index];
+    rememberMeUser(emailLogin, passwordLogin);
+    if (user.email === emailLogin.value && user.password === passwordLogin.value) {
+        savePage('user', index);
+        window.location.href = '../summary/summary.html';
+    }
+    if (user.email !== emailLogin.value) {
+        showErrorMessage(emailLogin, noMatchEmailLogin);
+    }
+    if (user.password !== passwordLogin.value) {
+        showErrorMessage(passwordLogin, noMatchPasswordLogin);
+    }
+}
+
+
+function rememberMeUser(emailLogin, passwordLogin) {
     let checkmarkLogin = document.getElementById('checkmarkLogin');
     if (emailLogin.value !== '' &&
         passwordLogin.value !== '' &&
@@ -30,7 +47,6 @@ function userLogin() {
         localStorage.removeItem('passwordLogin');
         localStorage.removeItem('checkmarkLogin');
     }
-    window.location.href = '../summary/summary.html';
 }
 
 
@@ -151,6 +167,16 @@ function passwordMatch() {
         confirmPassword.style = '';
         noMatchSignup.style.display = 'none';
     }
+}
+
+
+function showErrorMessage(input, message) {
+    input.style.borderColor = 'red';
+    message.style = '';
+    setTimeout(function () {
+        input.style.borderColor = '';
+        message.style.display = 'none';
+    }, 3000);
 }
 
 

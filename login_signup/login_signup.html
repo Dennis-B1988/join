@@ -12,12 +12,15 @@
             <input type="email" id="emailLogin" placeholder="Email" required>
             <img class="form-position email-img" src="./assets/img/email.png" alt="email icon">
         </div>
+        <span style="display: none;" id="noMatchLoginEmail" class="error-message">Wrong email Ups! Try again.</span>
         <div class="input-container">
             <input oninput="changeIcon('passwordLogin', 'loginImg')" type="password" id="passwordLogin"
                 placeholder="Password" minlength="8" required>
             <img onclick="showPassword('passwordLogin', 'loginImg')" id="loginImg" class="form-position password-img"
                 src="./assets/img/lock.png" alt="lock icon">
         </div>
+        <span style="display: none;" id="noMatchLoginPassword" class="error-message">Wrong password Ups! Try
+            again.</span>
         <div class="remember-me-container">
             <img onclick="noteCheckmark('checkmarkLogin')" id="checkmarkLogin"
                 src="./assets/img/checkmark-empty_dark.png" alt="checkmark icon">
@@ -47,6 +50,7 @@
             <input type="email" id="emailSignup" placeholder="Email" required>
             <img class="form-position email-img" src="./assets/img/email.png" alt="email icon">
         </div>
+        <span style="display: none;" id="noMatchSignupEmail" class="error-message">This email is already in use.</span>
         <div class="input-container">
             <input oninput="changeIcon('passwordSignup', 'signupImg')" type="password" id="passwordSignup" minlength="8"
                 placeholder="Password" required>
@@ -69,12 +73,11 @@
                     Policy</a>
             </span>
         </div>
-        <!-- <button id="signupDisabledButton" class="login-disabled" disabled>Sign up</button> -->
         <button id="signupButton" class="button-disabled" disabled>Sign up</button>
     </form>
     <div class="signup-container-mobile">
         <span class="signup-span">Not a Join user?</span>
-        <button onclick="handleSignupOrLogin('login', 'signup')" class="signup-button">Sign up</button>
+        <button onclick="handleSignupOrLogin('login', 'signup')" class="button">Sign up</button>
     </div>
     <div class="information-container">
         <div class="information-left">
