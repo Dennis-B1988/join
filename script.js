@@ -1,4 +1,5 @@
 let users = [];
+let contacts = [];
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
 async function setItem(key, value) {
