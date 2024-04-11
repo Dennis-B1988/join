@@ -1,4 +1,5 @@
 let users = [];
+let contacts = [];
 
 async function setItem(key, value) {
     const payload = { key, value, token: STORAGE_TOKEN };
