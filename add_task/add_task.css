@@ -148,6 +148,11 @@
   cursor: pointer;
 }
 
+.hover-icon:hover {
+  border-radius: 50%;
+  background-color: #d1d1d1;
+}
+
 /* Icon 180 Grad WIP */
 .task-category-icon.open {
   transform: translateY(-50%) rotate(180deg);
@@ -186,21 +191,56 @@ input[type='date']::-webkit-calendar-picker-indicator {
 .task-subtasks-list {
   list-style-position: inside;
   width: 100%;
-  padding-left: 21px;
-  padding-right: 16px;
+
+  /* padding-right: 16px; */
   font-size: 16px;
 }
 
-.subtask-list {
+.subtask-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 4px;
+}
+
+.subtask-input {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.subtask-list {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.subtask-list-item {
+  width: 100%;
+  padding-left: 21px;
 }
 
 .subtask-icons {
   display: none;
   align-items: center;
   gap: 4px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding-right: 5px;
 }
 
 /* .subtask-icons:hover {
@@ -211,6 +251,11 @@ input[type='date']::-webkit-calendar-picker-indicator {
 .subtask-list:hover .subtask-icons {
   display: flex;
   transition: all 0.1s ease-in-out;
+}
+
+.subtask-list:hover {
+  background-color: #eeeeee;
+  border-radius: 10px;
 }
 
 .subtask-icons img {
