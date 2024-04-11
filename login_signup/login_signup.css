@@ -181,15 +181,12 @@
     position: relative;
     z-index: 2;
     background-color: transparent;
+    outline: none;
 }
 
 .input-container input::placeholder {
     color: #D1D1D1;
     font-size: 20px;
-}
-
-.input-container input {
-    outline: none;
 }
 
 .form-position {
@@ -256,7 +253,7 @@
 }
 
 .guest-login:hover{
-    border: 2px solid #29ABE2;
+    border: 1px solid #29ABE2;
     color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
 }

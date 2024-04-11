@@ -1,22 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contacts</title>
-    <link rel="stylesheet" href="../assets/fonts/fonts.css" />
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="stylesheet" href="contacts.css" />
-    <link rel="stylesheet" href="../templates/template.css" />
-    <link rel="shortcut icon" href="../assets/img/join_logo_blue.png" type="image/x-icon" />
-    <script src="../templates/template.js"></script>
-    <script src="../script.js"></script>
-    <script src="../config.js"></script>
-    <script src="contacts.js"></script>
-  </head>
 
-  <body onload="initContacts()">
-    <div class="big-screen" w3-include-html="../templates/navigation.html"></div>
-    contacts
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacts</title>
+  <link rel="stylesheet" href="../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="contacts.css" />
+  <link rel="stylesheet" href="../templates/template.css" />
+  <link rel="shortcut icon" href="../assets/img/join_logo_blue.png" type="image/x-icon" />
+  <script src="../templates/template.js"></script>
+  <script src="../script.js"></script>
+  <script src="../config.js"></script>
+  <script src="contacts.js"></script>
+</head>
+
+<body onload="initContacts()">
+  <div class="big-screen" w3-include-html="../templates/navigation.html"></div>
+
+  <section class="contacts">
+    <div class="left-container">
+      <div class="new-contact-container">
+        <button class="add-new-contact-button">Add new contact <img class="add-new-contact-img"
+            src="../assets/img/person_add.png" alt="contact icon"></button>
+
+        <div id="contacts"></div>
+      </div>
+
+      <div class="scrollbar-container"></div>
+    </div>
+
+    <div class="right-container">
+      <h2>Contacts</h2>
+      <img class="contact-line-img" src="../assets/img/contact_line.png" alt="line icon">
+      <span>Better with a team</span>
+    </div>
+
+    <div class="add-contact-big-container">
+      <div class="add-contact-small-container">
+        <div class="add-contact-left">
+          <img class="add-contact-left-logo-img" src="../assets/img/join_logo.png" alt="logo blue">
+          <h2>Add contact</h2>
+          <span>Tasks are better with a team!</span>
+          <img class="add-contact-left-underline-img" src="../assets/img/add_contact_underline.png" alt="underline">
+        </div>
+
+        <div class="add-contact-right">
+          <div class="add-contact-right-close-img-container">
+            <img src="../assets/img/plus.png" alt="close icon">
+          </div>
+          <img class="add-contact-right-contact-icon" src="../assets/img/contact_icon.png" alt="contact icon">
+
+          <form class="create-contact-container" onsubmit="return false;">
+            <div class="create-contact-input-container">
+              <input type="text" id="name" pattern="[A-Z][a-z]+ [A-Z][a-z]+" required
+                title="Bitte geben Sie Ihren Vor- (Leerzeichen) Nachnamen ein, mit Großbuchstaben am Anfang jedes Namens."
+                placeholder="Name" required>
+              <img class="create-contact-input-img" src="../assets/img/person.png" alt="person icon">
+            </div>
+
+            <div class="create-contact-input-container">
+              <input type="email" id="email" placeholder="Email" required>
+              <img class="create-contact-input-img" src="../assets/img/email.png" alt="email icon">
+            </div>
+
+            <div class="create-contact-input-container">
+              <input type="tel" id="phone" pattern="^\+(?:[0-9] ?){6,14}[0-9]$"
+                title="Bitte geben Sie eine Telefonnummer im internationalen Format ein. Zum Beispiel: +1234567890"
+                placeholder="Phone" required>
+              <img class="create-contact-input-img" src="../assets/img/call.png" alt="call icon">
+            </div>
+
+            <div class="create-contact-button-container">
+              <button class="create-contact-button-cancel">Cancel
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7.06917 7.00008L12.3122 12.2431M1.82617 12.2431L7.06917 7.00008L1.82617 12.2431ZM12.3122 1.75708L7.06817 7.00008L12.3122 1.75708ZM7.06817 7.00008L1.82617 1.75708L7.06817 7.00008Z"
+                    stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+
+              <button class="create-contact-button-create-contact">Create contact<img class="create-contact-button-img" src="../assets/img/check.png" alt="check icon"></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
 </html>

@@ -38,7 +38,7 @@
     cursor: pointer;
 }
 .summary-card:hover{
-    
+    box-shadow: 0px 4px 4px 0px #00000040;
     color:white;
     background-color:#2A3647;
     transform: scale(1.05);
@@ -54,7 +54,7 @@
 
 
 .summary-card-line-1:hover{
-    
+    box-shadow: 0px 4px 4px 0px #00000040;
     color:white;
     background-color:#2A3647;
     transform: scale(1.05);
@@ -69,7 +69,7 @@
 
 
 .summary-urgent-card:hover{
-    
+    box-shadow: 0px 4px 4px 0px #00000040;
     color:white;
     background-color:#2A3647;
     transform: scale(1.05);
@@ -80,6 +80,7 @@
 }
 
 .tasks-card:hover{
+    box-shadow: 0px 4px 4px 0px #00000040;
     color:white;
     background-color:#2A3647;
     transform: scale(1.05);
