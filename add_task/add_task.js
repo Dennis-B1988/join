@@ -5,6 +5,8 @@ let low = false;
 let priority = null;
 let subtaskCount = 0;
 
+let subtaskArray = [];
+
 /**
  *
  *
@@ -15,6 +17,21 @@ async function initTasks() {
   await loadData();
   await initTemplate();
   load();
+}
+
+/**
+ *
+ *
+ */
+function getCurrentDate() {
+  let currentDate = new Date();
+  let formattedDate = currentDate.getFullYear() + "-" + padZeroes(currentDate.getMonth() + 1) + "-" + padZeroes(currentDate.getDate());
+
+  document.getElementById("task-date").min = formattedDate;
+
+  function padZeroes(num) {
+    return num < 10 ? '0' + num : num;
+  }
 }
 
 /**
@@ -110,32 +127,23 @@ function disablePriority() {
 
 /**
  *
- *
+ * @return {*} 
  */
-function clearTaskForm(){
-    document.getElementById("add-task-form").reset();
-    document.getElementById("title-required").style.color = '#f6f7f8';
-    document.getElementById("date-required").style.color = '#f6f7f8';
-    document.getElementById("category-required").style.color = '#f6f7f8';
-
-    document.getElementById("task-title").style.borderColor = '#d1d1d1';
-    document.getElementById("task-date").style.borderColor = '#d1d1d1';
-    document.getElementById("task-category").style.borderColor = '#d1d1d1';
+function taskPriority() {
+  if (urgent) {
+    priority = 'Urgent';
+  } else if (medium) {
+    priority = 'Medium';
+  } else if (low) {
+    priority = 'Low';
+  } else {
+    priority = null;
+  }
+  return priority;
 }
 
-/**
- *
- *
- */
-function getCurrentDate() {
-  let currentDate = new Date();
-  let formattedDate = currentDate.getFullYear() + "-" + padZeroes(currentDate.getMonth() + 1) + "-" + padZeroes(currentDate.getDate());
-
-  document.getElementById("task-date").min = formattedDate;
-
-  function padZeroes(num) {
-    return num < 10 ? '0' + num : num;
-  }
+function openSubtask(){
+  document.getElementById('task-subtasks-input').focus();
 }
 
 /**
@@ -143,12 +151,17 @@ function getCurrentDate() {
  *
  */
 function newSubtask() {
-  let subtask = document.getElementById('task-subtasks').value;
-  if(subtask !== '') {
+  let subtask = document.getElementById('task-subtasks-input').value;
+  if(subtask !== '' && subtask.startsWith('<') === false) {
     document.getElementById('task-subtasks-list').innerHTML += addSubtaskList(subtask, subtaskCount);
+    subtaskArray.push(subtask);
     subtaskCount++;
-    document.getElementById('task-subtasks').value = '';
+    document.getElementById('task-subtasks-input').value = '';
   }
+}
+
+function emptySubtask(){
+  document.getElementById('task-subtasks-input').value = '';
 }
 
 /**
@@ -164,8 +177,57 @@ function editSubtask(subtaskCount) {
  * @param {*} subtaskCount
  */
 function deleteSubtask(subtaskCount) {
-  document.getElementById(`subtask-${subtaskCount}`).remove();
+  document.getElementById(`subtask-list-${subtaskCount}`).remove();
+  subtaskArray.splice(subtaskCount, 1);
   subtaskCount--;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const subtaskInput = document.getElementById('task-subtasks-input');
+  const openSubtaskInput = document.querySelector('.subtask-icon-add');
+  const inputIcons = document.querySelector('.subtask-icon');
+
+  subtaskInput.addEventListener('focus', () => {
+    openSubtaskInput.style.display = 'none';
+    inputIcons.style.display = 'flex';
+  });
+
+  subtaskInput.addEventListener('blur', () => {
+    // Delay hiding the icons to allow time for the click event on icon2 to execute
+    setTimeout(() => {
+      if (!subtaskInput.contains(document.activeElement)) {
+        openSubtaskInput.style.display = 'flex';
+        inputIcons.style.display = 'none';
+      }
+    }, 100);
+  });
+
+  inputIcons.addEventListener('mousedown', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  });
+
+  inputIcons.addEventListener('mouseup', () => {
+    setTimeout(() => {
+      subtaskInput.focus();
+    }, 0);
+  });
+});
+
+/**
+ *
+ *
+ */
+function clearTaskForm(){
+  document.getElementById("add-task-form").reset();
+  document.getElementById("task-subtasks-list").innerHTML = '';
+  document.getElementById("title-required").style.color = '#f6f7f8';
+  document.getElementById("date-required").style.color = '#f6f7f8';
+  document.getElementById("category-required").style.color = '#f6f7f8';
+
+  document.getElementById("task-title").style.borderColor = '#d1d1d1';
+  document.getElementById("task-date").style.borderColor = '#d1d1d1';
+  document.getElementById("task-category").style.borderColor = '#d1d1d1';
 }
 
 /**
@@ -178,10 +240,9 @@ function onSubmit(){
   let assignedTo = document.getElementById('task-assigned-to').value;
   let date = document.getElementById('task-date').value;
   let category = document.getElementById('task-category').value;
-  let subtasks = document.getElementById('task-subtasks').value;
   taskPriority();
   if (title && date && category !== '') {
-    tasks.push({ "title": title, "description": description, "assignedTo": assignedTo, "date": date, "priority": priority, "category": category, "subtasks": subtasks });
+    tasks.push({ "title": title, "description": description, "assignedTo": assignedTo, "date": date, "priority": priority, "category": category, "subtasks": subtaskArray });
     save();
     clearTaskForm();
   }else{
@@ -203,22 +264,6 @@ function formFilled(title, date, category){
     document.getElementById('task-category').style.borderColor = '#FCA7B1';
   }
 }
-
-/**
- *
- * @return {*} 
- */
-function taskPriority() {
-  if (urgent) {
-    priority = 'Urgent';
-  } else if (medium) {
-    priority = 'Medium';
-  } else if (low) {
-    priority = 'Low';
-  }
-  return priority;
-}
-
 
 /**
  *
