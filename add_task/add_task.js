@@ -10,10 +10,10 @@ let subtaskCount = 0;
  *
  */
 async function initTasks() {
+  getCurrentDate();
   await includeHTML();
   await loadUsers();
   await initTemplate();
-  getCurrentDate();
   load();
 }
 
@@ -254,7 +254,7 @@ function load() {
  *
  * 
  */
-let options = ['To do', 'In progress', 'Await Feedback', 'Done'];
+let options = ['Technical Task', 'User Story'];
 
 document.addEventListener('DOMContentLoaded', function() {
   let searchInput = document.getElementById('task-category');
