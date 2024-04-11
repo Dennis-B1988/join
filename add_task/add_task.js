@@ -12,7 +12,7 @@ let subtaskCount = 0;
 async function initTasks() {
   getCurrentDate();
   await includeHTML();
-  await loadUsers();
+  await loadData();
   await initTemplate();
   load();
 }

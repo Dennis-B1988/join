@@ -1,6 +1,6 @@
 async function initLogin() {
     await includeHTML();
-    await loadUsers();
+    await loadData();
     animationLogo();
     removePageFromLocalStorage();
     loadCredentialsFromLocalStorage()

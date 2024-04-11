@@ -1,5 +1,5 @@
 async function initLegalInformation() {
     await includeHTML();
-    await loadUsers();
+    await loadData();
     await initTemplate();
 }

@@ -12,7 +12,7 @@
 
 async function initSummary() {
     await includeHTML();
-    await loadUsers();
+    await loadData();
     await initTemplate();
     showUserName();
 }

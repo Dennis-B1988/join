@@ -17,8 +17,9 @@ async function getItem(key) {
 }
 
 
-async function loadUsers() {
+async function loadData() {
     users = await getItem('user');
+    contacts = await getItem('contacts');
 }
 
 

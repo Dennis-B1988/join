@@ -22,8 +22,9 @@
   <section class="contacts">
     <div class="left-container">
       <div class="new-contact-container">
-        <button class="add-new-contact-button">Add new contact <img class="add-new-contact-img"
-            src="../assets/img/person_add.png" alt="contact icon"></button>
+        <button onclick="openOrCloseAddContact(event, 'addButton', 'IMG')" id="addButton"
+          class="add-new-contact-button">Add new contact
+          <img class="add-new-contact-img" src="../assets/img/person_add.png" alt="contact icon"></button>
 
         <div id="contacts"></div>
       </div>
@@ -37,8 +38,8 @@
       <span>Better with a team</span>
     </div>
 
-    <div class="add-contact-big-container">
-      <div class="add-contact-small-container">
+    <div onclick="openOrCloseAddContact(event, 'bigContainer')" id="bigContainer" class="add-contact-big-container">
+      <div id="smallContainer" class="add-contact-small-container">
         <div class="add-contact-left">
           <img class="add-contact-left-logo-img" src="../assets/img/join_logo.png" alt="logo blue">
           <h2>Add contact</h2>
@@ -47,12 +48,13 @@
         </div>
 
         <div class="add-contact-right">
-          <div class="add-contact-right-close-img-container">
+          <div onclick="openOrCloseAddContact(event, 'closeButton', 'IMG')" id="closeIcon"
+            class="add-contact-right-close-img-container">
             <img src="../assets/img/plus.png" alt="close icon">
           </div>
           <img class="add-contact-right-contact-icon" src="../assets/img/contact_icon.png" alt="contact icon">
 
-          <form class="create-contact-container" onsubmit="return false;">
+          <form class="create-contact-container" onsubmit="saveContacts(); return false;">
             <div class="create-contact-input-container">
               <input type="text" id="name" pattern="[A-Z][a-z]+ [A-Z][a-z]+" required
                 title="Bitte geben Sie Ihren Vor- (Leerzeichen) Nachnamen ein, mit Großbuchstaben am Anfang jedes Namens."
@@ -65,6 +67,9 @@
               <img class="create-contact-input-img" src="../assets/img/email.png" alt="email icon">
             </div>
 
+            <span style="display: none;" id="noMatchEmail" class="error-message">This email is already in
+              use.</span>
+
             <div class="create-contact-input-container">
               <input type="tel" id="phone" pattern="^\+(?:[0-9] ?){6,14}[0-9]$"
                 title="Bitte geben Sie eine Telefonnummer im internationalen Format ein. Zum Beispiel: +1234567890"
@@ -73,15 +78,17 @@
             </div>
 
             <div class="create-contact-button-container">
-              <button class="create-contact-button-cancel">Cancel
+              <span onclick="openOrCloseAddContact(event, 'cancel', 'path')" id="cancel"
+                class="create-contact-button-cancel">Cancel
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M7.06917 7.00008L12.3122 12.2431M1.82617 12.2431L7.06917 7.00008L1.82617 12.2431ZM12.3122 1.75708L7.06817 7.00008L12.3122 1.75708ZM7.06817 7.00008L1.82617 1.75708L7.06817 7.00008Z"
                     stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-              </button>
+              </span>
 
-              <button class="create-contact-button-create-contact">Create contact<img class="create-contact-button-img" src="../assets/img/check.png" alt="check icon"></button>
+              <button class="create-contact-button-create-contact">Create contact<img class="create-contact-button-img"
+                  src="../assets/img/check.png" alt="check icon"></button>
             </div>
           </form>
         </div>
