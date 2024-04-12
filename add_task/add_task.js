@@ -463,9 +463,9 @@ function createUserList(){
     let user = username[i];
     document.getElementById('task-assigned-to-dropdown').innerHTML += `
     <div class="assigned-dropdown-item" id="assigned-dropdown-item-${i}">
-    <div class="user-initials" id="user-initials-${i}">${user.trim().charAt(0)}</div>
-    <div class="assigned-dropdown-user" id="assigned-dropdown-user-${i}">${user}</div>
-    <img onclick="userCheckmark(${i})" src="../assets/img/checkmark-empty_dark.png" class="checkmark" id="checkmark-${i}">
+      <div class="user-initials" id="user-initials-${i}">${user.trim().charAt(0)}</div>
+      <div class="assigned-dropdown-user" id="assigned-dropdown-user-${i}">${user}</div>
+      <img onclick="userCheckmark(${i})" src="../assets/img/checkmark-empty_dark.png" class="checkmark" id="checkmark-${i}">
     </div>`
   }
 }
