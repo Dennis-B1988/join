@@ -57,11 +57,16 @@ function extractInitials() {
 }
 
 function targetDropdown() {
-    let dropdown = document.getElementById("dropdown");
-    // dropdown.style.display = "block";
-    if (dropdown.style.display === "none") {
-        dropdown.style.display = "inline";
-    } else {
-        dropdown.style.display = "none";
+    let dropdownContainer = document.getElementById("dropdownContainer");
+    if (dropdownContainer.style.display === "none") {
+        dropdownContainer.style.display = "inline";
+    }
+}
+
+function openOrCloseDropdown(event, id) {
+    let dropdwonContainer = document.getElementById('dropdownContainer');
+    let targetElement = event.target;
+    if (targetElement.id === id) {
+        dropdwonContainer.style.display = 'none';
     }
 }
