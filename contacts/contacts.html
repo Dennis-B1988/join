@@ -14,6 +14,7 @@
   <script src="../script.js"></script>
   <script src="../config.js"></script>
   <script src="contacts.js"></script>
+  <script src="colors_and_first_letter.js"></script>
 </head>
 
 <body onload="initContacts()">
@@ -26,16 +27,50 @@
           class="add-new-contact-button">Add new contact
           <img class="add-new-contact-img" src="../assets/img/person_add.png" alt="contact icon"></button>
 
-        <div id="contacts"></div>
-      </div>
+        <div id="contacts">
+          <div class="first-letter">A</div>
 
-      <div class="scrollbar-container"></div>
+          <div class="underline"></div>
+
+          <div onclick="openOrCloseContact()" class="contact-container">
+            <div class="circle">
+              AM
+            </div>
+
+            <div class="contact-description">
+              <span>Anton Mayer</span>
+              <a class="contact-email" href="#">antom@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="right-container">
-      <h2>Contacts</h2>
-      <img class="contact-line-img" src="../assets/img/contact_line.png" alt="line icon">
-      <span>Better with a team</span>
+      <div class="right-container-header">
+        <h2>Contacts</h2>
+        <img class="contact-line-img" src="../assets/img/contact_line.png" alt="line icon">
+        <span class="header-text">Better with a team</span>
+      </div>
+      <div id="bigContactContainer" class="contact-description-big">
+        <div class="contact-upper-container">
+          <div class="circle-big">AM</div>
+          <div class="contact-action-big">
+            <span>Anton Mayer</span>
+            <div class="edit-delete-container">
+              <div class="edit"></div>
+              <div class="delete"></div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-information">Contact Information</div>
+        <div class="information-container">
+          <span class="information-headline">Email</span>
+          <a class="contact-email" href="#">antom@gmail.com</a>
+          <span class="information-headline">Phone</span>
+          <span>+49 1111 111 11 1</span>
+        </div>
+      </div>
     </div>
 
     <div onclick="openOrCloseAddContact(event, 'bigContainer')" id="bigContainer" class="add-contact-big-container">
