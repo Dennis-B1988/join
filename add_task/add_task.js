@@ -1,11 +1,10 @@
-let tasks = [];
 let urgent = false;
 let medium = true;
 let low = false;
 let priority = null;
-let subtaskCount = 0;
-
+let categoryList = ['Technical Task', 'User Story'];
 let subtaskArray = [];
+
 
 /**
  *
@@ -13,6 +12,7 @@ let subtaskArray = [];
  */
 async function initTasks() {
   getCurrentDate();
+  createUserList();
   await includeHTML();
   await loadData();
   await initTemplate();
@@ -153,10 +153,14 @@ function openSubtask(){
 function newSubtask() {
   let subtask = document.getElementById('task-subtasks-input').value;
   if(subtask !== '' && subtask.startsWith('<') === false) {
-    document.getElementById('task-subtasks-list').innerHTML += addSubtaskList(subtask, subtaskCount);
     subtaskArray.push(subtask);
-    subtaskCount++;
+  
     document.getElementById('task-subtasks-input').value = '';
+    document.getElementById('task-subtasks-list').innerHTML = '';
+    for(let i = 0; i < subtaskArray.length; i++){
+      let subtaskContent = subtaskArray[i];
+      document.getElementById('task-subtasks-list').innerHTML += addSubtaskList(subtaskContent, i);
+    }
   }
 }
 
@@ -168,20 +172,34 @@ function emptySubtask(){
  *
  * WIP
  */
-function editSubtask(subtaskCount) {
-  document.getElementById(`subtask-${subtaskCount}`).contentEditable = true;
+function editSubtask(i) {
+  // document.getElementById(`subtask-${i}`).contentEditable = true;
 }
 
 /**
  *
- * @param {*} subtaskCount
+ *
+ * @param {*} i
  */
-function deleteSubtask(subtaskCount) {
-  document.getElementById(`subtask-list-${subtaskCount}`).remove();
-  subtaskArray.splice(subtaskCount, 1);
-  subtaskCount--;
+function deleteSubtask(i) {
+  if (i >= 0 && i < subtaskArray.length) {
+    document.getElementById(`subtask-list-${i}`).remove();
+    subtaskArray.splice(i, 1);
+
+    document.getElementById('task-subtasks-list').innerHTML = '';
+    for(let j = 0; j < subtaskArray.length; j++){
+      let subtaskContent = subtaskArray[j];
+      document.getElementById('task-subtasks-list').innerHTML += addSubtaskList(subtaskContent, j);
+    }
+  }
 }
 
+/**
+ *
+ *
+ * @param {*} i
+ */
+// Change subtask icons when subtask input is focused and make them clickable
 document.addEventListener('DOMContentLoaded', function() {
   const subtaskInput = document.getElementById('task-subtasks-input');
   const openSubtaskInput = document.querySelector('.subtask-icon-add');
@@ -193,7 +211,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   subtaskInput.addEventListener('blur', () => {
-    // Delay hiding the icons to allow time for the click event on icon2 to execute
     setTimeout(() => {
       if (!subtaskInput.contains(document.activeElement)) {
         openSubtaskInput.style.display = 'flex';
@@ -212,6 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
       subtaskInput.focus();
     }, 0);
   });
+
 });
 
 /**
@@ -224,10 +242,11 @@ function clearTaskForm(){
   document.getElementById("title-required").style.color = '#f6f7f8';
   document.getElementById("date-required").style.color = '#f6f7f8';
   document.getElementById("category-required").style.color = '#f6f7f8';
-
   document.getElementById("task-title").style.borderColor = '#d1d1d1';
   document.getElementById("task-date").style.borderColor = '#d1d1d1';
   document.getElementById("task-category").style.borderColor = '#d1d1d1';
+  subtaskCount = 0;
+  subtaskArray = [];
 }
 
 /**
@@ -242,14 +261,27 @@ function onSubmit(){
   let category = document.getElementById('task-category').value;
   taskPriority();
   if (title && date && category !== '') {
-    tasks.push({ "title": title, "description": description, "assignedTo": assignedTo, "date": date, "priority": priority, "category": category, "subtasks": subtaskArray });
-    save();
-    clearTaskForm();
+    submitSuccess(title, description, assignedTo, date, category, priority, subtaskArray);
   }else{
     formFilled(title, date, category);
   }
 }
 
+function submitSuccess(title, description, assignedTo, date, category, priority, subtaskArray) {
+  tasks.push({ 
+    "title": title, 
+    "description": description, 
+    "assignedTo": assignedTo, 
+    "date": date, 
+    "priority": priority, 
+    "category": category, 
+    "subtasks": subtaskArray 
+  });
+  save();
+  clearTaskForm();
+}
+
+// Required fields get red border and red error message if empty
 function formFilled(title, date, category){
   if(title == ''){
     document.getElementById('title-required').style.color = '#FCA7B1';
@@ -287,11 +319,15 @@ function load() {
 
 
 
+document.addEventListener('DOMContentLoaded', function() {
 
+document.getElementById("task-add").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+  }
+});
 
-
-
-
+});
 
 
 
@@ -299,149 +335,155 @@ function load() {
  *
  * 
  */
-let options = ['Technical Task', 'User Story'];
+
 
 document.addEventListener('DOMContentLoaded', function() {
-  let searchInput = document.getElementById('task-category');
-  let searchDropdown = document.getElementById('task-category-dropdown');
+
+  /////////////////////////////////////////////////////////////
+  // Category
+  // Needs function cut down
+  let categoryInput = document.getElementById('task-category');
+  let categoryDropdown = document.getElementById('task-category-dropdown');
   let dropdownToggle = document.getElementById('task-category-icon');
   
-  function populateDropdown() {
-    searchDropdown.innerHTML = '';
-    options.forEach(option => {
-      const optionElement = document.createElement('div');
-      optionElement.textContent = option;
-      optionElement.classList.add('search-dropdown-item');
-      optionElement.addEventListener('click', function() {
-        searchInput.value = option;
-        searchDropdown.style.display = 'none';
+  // Create category dropdown
+  function categoryDropdownFill() {
+    categoryDropdown.innerHTML = '';
+    categoryList.forEach(option => {
+      const categoryElement = document.createElement('div');
+      categoryElement.textContent = option;
+      categoryElement.classList.add('search-dropdown-item');
+      categoryElement.addEventListener('click', function() {
+        categoryInput.value = option;
+        categoryDropdown.style.display = 'none';
       });
-      searchDropdown.appendChild(optionElement);
+      categoryDropdown.appendChild(categoryElement);
     });
-    searchDropdown.style.display = 'block';
+    openDropdown();
+  }
+
+  //  Open category dropdown
+  function openDropdown() {
+    categoryDropdown.style.display = 'block';
     dropdownToggle.classList.add('opened');
   }
 
+  // Toggle category dropdown
   function toggleDropdown() {
-    if (searchDropdown.style.display === 'block') {
-      searchDropdown.style.display = 'none';
+    if (categoryDropdown.style.display === 'block') {
+      categoryDropdown.style.display = 'none';
       dropdownToggle.classList.remove('opened');
     } else {
-      populateDropdown();
-      searchDropdown.style.display = 'block';
-      searchInput.focus();
+      categoryDropdownFill();
+      categoryDropdown.style.display = 'block';
+      categoryInput.focus();
     }
   }
 
+  // Close category dropdown
   function closeDropdown() {
-    searchDropdown.style.display = 'none';
+    categoryDropdown.style.display = 'none';
     dropdownToggle.classList.remove('opened');
   }
 
+  // Handle click outside of category dropdown
   function handleBodyClick(event) {
-    if (event.target !== searchInput && event.target !== dropdownToggle) {
+    if (event.target !== categoryInput && event.target !== dropdownToggle) {
       closeDropdown();
     }
   }
 
-  searchInput.addEventListener('click', toggleDropdown);
+  // Add event listeners
+  categoryInput.addEventListener('click', toggleDropdown);
   dropdownToggle.addEventListener('click', toggleDropdown);
   document.body.addEventListener('click', handleBodyClick);
 
+
+
 });
 
 
 
+///////////////////////////////////////////////////////
+// WIP subtask editing
 
+// Function to handle double click event on the subtask item
+function handleDoubleClick(index) {
+  const listItem = document.getElementById(`subtask-${index}`);
+  const subtaskText = listItem.textContent.trim();
+  listItem.innerHTML = `<input type="text" id="edit-input-${index}" class="subtask-edit-input" value="${subtaskText}" />`;
 
-/**
- * 
- * 
- */
-const data = [
-  { firstName: 'John', lastName: 'Doe' },
-  { firstName: 'Jane', lastName: 'Smith' },
-  { firstName: 'Alice', lastName: 'Johnson' },
-  { firstName: 'Bob', lastName: 'Brown' }
-];
+  document.getElementById(`subtask-icons-${index}`).classList.add('hidden');
+  document.getElementById(`subtask-icons-edit-${index}`).classList.remove('hidden');
 
-document.addEventListener('DOMContentLoaded', function(){
+  // Focus the input element
+  const inputElement = document.getElementById(`edit-input-${index}`);
+  inputElement.focus();
 
-const inputField = document.querySelector('.task-assigned-to');
-const dropdownList = document.querySelector('.task-assigned-to-dropdown');
-
-inputField.addEventListener('input', () => {
-  const inputValue = inputField.value.toLowerCase();
-  const filteredData = data.filter(item =>
-    item.firstName.toLowerCase().includes(inputValue) || 
-    item.lastName.toLowerCase().includes(inputValue)
-  );
-
-  renderDropdownList(filteredData);
-});
-
-function renderDropdownList(items) {
-  dropdownList.innerHTML = '';
-  items.forEach(item => {
-    const fullName = `${item.firstName} ${item.lastName}`;
-    const initials = `${item.firstName.charAt(0)}${item.lastName.charAt(0)}`;
-    const listItem = document.createElement('div');
-    listItem.classList.add('dropdown-item');
-    listItem.innerHTML = `
-      <div class="initials">${initials}</div>
-      <span>${fullName}</span>
-      <img src="../assets/img/back_arrow.png" alt="Arrow" class="arrow-icon">
-    `;
-    listItem.addEventListener('click', () => {
-      inputField.value = fullName;
-      dropdownList.innerHTML = '';
-    });
-    dropdownList.appendChild(listItem);
+  // Add event listener for saving the edited subtask
+  inputElement.addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+          saveEditedSubtask(index);
+      }
   });
 }
 
-document.addEventListener('click', (event) => {
-  const dropdown = document.getElementById('assigned-to-task');
-  if (!dropdown.contains(event.target)) {
-    dropdownList.innerHTML = '';
+// Function to save the edited subtask
+function saveEditedSubtask(index) {
+  const inputElement = document.getElementById(`edit-input-${index}`);
+  const editedSubtaskText = inputElement.value.trim();
+
+  // Check if the input value is not empty
+  if (editedSubtaskText !== '') {
+      // Update the subtask text in the array
+      subtaskArray[index] = editedSubtaskText;
+
+      // Replace the input element with the updated subtask text
+      const listItem = document.getElementById(`subtask-${index}`);
+      listItem.textContent = editedSubtaskText;
+      document.getElementById(`subtask-icons-${index}`).classList.remove('hidden');
+    document.getElementById(`subtask-icons-edit-${index}`).classList.add('hidden');
   }
+}
+
+// Add event listener for double click on subtask items after the page has loaded
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.subtask-list-item').forEach((item, index) => {
+      item.addEventListener('dblclick', () => {
+          handleDoubleClick(index);
+      });
+  });
 });
-});
 
+// Testusers
+let username = ['Random Name', 'John Doe', 'Jane Shoe'];
 
+function createUserList(){
+  for(let i = 0; i < username.length; i++) {
+    let user = username[i];
+    document.getElementById('task-assigned-to-dropdown').innerHTML += `
+    <div class="assigned-dropdown-item" id="assigned-dropdown-item-${i}">
+    <div class="user-initials" id="user-initials-${i}">${user.trim().charAt(0)}</div>
+    <div class="assigned-dropdown-user" id="assigned-dropdown-user-${i}">${user}</div>
+    <img onclick="userCheckmark(${i})" src="../assets/img/checkmark-empty_dark.png" class="checkmark" id="checkmark-${i}">
+    </div>`
+  }
+}
 
-// function dropdownCategory(){
-//   let searchInput = document.getElementById('task-category');
-//   let searchDropdown = document.getElementById('task-category-dropdown');
-//   let dropdownToggle = document.getElementById('task-category-icon');
-//   populateDropdown(searchDropdown, searchInput,  dropdownToggle);
-//   toggleDropdown(searchDropdown, dropdownToggle, searchInput);
-//   // return {searchInput, searchDropdown, dropdownToggle}
-// }
+function assignedToDropdown() {
+  let assignedToDropdown = document.getElementById('task-assigned-to-dropdown');
+  if(assignedToDropdown.style.display !== 'flex') {
+  assignedToDropdown.style.display = 'flex';
+  } else {
+  assignedToDropdown.style.display = 'none';
+  }
+}
 
-// function populateDropdown(searchDropdown, searchInput,  dropdownToggle) {
-//   searchDropdown.innerHTML = '';
-//   options.forEach(option => {
-//     let optionElement = document.createElement('div');
-//     optionElement.textContent = option;
-//     optionElement.classList.add('category-dropdown-item');
-//     optionElement.addEventListener('click', function() {
-//       searchInput.value = option;
-//       searchDropdown.style.display = 'none';
-//     });
-//     searchDropdown.appendChild(optionElement);
-//   });
-//   searchDropdown.style.display = 'block'; // Always show dropdown
-//   dropdownToggle.classList.add('opened'); // Add the opened class to the dropdown icon
-// }
-
-// function toggleDropdown(searchDropdown, dropdownToggle, searchInput) {
-//   if (searchDropdown.style.display === 'block') {
-//     searchDropdown.style.display = 'none';
-//     dropdownToggle.classList.remove('opened'); 
-//   } else {
-//     populateDropdown();
-//     searchDropdown.style.display = 'block';
-//     searchInput.focus();
-//   }
-// }
+function userCheckmark(i) {
+  let checkmark = document.getElementById(`checkmark-${i}`);
+  if(checkmark.src.includes('/assets/img/checkmark-empty_dark.png')) {
+    checkmark.src = '../assets/img/checkmark_checked_dark.png';
+  } else {
+    checkmark.src = '../assets/img/checkmark-empty_dark.png';
+  }
+}

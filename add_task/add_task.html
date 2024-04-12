@@ -27,7 +27,7 @@
             <form onsubmit="onSubmit(); return false;" id="add-task-form" class="add-task-form">
               <div class="form-left">
                 <span id="title">Title<span class="red">*</span></span>
-                <input id="task-title" type="text" name="title" placeholder="Enter a title" />
+                <input id="task-title" class="input" type="text" name="title" placeholder="Enter a title" />
                 <div id="title-required" class="required">This field is required</div>
                 <span>Description</span>
                 <textarea
@@ -39,9 +39,15 @@
                   rows="5"
                 ></textarea>
                 <span>Assigned To</span>
-                <div id="assigned-to-task" class="assigned-to task">
-                  <input id="task-assigned-to" class="task-assigned-to" type="text" name="assigned-to" placeholder="Assigned To" readonly />
-                  <img id="assigned-to-icon" class="assigned-to-icon task-icon hover-icon" src="../assets/img/drop_down.png" alt="" />
+                <div id="assigned-to-task" class="task">
+                  <input id="task-assigned-to" class="task-assigned-to input" type="text" name="assigned-to" placeholder="Assigned To" readonly />
+                  <img
+                    onclick="assignedToDropdown()"
+                    id="assigned-to-icon"
+                    class="assigned-to-icon task-icon hover-icon"
+                    src="../assets/img/drop_down.png"
+                    alt=""
+                  />
                   <div id="task-assigned-to-dropdown" class="task-assigned-to-dropdown">
                     <!-- Dropdown options will be dynamically populated here -->
                   </div>
@@ -53,7 +59,7 @@
               <div class="form-right">
                 <span id="due-date">Due date<span class="red">*</span></span>
                 <div class="task">
-                  <input id="task-date" class="task-date" type="date" name="date" placeholder="dd/mm/yyyy" />
+                  <input id="task-date" class="task-date input" type="date" name="date" placeholder="dd/mm/yyyy" />
                   <!-- <img id="task-date-icon" class="task-icon" src="../assets/img/date.png" alt="" /> -->
                 </div>
                 <div id="date-required" class="required">This field is required</div>
@@ -74,7 +80,7 @@
                 </div>
                 <span>Category<span class="red">*</span></span>
                 <div class="task">
-                  <input id="task-category" class="task-category" type="text" name="category" placeholder="Select task category" readonly />
+                  <input id="task-category" class="task-category input" type="text" name="category" placeholder="Select task category" readonly />
                   <img id="task-category-icon" class="task-icon hover-icon" src="../assets/img/drop_down.png" alt="" />
                   <div id="task-category-dropdown" class="task-category-dropdown">
                     <!-- Dropdown options will be dynamically populated here -->
@@ -84,7 +90,7 @@
 
                 <span>Subtasks</span>
                 <div id="subtask-input-container" class="subtask-input-container task">
-                  <input id="task-subtasks-input" class="task-subtasks" type="text" name="subtasks" placeholder="Add new subtask" />
+                  <input id="task-subtasks-input" class="task-subtasks input" type="text" name="subtasks" placeholder="Add new subtask" />
                   <img
                     onclick="openSubtask()"
                     id="subtask-icon"
