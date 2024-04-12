@@ -153,6 +153,8 @@ header {
 }
 .doard-header-dropdown-container {
   position: fixed;
+  max-width: 1440px;
+  margin: auto;
   top: 0;
   right: 0;
   left: 0;
