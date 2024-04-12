@@ -16,17 +16,9 @@ function openOrCloseAddContact(event, id, child) {
 }
 
 
-function closeExpandPokemon(event) {
-    const bigScreenContainer = document.getElementById('bigScreenContainer');
-    const closeButton = document.querySelector('.close-button');
-    if (event.target === bigScreenContainer || event.target === closeButton) {
-        bigScreenContainer.style.display = 'none';
-        closeButton.style.display = 'none';
-        document.body.style = '';
-        document.querySelectorAll('.arrow').forEach(arrow => {
-            arrow.style.display = 'none';
-        });
-    }
+function openOrCloseContact() {
+    let bigContactContainer = document.getElementById('bigContactContainer');
+    bigContactContainer.classList.toggle('show-contact');
 }
 
 

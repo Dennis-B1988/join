@@ -1,15 +1,17 @@
 <header>
   <span>Kanban Project Managment Tool</span>
   <div class="header-username-container">
-    <a id="headerHelp" href="../legal_information/help.html"><img class="header-username-img" src="../assets/img/help.png"
-        alt="Help-img" /></a>
+    <a id="headerHelp" href="../legal_information/help.html"><img class="header-username-img"
+        src="../assets/img/help.png" alt="Help-img" /></a>
     <div onclick="targetDropdown()" id="headerUsername" class="header-username">G</div>
   </div>
-  <div id="dropdown" class="doard-header-dropdown">
-    <div class="sub-div">Legal Notice</div>
-    <div class="sub-div">Privacy Policy</div>
-    <div class="sub-div">Log out</div>
-</div>
+  <div onclick="openOrCloseDropdown(event, 'dropdownContainer')" style="display: none;" id="dropdownContainer" class="doard-header-dropdown-container">
+    <div id="dropdown" class="doard-header-dropdown">
+      <div class="sub-div">Legal Notice</div>
+      <div class="sub-div">Privacy Policy</div>
+      <div class="sub-div">Log out</div>
+    </div>
+  </div>
 
 </header>
 <section class="side-bar">

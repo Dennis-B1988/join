@@ -151,6 +151,16 @@ header {
   transform: scale(1.1);
   color: #29abe2;
 }
+.doard-header-dropdown-container {
+  position: fixed;
+  max-width: 1440px;
+  margin: auto;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 998;
+}
 .doard-header-dropdown {
   z-index: 999;
   position: absolute;
@@ -161,7 +171,6 @@ header {
   padding: 12px;
   background-color: #2a3647;
   border-radius: 20px 0px 20px 20px;
-  display: none;  
 }
 .sub-div{
   text-align: center;
