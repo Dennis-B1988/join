@@ -111,6 +111,15 @@ h1{
     color: #42526E;
     margin-bottom: 25px;
 }
+.tasks-container-header-text img{
+    height: 25px;
+}
+.tasks-container-header-text img:hover{
+    cursor: pointer;
+    content: url(../assets/img/board-plus-button.png);
+    height: 25px;
+}
+
 .tasks-drag-and-drop{
     width: 25%;
     min-height: 55vh;
@@ -145,6 +154,7 @@ h1{
     gap: 20px;
     box-shadow: 0px 0px 10px 3px #00000014;
     margin-bottom: 20px;
+    cursor: pointer;
 
 }
 .task-card-category{
