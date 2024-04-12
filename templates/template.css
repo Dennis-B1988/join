@@ -151,3 +151,32 @@ header {
   transform: scale(1.1);
   color: #29abe2;
 }
+.doard-header-dropdown {
+  z-index: 999;
+  position: absolute;
+  top: 96px;
+  right: 60px;
+  width: 150px;
+  height: 158px;
+  padding: 12px;
+  background-color: #2a3647;
+  border-radius: 20px 0px 20px 20px;
+  display: none;  
+}
+.sub-div{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 46px;
+  width: 125px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #CDCDCD;
+  gap: 50px;
+  border-radius: 2px;
+}
+.sub-div:hover {
+  background-color: #303d50;
+  color: #fff;
+  }

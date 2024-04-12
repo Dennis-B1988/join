@@ -3,7 +3,6 @@
     width: 100%;
     max-width: 1440px;
     position: relative;
-    /* background-color: cadetblue; */
     padding-left: 280px;
     padding-right: 60px;
 }
@@ -11,7 +10,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* background-color: aquamarine; */
     height: 7rem;
     margin: 5rem 0rem 3rem 0rem ;
 }
@@ -68,7 +66,7 @@ h1{
     font-weight: 400;
     font-size: 15px;
     position: relative;
-    display: inline-block;
+    
 }
 
 .search-img {
@@ -92,23 +90,93 @@ h1{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* text-align: start; */
-    gap: 15px;
+    gap: 30px;
 }
 .tasks-container-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 15px;
-    /* background-color: aqua; */
+    gap: 30px;
     
 }
-.test{
+.tasks-container-header-text{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 25%;
-    height: 55vh;
-    /* background-color: brown; */
+    text-align: start;
+    height: 25px;
+    font-weight: 700;
+    font-size: 20px;
+    color: #42526E;
+    margin-bottom: 25px;
+}
+.tasks-drag-and-drop{
+    width: 25%;
+    min-height: 55vh;
+    gap: 5px;
+    
+    
+}
+.no-task-to-do{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: #E7E7E7;
+    border: 1px dashed #A8A8A8;
+    box-shadow: 0px 0px 4px 0px #00000029;
+}
+.no-task-to-do span{
+    font-weight: 400;
+    font-size: 16px;
+    color: #A8A8A8;
+}
+.task-card{
+    display: flex;
+    flex-direction: column;
+    min-height: 263px;
+    background-color: #FFFF;
+    padding: 16px;
+    border-radius: 24px;
+    gap: 20px;
+    box-shadow: 0px 0px 10px 3px #00000014;
+    margin-bottom: 20px;
 
 }
+.task-card-category{
+    display: flex;
+    align-items: center;
+    background-color:#0038FF;
+    font-weight: 400;
+    font-size: 16px;
+    border-radius: 8px;
+    color: white;
+    padding: 0 25px 0 25px;
+    /* padding: 4px, 16px, 4px, 16px; */
+    height: 27px;
+    width: fit-content;
+}
+.task-card-title{
+    font-weight: 700;
+    font-size: 16px;
+    color: #2A3647;
+    ;
+}
+.task-card-description{
+    font-weight: 400;
+    font-size: 16px;
+    color: #A8A8A8;
+
+}
+/* .task-card-category */
+
+
+
+
 
 @media (max-width: 1000px) {
     .add-task-btn span {

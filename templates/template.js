@@ -55,3 +55,13 @@ function extractInitials() {
         headerUsername.innerHTML = initials;
     }
 }
+
+function targetDropdown() {
+    let dropdown = document.getElementById("dropdown");
+    // dropdown.style.display = "block";
+    if (dropdown.style.display === "none") {
+        dropdown.style.display = "inline";
+    } else {
+        dropdown.style.display = "none";
+    }
+}
