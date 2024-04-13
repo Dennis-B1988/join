@@ -13,8 +13,9 @@
   <script src="../templates/template.js"></script>
   <script src="../script.js"></script>
   <script src="../config.js"></script>
-  <script src="contacts.js"></script>
-  <script src="colors_and_first_letter.js"></script>
+  <script src="./js/contacts.js"></script>
+  <script src="./js/colors_and_first_letter.js"></script>
+  <script src="./js/templates.js"></script>
 </head>
 
 <body onload="initContacts()">
@@ -27,22 +28,7 @@
           class="add-new-contact-button">Add new contact
           <img class="add-new-contact-img" src="../assets/img/person_add.png" alt="contact icon"></button>
 
-        <div id="contacts">
-          <div class="first-letter">A</div>
-
-          <div class="underline"></div>
-
-          <div onclick="openOrCloseContact()" class="contact-container">
-            <div class="circle">
-              AM
-            </div>
-
-            <div class="contact-description">
-              <span>Anton Mayer</span>
-              <a class="contact-email" href="#">antom@gmail.com</a>
-            </div>
-          </div>
-        </div>
+        <div id="contacts"></div>
       </div>
     </div>
 

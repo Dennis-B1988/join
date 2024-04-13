@@ -54,7 +54,8 @@
 }
 
 .underline {
-    border: 1px solid #D1D1D1
+    border-top: 1px solid #D1D1D1;
+    padding-top: 8px;
 }
 
 .contact-container {
@@ -68,14 +69,26 @@
     background: linear-gradient(to bottom, #F9F9F9, #F0F0F0);
 }
 
+.contact-container-active {
+    background-color: #2A3647;
+    border-radius: 10px;
+    color: white;
+}
+
+.contact-container-active:hover {
+    background: #2A3647;
+    border-radius: 10px;
+    color: white;
+}
+
 .circle {
     border-radius: 45px;
+    border: 2px solid #FFFFFF;
     width: 42px;
     height: 42px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: orange;
     color: white;
     font-size: 12px;
 }
@@ -129,7 +142,7 @@
     display: flex;
     flex-direction: column;
     gap: 21px;
-    transition: all 0.2s ease;
+    transition: transform 0.2s ease;
     transform: translateX(100%);
     visibility: hidden;
 }
@@ -151,7 +164,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: orange;
     color: white;
     font-size: 47px;
     border: 3px solid #FFFFFF;
