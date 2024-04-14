@@ -39,8 +39,16 @@
                   rows="5"
                 ></textarea>
                 <span>Assigned To</span>
-                <div id="assigned-to-task" class="task">
-                  <input id="task-assigned-to" class="task-assigned-to input" type="text" name="assigned-to" placeholder="Assigned To" readonly />
+                <div id="assigned-to-task" class="assigned-to-task task">
+                  <input
+                    onclick="assignedToDropdown()"
+                    id="task-assigned-to"
+                    class="task-assigned-to input"
+                    type="text"
+                    name="assigned-to"
+                    placeholder="Assigned To"
+                    readonly
+                  />
                   <img
                     onclick="assignedToDropdown()"
                     id="assigned-to-icon"
@@ -51,6 +59,7 @@
                   <div id="task-assigned-to-dropdown" class="task-assigned-to-dropdown">
                     <!-- Dropdown options will be dynamically populated here -->
                   </div>
+                  <div id="assigned-to-users" class="assigned-to-users"></div>
                 </div>
               </div>
 
@@ -80,8 +89,16 @@
                 </div>
                 <span>Category<span class="red">*</span></span>
                 <div class="task">
-                  <input id="task-category" class="task-category input" type="text" name="category" placeholder="Select task category" readonly />
-                  <img id="task-category-icon" class="task-icon hover-icon" src="../assets/img/drop_down.png" alt="" />
+                  <input
+                    onclick="renderCategory()"
+                    id="task-category"
+                    class="task-category input"
+                    type="text"
+                    name="category"
+                    placeholder="Select task category"
+                    readonly
+                  />
+                  <img onclick="renderCategory()" id="task-category-icon" class="task-icon hover-icon" src="../assets/img/drop_down.png" alt="" />
                   <div id="task-category-dropdown" class="task-category-dropdown">
                     <!-- Dropdown options will be dynamically populated here -->
                   </div>

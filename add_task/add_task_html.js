@@ -15,3 +15,25 @@ function addSubtaskList(subtaskContent, i) {
         </div>
     `;
 }
+
+function changeSubtaskToInput(index, subtaskText){
+    return /*html*/ `
+        <input type="text" id="edit-input-${index}" class="subtask-edit-input" value="${subtaskText}" />
+    `;
+}
+
+function renderAssignedToDropdown(i, user, initials) {
+    return /*html*/ `
+        <div onclick="userCheckmark(${i})" class="assigned-dropdown-item" id="assigned-dropdown-item-${i}">
+            <div class="user-initials" id="user-initials-${i}">${initials}</div>
+            <div class="assigned-dropdown-user" id="assigned-dropdown-user-${i}">${user}</div>
+            <img src="../assets/img/checkmark-empty_dark.png" class="checkmark" id="checkmark-${i}">
+        </div>
+    `;
+}
+
+function renderAssignedToUsers(i, initials){
+    return /*html*/ `
+        <div id="assigned-to-users-checked-${i}" class="assigned-to-users-checked">${initials}</div>
+    `;
+}
