@@ -20,101 +20,77 @@
 
 <body onload="initContacts()">
   <div class="big-screen" w3-include-html="../templates/navigation.html"></div>
-
   <section class="contacts">
     <div class="left-container">
       <div class="new-contact-container">
-        <button onclick="openOrCloseAddContact(event, 'addButton', 'IMG')" id="addButton"
-          class="add-new-contact-button">Add new contact
-          <img class="add-new-contact-img" src="../assets/img/person_add.png" alt="contact icon"></button>
-
+        <div class="sticky-button">
+          <button onclick="openOrCloseAddContact(event, 'addButton', 'IMG')" id="addButton"
+            class="add-new-contact-button">Add new contact
+            <img class="add-new-contact-img" src="../assets/img/person_add.png" alt="contact icon"></button>
+        </div>
         <div id="contacts"></div>
       </div>
+      <img class="scrollbar-arrow-top" src="../assets/img/scrollbar_arrow.png" alt="arrow icon">
+      <img class="scrollbar-arrow-bottom" src="../assets/img/scrollbar_arrow.png" alt="arrow icon">
     </div>
-
     <div class="right-container">
       <div class="right-container-header">
         <h2>Contacts</h2>
         <img class="contact-line-img" src="../assets/img/contact_line.png" alt="line icon">
         <span class="header-text">Better with a team</span>
       </div>
-      <div id="bigContactContainer" class="contact-description-big">
-        <div class="contact-upper-container">
-          <div class="circle-big">AM</div>
-          <div class="contact-action-big">
-            <span>Anton Mayer</span>
-            <div class="edit-delete-container">
-              <div class="edit"></div>
-              <div class="delete"></div>
+      <div id="bigContactContainer" class="contact-description-big"></div>
+      <div id="messageCreateContact">Task added to Board
+        <img src="../assets/img/board.png" alt="board icon">
+      </div>
+      <div onclick="openOrCloseAddContact(event, 'bigContainer')" id="bigContainer" class="add-contact-big-container">
+        <div id="smallContainer" class="add-contact-small-container">
+          <div class="add-contact-left">
+            <img class="add-contact-left-logo-img" src="../assets/img/join_logo.png" alt="logo blue">
+            <h2>Add contact</h2>
+            <span>Tasks are better with a team!</span>
+            <img class="add-contact-left-underline-img" src="../assets/img/add_contact_underline.png" alt="underline">
+          </div>
+          <div class="add-contact-right">
+            <div onclick="openOrCloseAddContact(event, 'closeButton', 'IMG')" id="closeIcon"
+              class="add-contact-right-close-img-container">
+              <img src="../assets/img/plus.png" alt="close icon">
             </div>
+            <img class="add-contact-right-contact-icon" src="../assets/img/contact_icon.png" alt="contact icon">
+            <form class="create-contact-container" onsubmit="saveContacts(); return false;">
+              <div class="create-contact-input-container">
+                <input type="text" id="name" pattern="[A-Z][a-z]+ [A-Z][a-z]+" required
+                  title="Bitte geben Sie Ihren Vor- (Leerzeichen) Nachnamen ein, mit Großbuchstaben am Anfang jedes Namens."
+                  placeholder="Name" required>
+                <img class="create-contact-input-img" src="../assets/img/person.png" alt="person icon">
+              </div>
+              <div class="create-contact-input-container">
+                <input type="email" id="email" placeholder="Email" required>
+                <img class="create-contact-input-img" src="../assets/img/email.png" alt="email icon">
+              </div>
+              <span style="display: none;" id="noMatchEmail" class="error-message">This email is already in use.</span>
+              <div class="create-contact-input-container">
+                <input type="tel" id="phone" pattern="^\+\d{2}\s\d{4}\s\d{3}\s\d{2}\s\d{1}$"
+                  title="Bitte beachten Sie: Geben Sie Ihre Telefonnummer im internationalen Format ein (+xx xxxx xxx xx x)"
+                  placeholder="Phone" required>
+                <img class="create-contact-input-img" src="../assets/img/call.png" alt="call icon">
+              </div>
+              <div class="create-contact-button-container">
+                <span onclick="openOrCloseAddContact(event, 'cancel', 'path')" id="cancel"
+                  class="create-contact-button-cancel">Cancel
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M7.06917 7.00008L12.3122 12.2431M1.82617 12.2431L7.06917 7.00008L1.82617 12.2431ZM12.3122 1.75708L7.06817 7.00008L12.3122 1.75708ZM7.06817 7.00008L1.82617 1.75708L7.06817 7.00008Z"
+                      stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <button class="create-contact-button-create-contact">Create contact<img
+                    class="create-contact-button-img" src="../assets/img/check.png" alt="check icon"></button>
+              </div>
+            </form>
           </div>
         </div>
-        <div class="contact-information">Contact Information</div>
-        <div class="information-container">
-          <span class="information-headline">Email</span>
-          <a class="contact-email" href="#">antom@gmail.com</a>
-          <span class="information-headline">Phone</span>
-          <span>+49 1111 111 11 1</span>
-        </div>
       </div>
-    </div>
-
-    <div onclick="openOrCloseAddContact(event, 'bigContainer')" id="bigContainer" class="add-contact-big-container">
-      <div id="smallContainer" class="add-contact-small-container">
-        <div class="add-contact-left">
-          <img class="add-contact-left-logo-img" src="../assets/img/join_logo.png" alt="logo blue">
-          <h2>Add contact</h2>
-          <span>Tasks are better with a team!</span>
-          <img class="add-contact-left-underline-img" src="../assets/img/add_contact_underline.png" alt="underline">
-        </div>
-
-        <div class="add-contact-right">
-          <div onclick="openOrCloseAddContact(event, 'closeButton', 'IMG')" id="closeIcon"
-            class="add-contact-right-close-img-container">
-            <img src="../assets/img/plus.png" alt="close icon">
-          </div>
-          <img class="add-contact-right-contact-icon" src="../assets/img/contact_icon.png" alt="contact icon">
-
-          <form class="create-contact-container" onsubmit="saveContacts(); return false;">
-            <div class="create-contact-input-container">
-              <input type="text" id="name" pattern="[A-Z][a-z]+ [A-Z][a-z]+" required
-                title="Bitte geben Sie Ihren Vor- (Leerzeichen) Nachnamen ein, mit Großbuchstaben am Anfang jedes Namens."
-                placeholder="Name" required>
-              <img class="create-contact-input-img" src="../assets/img/person.png" alt="person icon">
-            </div>
-
-            <div class="create-contact-input-container">
-              <input type="email" id="email" placeholder="Email" required>
-              <img class="create-contact-input-img" src="../assets/img/email.png" alt="email icon">
-            </div>
-
-            <span style="display: none;" id="noMatchEmail" class="error-message">This email is already in
-              use.</span>
-
-            <div class="create-contact-input-container">
-              <input type="tel" id="phone" pattern="^\+(?:[0-9] ?){6,14}[0-9]$"
-                title="Bitte geben Sie eine Telefonnummer im internationalen Format ein. Zum Beispiel: +1234567890"
-                placeholder="Phone" required>
-              <img class="create-contact-input-img" src="../assets/img/call.png" alt="call icon">
-            </div>
-
-            <div class="create-contact-button-container">
-              <span onclick="openOrCloseAddContact(event, 'cancel', 'path')" id="cancel"
-                class="create-contact-button-cancel">Cancel
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M7.06917 7.00008L12.3122 12.2431M1.82617 12.2431L7.06917 7.00008L1.82617 12.2431ZM12.3122 1.75708L7.06817 7.00008L12.3122 1.75708ZM7.06817 7.00008L1.82617 1.75708L7.06817 7.00008Z"
-                    stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </span>
-
-              <button class="create-contact-button-create-contact">Create contact<img class="create-contact-button-img"
-                  src="../assets/img/check.png" alt="check icon"></button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
   </section>
 </body>
 

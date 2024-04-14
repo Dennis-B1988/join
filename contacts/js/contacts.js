@@ -17,11 +17,31 @@ function openOrCloseAddContact(event, id, child) {
 }
 
 
-function openOrCloseContact() {
+function openOrCloseContact(i, j, firstNameInitial, lastNameInitial) {
     let bigContactContainer = document.getElementById('bigContactContainer');
-    let contactContainer = document.querySelector('.contact-container');
-    bigContactContainer.classList.toggle('show-contact');
-    contactContainer.classList.toggle('contact-container-active');
+    let animation = document.querySelector(`.animation${i}${j}`);
+    let contactContainer = document.querySelectorAll('.contact-container');
+    const letterKey = letters[i];
+    const contactsForLetter = contacts.filter(contact => {
+        const nameParts = contact.name.split(' ');
+        const firstNameInitial = nameParts[0].charAt(0);
+        return firstNameInitial === letterKey;
+    });
+    bigContactContainer.innerHTML = contactsRightSiteTemplate(contactsForLetter[j], i, j, firstNameInitial, lastNameInitial);
+    document.querySelector(`.circle-big${i}${j}`).style.backgroundColor = contactsForLetter[j].color;
+    if (animation.classList.contains('contact-container-active')) {
+        animation.classList.remove('contact-container-active');
+        bigContactContainer.classList.remove('show-contact');
+    } else {
+        contactContainer.forEach(contact => {
+            contact.classList.remove('contact-container-active');
+        });
+        bigContactContainer.classList.remove('show-contact');
+        setTimeout(() => {
+            bigContactContainer.classList.add('show-contact');
+            animation.classList.add('contact-container-active');
+        }, 100);
+    }
 }
 
 
@@ -38,12 +58,38 @@ function saveContacts() {
         let contact = {
             'name': name.value,
             'email': email.value,
-            'password': phone.value,
+            'phone': phone.value,
             'color': randomColor
         };
         contacts.push(contact);
         setItem('contacts', contacts);
         resetValues(name, email, phone);
+        showContacts();
+        const nameParts = contact.name.split(' ');
+        const firstNameInitial = nameParts[0].charAt(0);
+        const lastNameInitial = nameParts[1].charAt(0);
+        document.getElementById('bigContactContainer').innerHTML = contactsRightSiteTemplate(contact, contacts.length, contacts.length, firstNameInitial, lastNameInitial);
+        document.querySelector(`.circle-big${contacts.length}${contacts.length}`).style.backgroundColor = contact.color;
+        document.getElementById('bigContactContainer').classList.add('show-contact');
+        document.querySelectorAll('.contact-container').forEach(contactContainer => {
+            const firstSpan = contactContainer.querySelector('span');
+            if (firstSpan.innerHTML === contact.name) {
+                const parentElement = firstSpan.parentElement.parentElement;
+                parentElement.classList.add('contact-container-active');
+                parentElement.scrollIntoView({ behavior: 'auto', block: 'center' });
+            }
+        });
+        let bigContainer = document.getElementById('bigContainer');
+        let smallContainer = document.getElementById('smallContainer');
+        bigContainer.classList.toggle('show-background');
+        smallContainer.classList.toggle('show-add-contact');
+        let messageCreateContact = document.getElementById('messageCreateContact');
+        setTimeout(() => {
+            messageCreateContact.classList.add('show-message');
+        }, 500);
+        setTimeout(() => {
+            messageCreateContact.classList.remove('show-message');
+        }, 2000);
     }
 }
 
@@ -78,35 +124,26 @@ function resetValues(name, email, phone) {
 function showContacts() {
     const contactsContainer = document.getElementById('contacts');
     contactsContainer.innerHTML = '';
-    for (let i = 0; i < contacts.length; i++) {
-        const contact = contacts[i];
-        letters.forEach(letter => {
-            const letterKey = Object.keys(letter)[0];
+    letters.forEach((letter, i) => {
+        const contactsForLetter = contacts.filter(contact => {
             const nameParts = contact.name.split(' ');
             const firstNameInitial = nameParts[0].charAt(0);
-            if (letterKey === firstNameInitial) {
-                const indexOfLetter = letters.indexOf(letter);
-                letters[indexOfLetter][letterKey].push(contact);
-            }
+            return firstNameInitial === letter;
         });
-        letters.forEach(letter => {
-            console.log(letter)
-            const letterKey = Object.keys(letter)[0];
-            if (letter[letterKey].length !== 0) {
-                contactsContainer.innerHTML = `
-                <div class="first-letter">${letterKey}</div>
+        if (contactsForLetter.length !== 0) {
+            contactsContainer.innerHTML += `
+                <div class="first-letter">${letter}</div>
                 <div class="underline"></div>
-                `;
-            }
-            for (let j = 0; j < letter[letterKey].length; j++) {
-                const contact = letter[letterKey][j];
-                const nameParts = contact.name.split(' ');
-                const firstNameInitial = nameParts[0].charAt(0);
-                const lastNameInitial = nameParts[1].charAt(0);
-                contactsContainer.innerHTML += contactsTemplate(contact, i, j, firstNameInitial, lastNameInitial);
-                document.querySelector(`.circle${i}${j}`).style.backgroundColor = contact.color;
-            }
-            
+            `;
+        }
+        contactsForLetter.forEach((contact, j) => {
+            const nameParts = contact.name.split(' ');
+            const firstNameInitial = nameParts[0].charAt(0);
+            const lastNameInitial = nameParts[1] ? nameParts[1].charAt(0) : '';
+            contactsContainer.innerHTML += contactsTemplate(contact, i, j, firstNameInitial, lastNameInitial);
+            document.querySelectorAll(`.circle${i}${j}`).forEach(circle => {
+                circle.style.backgroundColor = contact.color;
+            });
         });
-    }
+    });
 }

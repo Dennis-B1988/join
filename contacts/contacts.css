@@ -14,10 +14,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 50px 15px;
+    box-sizing: content-box;
+    position: relative;
 }
 
 .new-contact-container {
-    padding: 32px 24px 32px 24px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 24px;
+    overflow: auto;
+}
+
+.sticky-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    padding-bottom: 30px;
 }
 
 .add-new-contact-button {
@@ -141,7 +157,7 @@
 .contact-description-big {
     display: flex;
     flex-direction: column;
-    gap: 21px;
+    gap: 50px;
     transition: transform 0.2s ease;
     transform: translateX(100%);
     visibility: hidden;
@@ -424,4 +440,58 @@
     width: 100%;
     color: #FF8190;
     font-size: 12px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #A8A8A8;
+    border-radius: 10px;
+}
+
+.scrollbar-arrow-top {
+    position: absolute;
+    top: 15px;
+    right: 7px;
+    transform: rotate(180deg);
+}
+
+.scrollbar-arrow-bottom {
+    position: absolute;
+    bottom: 15px;
+    right: 7px;
+}
+
+#messageCreateContact {
+    width: 330px;
+    border-radius: 20px;
+    font-size: 20px;
+    background-color: #2A3647;
+    color: white;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 80px;
+    padding: 20px 15px;
+    transition: transform 0.2s ease;
+    transform: translateX(100%);
+    visibility: hidden;
+}
+
+#messageCreateContact.show-message {
+    transform: translateX(0);
+    visibility: visible;
+}
+
+@keyframes show-message {
+    from {
+        transform: translateX(100%); /* Startzustand: außerhalb des Bildschirms rechts */
+    }
+    to {
+        transform: translateX(0); /* Endzustand: Position auf dem Bildschirm */
+    }
 }
