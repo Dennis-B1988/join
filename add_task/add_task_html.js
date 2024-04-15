@@ -22,12 +22,30 @@ function changeSubtaskToInput(index, subtaskText){
     `;
 }
 
-function renderAssignedToDropdown(i, user, initials) {
+function renderAssignedToDropdown(i, userLabel, initials) {
     return /*html*/ `
         <div onclick="userCheckmark(${i})" class="assigned-dropdown-item" id="assigned-dropdown-item-${i}">
-            <div class="user-initials" id="user-initials-${i}">${initials}</div>
-            <div class="assigned-dropdown-user" id="assigned-dropdown-user-${i}">${user}</div>
-            <img src="../assets/img/checkmark-empty_dark.png" class="checkmark" id="checkmark-${i}">
+            <div class="user-dropdown-name-container">
+                <div class="user-initials" id="user-initials-${i}">${initials}</div>
+                <div class="assigned-dropdown-user" id="assigned-dropdown-user-${i}">${userLabel}</div>
+            </div>
+            <div class="checkmark-container">
+                <img src="../assets/img/checkmark-empty_dark.png" class="checkmark" id="checkmark-${i}">
+            </div>
+        </div>
+    `;
+}
+
+function renderAssignedToDropdownLoggedUser(i, user, initials) {
+    return /*html*/ `
+        <div onclick="userCheckmark(${i})" class="assigned-dropdown-item" id="assigned-dropdown-item-${i}">
+            <div class="user-dropdown-name-container">
+                <div class="user-initials" id="user-initials-${i}">${initials}</div>
+                <div class="assigned-dropdown-user" id="assigned-dropdown-user-${i}">${user} (You)</div>
+            </div>
+            <div class="checkmark-container">
+                <img src="../assets/img/checkmark-empty_dark.png" class="checkmark" id="checkmark-${i}">
+            </div>
         </div>
     `;
 }

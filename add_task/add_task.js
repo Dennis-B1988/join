@@ -333,17 +333,25 @@ function renderCategory(){
 // Create category dropdown
 function categoryDropdownFill(categoryInput, categoryDropdown, dropdownToggle) {
   categoryDropdown.innerHTML = '';
+  createCategoryElements(categoryInput, categoryDropdown, dropdownToggle);
+}
 
+function createCategoryElements(categoryInput, categoryDropdown) {
   categoryList.forEach(option => {
-    const categoryElement = document.createElement('div');
-    categoryElement.textContent = option;
-    categoryElement.classList.add('search-dropdown-item');
-    categoryElement.addEventListener('click', function() {
-      categoryInput.value = option;
-      categoryDropdown.style.display = 'none';
-    });
-    categoryDropdown.appendChild(categoryElement, dropdownToggle);
+    const categoryElement = createCategoryElement(option, categoryInput, categoryDropdown);
+    categoryDropdown.appendChild(categoryElement);
   });
+}
+
+function createCategoryElement(option, categoryInput, categoryDropdown) {
+  const categoryElement = document.createElement('div');
+  categoryElement.textContent = option;
+  categoryElement.classList.add('search-dropdown-item');
+  categoryElement.addEventListener('click', function() {
+    categoryInput.value = option;
+    categoryDropdown.style.display = 'none';
+  });
+  return categoryElement;
 }
 
 // Toggle category dropdown
@@ -376,6 +384,7 @@ function changeCategoryIcon() {
 
 // Event listener for dropdowns
 document.addEventListener('DOMContentLoaded', function() {
+  // sortUsernames();
   
   // Dropdown event listeners for category and assigned to
   document.body.addEventListener("click", function(event) {
@@ -417,7 +426,7 @@ function closeAssignedToDropdown(event, dropdown) {
 
   document.addEventListener('DOMContentLoaded', function() {
 
-    document.getElementById("task-add").addEventListener("keydown", function(event) {
+    document.getElementById("add-task-form").addEventListener("keydown", function(event) {
       if (event.key === "Enter") {
         event.preventDefault();
       }
@@ -480,69 +489,129 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // Testusers
-let username = ['Random Name', 'John Doe', 'Jane Shoe', 'John Smith', 'Another Name', 'Test Name', 'Name Test', 'Phil Array'];
+// let username = ['Random Name', 'John Doe', 'Jane Shoe', 'John Smith', 'Another Name', 'Test Name', 'Name Test', 'Phil Array'];
+let username = [
+  {"name": "Random Name", "color": "#ff0000"},
+  {"name": "John Doe", "color": "#00ff00"},
+  {"name": "Jane Shoe", "color": "#0000ff"},
+  {"name": "John Smith", "color": "#ffff00"},
+  {"name": "Another Name", "color": "#00ffff"},
+  {"name": "Test Name", "color": "#ff00ff"},
+  {"name": "Name Test", "color": "#ff8000"},
+  {"name": "Phil Array", "color": "#008000"},
+  {"name": "Phil Array The Second", "color": "#0080ff"}
+];
+
+
+
 let assignedUsers = [];
 
 // Render the user list showing the initials and full name
 function createUserList(){
-  for(let i = 0; i < username.length; i++) {
-    let user = username[i];
-    let initials = ' ';
-    let fullName = user.split(' ');
-    for(let j = 0; j < fullName.length; j++) {
-      initials += fullName[j][0];
-    }
-    document.getElementById('task-assigned-to-dropdown').innerHTML += renderAssignedToDropdown(i, user, initials);
+  let assignedDropdown = document.getElementById('task-assigned-to-dropdown');
+  assignedDropdown.innerHTML = '';
+  renderUserList(assignedDropdown);
+}
+
+function renderUserList(assignedDropdown) {
+  for (let i = 0; i < username.length; i++) {
+    let user = username[i].name;
+    let initials = generateInitials(user);
+    // let loggedInUser = getLoggedInUser();
+    sortUsernames();
+    renderUser(assignedDropdown, i, user, initials);
+    styleUserInitials(i);
   }
 }
 
+function renderUser(assignedDropdown, index, user, initials) {
+  let userLabel = user;
+  if (userLabel === 'Random Name') {
+    userLabel += ' (YOU)';
+    assignedDropdown.innerHTML += renderAssignedToDropdown(index, userLabel, initials);
+  } else {
+    assignedDropdown.innerHTML += renderAssignedToDropdown(index, userLabel, initials);
+  }
+}
+
+function styleUserInitials(index) {
+  document.getElementById(`user-initials-${index}`).style.backgroundColor = username[index].color;
+}
+
+// Get initials from username users
+function generateInitials(user) {
+  let initials = '';
+  let fullName = user.split(' ');
+  for (let j = 0; j < fullName.length; j++) {
+    initials += fullName[j][0];
+  }
+  return initials;
+}
+
+//////////////////////////////// Change user //////////////////////////
+function getLoggedInUser() {
+  let loggedInUser = localStorage.getItem('loggedInUser');
+  return loggedInUser;
+}
+
+// Toggle assigned to dropdown
 function assignedToDropdown() {
   let assignedToDropdown = document.getElementById('task-assigned-to-dropdown');
   if(assignedToDropdown.style.display !== 'flex') {
-  assignedToDropdown.style.display = 'flex';
-  changeAssignedIcon();
+    assignedToDropdown.style.display = 'flex';
+    // createUserList();
+    changeAssignedIcon();
   } else {
-  assignedToDropdown.style.display = 'none';
-  changeAssignedIcon();
+    assignedToDropdown.style.display = 'none';
+    changeAssignedIcon();
   }
 }
 
+// Change checkmark icon 
+// if unchecked -> checked, push user to assignedUsers array, display users below input
+// if checked -> unchecked, remove user from assignedUsers array
 function userCheckmark(i) {
   const checkmark = document.getElementById(`checkmark-${i}`);
-  if(checkmark.src.includes('/assets/img/checkmark-empty_dark.png')) {
-    checkmark.src = '../assets/img/checkmark_checked_dark.png';
-    assignedUsers.push(username[i]);
+  if (checkmark.src.includes('/assets/img/checkmark-empty_dark.png')) {
+    checkmark.src = '../assets/img/checkmark_checked_white.png';
+    assignedUsers.push(username[i]); // Push the entire user object
     displayUsers();
+    checkedBackgroundDark(i)
   } else {
     checkmark.src = '../assets/img/checkmark-empty_dark.png';
-    assignedUsers.splice(assignedUsers.indexOf(username[i]), 1);
+    let index = assignedUsers.findIndex(user => user.name === username[i].name); // Access the name property
+    if (index !== -1) {
+      assignedUsers.splice(index, 1);
+    }
     displayUsers();
+    checkedBackgroundWhite(i)
   }
 }
 
-function uncheckAll() {
-  for(let i = 0; i < username.length; i++) {
-    const checkmark = document.getElementById(`checkmark-${i}`);
-    checkmark.src = '../assets/img/checkmark-empty_dark.png';
-  }
-  assignedUsers = [];
-  document.getElementById('assigned-to-users').innerHTML = '';
+function checkedBackgroundDark(i){
+  document.getElementById(`assigned-dropdown-item-${i}`).style.backgroundColor = 'rgb(42, 54, 71)';
+  document.getElementById(`assigned-dropdown-user-${i}`).style.color = 'rgb(255, 255, 255)';
 }
 
+function checkedBackgroundWhite(i){
+  document.getElementById(`assigned-dropdown-item-${i}`).style.backgroundColor = 'rgb(255, 255, 255)';
+  document.getElementById(`assigned-dropdown-user-${i}`).style.color = 'rgb(0, 0, 0)';
+}
+
+// Display every checked user
 function displayUsers() {
   let checkedUsers = document.getElementById('assigned-to-users');
   checkedUsers.innerHTML = '';
+  sortUsernames();
   for(let i = 0; i < assignedUsers.length; i++) {
-    let user = assignedUsers[i];
-    let initials = ' ';
-    let fullName = user.split(' ');
-    for(let j = 0; j < fullName.length; j++) {
-      initials += fullName[j][0];
-    }
+    let user = assignedUsers[i].name;
+    let initials = generateInitials(user);
     checkedUsers.innerHTML += renderAssignedToUsers(i, initials);
+    document.getElementById(`assigned-to-users-checked-${i}`).style.backgroundColor = assignedUsers[i].color;
   }
 }
 
+// Change dropdown icon upside down
 function changeAssignedIcon() {
   const dropdownIcon = document.getElementById('assigned-to-icon');
   const src = dropdownIcon.src;
@@ -552,4 +621,30 @@ function changeAssignedIcon() {
   } else {
     dropdownIcon.src = '../assets/img/drop_down.png';
   }
+}
+
+// Uncheck all
+function uncheckAll() {
+  for(let i = 0; i < username.length; i++) {
+    const checkmark = document.getElementById(`checkmark-${i}`);
+    checkmark.src = '../assets/img/checkmark-empty_dark.png';
+  }
+  assignedUsers = [];
+  document.getElementById('assigned-to-users').innerHTML = '';
+}
+
+// Sort the user list alphabetically but with "Random Name" first
+function sortUsernames() {
+  // Custom sorting function
+  function customSort(a, b) {
+      if (a.name === 'Random Name') {
+          return -1;
+      } else if (b.name === 'Random Name') {
+          return 1; 
+      } else {
+          return a.name.localeCompare(b.name);
+      }
+  }
+  username.sort(customSort);
+  assignedUsers.sort(customSort);
 }
