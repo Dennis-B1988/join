@@ -1,3 +1,8 @@
+let findedContact;
+let indexI;
+let indexJ;
+
+
 async function initContacts() {
     await includeHTML();
     await loadData();
@@ -7,19 +12,73 @@ async function initContacts() {
 
 
 function openOrCloseAddContact(event, id, child) {
+    if (event.target.tagName === child || event.target.id === id) {
+        showAddContactOrEditContact('none', '');
+        resetValues();
+        toggleAnimation();
+    }
+}
+
+
+function showEditContact(firstNameLetter, lastNameLetter, contactEmail) {
+    findedContact = contacts.filter(contact => contact.email === contactEmail);
+    showAddContactOrEditContact('', 'none');
+    currentValueFromContact();
+    toggleAnimation();
+    circleBig.style.backgroundColor = findedContact[0].color;
+    circleBig.innerHTML = firstNameLetter + lastNameLetter;
+}
+
+
+function showAddContactOrEditContact(edit, add) {
+    let editHeadline = document.getElementById('editHeadline');
+    let addContactHeadline = document.getElementById('addContactHeadline');
+    let editButton = document.getElementById('editButton');
+    let addContactButton = document.getElementById('addContactButton');
+    let circleBig = document.getElementById('circleBig');
+    let lettersForIcon = document.getElementById('lettersForIcon');
+    editHeadline.style.display = edit;
+    addContactHeadline.style.display = add;
+    editButton.style.display = edit;
+    addContactButton.style.display = add;
+    circleBig.style.display = edit;
+    lettersForIcon.style.display = add;
+}
+
+
+function resetValues() {
+    let name = document.getElementById('name');
+    let email = document.getElementById('email');
+    let phone = document.getElementById('phone');
+    name.value = '';
+    email.value = '';
+    phone.value = '';
+}
+
+
+function currentValueFromContact() {
+    let name = document.getElementById('name');
+    let email = document.getElementById('email');
+    let phone = document.getElementById('phone');
+    name.value = findedContact[0].name;
+    email.value = findedContact[0].email;
+    phone.value = findedContact[0].phone;
+}
+
+
+function toggleAnimation() {
     let bigContainer = document.getElementById('bigContainer');
     let smallContainer = document.getElementById('smallContainer');
-    let targetElement = event.target;
-    if (targetElement.tagName === child || targetElement.id === id) {
-        bigContainer.classList.toggle('show-background');
-        smallContainer.classList.toggle('show-add-contact');
-    }
+    bigContainer.classList.toggle('show-background');
+    smallContainer.classList.toggle('show-add-contact');
 }
 
 
 function openOrCloseContact(i, j, firstNameInitial, lastNameInitial) {
     let bigContactContainer = document.getElementById('bigContactContainer');
     let animation = document.querySelector(`.animation${i}${j}`);
+    indexI = i;
+    indexJ = j;
     let contactContainer = document.querySelectorAll('.contact-container');
     const letterKey = letters[i];
     const contactsForLetter = contacts.filter(contact => {
@@ -63,7 +122,7 @@ function saveContacts() {
         };
         contacts.push(contact);
         setItem('contacts', contacts);
-        resetValues(name, email, phone);
+        resetValues();
         showContacts();
         const nameParts = contact.name.split(' ');
         const firstNameInitial = nameParts[0].charAt(0);
@@ -114,13 +173,6 @@ function showErrorMessage(input, message) {
 }
 
 
-function resetValues(name, email, phone) {
-    name.value = '';
-    email.value = '';
-    phone.value = '';
-}
-
-
 function showContacts() {
     const contactsContainer = document.getElementById('contacts');
     contactsContainer.innerHTML = '';
@@ -146,4 +198,40 @@ function showContacts() {
             });
         });
     });
+}
+
+
+function deleteContact(contactEmail) {
+    let email = document.getElementById('email');
+    if (contactEmail === 'contact.email') {
+        contactEmail = email.value;
+    }
+    const index = contacts.findIndex(contact => contact.email === contactEmail);
+    contacts.splice(index, 1);
+    document.getElementById('bigContactContainer').classList.remove('show-contact');
+    document.getElementById('bigContainer').classList.remove('show-background');
+    document.getElementById('smallContainer').classList.toggle('show-add-contact');
+    setItem('contacts', contacts);
+    showContacts();
+}
+
+
+function saveEditContact() {
+    let name = document.getElementById('name');
+    let email = document.getElementById('email');
+    let phone = document.getElementById('phone');
+    let contactName = document.getElementById('contactName');
+    let contactEmail = document.getElementById('contactEmail');
+    let contactPhone = document.getElementById('contactPhone');
+    findedContact[0].name = name.value;
+    findedContact[0].email = email.value;
+    findedContact[0].phone = phone.value;
+    contactName.innerHTML = name.value;
+    contactEmail.innerHTML = email.value;
+    contactPhone.innerHTML = phone.value;
+    document.getElementById('bigContainer').classList.remove('show-background');
+    setItem('contacts', contacts);
+    showContacts();
+    let animation = document.querySelector(`.animation${indexI}${indexJ}`);
+    animation.classList.add('contact-container-active');
 }

@@ -14,7 +14,7 @@
   <script src="../script.js"></script>
   <script src="../config.js"></script>
   <script src="./js/contacts.js"></script>
-  <script src="./js/colors_and_first_letter.js"></script>
+  <script src="./js/colors_and_letters.js"></script>
   <script src="./js/templates.js"></script>
 </head>
 
@@ -45,10 +45,15 @@
       </div>
       <div onclick="openOrCloseAddContact(event, 'bigContainer')" id="bigContainer" class="add-contact-big-container">
         <div id="smallContainer" class="add-contact-small-container">
-          <div class="add-contact-left">
+          <div id="addContactHeadline" class="add-contact-left">
             <img class="add-contact-left-logo-img" src="../assets/img/join_logo.png" alt="logo blue">
             <h2>Add contact</h2>
             <span>Tasks are better with a team!</span>
+            <img class="add-contact-left-underline-img" src="../assets/img/add_contact_underline.png" alt="underline">
+          </div>
+          <div style="display: none;" id="editHeadline" class="add-contact-left">
+            <img class="add-contact-left-logo-img" src="../assets/img/join_logo.png" alt="logo blue">
+            <h2>Edit contact</h2>
             <img class="add-contact-left-underline-img" src="../assets/img/add_contact_underline.png" alt="underline">
           </div>
           <div class="add-contact-right">
@@ -56,7 +61,9 @@
               class="add-contact-right-close-img-container">
               <img src="../assets/img/plus.png" alt="close icon">
             </div>
-            <img class="add-contact-right-contact-icon" src="../assets/img/contact_icon.png" alt="contact icon">
+            <img id="lettersForIcon" class="add-contact-right-contact-icon" src="../assets/img/contact_icon.png"
+              alt="contact icon">
+            <div style="display: none;" id="circleBig" class="circle-big add-contact-right-contact-icon"></div>
             <form class="create-contact-container" onsubmit="saveContacts(); return false;">
               <div class="create-contact-input-container">
                 <input type="text" id="name" pattern="[A-Z][a-z]+ [A-Z][a-z]+" required
@@ -75,7 +82,7 @@
                   placeholder="Phone" required>
                 <img class="create-contact-input-img" src="../assets/img/call.png" alt="call icon">
               </div>
-              <div class="create-contact-button-container">
+              <div id="addContactButton" class="create-contact-button-container">
                 <span onclick="openOrCloseAddContact(event, 'cancel', 'path')" id="cancel"
                   class="create-contact-button-cancel">Cancel
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,6 +93,12 @@
                 </span>
                 <button class="create-contact-button-create-contact">Create contact<img
                     class="create-contact-button-img" src="../assets/img/check.png" alt="check icon"></button>
+              </div>
+              <div style="display: none;" id="editButton" class="create-contact-button-container">
+                <span onclick="deleteContact('contact.email')" class="create-contact-button-cancel">Delete
+                </span>
+                <button onclick="saveEditContact()" class="create-contact-button-create-contact">Save
+                  <img class="create-contact-button-img" src="../assets/img/check.png" alt="check icon"></button>
               </div>
             </form>
           </div>
