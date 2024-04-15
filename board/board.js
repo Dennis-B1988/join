@@ -3,3 +3,4 @@ async function initBoard() {
     await loadData();
     await initTemplate();
 }
+let currentDraggedElement;
