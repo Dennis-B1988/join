@@ -4,6 +4,7 @@ let low = false;
 let priority = null;
 let categoryList = ['Technical Task', 'User Story'];
 let subtaskArray = [];
+let assignedUsers = [];
 
 
 /**
@@ -12,11 +13,11 @@ let subtaskArray = [];
  */
 async function initTasks() {
   getCurrentDate();
-  createUserList();
   await includeHTML();
   await loadData();
   await initTemplate();
-  load();
+  pushAllUsers();
+  createUserList();
 }
 
 /**
@@ -279,7 +280,7 @@ function submitSuccess(title, description, date, category, priority, subtaskArra
     "category": category, 
     "subtasks": subtaskArray 
   });
-  save();
+  setItem('tasks', tasks);
   clearTaskForm();
 }
 
@@ -299,24 +300,6 @@ function formFilled(title, date, category){
   }
 }
 
-/**
- *
- *
- */
-function save() {
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-}
-
-/**
- *
- *
- */
-function load() {
-  let tasksAsText = localStorage.getItem('tasks');
-  if (tasksAsText) {
-    tasks = JSON.parse(tasksAsText);
-  }
-}
 
 /**
  *
@@ -453,11 +436,11 @@ function handleDoubleClick(index) {
   inputElement.focus();
 
   // Add event listener for saving the edited subtask
-  inputElement.addEventListener('keypress', function(event) {
-      if (event.key === 'Enter') {
-          saveEditedSubtask(index);
-      }
-  });
+  // inputElement.addEventListener('keypress', function(event) {
+  //     if (event.key === 'Enter') {
+  //         saveEditedSubtask(index);
+  //     }
+  // });
 }
 
 // Function to save the edited subtask
@@ -485,27 +468,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
-
-
-// Testusers
-// let username = ['Random Name', 'John Doe', 'Jane Shoe', 'John Smith', 'Another Name', 'Test Name', 'Name Test', 'Phil Array'];
-let username = [
-  {"name": "Random Name", "color": "#ff0000"},
-  {"name": "John Doe", "color": "#00ff00"},
-  {"name": "Jane Shoe", "color": "#0000ff"},
-  {"name": "John Smith", "color": "#ffff00"},
-  {"name": "Another Name", "color": "#00ffff"},
-  {"name": "Test Name", "color": "#ff00ff"},
-  {"name": "Name Test", "color": "#ff8000"},
-  {"name": "Phil Array", "color": "#008000"},
-  {"name": "Phil Array The Second", "color": "#0080ff"}
-];
-
-
-
-let assignedUsers = [];
-
 // Render the user list showing the initials and full name
 function createUserList(){
   let assignedDropdown = document.getElementById('task-assigned-to-dropdown');
@@ -514,11 +476,11 @@ function createUserList(){
 }
 
 function renderUserList(assignedDropdown) {
+  sortUsernames();
   for (let i = 0; i < username.length; i++) {
     let user = username[i].name;
     let initials = generateInitials(user);
-    // let loggedInUser = getLoggedInUser();
-    sortUsernames();
+ 
     renderUser(assignedDropdown, i, user, initials);
     styleUserInitials(i);
   }
@@ -526,7 +488,7 @@ function renderUserList(assignedDropdown) {
 
 function renderUser(assignedDropdown, index, user, initials) {
   let userLabel = user;
-  if (userLabel === 'Random Name') {
+  if (userLabel === users[loadPage('user')].name) {
     userLabel += ' (YOU)';
     assignedDropdown.innerHTML += renderAssignedToDropdown(index, userLabel, initials);
   } else {
@@ -546,12 +508,6 @@ function generateInitials(user) {
     initials += fullName[j][0];
   }
   return initials;
-}
-
-//////////////////////////////// Change user //////////////////////////
-function getLoggedInUser() {
-  let loggedInUser = localStorage.getItem('loggedInUser');
-  return loggedInUser;
 }
 
 // Toggle assigned to dropdown
@@ -628,6 +584,7 @@ function uncheckAll() {
   for(let i = 0; i < username.length; i++) {
     const checkmark = document.getElementById(`checkmark-${i}`);
     checkmark.src = '../assets/img/checkmark-empty_dark.png';
+    document.getElementById(`assigned-dropdown-user-${i}`).style.color = 'rgb(255, 255, 255)';
   }
   assignedUsers = [];
   document.getElementById('assigned-to-users').innerHTML = '';
@@ -637,9 +594,9 @@ function uncheckAll() {
 function sortUsernames() {
   // Custom sorting function
   function customSort(a, b) {
-      if (a.name === 'Random Name') {
+      if (a.name === users[loadPage('user')].name) {
           return -1;
-      } else if (b.name === 'Random Name') {
+      } else if (b.name === users[loadPage('user')].name) {
           return 1; 
       } else {
           return a.name.localeCompare(b.name);

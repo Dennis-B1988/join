@@ -1,6 +1,7 @@
 let users = [];
 let contacts = [];
 let tasks = [];
+let username = [];
 
 async function setItem(key, value) {
     const payload = { key, value, token: STORAGE_TOKEN };
@@ -21,6 +22,7 @@ async function getItem(key) {
 async function loadData() {
     users = await getItem('user');
     contacts = await getItem('contacts');
+    tasks = await getItem('tasks');
 }
 
 
@@ -41,6 +43,14 @@ function loadPage(key) {
     }
 }
 
+function pushAllUsers(){
+    let loggedInUser = {
+      'name': users[loadPage('user')].name,
+      'color': '#798270'
+    }
+    username.push(loggedInUser);
+    contacts.forEach(contact => username.push(contact));
+}
 
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
