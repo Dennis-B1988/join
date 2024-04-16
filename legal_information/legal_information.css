@@ -3,17 +3,18 @@
     width: 100%;
     max-width: 1440px;
     position: relative;
-    padding-left: 280px;
-    padding-right: 60px;
-    padding-bottom: 300px;
+    padding-left: 320px;
+    padding-right: 100px;
+    overflow: auto;
 }
 .legale-notice{
     height: calc(100vh - 96px);
     width: 100%;
     max-width: 1440px;
     position: relative;
-    padding-left: 280px;
-    padding-right: 60px;
+    padding-left: 320px;
+    padding-right: 100px;
+    overflow: auto;
 }
 .privacy-policy-footer{
     padding-bottom: 45px;
@@ -41,10 +42,12 @@ h3{
     margin: 30px 0px 30px 0px;
 }
 .privacy-policy-header img{
-    height: 37px;
-    width: 37px;
+    height: 20px;
+    width: 20px;
     cursor: pointer;
-    
+    position: fixed;
+    top: 200px;
+    right: 100px;
 }
 .help-text-span h2{
     margin-right:150px;

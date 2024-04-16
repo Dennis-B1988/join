@@ -10,7 +10,6 @@ header {
 }
 
 .big-screen {
-  height: 100%;
   width: 100%;
   max-width: 1440px;
   display: flex;
@@ -188,4 +187,7 @@ header {
 .sub-div:hover {
   background-color: #303d50;
   color: #fff;
+  }
+  .sub-div a {
+    text-decoration: none;
   }

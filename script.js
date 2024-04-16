@@ -3,11 +3,13 @@ let contacts = [];
 let tasks = [];
 let username = [];
 
+
 async function setItem(key, value) {
     const payload = { key, value, token: STORAGE_TOKEN };
     return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
         .then(res => res.json());
 }
+
 
 async function getItem(key) {
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
@@ -43,6 +45,7 @@ function loadPage(key) {
     }
 }
 
+
 function pushAllUsers(){
     let loggedInUser = {
       'name': users[loadPage('user')].name,
@@ -51,6 +54,7 @@ function pushAllUsers(){
     username.push(loggedInUser);
     contacts.forEach(contact => username.push(contact));
 }
+
 
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
