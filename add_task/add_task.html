@@ -116,9 +116,19 @@
                     alt=""
                   />
                   <div class="subtask-icon hidden">
-                    <img onclick="emptySubtask()" id="delete-subtask-input" class="subtask-input hover-icon" src="../assets/img/plus.png" alt="" />
+                    <div class="subtask-icons-container">
+                      <img onclick="emptySubtask()" id="delete-subtask-input" class="subtask-input hover-icon" src="../assets/img/plus.png" alt="" />
+                    </div>
                     |
-                    <img onclick="newSubtask()" id="submit-subtask-input" class="subtask-input hover-icon" src="../assets/img/mark-blue.png" alt="" />
+                    <div class="subtask-icons-container">
+                      <img
+                        onclick="addSubtask()"
+                        id="submit-subtask-input"
+                        class="subtask-input hover-icon"
+                        src="../assets/img/mark-blue.png"
+                        alt=""
+                      />
+                    </div>
                   </div>
                 </div>
                 <ul id="task-subtasks-list" class="task-subtasks-list"></ul>
