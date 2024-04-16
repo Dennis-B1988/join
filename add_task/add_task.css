@@ -148,7 +148,18 @@
   cursor: pointer;
 }
 
-.hover-icon:hover {
+.hover-icon {
+}
+
+.subtask-icons-container {
+  height: 18px;
+  width: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subtask-icons-container:hover {
   border-radius: 50%;
   background-color: #d1d1d1;
 }
@@ -189,6 +200,10 @@ input[type='date']::-webkit-calendar-picker-indicator {
   background-color: #f0f0f0;
 }
 
+.task-subtasks {
+  padding-right: 60px;
+}
+
 .task-subtasks-list {
   list-style-position: inside;
   width: 100%;
@@ -224,7 +239,14 @@ input[type='date']::-webkit-calendar-picker-indicator {
 .subtask-list-item {
   width: 100%;
   padding-left: 21px;
+  padding-right: 65px;
   font-size: 16px;
+  text-wrap: wrap;
+  overflow-wrap: break-word;
+}
+
+li::marker {
+  margin-right: 8px;
 }
 
 .subtask-icons {
@@ -251,7 +273,7 @@ input[type='date']::-webkit-calendar-picker-indicator {
 }
 
 .subtask-icons-edit img {
-  height: 18px;
+  height: 15px;
 }
 
 .subtask-list:hover .subtask-icons {
@@ -425,14 +447,14 @@ input[type='date']::-webkit-calendar-picker-indicator {
 
 .task-assigned-to-dropdown {
   display: none;
-  height: 250px;
+  max-height: 300px;
   width: 100%;
   flex-direction: column;
   font-size: 16px;
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 999;
+  z-index: 50;
   background-color: white;
   border-radius: 0 0 10px 10px;
   overflow-y: scroll;
