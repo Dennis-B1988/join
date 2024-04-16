@@ -4,6 +4,11 @@ let indexI;
 let indexJ;
 
 
+/**
+ * Initializes the contacts functionality.
+ *
+ * @return {Promise<void>} A promise that resolves when the initialization is complete.
+ */
 async function initContacts() {
     await includeHTML();
     await loadData();
@@ -12,6 +17,14 @@ async function initContacts() {
 }
 
 
+/**
+ * Toggles the visibility of the add contact form and performs necessary actions.
+ *
+ * @param {Event} event - The event that triggered the function.
+ * @param {string} id - The ID of the element triggering the function.
+ * @param {string} child - The tag name of the child element triggering the function.
+ * @return {void} This function does not return a value.
+ */
 function openOrCloseAddContact(event, id, child) {
     if (event.target.tagName === child || event.target.id === id) {
         showAddContactOrEditContact('none', '');
@@ -21,6 +34,14 @@ function openOrCloseAddContact(event, id, child) {
 }
 
 
+/**
+ * Renders the edit contact view with the provided initials and email.
+ *
+ * @param {string} firstNameLetter - The first letter of the first name.
+ * @param {string} lastNameLetter - The first letter of the last name.
+ * @param {string} contactEmail - The email of the contact.
+ * @return {void} This function does not return a value.
+ */
 function showEditContact(firstNameLetter, lastNameLetter, contactEmail) {
     findedContact = contacts.filter(contact => contact.email === contactEmail);
     showAddContactOrEditContact('', 'none');
@@ -31,6 +52,13 @@ function showEditContact(firstNameLetter, lastNameLetter, contactEmail) {
 }
 
 
+/**
+ * Toggles the visibility of the add contact and edit contact views.
+ *
+ * @param {string} edit - The display style for the edit headline, edit button, and circle big.
+ * @param {string} add - The display style for the add contact headline, add contact button, and letters for icon.
+ * @return {void} This function does not return a value.
+ */
 function showAddContactOrEditContact(edit, add) {
     let editHeadline = document.getElementById('editHeadline');
     let addContactHeadline = document.getElementById('addContactHeadline');
@@ -47,6 +75,12 @@ function showAddContactOrEditContact(edit, add) {
 }
 
 
+/**
+ * Resets the values of the name, email, and phone input fields.
+ *
+ * @param {none} none - This function does not take any parameters.
+ * @return {none} This function does not return any value.
+ */
 function resetValues() {
     let name = document.getElementById('name');
     let email = document.getElementById('email');
@@ -57,6 +91,12 @@ function resetValues() {
 }
 
 
+/**
+ * Updates the name, email, and phone input fields with the values from the found contact.
+ *
+ * @param {none} none - This function does not take any parameters.
+ * @return {none} This function does not return any value.
+ */
 function currentValueFromContact() {
     let name = document.getElementById('name');
     let email = document.getElementById('email');
@@ -67,6 +107,12 @@ function currentValueFromContact() {
 }
 
 
+/**
+ * Toggles the visibility of bigContainer and smallContainer by adding or removing classes.
+ *
+ * @param {none} none - This function does not take any parameters.
+ * @return {none} This function does not return any value.
+ */
 function toggleAnimation() {
     let bigContainer = document.getElementById('bigContainer');
     let smallContainer = document.getElementById('smallContainer');
@@ -75,6 +121,14 @@ function toggleAnimation() {
 }
 
 
+/**
+ * Opens or closes a contact based on the provided parameters.
+ *
+ * @param {number} i - The index of the letter in the alphabet.
+ * @param {number} j - The index of the contact within the letter.
+ * @param {string} firstNameInitial - The initial of the first name of the contact.
+ * @param {string} lastNameInitial - The initial of the last name of the contact.
+ */
 function openOrCloseContact(i, j, firstNameInitial, lastNameInitial) {
     let bigContactContainer = document.getElementById('bigContactContainer');
     let animation = document.querySelector(`.animation${i}${j}`);
@@ -89,6 +143,12 @@ function openOrCloseContact(i, j, firstNameInitial, lastNameInitial) {
 }
 
 
+/**
+ * Filters the contacts array to include only those contacts whose first name initial matches the given letter key.
+ *
+ * @param {string} letterKey - The letter key to match against the first name initials of the contacts.
+ * @return {Array} An array of contacts whose first name initial matches the given letter key.
+ */
 function duplicateFirstLetterOfFirstNameAndLastName(letterKey) {
     contactsForLetter = contacts.filter(contact => {
         const nameParts = contact.name.split(' ');
@@ -98,6 +158,14 @@ function duplicateFirstLetterOfFirstNameAndLastName(letterKey) {
 }
 
 
+/**
+ * Handles the animation of a contact container by adding or removing classes.
+ *
+ * @param {NodeList} contactContainer - The list of contact containers.
+ * @param {HTMLElement} animation - The animation element.
+ * @param {HTMLElement} bigContactContainer - The big contact container element.
+ * @return {void} This function does not return a value.
+ */
 function handleAnimation(contactContainer, animation, bigContactContainer) {
     if (animation.classList.contains('contact-container-active')) {
         animation.classList.remove('contact-container-active');
@@ -115,6 +183,14 @@ function handleAnimation(contactContainer, animation, bigContactContainer) {
 }
 
 
+/**
+ * Saves the contact information entered by the user.
+ *
+ * @param {string} name - The name of the contact.
+ * @param {string} email - The email of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @return {void} This function does not return a value.
+ */
 function saveContacts() {
     let name = document.getElementById('name');
     let email = document.getElementById('email');
@@ -128,6 +204,16 @@ function saveContacts() {
 }
 
 
+/**
+ * Adds a new contact to the list of contacts, saves the contact information, resets the form fields,
+ * displays the updated list of contacts, displays the details of the newly added contact, highlights
+ * the newly added contact, and toggles the containers to show a success message.
+ *
+ * @param {Object} name - The name input field.
+ * @param {Object} email - The email input field.
+ * @param {Object} phone - The phone number input field.
+ * @return {void} This function does not return a value.
+ */
 function addContactAndShowMessage(name, email, phone) {
     const randomIndex = Math.floor(Math.random() * colors.length);
     const randomColor = colors[randomIndex];
@@ -147,6 +233,12 @@ function addContactAndShowMessage(name, email, phone) {
 }
 
 
+/**
+ * Displays the details of a contact in the big contact container.
+ *
+ * @param {Object} contact - The contact object containing name, email, phone, and color.
+ * @return {void} This function does not return a value.
+ */
 function displayContactDetails(contact) {
     const nameParts = contact.name.split(' ');
     const firstNameInitial = nameParts[0].charAt(0);
@@ -157,6 +249,12 @@ function displayContactDetails(contact) {
 }
 
 
+/**
+ * Highlights a contact container by name.
+ *
+ * @param {Object} contact - The contact object containing name, email, phone, and color.
+ * @return {void} This function does not return a value.
+ */
 function highlightContactByName(contact) {
     document.querySelectorAll('.contact-container').forEach(contactContainer => {
         const firstSpan = contactContainer.querySelector('span');
@@ -169,6 +267,11 @@ function highlightContactByName(contact) {
 }
 
 
+/**
+ * Toggles the visibility of the bigContainer and smallContainer elements, and displays a success message for a short duration.
+ *
+ * @return {void} This function does not return a value.
+ */
 function toggleContainersAndShowMessage() {
     let bigContainer = document.getElementById('bigContainer');
     let smallContainer = document.getElementById('smallContainer');
@@ -184,6 +287,12 @@ function toggleContainersAndShowMessage() {
 }
 
 
+/**
+ * Checks if the provided email already exists in the contacts array.
+ *
+ * @param {Object} email - The email input to check.
+ * @return {boolean} Returns true if the email is already in contacts, otherwise false.
+ */
 function existingEmail(email) {
     let index = contacts.findIndex(contact => contact.email === email.value);
     if (index !== -1) {
@@ -194,6 +303,13 @@ function existingEmail(email) {
 }
 
 
+/**
+ * Sets the border color of the input element to red and displays the message element for 3 seconds.
+ *
+ * @param {HTMLInputElement} input - The input element to apply the error style to.
+ * @param {HTMLElement} message - The message element to display.
+ * @return {void} This function does not return a value.
+ */
 function showErrorMessage(input, message) {
     input.style.borderColor = 'red';
     message.style = '';
@@ -204,6 +320,11 @@ function showErrorMessage(input, message) {
 }
 
 
+/**
+ * Renders the list of contacts by populating the contacts container with the contacts grouped by their first letter of the first name and last name.
+ *
+ * @return {void} This function does not return a value.
+ */
 function showContacts() {
     const contactsContainer = document.getElementById('contacts');
     contactsContainer.innerHTML = '';
@@ -215,6 +336,15 @@ function showContacts() {
 }
 
 
+/**
+ * Appends a div element with the class "first-letter" and the value of the letter parameter,
+ * and a div element with the class "underline" to the contactsContainer element if the contactsForLetter array is not empty.
+ *
+ * @param {HTMLElement} contactsContainer - The element to which the new div elements will be appended.
+ * @param {Array} contactsForLetter - The array of contacts for the given letter.
+ * @param {string} letter - The letter for which the contacts are being filtered.
+ * @return {void} This function does not return a value.
+ */
 function filterLettersFromContact(contactsContainer, contactsForLetter, letter) {
     if (contactsForLetter.length !== 0) {
         contactsContainer.innerHTML += `
@@ -225,6 +355,14 @@ function filterLettersFromContact(contactsContainer, contactsForLetter, letter) 
 }
 
 
+/**
+ * Renders the contacts in the contacts container based on the contacts for a specific letter.
+ *
+ * @param {HTMLElement} contactsContainer - The container to render the contacts into.
+ * @param {Array} contactsForLetter - The contacts array for the specific letter.
+ * @param {number} i - The index representing the letter in the alphabet.
+ * @return {void} This function does not return a value.
+ */
 function renderContacts(contactsContainer, contactsForLetter, i) {
     contactsForLetter.forEach((contact, j) => {
         const nameParts = contact.name.split(' ');
@@ -238,6 +376,12 @@ function renderContacts(contactsContainer, contactsForLetter, i) {
 }
 
 
+/**
+ * Deletes a contact from the contacts list based on the provided contact email.
+ *
+ * @param {string} contactEmail - The email of the contact to be deleted.
+ * @return {void} This function does not return a value.
+ */
 function deleteContact(contactEmail) {
     let email = document.getElementById('email');
     if (contactEmail === 'contact.email') {
@@ -253,6 +397,13 @@ function deleteContact(contactEmail) {
 }
 
 
+/**
+ * Saves the edited contact by updating the contact information, toggling the animation,
+ * updating the contacts list in local storage, showing the updated contacts, and adding
+ * the 'contact-container-active' class to the animation element.
+ *
+ * @return {void} This function does not return a value.
+ */
 function saveEditContact() {
     editContact();
     toggleAnimation();
@@ -263,6 +414,12 @@ function saveEditContact() {
 }
 
 
+/**
+ * Updates the contact details with the values from the input fields and displays them in the contact container.
+ *
+ * @param {none} none - This function does not take any parameters.
+ * @return {void} This function does not return a value.
+ */
 function editContact() {
     let name = document.getElementById('name');
     let email = document.getElementById('email');
@@ -279,6 +436,11 @@ function editContact() {
 }
 
 
+/**
+ * Submits the add or edit form and saves the contact information.
+ *
+ * @return {undefined} This function does not return a value.
+ */
 function submitAddOrEdit() {
     if (document.getElementById('editHeadline').style.display === '') {
         saveEditContact();

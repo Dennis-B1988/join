@@ -1,3 +1,13 @@
+/**
+ * Generates the HTML template for a contact container.
+ *
+ * @param {Object} contact - The contact object containing name, email, and initials.
+ * @param {number} i - The index of the letter in the alphabet.
+ * @param {number} j - The index of the contact within the letter.
+ * @param {string} firstNameInitial - The initial of the first name of the contact.
+ * @param {string} lastNameInitial - The initial of the last name of the contact.
+ * @return {string} The HTML template for the contact container.
+ */
 function contactsTemplate(contact, i, j, firstNameInitial, lastNameInitial) {
     return /*html*/`
         <div onclick="openOrCloseContact(${i}, ${j}, '${firstNameInitial}', '${lastNameInitial}')" class="contact-container animation${i}${j}">
@@ -11,6 +21,16 @@ function contactsTemplate(contact, i, j, firstNameInitial, lastNameInitial) {
 }
 
 
+/**
+ * Generates the HTML template for the right side of the contact container.
+ *
+ * @param {Object} contact - The contact object containing name, email, phone, and color.
+ * @param {number} i - The index of the letter in the alphabet.
+ * @param {number} j - The index of the contact within the letter.
+ * @param {string} firstNameInitial - The initial of the first name of the contact.
+ * @param {string} lastNameInitial - The initial of the last name of the contact.
+ * @return {string} The HTML template for the right side of the contact container.
+ */
 function contactsRightSiteTemplate(contact, i, j, firstNameInitial, lastNameInitial) {
     return /*html*/ `
         <div class="contact-upper-container">
