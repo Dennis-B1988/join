@@ -229,9 +229,18 @@ function saveEditContact() {
     contactName.innerHTML = name.value;
     contactEmail.innerHTML = email.value;
     contactPhone.innerHTML = phone.value;
-    document.getElementById('bigContainer').classList.remove('show-background');
+    toggleAnimation();
     setItem('contacts', contacts);
     showContacts();
     let animation = document.querySelector(`.animation${indexI}${indexJ}`);
     animation.classList.add('contact-container-active');
+}
+
+
+function submitAddOrEdit() {
+    if(document.getElementById('editHeadline').style.display === '') {
+        saveEditContact();
+    } else {
+        saveContacts();
+    }
 }
