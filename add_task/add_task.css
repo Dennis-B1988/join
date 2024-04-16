@@ -212,10 +212,6 @@ input[type='date']::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
-.hidden {
-  display: none;
-}
-
 .subtask-list {
   position: relative;
   display: flex;
@@ -252,6 +248,10 @@ input[type='date']::-webkit-calendar-picker-indicator {
   transform: translateY(-50%);
   cursor: pointer;
   padding-right: 5px;
+}
+
+.subtask-icons-edit img {
+  height: 18px;
 }
 
 .subtask-list:hover .subtask-icons {
@@ -500,4 +500,12 @@ input:-webkit-autofill {
 
 input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 50px white inset;
+}
+
+.hidden {
+  display: none;
+}
+
+.hidden:hover {
+  display: none;
 }
