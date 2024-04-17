@@ -258,8 +258,9 @@ function onSubmit() {
  * @return {void} This function does not return anything.
  */
 function submitSuccess(title, description, date, category, priority, subtaskArray) {
+  const currentTimestamp = Math.floor(Date.now() / 1000);
   tasks.push({
-    "id": tasks.length + 1,
+    "id": currentTimestamp,
     "title": title,
     "description": description,
     "assignedTo": assignedUsers,
@@ -267,7 +268,7 @@ function submitSuccess(title, description, date, category, priority, subtaskArra
     "priority": priority,
     "category": category,
     "subtasks": subtaskArray,
-    "status": 'closed',
+    "status": 'todo',
   });
   setItem('tasks', tasks);
   clearTaskForm();
