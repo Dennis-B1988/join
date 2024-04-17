@@ -327,7 +327,7 @@ function createCategoryElements(categoryInput, categoryDropdown) {
 function createCategoryElement(option, categoryInput, categoryDropdown) {
   const categoryElement = document.createElement('div');
   categoryElement.textContent = option;
-  categoryElement.classList.add('search-dropdown-item');
+  categoryElement.classList.add('category-dropdown-item');
   categoryElement.addEventListener('click', function () {
     categoryInput.value = option;
     categoryDropdown.style.display = 'none';
@@ -703,11 +703,14 @@ function generateInitials(user) {
  */
 function assignedToDropdown() {
   let assignedToDropdown = document.getElementById('task-assigned-to-dropdown');
+  let assignedToDropdownContainer = document.getElementById('task-assigned-to-dropdown-container');
   if (assignedToDropdown.style.display !== 'flex') {
     assignedToDropdown.style.display = 'flex';
+    assignedToDropdownContainer.style.display = 'flex';
     changeAssignedIcon();
   } else {
     assignedToDropdown.style.display = 'none';
+    assignedToDropdownContainer.style.display = 'none';
     changeAssignedIcon();
   }
 }
