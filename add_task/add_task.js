@@ -34,56 +34,17 @@ function getCurrentDate() {
 /////////////////////// PRIORITY ///////////////////////
 
 /**
- * Changes the priority of a task to "Urgent".
- *
- * @return {void} 
- */
-function changePriorityUrgent() {
-  medium = false;
-  low = false;
-  if(urgent){
-    urgent = false;
-    document.getElementById('urgent').classList.add('prio-hover');
-    disablePriority();
-  } else {
-    urgent = true;
-    urgentStyle();
-  }
-}
-
-/**
  * Sets the style for the urgent priority.
  *
  * @return {undefined} No return value.
  */
 function urgentStyle() {
-  document.getElementById('urgent').classList.remove('prio-hover');
-  document.getElementById('medium').classList.add('prio-hover');
-  document.getElementById('low').classList.add('prio-hover');
-  document.getElementById('urgent').style.background = '#FF3D00' 
+  urgentChangeClasses();
+  document.getElementById('urgent').style.background = '#FF3D00'
+  document.getElementById('urgent').style.color = '#FFFFFF'
   document.getElementById('urgent-img').src = '../assets/img/urgent_white.png';
-  document.getElementById('medium').style.background = '#FFFFFF' 
-  document.getElementById('medium-img').src = '../assets/img/equal_orange.png';
-  document.getElementById('low').style.background = '#FFFFFF' 
-  document.getElementById('low-img').src = '../assets/img/low_green.png';
-}
-
-/**
- * Initializes tasks by calling various functions.
- *
- * @return {Promise<void>} Promise that resolves when all tasks are completed
- */
-function changePriorityMedium() {
-  urgent = false;
-  low = false;
-  if(medium){
-    medium = false;
-    document.getElementById('medium').classList.add('prio-hover');
-    disablePriority();
-  } else {
-    medium = true;
-    mediumStyle();
-  }
+  mediumDisable();
+  lowDisable();
 }
 
 /**
@@ -92,33 +53,12 @@ function changePriorityMedium() {
  * @return {undefined} No return value.
  */
 function mediumStyle() {
-  document.getElementById('urgent').classList.add('prio-hover');
-  document.getElementById('medium').classList.remove('prio-hover');
-  document.getElementById('low').classList.add('prio-hover');
-  document.getElementById('medium').style.background = '#FFA800' 
+  mediumChangeClasses();
+  document.getElementById('medium').style.background = '#FFA800'
+  document.getElementById('medium').style.color = '#FFFFFF'
   document.getElementById('medium-img').src = '../assets/img/equal_white.png';
-  document.getElementById('urgent').style.background = '#FFFFFF' 
-  document.getElementById('urgent-img').src = '../assets/img/urgent_red.png';
-  document.getElementById('low').style.background = '#FFFFFF' 
-  document.getElementById('low-img').src = '../assets/img/low_green.png';
-}
-
-/**
- * Changes the priority of a task to "Low".
- *
- * @return {void} 
- */
-function changePriorityLow() {
-  urgent = false;
-  medium = false;
-  if(low){
-    low = false;
-    document.getElementById('low').classList.add('prio-hover');
-    disablePriority();
-  } else {
-    low = true;
-    lowStyle();
-  }
+  urgentDisable();
+  lowDisable();
 }
 
 /**
@@ -127,15 +67,120 @@ function changePriorityLow() {
  * @return {undefined} No return value.
  */
 function lowStyle() {
+  lowChangeClasses();
+  document.getElementById('low').style.background = '#7AE229'
+  document.getElementById('low').style.color = '#FFFFFF'
+  document.getElementById('low-img').src = '../assets/img/low_white.png';
+  urgentDisable();
+  mediumDisable();
+}
+
+/**
+ * Changes the priority of a task to "Urgent".
+ *
+ * @return {void} 
+ */
+function changePriorityUrgent() {
+  medium = low = false;
+  if(urgent){
+    urgent = false;
+    document.getElementById('urgent').classList.add('prio-hover');
+    urgentRemoveStyle();
+    disablePriority();
+  } else {
+    urgent = true;
+    urgentStyle();
+  }
+}
+
+/**
+ * Initializes tasks by calling various functions.
+ *
+ * @return {Promise<void>} Promise that resolves when all tasks are completed
+ */
+function changePriorityMedium() {
+  urgent = low = false;
+  if(medium){
+    medium = false;
+    document.getElementById('medium').classList.add('prio-hover');
+    mediumRemoveStyle();
+    disablePriority();
+  } else {
+    medium = true;
+    mediumStyle();
+  }
+}
+
+/**
+ * Changes the priority of a task to "Low".
+ *
+ * @return {void} 
+ */
+function changePriorityLow() {
+  urgent = medium = false;
+  if(low){
+    low = false;
+    document.getElementById('low').classList.add('prio-hover');
+    lowRemoveStyle();
+    disablePriority();
+  } else {
+    low = true;
+    lowStyle();
+  }
+}
+
+function urgentChangeClasses() {
+  document.getElementById('urgent').classList.remove('prio-hover');
+  document.getElementById('medium').classList.add('prio-hover');
+  document.getElementById('low').classList.add('prio-hover');
+}
+
+function mediumChangeClasses() {
+  document.getElementById('urgent').classList.add('prio-hover');
+  document.getElementById('medium').classList.remove('prio-hover');
+  document.getElementById('low').classList.add('prio-hover');
+}
+
+function lowChangeClasses() {
   document.getElementById('urgent').classList.add('prio-hover');
   document.getElementById('medium').classList.add('prio-hover');
   document.getElementById('low').classList.remove('prio-hover');
-  document.getElementById('low').style.background = '#7AE229' 
-  document.getElementById('low-img').src = '../assets/img/low_white.png';
-  document.getElementById('urgent').style.background = '#FFFFFF' 
+}
+
+function urgentRemoveStyle() {
+  if(urgent) {
+    document.getElementById('urgent').style.color = '#000000';
+  }
+}
+
+function mediumRemoveStyle() {
+  if(medium) {
+    document.getElementById('medium').style.color = '#000000';
+  }
+}
+
+function lowRemoveStyle() {
+  if(low) {
+    document.getElementById('low').style.color = '#000000';
+  }
+}
+
+function urgentDisable() {
+  document.getElementById('urgent').style.background = '#FFFFFF'
+  document.getElementById('urgent').style.color = '#000000'
   document.getElementById('urgent-img').src = '../assets/img/urgent_red.png';
-  document.getElementById('medium').style.background = '#FFFFFF' 
+}
+
+function mediumDisable() {
+  document.getElementById('medium').style.background = '#FFFFFF'
+  document.getElementById('medium').style.color = '#000000'
   document.getElementById('medium-img').src = '../assets/img/equal_orange.png';
+}
+
+function lowDisable() {
+  document.getElementById('low').style.background = '#FFFFFF'
+  document.getElementById('low').style.color = '#000000'
+  document.getElementById('low-img').src = '../assets/img/low_green.png';
 }
 
 /**
@@ -146,12 +191,9 @@ function lowStyle() {
  */
 function disablePriority() {
   urgent = medium = low = false;
-  document.getElementById('urgent').style.background = '#FFFFFF' 
-  document.getElementById('urgent-img').src = '../assets/img/urgent_red.png';
-  document.getElementById('medium').style.background = '#FFFFFF' 
-  document.getElementById('medium-img').src = '../assets/img/equal_orange.png';
-  document.getElementById('low').style.background = '#FFFFFF' 
-  document.getElementById('low-img').src = '../assets/img/low_green.png';
+  urgentDisable();
+  mediumDisable();
+  lowDisable();
 }
 
 /**
@@ -549,9 +591,12 @@ function editSubtask(index) {
   inputElement.focus();
 }
 
-
-  
-
+/**
+ * Saves the edited subtask at the specified index.
+ *
+ * @param {number} index - The index of the subtask to be edited.
+ * @return {void} This function does not return anything.
+ */
 function saveEditedSubtask(index) {
   const input = document.getElementById(`edit-input-${index}`);
   const text = input.value.trim();
