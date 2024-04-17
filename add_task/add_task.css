@@ -148,9 +148,6 @@
   cursor: pointer;
 }
 
-.hover-icon {
-}
-
 .subtask-icons-container {
   height: 18px;
   width: 18px;
@@ -427,14 +424,6 @@ li::marker {
   color: #f6f7f8;
 }
 
-@media (max-width: 1200px) {
-  /* .priority {
-    flex-direction: column;
-  } */
-}
-
-/* Mobile @ 950px */
-
 .assigned-dropdown-item {
   display: flex;
   justify-content: space-between;
@@ -498,8 +487,8 @@ li::marker {
 
 .user-initials,
 .assigned-to-users-checked {
-  height: 42px;
-  width: 42px;
+  min-height: 42px;
+  min-width: 42px;
   border: 2px solid #ffffff;
   border-radius: 50%;
   font-size: 12px;
@@ -531,3 +520,22 @@ input:-webkit-autofill:focus {
 .hidden:hover {
   display: none;
 }
+
+@media (max-width: 1200px) {
+  .task-information {
+    margin-left: 278px;
+    margin-right: 46px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .task-information {
+    margin-left: 238px;
+    margin-right: 6px;
+  }
+  .priority {
+    gap: 2px;
+  }
+}
+
+/* Mobile @ 950px */
