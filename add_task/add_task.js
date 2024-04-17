@@ -11,7 +11,6 @@ async function initTasks() {
   await includeHTML();
   await loadData();
   await initTemplate();
-  pushAllUsers();
   createUserList();
 }
 
@@ -647,8 +646,8 @@ function createUserList(){
 function renderUserList(assignedDropdown) {
   sortUsernames();
 
-  for (let i = 0; i < username.length; i++) {
-    let user = username[i].name;
+  for (let i = 0; i < contacts.length; i++) {
+    let user = contacts[i].name;
     let initials = generateInitials(user);
  
     renderUser(assignedDropdown, i, user, initials);
@@ -671,13 +670,13 @@ function renderUser(dropdown, userIndex, userName, initials) {
 }
 
 /**
- * Sets the background color of the element with the id `user-initials-${index}` to the color specified in `username[index].color`.
+ * Sets the background color of the element with the id `user-initials-${index}` to the color specified in `contacts[index].color`.
  *
  * @param {number} index - The index of the user whose initials are being styled.
  * @return {void} This function does not return anything.
  */
 function styleUserInitials(index) {
-  document.getElementById(`user-initials-${index}`).style.backgroundColor = username[index].color;
+  document.getElementById(`user-initials-${index}`).style.backgroundColor = contacts[index].color;
 }
 
 /**
@@ -714,7 +713,7 @@ function assignedToDropdown() {
 /**
  * Toggles the checkmark image and updates the assigned users list and display based on the given index.
  *
- * @param {number} index - The index of the user in the username array.
+ * @param {number} index - The index of the user in the contacts array.
  * @return {void} This function does not return a value.
  */
 function userCheckmark(index) {
@@ -739,7 +738,7 @@ function userCheckmark(index) {
  * @return {void} This function does not return anything.
  */
 function addUserToAssignedUsers(index) {
-  assignedUsers.push(username[index]);
+  assignedUsers.push(contacts[index]);
 }
 
 /**
@@ -749,7 +748,7 @@ function addUserToAssignedUsers(index) {
  * @return {undefined} This function does not return a value.
  */
 function removeUserFromAssignedUsers(index) {
-  let userIndex = assignedUsers.findIndex(user => user.name === username[index].name);
+  let userIndex = assignedUsers.findIndex(user => user.name === contacts[index].name);
   if (userIndex !== -1) assignedUsers.splice(userIndex, 1);
 }
 
@@ -810,7 +809,7 @@ function changeAssignedIcon() {
  * @return {undefined} This function does not return a value.
  */
 function uncheckAll() {
-  for(let i = 0; i < username.length; i++) {
+  for(let i = 0; i < contacts.length; i++) {
     const checkmark = document.getElementById(`checkmark-${i}`);
     checkmark.src = '../assets/img/checkmark-empty_dark.png';
     checkedBackgroundWhite(i);
@@ -820,13 +819,13 @@ function uncheckAll() {
 }
 
 /**
- * Sorts the `username` and `assignedUsers` arrays based on the current user's name.
+ * Sorts the `contacts` and `assignedUsers` arrays based on the current user's name.
  *
  * @return {undefined} This function does not return a value.
  */
 function sortUsernames() {
   const currentUser = users[loadPage('user')];
-  username.sort((firstUser, otherUser) => {
+  contacts.sort((firstUser, otherUser) => {
   if (firstUser.name === currentUser.name) return -1;
     if (otherUser.name === currentUser.name) return 1;
     return firstUser.name.localeCompare(otherUser.name);

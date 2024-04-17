@@ -20,7 +20,6 @@ const colors = [
 let users = [];
 let contacts = [];
 let tasks = [];
-let username = [];
 
 
 function randomColor() {
@@ -68,16 +67,6 @@ function loadPage(key) {
     if (dataFromLocalStorage) {
         return JSON.parse(dataFromLocalStorage);
     }
-}
-
-
-function pushAllUsers() {
-    let loggedInUser = {
-        'name': users[loadPage('user')].name,
-        'color': '#798270'
-    }
-    username.push(loggedInUser);
-    contacts.forEach(contact => username.push(contact));
 }
 
 
