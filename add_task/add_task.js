@@ -81,7 +81,7 @@ function lowStyle() {
  */
 function changePriorityUrgent() {
   medium = low = false;
-  if(urgent){
+  if (urgent) {
     urgent = false;
     document.getElementById('urgent').classList.add('prio-hover');
     urgentRemoveStyle();
@@ -99,7 +99,7 @@ function changePriorityUrgent() {
  */
 function changePriorityMedium() {
   urgent = low = false;
-  if(medium){
+  if (medium) {
     medium = false;
     document.getElementById('medium').classList.add('prio-hover');
     mediumRemoveStyle();
@@ -117,7 +117,7 @@ function changePriorityMedium() {
  */
 function changePriorityLow() {
   urgent = medium = false;
-  if(low){
+  if (low) {
     low = false;
     document.getElementById('low').classList.add('prio-hover');
     lowRemoveStyle();
@@ -147,19 +147,19 @@ function lowChangeClasses() {
 }
 
 function urgentRemoveStyle() {
-  if(urgent) {
+  if (urgent) {
     document.getElementById('urgent').style.color = '#000000';
   }
 }
 
 function mediumRemoveStyle() {
-  if(medium) {
+  if (medium) {
     document.getElementById('medium').style.color = '#000000';
   }
 }
 
 function lowRemoveStyle() {
-  if(low) {
+  if (low) {
     document.getElementById('low').style.color = '#000000';
   }
 }
@@ -214,7 +214,7 @@ function taskPriority() {
  *
  * @return {void} This function does not return anything.
  */
-function clearTaskForm(){
+function clearTaskForm() {
   document.getElementById("add-task-form").reset();
   document.getElementById("task-subtasks-list").innerHTML = '';
   document.getElementById("title-required").style.color = '#f6f7f8';
@@ -233,7 +233,7 @@ function clearTaskForm(){
  *
  * @return {void} This function does not return anything.
  */
-function onSubmit(){
+function onSubmit() {
   let title = document.getElementById('task-title').value;
   let description = document.getElementById('task-description').value;
   let date = document.getElementById('task-date').value;
@@ -241,7 +241,7 @@ function onSubmit(){
   taskPriority();
   if (title && date && category !== '') {
     submitSuccess(title, description, date, category, priority, subtaskArray);
-  }else{
+  } else {
     formFilled(title, date, category);
   }
 }
@@ -258,14 +258,16 @@ function onSubmit(){
  * @return {void} This function does not return anything.
  */
 function submitSuccess(title, description, date, category, priority, subtaskArray) {
-  tasks.push({ 
-    "title": title, 
-    "description": description, 
+  tasks.push({
+    "id": tasks.length + 1,
+    "title": title,
+    "description": description,
     "assignedTo": assignedUsers,
-    "date": date, 
-    "priority": priority, 
-    "category": category, 
-    "subtasks": subtaskArray 
+    "date": date,
+    "priority": priority,
+    "category": category,
+    "subtasks": subtaskArray,
+    "status": 'closed',
   });
   setItem('tasks', tasks);
   clearTaskForm();
@@ -279,16 +281,16 @@ function submitSuccess(title, description, date, category, priority, subtaskArra
  * @param {string} category - The value of the category input field.
  * @return {void} This function does not return anything.
  */
-function formFilled(title, date, category){
-  if(title == ''){
+function formFilled(title, date, category) {
+  if (title == '') {
     document.getElementById('title-required').style.color = '#FCA7B1';
     document.getElementById('task-title').style.borderColor = '#FCA7B1';
   }
-  if(date == ''){
+  if (date == '') {
     document.getElementById('date-required').style.color = '#FCA7B1';
     document.getElementById('task-date').style.borderColor = '#FCA7B1';
   }
-  if(category == ''){
+  if (category == '') {
     document.getElementById('category-required').style.color = '#FCA7B1';
     document.getElementById('task-category').style.borderColor = '#FCA7B1';
   }
@@ -301,7 +303,7 @@ function formFilled(title, date, category){
  *
  * 
  */
-function renderCategory(){
+function renderCategory() {
   const categoryInput = document.getElementById('task-category');
   const categoryDropdown = document.getElementById('task-category-dropdown');
   const dropdownToggle = document.getElementById('task-category-icon');
@@ -326,7 +328,7 @@ function createCategoryElement(option, categoryInput, categoryDropdown) {
   const categoryElement = document.createElement('div');
   categoryElement.textContent = option;
   categoryElement.classList.add('search-dropdown-item');
-  categoryElement.addEventListener('click', function() {
+  categoryElement.addEventListener('click', function () {
     categoryInput.value = option;
     categoryDropdown.style.display = 'none';
   });
@@ -362,11 +364,11 @@ function changeCategoryIcon() {
 // Cut down event listeners
 
 // Event listener for dropdowns
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // sortUsernames();
-  
+
   // Dropdown event listeners for category and assigned to
-  document.body.addEventListener("click", function(event) {
+  document.body.addEventListener("click", function (event) {
     let dropdownCategory = document.getElementById("task-category-dropdown");
     let dropdownAssignedTo = document.getElementById("task-assigned-to-dropdown");
     closeCategoryDropdown(event, dropdownCategory);
@@ -378,10 +380,10 @@ document.addEventListener('DOMContentLoaded', function() {
 // Close category dropdown when clicking outside of it
 function closeCategoryDropdown(event, dropdown) {
   let clickedElement = event.target;
-  let isDropdownClick = clickedElement.id === "task-category" || 
-                        clickedElement.id === "task-category-icon" ||
-                        clickedElement.closest("#task-category") !== null ||
-                        clickedElement.closest("#task-category-icon") !== null;
+  let isDropdownClick = clickedElement.id === "task-category" ||
+    clickedElement.id === "task-category-icon" ||
+    clickedElement.closest("#task-category") !== null ||
+    clickedElement.closest("#task-category-icon") !== null;
   if (!isDropdownClick) {
     dropdown.style.display = "none";
     document.getElementById('task-category-icon').src = '../assets/img/drop_down.png';
@@ -391,11 +393,11 @@ function closeCategoryDropdown(event, dropdown) {
 // Close assigned to dropdown when clicking outside of it
 function closeAssignedToDropdown(event, dropdown) {
   let clickedElement = event.target;
-  let isDropdownClick = clickedElement.id === "task-assigned-to" || 
-                        clickedElement.id === "assigned-to-icon" ||
-                        clickedElement.closest("#task-assigned-to") !== null ||
-                        clickedElement.closest("#assigned-to-icon") !== null;
-                        clickedElement.closest("#task-assigned-to-dropdown") !== null;
+  let isDropdownClick = clickedElement.id === "task-assigned-to" ||
+    clickedElement.id === "assigned-to-icon" ||
+    clickedElement.closest("#task-assigned-to") !== null ||
+    clickedElement.closest("#assigned-to-icon") !== null;
+  clickedElement.closest("#task-assigned-to-dropdown") !== null;
   if (!isDropdownClick && !clickedElement.closest("#task-assigned-to-dropdown")) {
     dropdown.style.display = "none";
     document.getElementById('assigned-to-icon').src = '../assets/img/drop_down.png';
@@ -403,14 +405,14 @@ function closeAssignedToDropdown(event, dropdown) {
 }
 
 
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
-    document.getElementById("add-task-form").addEventListener("keydown", function(event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-      }
-    });
-  
+  document.getElementById("add-task-form").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  });
+
 });
 
 
@@ -421,7 +423,7 @@ function closeAssignedToDropdown(event, dropdown) {
  *
  * @return {void} This function does not return anything.
  */
-function openSubtask(){
+function openSubtask() {
   document.getElementById('task-subtasks-input').focus();
 }
 
@@ -460,7 +462,7 @@ function renderSubtasks() {
  *
  * @return {void} This function does not return anything.
  */
-function addSubtaskDoubleClick(){
+function addSubtaskDoubleClick() {
   subtaskArray.forEach((_, index) => {
     const subtaskItem = document.getElementById(`subtask-${index}`);
     subtaskItem.addEventListener('dblclick', () => editSubtask(index));
@@ -473,7 +475,7 @@ function addSubtaskDoubleClick(){
  * @param {string} id - The id of the task subtask input field.
  * @return {void} This function does not return anything.
  */
-function emptySubtask(){
+function emptySubtask() {
   document.getElementById('task-subtasks-input').value = '';
 }
 
@@ -489,7 +491,7 @@ function deleteSubtask(i) {
     subtaskArray.splice(i, 1);
 
     document.getElementById('task-subtasks-list').innerHTML = '';
-    for(let j = 0; j < subtaskArray.length; j++){
+    for (let j = 0; j < subtaskArray.length; j++) {
       let subtaskContent = subtaskArray[j];
       document.getElementById('task-subtasks-list').innerHTML += addSubtaskList(subtaskContent, j);
     }
@@ -631,7 +633,7 @@ function showSubtaskIcons(index) {
  *
  * @return {void} This function does not return anything.
  */
-function createUserList(){
+function createUserList() {
   let assignedDropdown = document.getElementById('task-assigned-to-dropdown');
   assignedDropdown.innerHTML = '';
   renderUserList(assignedDropdown);
@@ -649,7 +651,7 @@ function renderUserList(assignedDropdown) {
   for (let i = 0; i < contacts.length; i++) {
     let user = contacts[i].name;
     let initials = generateInitials(user);
- 
+
     renderUser(assignedDropdown, i, user, initials);
     styleUserInitials(i);
   }
@@ -701,7 +703,7 @@ function generateInitials(user) {
  */
 function assignedToDropdown() {
   let assignedToDropdown = document.getElementById('task-assigned-to-dropdown');
-  if(assignedToDropdown.style.display !== 'flex') {
+  if (assignedToDropdown.style.display !== 'flex') {
     assignedToDropdown.style.display = 'flex';
     changeAssignedIcon();
   } else {
@@ -758,7 +760,7 @@ function removeUserFromAssignedUsers(index) {
  * @param {number} i - The index of the assigned dropdown item to apply the styling to.
  * @return {void} This function does not return anything.
  */
-function checkedBackgroundDark(i){
+function checkedBackgroundDark(i) {
   document.getElementById(`assigned-dropdown-item-${i}`).style.backgroundColor = 'rgb(42, 54, 71)';
   document.getElementById(`assigned-dropdown-user-${i}`).style.color = 'rgb(255, 255, 255)';
 }
@@ -769,7 +771,7 @@ function checkedBackgroundDark(i){
  * @param {number} i - The index of the assigned dropdown item to apply the styling.
  * @return {void} This function does not return anything.
  */
-function checkedBackgroundWhite(i){
+function checkedBackgroundWhite(i) {
   document.getElementById(`assigned-dropdown-item-${i}`).style.backgroundColor = 'rgb(255, 255, 255)';
   document.getElementById(`assigned-dropdown-user-${i}`).style.color = 'rgb(0, 0, 0)';
 }
@@ -783,7 +785,7 @@ function displayUsers() {
   let checkedUsers = document.getElementById('assigned-to-users');
   checkedUsers.innerHTML = '';
   sortUsernames();
-  for(let i = 0; i < assignedUsers.length; i++) {
+  for (let i = 0; i < assignedUsers.length; i++) {
     let user = assignedUsers[i].name;
     let initials = generateInitials(user);
     checkedUsers.innerHTML += renderAssignedToUsers(i, initials);
@@ -809,7 +811,7 @@ function changeAssignedIcon() {
  * @return {undefined} This function does not return a value.
  */
 function uncheckAll() {
-  for(let i = 0; i < contacts.length; i++) {
+  for (let i = 0; i < contacts.length; i++) {
     const checkmark = document.getElementById(`checkmark-${i}`);
     checkmark.src = '../assets/img/checkmark-empty_dark.png';
     checkedBackgroundWhite(i);
@@ -826,7 +828,7 @@ function uncheckAll() {
 function sortUsernames() {
   const currentUser = users[loadPage('user')];
   contacts.sort((firstUser, otherUser) => {
-  if (firstUser.name === currentUser.name) return -1;
+    if (firstUser.name === currentUser.name) return -1;
     if (otherUser.name === currentUser.name) return 1;
     return firstUser.name.localeCompare(otherUser.name);
   });
