@@ -1,7 +1,32 @@
+const colors = [
+    '#6E52FF',
+    '#FF5EB3',
+    '#FF7A00',
+    '#9327FF',
+    '#00BEE8',
+    '#1FD7C1',
+    '#FF745E',
+    '#FFA35E',
+    '#FC71FF',
+    '#FFC701',
+    '#0038FF',
+    '#C3FF2B',
+    '#FFE62B',
+    '#FF4646',
+    '#FFBB2B'
+];
+
+
 let users = [];
 let contacts = [];
 let tasks = [];
 let username = [];
+
+
+function randomColor() {
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
+}
 
 
 async function setItem(key, value) {
@@ -46,10 +71,10 @@ function loadPage(key) {
 }
 
 
-function pushAllUsers(){
+function pushAllUsers() {
     let loggedInUser = {
-      'name': users[loadPage('user')].name,
-      'color': '#798270'
+        'name': users[loadPage('user')].name,
+        'color': '#798270'
     }
     username.push(loggedInUser);
     contacts.forEach(contact => username.push(contact));

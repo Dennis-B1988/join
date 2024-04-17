@@ -3,7 +3,7 @@ async function initLogin() {
     await loadData();
     animationLogo();
     removePageFromLocalStorage();
-    loadCredentialsFromLocalStorage()
+    loadCredentialsFromLocalStorage();
 }
 
 
@@ -219,9 +219,23 @@ function saveSignup() {
         };
         users.push(userSignup);
         setItem('user', users);
+        saveUserToContactList(name, emailSignup);
         resetValuesAndSrc(name, emailSignup, passwordSignup, confirmPassword, checkmarkSignup);
         showSignupResponse();
     }
+}
+
+
+function saveUserToContactList(name, emailSignup) {
+    let user = {
+        'name': name.value,
+        'email': emailSignup.value,
+        'phone': '',
+        'color': randomColor(),
+    };
+    console.log(contacts)
+    contacts.push(user);
+    setItem('contacts', contacts);
 }
 
 

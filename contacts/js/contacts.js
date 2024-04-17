@@ -215,13 +215,11 @@ function saveContacts() {
  * @return {void} This function does not return a value.
  */
 function addContactAndShowMessage(name, email, phone) {
-    const randomIndex = Math.floor(Math.random() * colors.length);
-    const randomColor = colors[randomIndex];
     let contact = {
         'name': name.value,
         'email': email.value,
         'phone': phone.value,
-        'color': randomColor
+        'color': randomColor()
     };
     contacts.push(contact);
     setItem('contacts', contacts);
