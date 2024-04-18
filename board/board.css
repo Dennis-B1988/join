@@ -165,6 +165,7 @@ h1{
     box-shadow: 0px 0px 10px 3px #00000014;
     margin-bottom: 20px;
     cursor: pointer;
+    box-sizing: border-box;
 
 }
 .task-card-category{
@@ -184,7 +185,7 @@ h1{
     font-weight: 700;
     font-size: 16px;
     color: #2A3647;
-    ;
+    box-sizing: border-box;
 }
 .task-card-description{
     font-weight: 400;
@@ -258,7 +259,7 @@ h1{
     
 }
 .task-card-footer-contacts{
-    border: 2px solid #FFFFFF;
+    border: 3px solid #FFFFFF;
     border-radius: 50%;
     display: flex;
     align-items: center;
