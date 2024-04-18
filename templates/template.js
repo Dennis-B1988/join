@@ -70,3 +70,8 @@ function openOrCloseDropdown(event, id) {
         dropdwonContainer.style.display = 'none';
     }
 }
+
+
+function logoutAsGuest() {
+    localStorage.removeItem('guest');
+}

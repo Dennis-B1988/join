@@ -222,7 +222,11 @@ function addContactAndShowMessage(name, email, phone) {
         'color': randomColor()
     };
     contacts.push(contact);
-    setItem('contacts', contacts);
+    if (loadPage('guest') === 'guest') {
+        savePage( 'contacts', contacts);
+    } else {
+        setItem('contacts', contacts);
+    }
     resetValues();
     showContacts();
     displayContactDetails(contact);
@@ -390,7 +394,11 @@ function deleteContact(contactEmail) {
     document.getElementById('bigContactContainer').classList.remove('show-contact');
     document.getElementById('bigContainer').classList.remove('show-background');
     document.getElementById('smallContainer').classList.remove('show-add-contact');
-    setItem('contacts', contacts);
+    if (loadPage('guest') === 'guest') {
+        savePage( 'contacts', contacts);
+    } else {
+        setItem('contacts', contacts);
+    }
     showContacts();
 }
 
@@ -405,7 +413,11 @@ function deleteContact(contactEmail) {
 function saveEditContact() {
     editContact();
     toggleAnimation();
-    setItem('contacts', contacts);
+    if (loadPage('guest') === 'guest') {
+        savePage( 'contacts', contacts);
+    } else {
+        setItem('contacts', contacts);
+    }
     showContacts();
     let animation = document.querySelector(`.animation${indexI}${indexJ}`);
     animation.classList.add('contact-container-active');

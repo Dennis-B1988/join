@@ -233,7 +233,6 @@ function saveUserToContactList(name, emailSignup) {
         'phone': '',
         'color': randomColor(),
     };
-    console.log(contacts)
     contacts.push(user);
     setItem('contacts', contacts);
 }
@@ -264,4 +263,9 @@ function showSignupResponse() {
             changeIcon('confirmPassword', 'confirmImg');
         }, 1500);
     }, 10);
+}
+
+
+function loginAsGuest() {
+    savePage('guest', 'guest');
 }

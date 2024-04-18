@@ -270,7 +270,11 @@ function submitSuccess(title, description, date, category, priority, subtaskArra
     "subtasks": subtaskArray,
     "status": 'todo',
   });
-  setItem('tasks', tasks);
+  if (loadPage('guest') === 'guest') {
+    savePage('tasks', tasks);
+  } else {
+    setItem('tasks', tasks);
+  }
   clearTaskForm();
 }
 
@@ -668,7 +672,13 @@ function renderUserList(assignedDropdown) {
  * @return {void} This function does not return anything.
  */
 function renderUser(dropdown, userIndex, userName, initials) {
-  const userLabel = userName + (userName === users[loadPage('user')].name ? ' (YOU)' : '');
+  let currentUser;
+  if (loadPage('user') === null || loadPage('user') === undefined) {
+    currentUser = users[0];
+  } else {
+    currentUser = users[loadPage('user')].name;
+  }
+  const userLabel = userName + (userName === currentUser ? ' (YOU)' : '');
   dropdown.innerHTML += renderAssignedToDropdown(userIndex, userLabel, initials);
 }
 
@@ -830,15 +840,20 @@ function uncheckAll() {
  * @return {undefined} This function does not return a value.
  */
 function sortUsernames() {
-  const currentUser = users[loadPage('user')];
-  contacts.sort((firstUser, otherUser) => {
-    if (firstUser.name === currentUser.name) return -1;
-    if (otherUser.name === currentUser.name) return 1;
-    return firstUser.name.localeCompare(otherUser.name);
-  });
-  assignedUsers.sort((firstUser, otherUser) => {
-    if (firstUser.name === currentUser.name) return -1;
-    if (otherUser.name === currentUser.name) return 1;
-    return firstUser.name.localeCompare(otherUser.name);
-  });
+  let currentUser;
+  if (loadPage('user') === null || loadPage('user') === undefined) {
+    currentUser = users[0];
+  } else {
+    currentUser = users[loadPage('user')];
+    contacts.sort((firstUser, otherUser) => {
+      if (firstUser.name === currentUser.name) return -1;
+      if (otherUser.name === currentUser.name) return 1;
+      return firstUser.name.localeCompare(otherUser.name);
+    });
+    assignedUsers.sort((firstUser, otherUser) => {
+      if (firstUser.name === currentUser.name) return -1;
+      if (otherUser.name === currentUser.name) return 1;
+      return firstUser.name.localeCompare(otherUser.name);
+    });
+  }
 }

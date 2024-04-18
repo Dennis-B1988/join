@@ -46,9 +46,21 @@ async function getItem(key) {
 
 
 async function loadData() {
-    users = await getItem('user');
-    contacts = await getItem('contacts');
-    tasks = await getItem('tasks');
+    if (loadPage('guest') === 'guest') {
+        users = dummyUserArray;
+        contacts = loadPage('contacts');
+        tasks = loadPage('tasks');
+        if (localStorage.getItem('contacts') === null) {
+            contacts = dummyContactsArray;
+        }
+        if (localStorage.getItem('tasks') === null) {
+            tasks = dummyTaskArray;
+        }
+    } else {
+        users = await getItem('user');
+        contacts = await getItem('contacts');
+        tasks = await getItem('tasks');
+    }
 }
 
 
