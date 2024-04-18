@@ -241,23 +241,37 @@ h1{
 }
 .task-card-footer{
     display: flex;
-    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    padding-left: 5px;
+}
+.task-card-footer1{
+    font-weight: 400;
+    font-size: 12px;
+    color: white;
+    display: flex;
+    
 }
 .footer-names{
-    margin: -25px;
-    border-color: 1px solid white    ;
+    margin-left: -8px;
+    
 }
 .task-card-footer-contacts{
+    border: 2px solid #FFFFFF;
     border-radius: 50%;
     display: flex;
     align-items: center;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: center;
     height: 42px;
     width: 42px;
+}
+.add-task{
+    background-color: white;
+}
+.task-bottom{
+    background-color: white;
 }
 
 @media (max-width: 1000px) {

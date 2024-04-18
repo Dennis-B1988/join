@@ -18,8 +18,8 @@ function updateHTML() {
     }
     for (let i = 0; i < todo.length; i++) {
         const element = todo[i];
-        document.getElementById('todo').innerHTML += generateTodoHTML(element,i);
-        let taskCardFooter = document.getElementById(`taskCardFooter${i}`);
+        document.getElementById('todo').innerHTML += generateTodoHTML(element);
+        let taskCardFooter = document.getElementById(`taskCardFooter${element.id}`);
         for (let j = 0; j < element.assignedTo.length; j++) {
             const contacts = element.assignedTo[j];
             const letters = lettersOfName(contacts.name)
@@ -34,8 +34,8 @@ function updateHTML() {
     }
     for (let i = 0; i < inProgress.length; i++) {
         const element = inProgress[i];
-        document.getElementById('inProgress').innerHTML += generateTodoHTML(element,i);
-        let taskCardFooter = document.getElementById(`taskCardFooter${i}`);
+        document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
+        let taskCardFooter = document.getElementById(`taskCardFooter${element.id}`);
         for (let j = 0; j < element.assignedTo.length; j++) {
             const contacts = element.assignedTo[j];
             const letters = lettersOfName(contacts.name)
@@ -51,8 +51,8 @@ function updateHTML() {
     }
     for (let i = 0; i < awaitFeedback.length; i++) {
         const element = awaitFeedback[i];
-        document.getElementById('awaitFeedback').innerHTML += generateTodoHTML(element,i);
-        let taskCardFooter = document.getElementById(`taskCardFooter${i}`);
+        document.getElementById('awaitFeedback').innerHTML += generateTodoHTML(element);
+        let taskCardFooter = document.getElementById(`taskCardFooter${element.id}`);
         for (let j = 0; j < element.assignedTo.length; j++) {
             const contacts = element.assignedTo[j];
             const letters = lettersOfName(contacts.name)
@@ -67,12 +67,12 @@ function updateHTML() {
     }
     for (let i = 0; i < done.length; i++) {
         const element = done[i];
-        document.getElementById('done').innerHTML += generateTodoHTML(element,i);
-        let taskCardFooter = document.getElementById(`taskCardFooter${i}`);
+        document.getElementById('done').innerHTML += generateTodoHTML(element);
+        let taskCardFooter = document.getElementById(`taskCardFooter${element.id}`);
         for (let j = 0; j < element.assignedTo.length; j++) {
             const contacts = element.assignedTo[j];
             const letters = lettersOfName(contacts.name)
-            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}"class="task-card-footer-contacts">${letters}</div></div>`;
+            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
         }
     }
     changeCategoryColor()
@@ -96,8 +96,18 @@ function changeCategoryColor(){
         }
     })
 }
+// function changePrioColor(){
+//     let prioColor = document.getElementById('.prioImg');
+//     prioColor.forEach(prico => {
+//         if (prico.innerHTML === "low") {
+//             prico.style.backgroundColor = '#1FD7C1';
+//         }else{
+//             prico.style.backgroundColor = '#0038FF';
+//         }
+//     })
+// }
 
-function generateTodoHTML(element,i) {
+function generateTodoHTML(element) {
         return /*html*/`
         <div  draggable="true" ondragstart="startDragging(${element['id']})" class="task-card">
             <span class="task-card-category">${element['category']}</span>
@@ -110,9 +120,9 @@ function generateTodoHTML(element,i) {
                 <span>0/${element.subtasks.length} Subtasks</span>
             </div>
             <div class="task-card-footer">
-            <div id="taskCardFooter${i}" >
+            <div class="task-card-footer1" id="taskCardFooter${element.id}" >
             </div>
-            <img style src="../assets/img/plus_dark.png" alt="">
+            <img id="prioImg" src="../assets/img/plus_dark.png" alt="">
             </div>
         </div> 
     `;
