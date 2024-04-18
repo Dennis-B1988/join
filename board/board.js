@@ -16,9 +16,15 @@ function updateHTML() {
     if (todo.length === 0) {
         document.getElementById('todo').innerHTML = generateNoTasksToDo();
     }
-    for (let index = 0; index < todo.length; index++) {
-        const element = todo[index];
-        document.getElementById('todo').innerHTML += generateTodoHTML(element);
+    for (let i = 0; i < todo.length; i++) {
+        const element = todo[i];
+        document.getElementById('todo').innerHTML += generateTodoHTML(element,i);
+        let taskCardFooter = document.getElementById(`taskCardFooter${i}`);
+        for (let j = 0; j < element.assignedTo.length; j++) {
+            const contacts = element.assignedTo[j];
+            const letters = lettersOfName(contacts.name)
+            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
+        }
     }
 
     let inProgress = tasks.filter(task => task['status'] == 'inProgress');
@@ -26,9 +32,15 @@ function updateHTML() {
     if (inProgress.length === 0) {
         document.getElementById('inProgress').innerHTML = generateNoTasksToDo();
     }
-    for (let index = 0; index < inProgress.length; index++) {
-        const element = inProgress[index];
-        document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
+    for (let i = 0; i < inProgress.length; i++) {
+        const element = inProgress[i];
+        document.getElementById('inProgress').innerHTML += generateTodoHTML(element,i);
+        let taskCardFooter = document.getElementById(`taskCardFooter${i}`);
+        for (let j = 0; j < element.assignedTo.length; j++) {
+            const contacts = element.assignedTo[j];
+            const letters = lettersOfName(contacts.name)
+            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
+        }
     }
 
 
@@ -37,9 +49,15 @@ function updateHTML() {
     if (awaitFeedback.length === 0) {
         document.getElementById('awaitFeedback').innerHTML = generateNoTasksToDo();
     }
-    for (let index = 0; index < awaitFeedback.length; index++) {
-        const element = awaitFeedback[index];
-        document.getElementById('awaitFeedback').innerHTML += generateTodoHTML(element);
+    for (let i = 0; i < awaitFeedback.length; i++) {
+        const element = awaitFeedback[i];
+        document.getElementById('awaitFeedback').innerHTML += generateTodoHTML(element,i);
+        let taskCardFooter = document.getElementById(`taskCardFooter${i}`);
+        for (let j = 0; j < element.assignedTo.length; j++) {
+            const contacts = element.assignedTo[j];
+            const letters = lettersOfName(contacts.name)
+            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
+        }
     }
 
     let done = tasks.filter(task => task['status'] == 'done');
@@ -47,25 +65,55 @@ function updateHTML() {
     if (done.length === 0) {
         document.getElementById('done').innerHTML = generateNoTasksToDo();
     }
-    for (let index = 0; index < done.length; index++) {
-        const element = done[index];
-        document.getElementById('done').innerHTML += generateTodoHTML(element);
+    for (let i = 0; i < done.length; i++) {
+        const element = done[i];
+        document.getElementById('done').innerHTML += generateTodoHTML(element,i);
+        let taskCardFooter = document.getElementById(`taskCardFooter${i}`);
+        for (let j = 0; j < element.assignedTo.length; j++) {
+            const contacts = element.assignedTo[j];
+            const letters = lettersOfName(contacts.name)
+            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}"class="task-card-footer-contacts">${letters}</div></div>`;
+        }
     }
+    changeCategoryColor()
+}
+function lettersOfName(name) {
+    return name.split(' ').map(word => word[0].toUpperCase()).join('');
 }
 
 function startDragging(id) {
     currentDraggedElement = id;
-    currentIndex = tasks.findIndex(task => task.id ===id);
+    currentIndex = tasks.findIndex(task => task.id === id);
     console.log(currentIndex)
 }
+function changeCategoryColor(){
+    let category = document.querySelectorAll('.task-card-category');
+    category.forEach(cate => {
+        if (cate.innerHTML === "User Story") {
+            cate.style.backgroundColor = '#1FD7C1';
+        }else{
+            cate.style.backgroundColor = '#0038FF';
+        }
+    })
+}
 
-
-function generateTodoHTML(element) {
-    return /*html*/`
+function generateTodoHTML(element,i) {
+        return /*html*/`
         <div  draggable="true" ondragstart="startDragging(${element['id']})" class="task-card">
             <span class="task-card-category">${element['category']}</span>
             <p class="task-card-title">${element['title']}</p>
             <p class="task-card-description">${element['description']}</p>
+            <div class="load-bar-container">
+                <div id="loadBar" class="load-bar">
+                <div id="loadBarProgress" class="load-bar-progress" role="progressbar" style="width: 0%;"></div>
+                </div>
+                <span>0/${element.subtasks.length} Subtasks</span>
+            </div>
+            <div class="task-card-footer">
+            <div id="taskCardFooter${i}" >
+            </div>
+            <img style src="../assets/img/plus_dark.png" alt="">
+            </div>
         </div> 
     `;
 }
@@ -89,6 +137,7 @@ function moveTo(category) {
         setItem('tasks', tasks);
     }
     updateHTML();
+    removeHighlight(category);
 }
 
 function highlight(id) {
