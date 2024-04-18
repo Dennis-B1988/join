@@ -72,7 +72,7 @@ function updateHTML() {
         for (let j = 0; j < element.assignedTo.length; j++) {
             const contacts = element.assignedTo[j];
             const letters = lettersOfName(contacts.name)
-            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}"class="task-card-footer-contacts">${letters}</div></div>`;
+            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
         }
     }
     changeCategoryColor()
@@ -96,6 +96,16 @@ function changeCategoryColor(){
         }
     })
 }
+// function changePrioColor(){
+//     let prioColor = document.getElementById('.prioImg');
+//     prioColor.forEach(prico => {
+//         if (prico.innerHTML === "low") {
+//             prico.style.backgroundColor = '#1FD7C1';
+//         }else{
+//             prico.style.backgroundColor = '#0038FF';
+//         }
+//     })
+// }
 
 function generateTodoHTML(element,i) {
         return /*html*/`
@@ -110,9 +120,9 @@ function generateTodoHTML(element,i) {
                 <span>0/${element.subtasks.length} Subtasks</span>
             </div>
             <div class="task-card-footer">
-            <div id="taskCardFooter${i}" >
+            <div class="task-card-footer1" id="taskCardFooter${i}" >
             </div>
-            <img style src="../assets/img/plus_dark.png" alt="">
+            <img id="prioImg" src="../assets/img/plus_dark.png" alt="">
             </div>
         </div> 
     `;
