@@ -11,72 +11,28 @@ let currentDraggedElement;
 let currentIndex;
 
 function updateHTML() {
-    let todo = tasks.filter(task => task['status'] === 'todo');
-    document.getElementById('todo').innerHTML = '';
-    if (todo.length === 0) {
-        document.getElementById('todo').innerHTML = generateNoTasksToDo();
-    }
-    for (let i = 0; i < todo.length; i++) {
-        const element = todo[i];
-        document.getElementById('todo').innerHTML += generateTodoHTML(element);
-        let taskCardFooter = document.getElementById(`taskCardFooter${element.id}`);
-        for (let j = 0; j < element.assignedTo.length; j++) {
-            const contacts = element.assignedTo[j];
-            const letters = lettersOfName(contacts.name)
-            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
+    let taskStatus = ['todo', 'inProgress', 'awaitFeedback', 'done'];
+    taskStatus.forEach(status => {
+        let taskStatus = tasks.filter(task => task['status'] === status);
+        document.getElementById(status).innerHTML = '';
+        if (taskStatus.length === 0) {
+            document.getElementById(status).innerHTML = generateNoTasksToDo();
         }
-    }
-
-    let inProgress = tasks.filter(task => task['status'] == 'inProgress');
-    document.getElementById('inProgress').innerHTML = '';
-    if (inProgress.length === 0) {
-        document.getElementById('inProgress').innerHTML = generateNoTasksToDo();
-    }
-    for (let i = 0; i < inProgress.length; i++) {
-        const element = inProgress[i];
-        document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
-        let taskCardFooter = document.getElementById(`taskCardFooter${element.id}`);
-        for (let j = 0; j < element.assignedTo.length; j++) {
-            const contacts = element.assignedTo[j];
-            const letters = lettersOfName(contacts.name)
-            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
+        for (let i = 0; i < taskStatus.length; i++) {
+            const element = taskStatus[i];
+            document.getElementById(status).innerHTML += generateTodoHTML(element);
+            let taskCardFooter = document.getElementById(`taskCardFooter${element.id}`);
+            for (let j = 0; j < element.assignedTo.length; j++) {
+                const contacts = element.assignedTo[j];
+                const letters = lettersOfName(contacts.name)
+                taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
+            }
         }
-    }
-
-
-    let awaitFeedback = tasks.filter(task => task['status'] == 'awaitFeedback');
-    document.getElementById('awaitFeedback').innerHTML = '';
-    if (awaitFeedback.length === 0) {
-        document.getElementById('awaitFeedback').innerHTML = generateNoTasksToDo();
-    }
-    for (let i = 0; i < awaitFeedback.length; i++) {
-        const element = awaitFeedback[i];
-        document.getElementById('awaitFeedback').innerHTML += generateTodoHTML(element);
-        let taskCardFooter = document.getElementById(`taskCardFooter${element.id}`);
-        for (let j = 0; j < element.assignedTo.length; j++) {
-            const contacts = element.assignedTo[j];
-            const letters = lettersOfName(contacts.name)
-            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
-        }
-    }
-
-    let done = tasks.filter(task => task['status'] == 'done');
-    document.getElementById('done').innerHTML = '';
-    if (done.length === 0) {
-        document.getElementById('done').innerHTML = generateNoTasksToDo();
-    }
-    for (let i = 0; i < done.length; i++) {
-        const element = done[i];
-        document.getElementById('done').innerHTML += generateTodoHTML(element);
-        let taskCardFooter = document.getElementById(`taskCardFooter${element.id}`);
-        for (let j = 0; j < element.assignedTo.length; j++) {
-            const contacts = element.assignedTo[j];
-            const letters = lettersOfName(contacts.name)
-            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
-        }
-    }
+    });
     changeCategoryColor()
 }
+
+
 function lettersOfName(name) {
     return name.split(' ').map(word => word[0].toUpperCase()).join('');
 }
@@ -86,12 +42,12 @@ function startDragging(id) {
     currentIndex = tasks.findIndex(task => task.id === id);
     console.log(currentIndex)
 }
-function changeCategoryColor(){
+function changeCategoryColor() {
     let category = document.querySelectorAll('.task-card-category');
     category.forEach(cate => {
         if (cate.innerHTML === "User Story") {
             cate.style.backgroundColor = '#1FD7C1';
-        }else{
+        } else {
             cate.style.backgroundColor = '#0038FF';
         }
     })
@@ -108,7 +64,7 @@ function changeCategoryColor(){
 // }
 
 function generateTodoHTML(element) {
-        return /*html*/`
+    return /*html*/`
         <div  draggable="true" ondragstart="startDragging(${element['id']})" class="task-card">
             <span class="task-card-category">${element['category']}</span>
             <p class="task-card-title">${element['title']}</p>
