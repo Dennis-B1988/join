@@ -147,6 +147,7 @@
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+  z-index: 50;
 }
 
 .subtask-icons-container {
@@ -160,11 +161,6 @@
 .subtask-icons-container:hover {
   border-radius: 50%;
   background-color: #d1d1d1;
-}
-
-/* Icon 180 Grad WIP */
-.task-category-icon.open {
-  transform: translateY(-50%) rotate(180deg);
 }
 
 input::placeholder {
@@ -181,10 +177,8 @@ input[type='date']::-webkit-calendar-picker-indicator {
 
 .task-category {
   cursor: pointer;
-}
-
-.task-category-icon.open {
-  transform: translateY(-50%) rotate(180deg);
+  z-index: 5;
+  position: relative;
 }
 
 .search-dropdown-item {
@@ -194,8 +188,9 @@ input[type='date']::-webkit-calendar-picker-indicator {
   border-radius: 10px;
 }
 
-.search-dropdown-item:hover {
+.hover-icon:hover {
   background-color: #f0f0f0;
+  border-radius: 50%;
 }
 
 .task-subtasks {
@@ -241,10 +236,6 @@ input[type='date']::-webkit-calendar-picker-indicator {
   font-size: 16px;
   text-wrap: wrap;
   overflow-wrap: break-word;
-}
-
-li::marker {
-  margin-right: 8px;
 }
 
 .subtask-icons {
@@ -404,11 +395,14 @@ li::marker {
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   display: none;
   background-color: #ffffff;
   width: 100%;
   border-radius: 0 0 10px 10px;
+  box-shadow: 0px 0px 4px 0px #00000029;
+  margin-top: -10px;
+  padding-top: 10px;
 }
 
 .category-dropdown-item {
@@ -418,6 +412,7 @@ li::marker {
 
 .category-dropdown-item:hover {
   background-color: #f1f1f1;
+  border-radius: 10px;
 }
 
 .required {
@@ -433,6 +428,17 @@ li::marker {
 
 .task-assigned-to {
   cursor: pointer;
+  position: relative;
+  z-index: 10;
+}
+
+.task-assigned-to-dropdown-container {
+  padding-top: 20px;
+  background-color: white;
+  margin-top: -10px;
+  padding-top: 10px;
+  /* margin-bottom: 10px; */
+  display: none;
 }
 
 .task-assigned-to-dropdown {
@@ -444,13 +450,16 @@ li::marker {
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 50;
+  z-index: 6;
   background-color: white;
   border-radius: 0 0 10px 10px;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   scrollbar-width: thin;
-  scrollbar-color: #a8a8a8;
+  /* scroll-margin-top: 10px; */
   overflow: auto;
+  box-shadow: 0px 2px 4px 0px #00000029;
+  /* margin-top: -10px;
+  padding-top: 10px; */
 }
 
 .assigned-dropdown-item {
@@ -469,11 +478,9 @@ li::marker {
   justify-content: start;
   flex-wrap: wrap;
   gap: 5px;
-  position: absolute;
   left: 10px;
   right: 10px;
   z-index: 1;
-  margin-top: 10px;
 }
 
 .user-dropdown-name-container {
@@ -531,12 +538,31 @@ input:-webkit-autofill:focus {
 
 @media (max-width: 1100px) {
   .task-information {
-    margin-left: 238px;
-    margin-right: 6px;
+    margin-left: 248px;
+    margin-right: 16px;
   }
-  .priority {
-    gap: 2px;
+  .form-left {
+    width: 48%;
+  }
+  .form-right {
+    width: 48%;
   }
 }
 
-/* Mobile @ 950px */
+@media (max-width: 1000px) {
+  .add-task-form {
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 8px;
+  }
+  .form-left {
+    width: 80%;
+  }
+  .form-right {
+    width: 80%;
+  }
+  .form-split {
+    display: none;
+  }
+}

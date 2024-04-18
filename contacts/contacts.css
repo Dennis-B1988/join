@@ -72,15 +72,18 @@
 
 .first-letter {
     padding: 17px 36px;
+    max-width: 350px;
 }
 
 .underline {
     border-top: 1px solid #D1D1D1;
     padding-top: 8px;
+    max-width: 350px;
 }
 
 .contact-container {
     padding: 15px 24px;
+    max-width: 350px;
     display: flex;
     gap: 35px;
     cursor: pointer;
@@ -151,6 +154,13 @@
     width: auto;
 }
 
+.contact-mobile-line-img {
+    display: none;
+    height: 90px;
+    width: 3px;
+    transform: rotate(90deg);
+}
+
 .header-text {
     font-size: 27px;
 }
@@ -191,6 +201,7 @@
     color: white;
     font-size: 47px;
     border: 3px solid #FFFFFF;
+    aspect-ratio: 1 / 1;
 }
 
 .contact-action-big {
@@ -495,11 +506,196 @@
     visibility: visible;
 }
 
+.add-contact-mobile-img {
+    display: none;
+    height: 80px;
+    width: 80px;
+    position: fixed;
+    bottom: 100px;
+    right: 100px;
+}
+
+.close-icon-mobile {
+    display: none;
+}
+
 @keyframes show-message {
     from {
-        transform: translateX(100%); /* Startzustand: außerhalb des Bildschirms rechts */
+        transform: translateX(100%);
+        /* Startzustand: außerhalb des Bildschirms rechts */
     }
+
     to {
-        transform: translateX(0); /* Endzustand: Position auf dem Bildschirm */
+        transform: translateX(0);
+        /* Endzustand: Position auf dem Bildschirm */
+    }
+}
+
+@media(max-width: 1430px) {
+    #contacts {
+        padding: 13px 5px;
+    }
+}
+
+@media(max-width: 1350px) {
+    .add-contact-small-container {
+        flex-direction: column;
+        height: 85vh;
+        width: 55%;
+        position: relative;
+    }
+
+    .add-contact-left {
+        width: unset;
+        border-radius: unset;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        height: 50%;
+    }
+
+    .add-contact-right {
+        height: 50%;
+        width: unset;
+        border-radius: unset;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        position: unset;
+    }
+
+    .add-contact-left-logo-img {
+        display: none;
+    }
+
+    .add-contact-right-contact-icon {
+        top: 50%;
+        transform: translate(-50%, -50%);
+        left: 50%;
+    }
+
+    .create-contact-container {
+        top: 58%;
+        transform: unset;
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    .create-contact-button-cancel{
+        display: none;
+    }
+
+    .create-contact-button-container {
+        justify-content: center;
+    }
+
+    .close-icon {
+        display: none;
+    }
+
+    .close-icon-mobile {
+        display: unset;
+    }
+}
+
+@media(max-width: 1250px) {
+    .left-container {
+        width: 45%;
+    }
+
+    .right-container {
+        width: 55%;
+        padding: 30px 10px;
+        text-align: center;
+    }
+
+    .right-container-header {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .contact-line-img {
+        transform: rotate(90deg);
+    }
+
+    .contact-upper-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .edit-delete-container {
+        justify-content: center;
+    }
+}
+
+@media(max-width: 1100px) {
+    .left-container {
+        width: 50%;
+    }
+
+    .right-container {
+        width: 50%;
+    }
+}
+
+@media(max-width: 1000px) {
+    .left-container {
+        width: 100%;
+        padding: 0px 20px;
+    }
+
+    #contacts {
+        padding: 0 50px;
+    }
+
+    .right-container {
+        display: none;
+    }
+
+    .add-new-contact-button {
+        display: none;
+    }
+
+    .scrollbar-arrow-top{
+        display: none;
+    }
+
+    .scrollbar-arrow-bottom {
+        display: none;
+    }
+
+    ::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .add-contact-mobile-img {
+        display: unset;
+    }
+
+    .add-contact-small-container {
+        transform: translateY(100%);
+    }
+    
+    .add-contact-small-container.show-add-contact {
+        transform: translateY(0);
+    }
+}
+
+@media(max-width: 850px) {
+    #contacts {
+        padding: 0 10px;
+    }
+
+    .add-contact-small-container {
+        width: 80%;
+    }
+
+    .add-contact-right-close-img-container {
+        top: 30px;
+        right: 30px;
+    }
+}
+
+@media(max-width: 550px) {
+    .add-contact-small-container {
+        width: 90%;
     }
 }
