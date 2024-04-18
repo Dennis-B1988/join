@@ -349,13 +349,8 @@ input[type='date']::-webkit-calendar-picker-indicator {
 .task-clear:hover {
   transition: all 0.1s ease-in-out;
   border: 2px solid #29abe2;
+  color: #29abe2;
   box-shadow: 0px 4px 4px 0px #00000040;
-  filter: brightness(150%);
-}
-
-.task-clear:hover::after {
-  background-color: #29abe2;
-  /* opacity: 0.5; */
 }
 
 .task-clear:active {
@@ -365,12 +360,12 @@ input[type='date']::-webkit-calendar-picker-indicator {
   box-shadow: 0px 4px 4px 0px #00000040;
 }
 
-.task-clear img {
+.task-clear-img img {
   transition: filter 0.1s ease-in-out;
 }
 
-.task-clear:hover img {
-  filter: brightness(150%) sepia(100%) hue-rotate(180deg);
+.task-clear:hover .task-clear-svg {
+  fill: #29abe2;
 }
 
 .task-add {
@@ -595,24 +590,28 @@ input:-webkit-autofill:focus {
   .task-title {
     width: 95%;
     font-size: 47px;
-    margin-bottom: 20px;
+    background-color: #f6f7f8;
+    z-index: 999;
+    margin-bottom: 10px;
     position: fixed;
     top: 90px;
   }
   .task-form-container {
     height: 70vh;
+    width: 100%;
     overflow: auto;
     scrollbar-width: none;
     margin-top: 140px;
-  }
-  .task-form-container {
-    width: 100%;
+    /* margin-bottom: 170px; */
   }
   .add-task-form {
     flex-direction: column;
     justify-content: start;
     align-items: center;
     gap: 8px;
+  }
+  .add-task-form textarea {
+    max-height: 75px;
   }
   .form-left,
   .form-right {
@@ -636,8 +635,8 @@ input:-webkit-autofill:focus {
     padding-left: 20px;
     padding-right: 20px;
     position: fixed;
-    bottom: 0;
-    z-index: 999;
+    bottom: 70px;
+    z-index: 500;
   }
   .task-bottom {
     gap: 5px;
@@ -695,6 +694,7 @@ input:-webkit-autofill:focus {
   }
   .task-title {
     font-size: 47px;
+    background-color: #f6f7f8;
     margin-bottom: 20px;
   }
   .form-left,
@@ -702,6 +702,6 @@ input:-webkit-autofill:focus {
     gap: 0;
   }
   .task-subtasks-list {
-    height: 60px;
+    max-height: 60px;
   }
 }
