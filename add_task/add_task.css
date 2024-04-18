@@ -198,9 +198,12 @@ input[type='date']::-webkit-calendar-picker-indicator {
 }
 
 .task-subtasks-list {
+  max-height: 100px;
+  overflow: auto;
   list-style-position: inside;
   width: 100%;
   font-size: 16px;
+  scrollbar-width: thin;
 }
 
 .subtask-icon {
@@ -251,6 +254,7 @@ input[type='date']::-webkit-calendar-picker-indicator {
 }
 
 .subtask-icons-edit {
+  height: 20px;
   align-items: center;
   gap: 4px;
   position: absolute;
@@ -259,10 +263,18 @@ input[type='date']::-webkit-calendar-picker-indicator {
   transform: translateY(-50%);
   cursor: pointer;
   padding-right: 5px;
+  display: flex;
+  align-items: center;
 }
 
 .subtask-icons-edit img {
   height: 15px;
+}
+
+.edit-subtask-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .subtask-list:hover .subtask-icons {
@@ -285,16 +297,20 @@ input[type='date']::-webkit-calendar-picker-indicator {
   position: absolute;
   top: 0;
   left: 0;
-  padding: 4px 16px 4px 16px;
+  padding: 4px 65px 4px 16px;
   border-top: 0;
-  border-bottom: 1px solid #005dff;
+  border-bottom: 1px solid #f6f7f8;
   border-left: 0;
   border-right: 0;
   font-size: 16px;
+  font-size: 16px;
+  text-wrap: wrap;
+  overflow-wrap: break-word;
 }
 
 .task-bottom-container {
   width: 100%;
+  background-color: #f6f7f8;
 }
 
 .task-bottom {
@@ -333,8 +349,13 @@ input[type='date']::-webkit-calendar-picker-indicator {
 .task-clear:hover {
   transition: all 0.1s ease-in-out;
   border: 2px solid #29abe2;
-  color: #29abe2;
   box-shadow: 0px 4px 4px 0px #00000040;
+  filter: brightness(150%);
+}
+
+.task-clear:hover::after {
+  background-color: #29abe2;
+  /* opacity: 0.5; */
 }
 
 .task-clear:active {
@@ -549,20 +570,138 @@ input:-webkit-autofill:focus {
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1000px), (max-height: 720px) {
+  /* body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  } */
+  /* .add-task {
+    height: 100vh;
+  } */
+  .task-information {
+    /* height: 100%; */
+    width: 100%;
+    margin-top: 50px;
+    margin-left: 0;
+    margin-right: 0;
+    justify-content: flex-start;
+  }
+  .task-top-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .task-title {
+    width: 95%;
+    font-size: 47px;
+    margin-bottom: 20px;
+    position: fixed;
+    top: 90px;
+  }
+  .task-form-container {
+    height: 70vh;
+    overflow: auto;
+    scrollbar-width: none;
+    margin-top: 140px;
+  }
+  .task-form-container {
+    width: 100%;
+  }
   .add-task-form {
     flex-direction: column;
     justify-content: start;
     align-items: center;
     gap: 8px;
   }
-  .form-left {
-    width: 80%;
-  }
+  .form-left,
   .form-right {
-    width: 80%;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .form-split {
     display: none;
+  }
+  .priority span {
+    width: 30%;
+  }
+  .task-subtasks-list {
+    margin-bottom: 30px;
+  }
+  .task-bottom-container {
+    /* height: 60px; */
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+  }
+  .task-bottom {
+    gap: 5px;
+  }
+  .task-clear {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .form-left,
+  .form-right {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .priority {
+    gap: 16px;
+  }
+  .priority span {
+    height: 41px;
+    width: 120px;
+    font-size: 16px;
+  }
+  .task-bottom-container {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 16px;
+  }
+}
+
+@media (max-width: 427px) {
+  .priority {
+    flex-direction: column;
+  }
+  .priority span {
+    height: 60px;
+    width: 100%;
+    font-size: 20px;
+  }
+  .task-bottom {
+    flex-direction: column;
+  }
+  .task-buttons {
+    width: 100%;
+  }
+  .task-add {
+    width: 100%;
+  }
+}
+
+@media (max-height: 1000px) {
+  .task-information {
+    height: calc(100% - 50px);
+    margin-top: 30px;
+  }
+  .task-title {
+    font-size: 47px;
+    margin-bottom: 20px;
+  }
+  .form-left,
+  .form-right {
+    gap: 0;
+  }
+  .task-subtasks-list {
+    height: 60px;
   }
 }

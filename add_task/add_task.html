@@ -26,10 +26,10 @@
           <div class="task-form-container">
             <form onsubmit="onSubmit(); return false;" id="add-task-form" class="add-task-form">
               <div class="form-left">
-                <span id="title">Title<span class="red">*</span></span>
+                <span class="task-headlines">Title<span class="red">*</span></span>
                 <input id="task-title" class="input" type="text" name="title" placeholder="Enter a title" />
                 <div id="title-required" class="required">This field is required</div>
-                <span>Description</span>
+                <span class="task-headlines">Description</span>
                 <textarea
                   id="task-description"
                   class="description"
@@ -38,7 +38,7 @@
                   cols="30"
                   rows="5"
                 ></textarea>
-                <span>Assigned To</span>
+                <span class="task-headlines">Assigned To</span>
                 <div id="assigned-to-task" class="assigned-to-task task">
                   <input
                     onclick="assignedToDropdown()"
@@ -68,28 +68,27 @@
               <div class="form-split"></div>
 
               <div class="form-right">
-                <span id="due-date">Due date<span class="red">*</span></span>
+                <span class="task-headlines">Due date<span class="red">*</span></span>
                 <div class="task">
                   <input id="task-date" class="task-date input" type="date" name="date" placeholder="dd/mm/yyyy" />
-                  <!-- <img id="task-date-icon" class="task-icon" src="../assets/img/date.png" alt="" /> -->
                 </div>
                 <div id="date-required" class="required">This field is required</div>
-                <span>Prio</span>
+                <span class="task-headlines">Prio</span>
                 <div class="priority">
-                  <span onclick="changePriorityUrgent()" id="urgent" class="urgent urgent-bg prio-hover"
+                  <span onclick="changePriorityUrgent()" id="urgent" class="urgent urgent-bg prio-btn prio-hover"
                     >Urgent
                     <img id="urgent-img" src="../assets/img/urgent_red.png" alt="" />
                   </span>
-                  <span onclick="changePriorityMedium()" id="medium" class="medium medium-bg"
+                  <span onclick="changePriorityMedium()" id="medium" class="medium medium-bg prio-btn"
                     >Medium
                     <img id="medium-img" src="../assets/img/equal_white.png" alt="" />
                   </span>
-                  <span onclick="changePriorityLow()" id="low" class="low low-bg prio-hover"
+                  <span onclick="changePriorityLow()" id="low" class="low low-bg prio-btn prio-hover"
                     >Low
                     <img id="low-img" src="../assets/img/low_green.png" alt="" />
                   </span>
                 </div>
-                <span>Category<span class="red">*</span></span>
+                <span class="task-headlines">Category<span class="red">*</span></span>
                 <div class="task">
                   <input
                     onclick="renderCategory()"
@@ -107,7 +106,7 @@
                 </div>
                 <div id="category-required" class="required">This field is required</div>
 
-                <span>Subtasks</span>
+                <span class="task-headlines">Subtasks</span>
                 <div id="subtask-input-container" class="subtask-input-container task">
                   <input id="task-subtasks-input" class="task-subtasks input" type="text" name="subtasks" placeholder="Add new subtask" />
                   <img
@@ -118,18 +117,12 @@
                     alt=""
                   />
                   <div class="subtask-icon hidden">
-                    <div class="subtask-icons-container">
-                      <img onclick="emptySubtask()" id="delete-subtask-input" class="subtask-input hover-icon" src="../assets/img/plus.png" alt="" />
+                    <div class="subtask-icons-container hover-icon">
+                      <img onclick="emptySubtask()" id="delete-subtask-input" class="subtask-input" src="../assets/img/plus.png" alt="" />
                     </div>
                     |
-                    <div class="subtask-icons-container">
-                      <img
-                        onclick="addSubtask()"
-                        id="submit-subtask-input"
-                        class="subtask-input hover-icon"
-                        src="../assets/img/mark-blue.png"
-                        alt=""
-                      />
+                    <div class="subtask-icons-container hover-icon">
+                      <img onclick="addSubtask()" id="submit-subtask-input" class="subtask-input" src="../assets/img/mark-blue.png" alt="" />
                     </div>
                   </div>
                 </div>

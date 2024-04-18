@@ -8,9 +8,13 @@ function addSubtaskList(subtaskContent, i) {
                 <img onclick="deleteSubtask(${i})" src="../assets/img/delete.png" alt="" />
             </div>
             <div id="subtask-icons-edit-${i}" class="subtask-icons-edit hidden">
-                <img onclick="deleteSubtask(${i})"  class="edit-subtask"  src="../assets/img/delete.png" alt="" />
+                <div class="edit-subtask-container hover-icon">
+                    <img onclick="deleteSubtask(${i})"  class="edit-subtask"  src="../assets/img/delete.png" alt="" />
+                </div>
                 |
-                <img onclick="saveEditedSubtask(${i})" src="../assets/img/mark-blue.png" alt="" />
+                <div class="edit-subtask-container hover-icon">
+                    <img onclick="saveEditedSubtask(${i})" src="../assets/img/mark-blue.png" alt="" />
+                </div>
             </div>
         </div>
     `;

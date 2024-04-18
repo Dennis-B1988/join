@@ -18,6 +18,10 @@ header {
   position: relative;
 }
 
+.header-logo {
+  display: none;
+}
+
 .header-username-container {
   display: flex;
   align-items: center;
@@ -33,7 +37,6 @@ header {
 .header-username-img:hover {
   height: 23px;
   width: 23px;
-
 }
 
 .header-username {
@@ -50,7 +53,7 @@ header {
 }
 
 .header-username:hover {
-  background-color: #E1E7Eb;
+  background-color: #e1e7eb;
 }
 
 .side-bar-main {
@@ -106,7 +109,7 @@ header {
   gap: 8px;
   width: 232px;
   height: 46px;
-  color: #CDCDCD;
+  color: #cdcdcd;
 }
 
 .category:hover {
@@ -140,7 +143,7 @@ header {
 .side-bar-information-container a {
   padding: 8px;
   text-decoration: none;
-  color: #A8A8A8;
+  color: #a8a8a8;
   transition: transform 0.1s ease;
   padding-left: 52px;
   width: 100%;
@@ -171,7 +174,7 @@ header {
   background-color: #2a3647;
   border-radius: 20px 0px 20px 20px;
 }
-.sub-div{
+.sub-div {
   text-align: center;
   display: flex;
   justify-content: center;
@@ -180,14 +183,46 @@ header {
   width: 125px;
   font-size: 16px;
   font-weight: 400;
-  color: #CDCDCD;
+  color: #cdcdcd;
   gap: 50px;
   border-radius: 2px;
 }
 .sub-div:hover {
   background-color: #303d50;
   color: #fff;
+}
+.sub-div a {
+  text-decoration: none;
+}
+
+@media (max-width: 1000px), (max-height: 720px) {
+  .big-screen {
+    position: fixed;
+    top: 0;
   }
-  .sub-div a {
-    text-decoration: none;
+  header {
+    height: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
+  .header-title {
+    display: none;
+  }
+  .header-logo {
+    display: block;
+    width: 32px;
+  }
+  .header-username-img {
+    display: none;
+  }
+  .side-bar {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  header {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
