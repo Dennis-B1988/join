@@ -6,13 +6,15 @@
     padding-left: 280px;
     padding-right: 60px;
     overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 20% 5% 65%;
 }
 .board-header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 7rem;
-    margin: 5rem 0rem 3rem 0rem ;
+    height: 100%;
 }
 h1{
     font-weight: 700;
@@ -90,11 +92,19 @@ h1{
 .tasks-container{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
+    overflow: auto;
+    height: 100%;
+    padding: 5px;
     gap: 30px;
+}
+.tasks-container::-webkit-scrollbar {
+    width: 0;  /* Verstecke die vertikale Scrollbar */
+    height: 0;
 }
 .tasks-container-header{
     display: flex;
+    height: 100%;
     justify-content: space-between;
     align-items: center;
     gap: 30px;
@@ -110,7 +120,6 @@ h1{
     font-weight: 700;
     font-size: 20px;
     color: #42526E;
-    margin-bottom: 25px;
 }
 .tasks-container-header-text img{
     height: 25px;
@@ -150,7 +159,7 @@ h1{
     flex-direction: column;
     min-height: 263px;
     background-color: #FFFF;
-    padding: 16px;
+    padding: 16px 10px 16px 10px;
     border-radius: 24px;
     gap: 20px;
     box-shadow: 0px 0px 10px 3px #00000014;
@@ -215,8 +224,42 @@ h1{
 }
 /* .task-card-category */
 .drag-area-highlight {
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
     background-color: rgba(0, 0, 0, 0.2);
 }
+.load-bar-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+.load-bar{
+    background-color: #0038FF;
+    height: 8px;
+    width: 50%;
+}
+.task-card-footer{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.footer-names{
+    margin: -25px;
+    border-color: 1px solid white    ;
+}
+.task-card-footer-contacts{
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: center;
+    height: 42px;
+    width: 42px;
+}
+
 @media (max-width: 1000px) {
     .add-task-btn span {
         display: none;
