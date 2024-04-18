@@ -89,6 +89,7 @@ function moveTo(category) {
         setItem('tasks', tasks);
     }
     updateHTML();
+    removeHighlight(category);
 }
 
 function highlight(id) {
