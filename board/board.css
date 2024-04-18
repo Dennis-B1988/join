@@ -241,9 +241,23 @@ h1{
 }
 .task-card-footer{
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+}
+.footer-names{
+    margin: -25px;
+    border-color: 1px solid white    ;
+}
+.task-card-footer-contacts{
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: center;
+    height: 42px;
+    width: 42px;
 }
 
 @media (max-width: 1000px) {

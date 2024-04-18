@@ -23,7 +23,7 @@ function updateHTML() {
         for (let j = 0; j < element.assignedTo.length; j++) {
             const contacts = element.assignedTo[j];
             const letters = lettersOfName(contacts.name)
-            taskCardFooter.innerHTML += `<div><div class="task-card-footer-contacts">${letters}</div></div>`;
+            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
         }
     }
 
@@ -39,7 +39,7 @@ function updateHTML() {
         for (let j = 0; j < element.assignedTo.length; j++) {
             const contacts = element.assignedTo[j];
             const letters = lettersOfName(contacts.name)
-            taskCardFooter.innerHTML += `<div><div class="task-card-footer-contacts">${letters}</div></div>`;
+            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
         }
     }
 
@@ -56,7 +56,7 @@ function updateHTML() {
         for (let j = 0; j < element.assignedTo.length; j++) {
             const contacts = element.assignedTo[j];
             const letters = lettersOfName(contacts.name)
-            taskCardFooter.innerHTML += `<div><div class="task-card-footer-contacts">${letters}</div></div>`;
+            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
         }
     }
 
@@ -72,7 +72,7 @@ function updateHTML() {
         for (let j = 0; j < element.assignedTo.length; j++) {
             const contacts = element.assignedTo[j];
             const letters = lettersOfName(contacts.name)
-            taskCardFooter.innerHTML += `<div><div class="task-card-footer-contacts">${letters}</div></div>`;
+            taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}"class="task-card-footer-contacts">${letters}</div></div>`;
         }
     }
     changeCategoryColor()
@@ -109,10 +109,10 @@ function generateTodoHTML(element,i) {
                 </div>
                 <span>0/${element.subtasks.length} Subtasks</span>
             </div>
-            <div id="taskCardFooter${i}" class="task-card-footer">
-                
-                
-
+            <div class="task-card-footer">
+            <div id="taskCardFooter${i}" >
+            </div>
+            <img style src="../assets/img/plus_dark.png" alt="">
             </div>
         </div> 
     `;
