@@ -559,24 +559,26 @@ input:-webkit-autofill:focus {
 } */
 
 .task-added-to-board {
-  height: 100px;
-  width: 200px;
+  height: 74px;
+  width: 326px;
   background-color: #091931;
   color: white;
+  border-radius: 20px;
   position: fixed;
   bottom: 50%;
   left: 50%;
-  transform: translate(0, 700%);
+  transform: translate(-50%, 700%);
   transition: all 0.5s ease;
   z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 16px;
   visibility: hidden;
 }
 
 .task-added-to-board.show-add-task {
-  transform: translate(0);
+  transform: translate(-50%, -50%);
   visibility: visible;
 }
 
@@ -722,6 +724,9 @@ input:-webkit-autofill:focus {
   }
   .task-add {
     width: 100%;
+  }
+  .task-added-to-board {
+    width: 95%;
   }
 }
 
