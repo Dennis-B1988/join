@@ -21,18 +21,38 @@ function updateHTML() {
         for (let i = 0; i < taskStatus.length; i++) {
             const element = taskStatus[i];
             document.getElementById(status).innerHTML += generateTodoHTML(element);
-            let taskCardFooter = document.getElementById(`taskCardFooter${element.id}`);
-            for (let j = 0; j < element.assignedTo.length; j++) {
-                const contacts = element.assignedTo[j];
-                const letters = lettersOfName(contacts.name)
-                taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
-            }
+            generateContacts(element)
             changePriority(element)
         }
     });
     changeCategoryColor()
 }
-
+function generateContacts(element) {
+    let taskCardFooter = document.getElementById(`taskCardFooter${element.id}`);
+            for (let j = 0; j < element.assignedTo.length; j++) {
+                const contacts = element.assignedTo[j];
+                const letters = lettersOfName(contacts.name)
+                taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
+            }
+    
+}
+function searchTasks(){
+let searchTasks = document.getElementById('findTask');
+tasks.forEach(task => {
+    if (task['title'].toLowerCase().includes(searchTasks.value.toLowerCase()) || task['description'].toLowerCase().includes(searchTasks.value.toLowerCase()) ) {
+        document.getElementById(task['status']).innerHTML = '';
+        document.getElementById(task['status']).innerHTML += generateTodoHTML(task);
+        changePriority(task)
+        changeCategoryColor()
+        generateContacts(task)
+    }else{
+        document.getElementById(task.status).innerHTML = generateNoTasksToDo();
+    }
+})
+if(searchTasks.value.length === 0 ){
+    updateHTML();
+}
+}
 
 function lettersOfName(name) {
     return name.split(' ').map(word => word[0].toUpperCase()).join('');
@@ -103,6 +123,8 @@ function moveTo(category) {
         tasks[currentIndex]['status'] = category;
         setItem('tasks', tasks);
     }
+    document.getElementById('findTask').value = '';
+    loadData();
     updateHTML();
     removeHighlight(category);
 }
