@@ -1,67 +1,111 @@
-.privacy-policy{
-    height: calc(100vh - 96px);
-    width: 100%;
-    max-width: 1440px;
-    position: relative;
-    padding-left: 320px;
-    padding-right: 100px;
-    overflow: auto;
+.privacy-policy {
+  height: calc(100vh - 96px);
+  width: 100%;
+  max-width: 1440px;
+  position: relative;
+  padding-left: 320px;
+  padding-right: 100px;
+  overflow: auto;
+  scrollbar-width: none;
 }
-.legale-notice{
-    height: calc(100vh - 96px);
-    width: 100%;
-    max-width: 1440px;
-    position: relative;
-    padding-left: 320px;
-    padding-right: 100px;
-    overflow: auto;
+.legale-notice {
+  height: calc(100vh - 96px);
+  width: 100%;
+  max-width: 1440px;
+  position: relative;
+  padding-left: 320px;
+  padding-right: 100px;
+  overflow: auto;
+  scrollbar-width: none;
 }
-.privacy-policy-footer{
-    padding-bottom: 45px;
+.privacy-policy-footer {
+  padding-bottom: 45px;
 }
-.privacy-policy-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.privacy-policy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.privacy-policy-header h1 {
+  font-weight: 700;
+  font-size: 61px;
+}
+h2 {
+  font-weight: 700;
+  font-size: 32px;
+  margin: 20px 0px -5px 0px;
+}
+h3 {
+  font-weight: 700;
+  font-size: 27px;
+  margin: 30px 0px 30px 0px;
+}
+.privacy-policy-go-back {
+  max-width: 1440px;
+  height: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  position: fixed;
+  top: 200px;
+  z-index: 999;
+}
+.privacy-policy-go-back img {
+  cursor: pointer;
+  margin-right: 50px;
+}
+.help-text-span h2 {
+  margin-right: 22px;
+  font-weight: 700;
+}
+.help-text-span-header p span {
+  font-weight: 400;
+  font-size: 20px;
+  border: 0;
+}
+.help-text-span {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+@media (max-width: 1000px), (max-height: 720px) {
+  .privacy-policy {
+    height: unset;
+    margin-top: 81px;
     margin-bottom: 25px;
-}
-.privacy-policy-header h1{
-    margin: 5rem 0rem 1rem 0rem;
-    font-weight: 700;
-    font-size: 61px;
-
-}
-h2{
-    font-weight: 700;
-    font-size: 32px;
-    margin: 20px 0px -5px 0px;
-}
-h3{
-    font-weight: 700;
-    font-size: 27px;
-    margin: 30px 0px 30px 0px;
-}
-.privacy-policy-header img{
-    height: 20px;
-    width: 20px;
+    padding-left: 28px;
+    padding-right: 28px;
+    scrollbar-width: unset;
+  }
+  .legale-notice {
+    height: unset;
+    margin-top: 81px;
+    margin-bottom: 70px;
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+  .privacy-policy-header h1 {
+    margin-top: 50px;
+  }
+  .privacy-policy-go-back {
+    top: 128px;
+  }
+  .privacy-policy-go-back img {
     cursor: pointer;
-    position: fixed;
-    top: 200px;
-    right: 100px;
+    margin-right: 25px;
+  }
 }
-.help-text-span h2{
-    margin-right:150px;
-    font-weight: 700;
 
+@media (max-width: 600px) {
+  .privacy-policy-header h1 {
+    font-size: 47px;
+  }
 }
-.help-text-span-header p span{
-    font-weight: 400;
-    font-size: 20px;
-    border: 0;
-}
-.help-text-span{
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
 
+@media (max-width: 427px) {
+  .help-text-span h2 {
+    margin-right: 10px;
+  }
 }

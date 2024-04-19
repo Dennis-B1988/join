@@ -241,6 +241,10 @@ function onSubmit() {
   taskPriority();
   if (title && date && category !== '') {
     submitSuccess(title, description, date, category, priority, subtaskArray);
+    document.querySelector('.task-added-to-board').classList.add('show-add-task');
+    setTimeout(() => {
+      document.querySelector('.task-added-to-board').classList.remove('show-add-task');
+    }, 3000);
   } else {
     formFilled(title, date, category);
   }

@@ -195,6 +195,9 @@ header {
 .sub-div a {
   text-decoration: none;
 }
+#help-none {
+  display: none;
+}
 
 @media (max-width: 1000px), (max-height: 720px) {
   .big-screen {
@@ -259,6 +262,12 @@ header {
   }
   .active {
     border-radius: 10px;
+  }
+  #help-none {
+    display: unset;
+  }
+  .doard-header-dropdown {
+    height: 200px;
   }
 }
 
