@@ -241,13 +241,18 @@ function onSubmit() {
   taskPriority();
   if (title && date && category !== '') {
     submitSuccess(title, description, date, category, priority, subtaskArray);
-    document.querySelector('.task-added-to-board').classList.add('show-add-task');
-    setTimeout(() => {
-      document.querySelector('.task-added-to-board').classList.remove('show-add-task');
-    }, 3000);
+    taskSuccess();
   } else {
     formFilled(title, date, category);
   }
+}
+
+function taskSuccess() {
+  document.querySelector('.task-added-to-board').classList.add('show-add-task');
+  setTimeout(() => {
+    document.location.href = '../board/board.html';
+    document.querySelector('.task-added-to-board').classList.remove('show-add-task');
+  }, 1500);
 }
 
 /**

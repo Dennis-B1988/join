@@ -29,29 +29,32 @@ function updateHTML() {
 }
 function generateContacts(element) {
     let taskCardFooter = document.getElementById(`taskCardFooter${element.id}`);
-            for (let j = 0; j < element.assignedTo.length; j++) {
-                const contacts = element.assignedTo[j];
-                const letters = lettersOfName(contacts.name)
-                taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
-            }
-    
-}
-function searchTasks(){
-let searchTasks = document.getElementById('findTask');
-tasks.forEach(task => {
-    if (task['title'].toLowerCase().includes(searchTasks.value.toLowerCase()) && task['description'].toLowerCase().includes(searchTasks.value.toLowerCase()) ) {
-        document.getElementById(task['status']).innerHTML = '';
-        document.getElementById(task['status']).innerHTML += generateTodoHTML(task);
-        changePriority(task)
-        changeCategoryColor()
-        generateContacts(task)
-    }else{
-        document.getElementById(task.status).innerHTML = generateNoTasksToDo();
+    for (let j = 0; j < element.assignedTo.length; j++) {
+        const contacts = element.assignedTo[j];
+        const letters = lettersOfName(contacts.name)
+        taskCardFooter.innerHTML += `<div class="footer-names"><div style="background-color: ${contacts.color}" class="task-card-footer-contacts">${letters}</div></div>`;
     }
-})
-if(searchTasks.value.length === 0 ){
-    updateHTML();
+
 }
+function searchTasks() {
+    let searchTasks = document.getElementById('findTask');
+    tasks.forEach(task => {
+        document.getElementById(task['status']).innerHTML = '';
+        let filteredTasks = tasks.filter(task => task['title'].toLowerCase().includes(searchTasks.value.toLowerCase()) || task['description'].toLowerCase().includes(searchTasks.value.toLowerCase()));
+        filteredTasks.forEach(task => {
+            document.getElementById(task['status']).innerHTML = '';
+            document.getElementById(task['status']).innerHTML += generateTodoHTML(task);
+            changePriority(task)
+            changeCategoryColor()
+            generateContacts(task)
+        })
+        if (document.getElementById(task['status']).innerHTML === '') {
+            document.getElementById(task['status']).innerHTML = generateNoTasksToDo();
+        }
+    })
+    if (searchTasks.value.length === 0) {
+        updateHTML();
+    }
 }
 
 function lettersOfName(name) {
@@ -75,14 +78,14 @@ function changeCategoryColor() {
         }
     })
 }
-function changePriority(element){
+function changePriority(element) {
     let priority = document.getElementById(`prioImg${element.id}`);
     if (element['priority'] === "Low") {
-                priority.src = '../assets/img/low_green.png';
-    }else if(element['priority'] === "Medium"){
-                priority.src = '../assets/img/equal_orange.png';
-    }else{
-                priority.src = '../assets/img/urgent_red.png';
+        priority.src = '../assets/img/low_green.png';
+    } else if (element['priority'] === "Medium") {
+        priority.src = '../assets/img/equal_orange.png';
+    } else {
+        priority.src = '../assets/img/urgent_red.png';
     }
 }
 
