@@ -39,7 +39,7 @@ function generateContacts(element) {
 function searchTasks(){
 let searchTasks = document.getElementById('findTask');
 tasks.forEach(task => {
-    if (task['title'].toLowerCase().includes(searchTasks.value.toLowerCase()) || task['description'].toLowerCase().includes(searchTasks.value.toLowerCase()) ) {
+    if (task['title'].toLowerCase().includes(searchTasks.value.toLowerCase()) && task['description'].toLowerCase().includes(searchTasks.value.toLowerCase()) ) {
         document.getElementById(task['status']).innerHTML = '';
         document.getElementById(task['status']).innerHTML += generateTodoHTML(task);
         changePriority(task)
@@ -61,6 +61,8 @@ function lettersOfName(name) {
 function startDragging(id) {
     currentDraggedElement = id;
     currentIndex = tasks.findIndex(task => task.id === id);
+    console.log(tasks[currentIndex].id)
+    document.getElementById(tasks[currentIndex].id).classList.add('dragging')
     console.log(currentIndex)
 }
 function changeCategoryColor() {
@@ -86,7 +88,7 @@ function changePriority(element){
 
 function generateTodoHTML(element) {
     return /*html*/`
-        <div  draggable="true" ondragstart="startDragging(${element['id']})" class="task-card">
+        <div id="${element['id']}" draggable="true" ondragstart="startDragging(${element['id']})" class="task-card">
             <span class="task-card-category">${element['category']}</span>
             <p class="task-card-title">${element['title']}</p>
             <p class="task-card-description">${element['description']}</p>
@@ -97,7 +99,7 @@ function generateTodoHTML(element) {
                 <span>0/${element.subtasks.length} Subtasks</span>
             </div>
             <div class="task-card-footer">
-            <div class="task-card-footer1" id="taskCardFooter${element.id}" >
+            <div class="task-card-footer-container" id="taskCardFooter${element.id}" >
             </div>
             <img id="prioImg${element.id}" src="../assets/img/plus_dark.png" alt="">
             </div>
