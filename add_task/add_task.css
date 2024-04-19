@@ -30,7 +30,6 @@
 }
 
 .add-task-form {
-  /* height: 100%; */
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -453,7 +452,6 @@ input[type='date']::-webkit-calendar-picker-indicator {
   background-color: white;
   margin-top: -10px;
   padding-top: 10px;
-  /* margin-bottom: 10px; */
   display: none;
 }
 
@@ -469,13 +467,9 @@ input[type='date']::-webkit-calendar-picker-indicator {
   z-index: 6;
   background-color: white;
   border-radius: 0 0 10px 10px;
-  /* overflow-y: scroll; */
   scrollbar-width: thin;
-  /* scroll-margin-top: 10px; */
   overflow: auto;
   box-shadow: 0px 2px 4px 0px #00000029;
-  /* margin-top: -10px;
-  padding-top: 10px; */
 }
 
 .assigned-dropdown-item {
@@ -545,19 +539,6 @@ input:-webkit-autofill:focus {
   display: none;
 }
 
-/* .task-added-to-board-container {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
-} */
-
 .task-added-to-board {
   height: 74px;
   width: 326px;
@@ -603,15 +584,7 @@ input:-webkit-autofill:focus {
 }
 
 @media (max-width: 1000px), (max-height: 720px) {
-  /* body::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-  } */
-  /* .add-task {
-    height: 100vh;
-  } */
   .task-information {
-    /* height: 100%; */
     width: 100%;
     margin-top: 50px;
     margin-left: 0;
@@ -634,12 +607,9 @@ input:-webkit-autofill:focus {
     top: 90px;
   }
   .task-form-container {
-    /* height: 70vh; */
     width: 100%;
     overflow: auto;
     scrollbar-width: none;
-    /* margin-top: 140px; */
-    /* margin-bottom: 170px; */
     position: fixed;
     top: 140px;
     bottom: 170px;
