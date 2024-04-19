@@ -92,6 +92,10 @@
   transform: scale(1.05);
 }
 
+.summary-card-big-size:hover .summary-user {
+  color: white;
+}
+
 .summary-card-big-size:hover .summary-todo {
   background-color: white;
 }
@@ -205,7 +209,12 @@
   cursor: pointer;
 }
 
-#currentDate {
+.summary-user {
+  color: #2a3647;
+  text-align: left;
+}
+
+.due-date {
   font-weight: 700;
   font-size: 21px;
 }
