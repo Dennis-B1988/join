@@ -637,13 +637,22 @@
 }
 
 @media(max-width: 1000px) {
+    .contacts {
+        height: unset;
+        width: 100%;
+        margin-left: unset;
+        margin-top: 80px;
+        margin-bottom: 70px;
+    }
+}
+
+@media(max-width: 750px) {
     .left-container {
         width: 100%;
-        padding: 0px 20px;
     }
 
-    #contacts {
-        padding: 0 50px;
+    .new-contact-container {
+        padding: unset;
     }
 
     .right-container {
