@@ -3,8 +3,38 @@ async function initSummary() {
     await loadData();
     await initTemplate();   
     showUserName();
+    showUserNameMobile();
     upcomingUrgentDeadline();
     loadSummary();
+}
+
+/**
+ * Retrieves the username from local storage and displays it on the page.
+ *
+ * @return {void} This function does not return a value.
+ */
+function showUserName() {
+    let userName = document.getElementById('userName');
+    let index = parseFloat(loadPage('user'));
+    if (localStorage.getItem('user') !== null) {
+        let user = users[index];
+        userName.innerHTML = user.name;
+    }
+}
+
+/**
+ * Displays the username on mobile devices for a short duration before hiding it.
+ *
+ * @return {void} This function does not return anything.
+ */
+function showUserNameMobile(){
+    const summaryUser = document.querySelector('.summary-user');
+
+    summaryUser.classList.remove('hidden');
+
+    setTimeout(function() {
+        summaryUser.classList.add('hidden');
+    }, 700);
 }
 
 /**
@@ -58,20 +88,6 @@ function displayDueDate(date) {
     const options = { month: 'long', day: '2-digit', year: 'numeric' };
     const formattedDate = date.toLocaleDateString('en-US', options);
     document.getElementById('due-date').innerHTML = formattedDate;
-}
-
-/**
- * Retrieves the username from local storage and displays it on the page.
- *
- * @return {void} This function does not return a value.
- */
-function showUserName() {
-    let userName = document.getElementById('userName');
-    let index = parseFloat(loadPage('user'));
-    if (localStorage.getItem('user') !== null) {
-        let user = users[index];
-        userName.innerHTML = user.name;
-    }
 }
 
 /**

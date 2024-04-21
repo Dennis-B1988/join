@@ -281,3 +281,14 @@ header {
     padding-right: 10px;
   }
 }
+
+@media (max-width: 427px) {
+  header {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .side-bar-main {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

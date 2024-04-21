@@ -100,7 +100,13 @@
                     placeholder="Select task category"
                     readonly
                   />
-                  <img onclick="renderCategory()" id="task-category-icon" class="task-icon hover-icon" src="../assets/img/drop_down.png" alt="" />
+                  <img
+                    onclick="renderCategory()"
+                    id="task-category-icon"
+                    class="task-icon hover-icon"
+                    src="../assets/img/drop_down.png"
+                    alt=""
+                  />
                   <div id="task-category-dropdown" class="task-category-dropdown">
                     <!-- Dropdown options will be dynamically populated here -->
                   </div>
@@ -109,7 +115,13 @@
 
                 <span class="task-headlines">Subtasks</span>
                 <div id="subtask-input-container" class="subtask-input-container task">
-                  <input id="task-subtasks-input" class="task-subtasks input" type="text" name="subtasks" placeholder="Add new subtask" />
+                  <input
+                    id="task-subtasks-input"
+                    class="task-subtasks input"
+                    type="text"
+                    name="subtasks"
+                    placeholder="Add new subtask"
+                  />
                   <img
                     onclick="openSubtask()"
                     id="subtask-icon"
@@ -119,11 +131,23 @@
                   />
                   <div class="subtask-icon hidden">
                     <div class="subtask-icons-container hover-icon">
-                      <img onclick="emptySubtask()" id="delete-subtask-input" class="subtask-input" src="../assets/img/plus.png" alt="" />
+                      <img
+                        onclick="emptySubtask()"
+                        id="delete-subtask-input"
+                        class="subtask-input"
+                        src="../assets/img/plus.png"
+                        alt=""
+                      />
                     </div>
                     |
                     <div class="subtask-icons-container hover-icon">
-                      <img onclick="addSubtask()" id="submit-subtask-input" class="subtask-input" src="../assets/img/mark-blue.png" alt="" />
+                      <img
+                        onclick="addSubtask()"
+                        id="submit-subtask-input"
+                        class="subtask-input"
+                        src="../assets/img/mark-blue.png"
+                        alt=""
+                      />
                     </div>
                   </div>
                 </div>
@@ -155,9 +179,7 @@
           </div>
         </div>
       </div>
-      <!-- <div class="task-added-to-board-container"> -->
       <div class="task-added-to-board">Task added to board <img src="../assets/img/board.png" alt="" /></div>
-      <!-- </div> -->
     </section>
   </body>
 </html>
