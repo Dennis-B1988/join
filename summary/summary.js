@@ -1,7 +1,7 @@
 async function initSummary() {
     await includeHTML();
     await loadData();
-    await initTemplate();   
+    initTemplate();   
     showUserName();
     showUserNameMobile();
     upcomingUrgentDeadline();

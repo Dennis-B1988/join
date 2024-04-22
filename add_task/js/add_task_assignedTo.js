@@ -27,7 +27,15 @@ function renderUserList(assignedDropdown) {
   }
 }
 
-
+/**
+ * Renders a user in the dropdown.
+ *
+ * @param {HTMLElement} dropdown - The dropdown element to render the user in.
+ * @param {number} userIndex - The index of the user.
+ * @param {string} userName - The name of the user.
+ * @param {string} initials - The initials of the user.
+ * @return {void} This function does not return anything.
+ */
 function renderUser(dropdown, userIndex, userName, initials) {
   let currentUser;
   if (loadPage('user') === null || loadPage('user') === undefined) {
@@ -205,17 +213,37 @@ function sortUsernames() {
     currentUser = users[0];
   } else {
     currentUser = users[loadPage('user')];
-    contacts.sort((firstUser, otherUser) => {
-      if (firstUser.name === currentUser.name) return -1;
-      if (otherUser.name === currentUser.name) return 1;
-      return firstUser.name.localeCompare(otherUser.name);
-    });
-    assignedUsers.sort((firstUser, otherUser) => {
-      if (firstUser.name === currentUser.name) return -1;
-      if (otherUser.name === currentUser.name) return 1;
-      return firstUser.name.localeCompare(otherUser.name);
-    });
+    sortContacts(currentUser);
+    sortAssignedUsers(currentUser); 
   }
+}
+
+/**
+ * Sorts the contacts array based on the current user's name.
+ *
+ * @param {Object} currentUser - The current user object.
+ * @return {void} This function does not return anything.
+ */
+function sortContacts(currentUser) {
+  contacts.sort((firstUser, otherUser) => {
+    if (firstUser.name === currentUser.name) return -1;
+    if (otherUser.name === currentUser.name) return 1;
+    return firstUser.name.localeCompare(otherUser.name);
+  });
+}
+
+/**
+ * Sorts the assignedUsers array based on the currentUser's name.
+ *
+ * @param {Object} currentUser - The current user object.
+ * @return {void} This function does not return anything.
+ */
+function sortAssignedUsers(currentUser) {
+  assignedUsers.sort((firstUser, otherUser) => {
+    if (firstUser.name === currentUser.name) return -1;
+    if (otherUser.name === currentUser.name) return 1;
+    return firstUser.name.localeCompare(otherUser.name);
+  });
 }
 
 /**
@@ -231,7 +259,7 @@ function closeAssignedToDropdown(event, dropdown) {
     clickedElement.id === "assigned-to-icon" ||
     clickedElement.closest("#task-assigned-to") !== null ||
     clickedElement.closest("#assigned-to-icon") !== null;
-  clickedElement.closest("#task-assigned-to-dropdown") !== null;
+    clickedElement.closest("#task-assigned-to-dropdown") !== null;
   if (!isDropdownClick && !clickedElement.closest("#task-assigned-to-dropdown")) {
     dropdown.style.display = "none";
     document.getElementById('assigned-to-icon').src = '../assets/img/drop_down.png';
