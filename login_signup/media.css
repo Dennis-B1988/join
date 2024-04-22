@@ -67,28 +67,92 @@
         padding-left: 0;
     }
 
-    .button {
+    .button  {
         width: 180px;
     }
-
+    .signup-button{
+        width: 180px;
+    }
     .guest-login {
         width: 180px;
         padding: 12px 0px;
+        text-align: center;
     }
 
     .signup-container-mobile {
         display: flex;
+        
     }
 
     .signup-container {
         display: none;
     }
+    
 }
 
 @media(max-width: 500px) {
     .input-container input {
         width: 250px;
     }
+    .login-header-container h2 {
+        font-size: 41px;
+        font-weight: 700;
+    }
+    .signup-span{
+        font-size: 18px;
+    }
+    .guest-login{
+        font-size: 16px;
+    }
+    #emailLogin {
+        font-size: 16px;
+    }
+    #passwordLogin{
+        font-size: 16px;
+    }
+    .button {
+        font-size: 16px;
+    }
+    .signup-button {
+        font-size: 16px;
+    }
+    .button-disabled{
+        font-size: 16px;
+    }
+    .information-container a{
+        font-size: 16px;
+    }
+    .signup-container-mobile{
+        width: auto;
+    }
+    .signup-button {
+        width: 100px; 
+    }
+    #name{
+        font-size: 16px;
+    }
+    #emailSignup{
+        font-size: 16px;
+    }
+    #passwordSignup{
+        font-size: 16px;
+    }
+    #confirmPassword{
+        font-size: 16px;
+    }
+    #name::placeholder{
+        font-size: 16px;
+    }
+    #emailSignup::placeholder{
+        font-size: 16px;
+    }
+    #passwordSignup::placeholder{
+        font-size: 16px;
+    }
+    #confirmPassword::placeholder{
+        font-size: 16px;
+    }
+
 }
 
 @media(max-width: 400px) {
