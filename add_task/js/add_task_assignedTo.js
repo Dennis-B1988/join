@@ -27,7 +27,15 @@ function renderUserList(assignedDropdown) {
   }
 }
 
-
+/**
+ * Renders a user in the dropdown.
+ *
+ * @param {HTMLElement} dropdown - The dropdown element to render the user in.
+ * @param {number} userIndex - The index of the user.
+ * @param {string} userName - The name of the user.
+ * @param {string} initials - The initials of the user.
+ * @return {void} This function does not return anything.
+ */
 function renderUser(dropdown, userIndex, userName, initials) {
   let currentUser;
   if (loadPage('user') === null || loadPage('user') === undefined) {
