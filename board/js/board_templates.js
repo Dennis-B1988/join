@@ -22,40 +22,38 @@ function generateTodoHTML(element) {
 
 function generateBigTodoHTML(element) {
     return /*html*/`
-        <div id="bigTaskContainerBackground">
-            <div id="bigTaskContainer" class="task-big-card">
-                <div class="big-task-card-header">
-                    <div class="big-task-card-category">
-                        ${element['category']}
-                    </div>
-                    <img class="task-big-card-close" src="../assets/img/board_close.png" alt="">
+        <div id="bigTaskContainer" class="task-big-card">
+            <div class="big-task-card-header">
+                <div class="big-task-card-category">
+                    ${element['category']}
                 </div>
-                <span class="big-task-card-title">${element['title']}</span>
-                <span class="big-task-card-description">${element['description']}</span>
-                <div class="container">
-                    <div class="item item-text">Due date:</div>
-                    <div class="item">${element['date']}</div>
-                    <div class="item item-text">Priority:</div>
-                    <div class="item">
-                        <span>${element['priority']}</span>
-                        <img id="prioBigImg${element.id}" src="../assets/img/equal_orange.png" alt="">
-                    </div>
-                </div>
-                <div style="height: auto;">
-                    <p>Assigned To:</p>
-                    <br>
-                    <div id="bigTaskCardContactsContainer"></div>
-                </div>
-                <p>Subtasks</p>
-                <br>
-                <div id="btcFooterInput" class="btc-footer-input"></div>
-                <div class="big-task-card-footer">
-                    <div class="big-task-card-footer-container" id="taskCardFooter${element.id}">
-                </div>
-                <img class="btc-footer-img-delete" id="prioImg${element.id}" src="../assets/img/delete_default.png" alt="">
-                <img src="../assets/img/big_card_separator.png" alt="">
-                <img class="btc-footer-img-edit" src="../assets/img/edit_default.png" alt="">
+                <img onclick="showBigTodoHTML()" class="task-big-card-close" src="../assets/img/board_close.png" alt="">
             </div>
+            <span class="big-task-card-title">${element['title']}</span>
+            <span class="big-task-card-description">${element['description']}</span>
+            <div class="container">
+                <div class="item item-text">Due date:</div>
+                <div class="item">${element['date']}</div>
+                <div class="item item-text">Priority:</div>
+                <div class="item">
+                    <span>${element['priority']}</span>
+                    <img id="prioBigImg${element.id}" src="../assets/img/equal_orange.png" alt="">
+                </div>
+            </div>
+            <div style="height: auto;">
+                <p>Assigned To:</p>
+                <br>
+                <div id="bigTaskCardContactsContainer"></div>
+            </div>
+            <p>Subtasks</p>
+            <br>
+            <div id="btcFooterInput" class="btc-footer-input"></div>
+            <div class="big-task-card-footer">
+                <div class="big-task-card-footer-container">
+            </div>
+            <img class="btc-footer-img-delete" src="../assets/img/delete_default.png" alt="">
+            <img src="../assets/img/big_card_separator.png" alt="">
+            <img class="btc-footer-img-edit" src="../assets/img/edit_default.png" alt="">
         </div>
     `;
 }

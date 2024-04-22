@@ -1,5 +1,15 @@
 @media (max-width: 1000px) {
-    .add-task-btn span {
-      display: none;
+    .section-board{
+      padding-left: 50px;
+      padding-right: 50px;
+      margin-top: 80px;
     }
   }
+  @media (max-width: 900px) {
+    .section-board{
+      padding-left: 20px;
+      padding-right: 20px;
+      
+    }
+  }
+  
