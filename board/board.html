@@ -73,7 +73,7 @@
       <div ondrop="moveTo('done')" ondragleave="removeHighlight('done')"
         ondragover="allowDrop(event); highlight('done')" id="done" class="tasks-drag-and-drop"></div>
 
-      <div id="backgroundAddTask" class="background-add-task">
+      <div onclick="openOrCloseBigAddTask(event, 'backgroundAddTask')" id="backgroundAddTask" class="background-add-task">
         <div id="addTaskContainer" class="add-task add-task-container">
           <div class="task-information-board">
             <div class="task-top-container">
@@ -173,7 +173,7 @@
         </div>
       </div>
   </section>
-  <div onclick="openOrCloseBigBoard(event, 'bigTaskContainerBackground', 'IMG')" id="bigTaskContainerBackground"></div>
+  <div onclick="openOrCloseBigBoard(event, 'bigTaskContainerBackground')" id="bigTaskContainerBackground"></div>
 </body>
 
 </html>

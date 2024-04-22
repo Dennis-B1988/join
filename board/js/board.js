@@ -130,7 +130,9 @@ function showAddTask() {
 
 function showBigTodoHTML() {
     document.getElementById('bigTaskContainerBackground').classList.toggle('show-big-background');
-    document.getElementById('bigTaskContainer').classList.toggle('show-big-add-task');
+    setTimeout(() => {
+        document.getElementById('bigTaskContainer').classList.toggle('show-big-add-task');
+    }, 10);
 }
 
 
@@ -165,8 +167,15 @@ function changeBigPriority(element) {
 }
 
 
-function openOrCloseBigBoard(event, id, child) {
-    if (event.target.tagName === child || event.target.id === id) {
+function openOrCloseBigBoard(event, id) {
+    if (event.target.id === id) {
         showBigTodoHTML();
+    }
+}
+
+
+function openOrCloseBigAddTask(event, id) {
+    if (event.target.id === id) {
+        showAddTask();
     }
 }
