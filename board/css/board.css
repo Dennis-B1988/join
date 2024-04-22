@@ -271,17 +271,6 @@ h1 {
   height: 70%;
   
 }
-.add-task-bg {
-  background-color: white;
-  margin-left: 150px;
-  margin-right: 150px;
-  margin-top: 150px;
-  margin-bottom: 90px;
-  border-radius: 30px;
-  height: 70%;
-  width: 25%;
-  
-}
 .task-information-board {
   height: 100%;
   display: flex;
