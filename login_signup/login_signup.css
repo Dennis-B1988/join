@@ -197,6 +197,7 @@
     z-index: 2;
     background-color: transparent;
     outline: none;
+    padding-right: 45px;
 }
 
 .input-container input::placeholder {
@@ -206,7 +207,8 @@
 
 .form-position {
     position: absolute;
-    top: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     right: 21px;
     z-index: 1;
     object-fit: contain;
