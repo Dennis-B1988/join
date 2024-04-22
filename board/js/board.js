@@ -62,8 +62,9 @@ function searchTasks() {
         let filteredTasks = tasks.filter(task => task['title'].toLowerCase().includes(searchTasks.value.toLowerCase()) || task['description'].toLowerCase().includes(searchTasks.value.toLowerCase()));
         filteredTasks.forEach(task => {
             document.getElementById(task['status']).innerHTML = '';
-            let subTaskDone = doneSubTasks(element.id);
+            let subTaskDone = doneSubTasks(task.id);
             document.getElementById(task['status']).innerHTML += generateTodoHTML(task, subTaskDone);
+            subTaskProgressBar(task, subTaskDone)
             changePriority(task)
             changeCategoryColor()
             generateContacts(task)
