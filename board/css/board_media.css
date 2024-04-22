@@ -1,15 +1,108 @@
-@media (max-width: 1000px) {
-    .section-board{
-      padding-left: 50px;
-      padding-right: 50px;
-      margin-top: 80px;
-    }
+@media (max-width: 1211px) {
+  .section-board {
+    padding-left: 250px;
+    padding-right: 20px;
+
   }
-  @media (max-width: 900px) {
-    .section-board{
-      padding-left: 20px;
-      padding-right: 20px;
-      
-    }
+}
+@media (max-width: 1050px) {
+  .section-board {
+    padding-left: 240px;
+    padding-right: 10px;
+
+  }
+}
+@media (max-width: 1000px) {
+  .section-board {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 80px;
+  }
+  .tasks-container-header-text{
+    display: none;
+  }
+  .tasks-container {
+    width: 100%;
+    flex-direction: column;
+  }
+  .tasks-drag-and-drop {
+    width: 100%;
+    min-height: 350px;
+    height: auto;
+    display: flex;
+    overflow-x: auto;
+    flex: 1;
+    box-sizing: border-box;
+  }
+  .task-card {
+    min-width: 260px;
+    max-width: 270px;
+    min-height: auto;
+    overflow: auto;
+    margin: 5px;
+  }
+  .task-card {
+    overflow: auto;
+  }
+
+  .task-card::-webkit-scrollbar {
+    display: none;
+  }
+
+  .task-card {
+    scrollbar-width: none;
+  }
+  .tasks-drag-and-drop {
+    overflow: auto;
+  }
+
+  .tasks-drag-and-drop::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tasks-drag-and-drop {
+    scrollbar-width: none;
+  }
+  .tasks-container-header-text-moible{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 25%;
+    text-align: start;
+    height: 25px;
+    font-weight: 700;
+    font-size: 20px;
+    color: #42526e;
+  }
+  .tasks-container-header-text-mobile img {
+    height: 25px;
+  }
+  .tasks-container-header-text-mobile img:hover {
+    cursor: pointer;
+    content: url(../../assets/img/board_plus_button.png);
+    height: 25px;
+  }
+}
+@media (min-width: 1000px){
+  .tasks-container-header-text-mobile{
+    display: none !important;
   }
   
+}
+@media (max-width: 720px) {
+  .find-task-input {
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  .add-task-btn span{
+    display: none;
+  }
+  .add-task-btn{
+    width: 50px;
+  }
+
+}
+  
+
+
