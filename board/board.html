@@ -18,7 +18,11 @@
   <script src="../js/dummy_guest_data.js"></script>
   <script src="../js/config.js"></script>
   <script src="../js/script.js"></script>
-  <script src="../add_task/add_task.js"></script>
+  <script src="../add_task/js/add_task_html.js"></script>
+  <script src="../add_task/js/add_task.js"></script>
+  <script src="../add_task/js/add_task_category.js"></script>
+  <script src="../add_task/js/add_task_subtask.js"></script>
+  <script src="../add_task/js/add_task_assignedTo.js"></script>
   <script src="./js/board.js"></script>
   <script src="./js/board_templates.js"></script>
 </head>
@@ -93,9 +97,11 @@
                         type="text" name="assigned-to" placeholder="Assigned To" readonly />
                       <img onclick="assignedToDropdown()" id="assigned-to-icon"
                         class="assigned-to-icon task-icon hover-icon" src="../assets/img/drop_down.png" alt="" />
-                      <div id="task-assigned-to-dropdown" class="task-assigned-to-dropdown">
+                      <div id="task-assigned-to-dropdown-container" class="task-assigned-to-dropdown-container">  
+                        <div id="task-assigned-to-dropdown" class="task-assigned-to-dropdown">
 
-                      </div>
+                        </div>
+                      </div>  
                       <div id="assigned-to-users" class="assigned-to-users"></div>
                     </div>
                   </div>

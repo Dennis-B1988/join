@@ -22,7 +22,7 @@ function addSubtaskList(subtaskContent, i) {
 
 function changeSubtaskToInput(index, subtaskText){
     return /*html*/ `
-        <input type="text" id="edit-input-${index}" class="subtask-edit-input" value="${subtaskText}" />
+        <input type="text" id="edit-input-${index}" class="subtask-edit-input" value="${subtaskText}" onkeypress="saveEditedSubtaskOnEnter(event, ${index})" />
     `;
 }
 
