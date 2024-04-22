@@ -7,7 +7,6 @@
   padding-right: 60px;
   overflow: hidden;
   display: grid;
-  z-index: 1;
   grid-template-columns: 1fr;
   grid-template-rows: 20% 5% 65%;
 }
@@ -264,7 +263,6 @@ h1 {
 }
 .add-task {
   background-color: white;
-  z-index: 2;
   margin-left: 150px;
   margin-right: 150px;
   margin-top: 150px;
@@ -284,31 +282,43 @@ h1 {
 .add-task-container {
   display: inline;
 }
-/* .task-bottom {
+.task-bottom {
   background-color: white;
-} */
+}
 .task-big-card {
-  margin-top: 0px;
-  margin-right: 150px;
-  margin-bottom: 0px;
-  margin-left: 150px;
+  margin: 0px 130px 0px 130px;
   border-radius: 30px;
-  height: 85%;
+  height: auto;
   width: 525px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   gap: 10px;
-  background-color: #767676;
+  background-color: #ffffff;
   padding: 50px;
   z-index: 3;
+  overflow: auto;
+}
+.task-big-card p {
+  font-weight: 400;
+  font-size: 20px;
+  color: #2a3647;
+  line-height: 24px;
+}
+.task-big-card-close {
+  height: 24px;
+}
+.task-big-card-close:hover {
+  cursor: pointer;
+  background-color: #e8e8e8f3;
+  border-radius: 50%;
 }
 .big-task-card-category {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background-color: #0038ff;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 24px;
   border-radius: 8px;
   color: white;
   padding: 0 25px 0 25px;
@@ -316,16 +326,27 @@ h1 {
   height: 27px;
   width: fit-content;
 }
+.big-task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 25px;
+}
 .big-task-card-title {
-  font-weight: 700;
-  font-size: 16px;
-  color: #2a3647;
   box-sizing: border-box;
+  font-weight: 700;
+  font-size: 55px;
+  word-wrap: break-word;
+  color: #2a3647;
+  height: auto;
+  box-sizing: border-box;
+  margin-bottom: 20px;
 }
 .big-task-card-description {
   font-weight: 400;
-  font-size: 16px;
-  color: #a8a8a8;
+  margin: 7px 0px 7px 0px;
+  font-size: 20px;
+  color: #000000;
 }
 .big-load-bar-container {
   display: flex;
@@ -335,9 +356,10 @@ h1 {
 }
 .big-task-card-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
-  gap: 10px;
+  margin-top: 30px;
+  gap: 8px;
   padding-left: 5px;
 }
 .big-task-card-footer-container {
@@ -345,6 +367,79 @@ h1 {
   font-size: 12px;
   color: white;
   display: flex;
+}
+.big-task-card-contacts {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 15px;
+  font-weight: 400;
+  font-size: 19px;
+}
+
+.big-task-card-contacts .con {
+  margin-left: 15px;
+  color: white;
+  font-size: 13px;
+}
+.btc-footer-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.btc-footer-input input {
+  margin-right: 15px;
+}
+.btc-footer-input-content {
+  display: flex;
+  align-items: center;
+  padding: 0px 7px 0px 7px;
+  gap: 15px;
+  font-weight: 400;
+  font-size: 16px;
+}
+.btc-footer-input-content:hover {
+  cursor: pointer;
+  background-color: #e8e8e8f3;
+  width: fit-content;
+  border-radius: 7px;
+  font-size: 16.2px;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 48%;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 400;
+}
+.item-text {
+  width: 27%;
+  color: #2a3647;
+}
+.btc-footer-img-delete {
+  height: 22px;
+}
+.btc-footer-img-edit {
+  height: 22px;
+}
+.btc-footer-img-delete:hover {
+  cursor: pointer;
+  height: 22px;
+  content: url(../assets/img/delete_hover.png);
+}
+.btc-footer-img-edit:hover {
+  cursor: pointer;
+  height: 22px;
+  content: url(../assets/img/edit_hover.png);
 }
 
 @media (max-width: 1000px) {
