@@ -1,8 +1,8 @@
 async function initLogin() {
+    removePageFromLocalStorage();
     await includeHTML();
     await loadData();
     animationLogo();
-    removePageFromLocalStorage();
     loadCredentialsFromLocalStorage();
 }
 
@@ -11,6 +11,7 @@ function removePageFromLocalStorage() {
     if (window.location.pathname === '/index.html') {
         localStorage.removeItem('page');
         localStorage.removeItem('user');
+        localStorage.removeItem('guest');
     }
 }
 
@@ -41,6 +42,7 @@ function userLogin() {
         let user = users[index];
         if (user.email === emailLogin.value && user.password === passwordLogin.value) {
             savePage('user', index);
+            localStorage.removeItem('guest');
             window.location.href = '../summary/summary.html';
         }
         if (user.email !== emailLogin.value) {
@@ -261,4 +263,5 @@ function showSignupResponse() {
 
 function loginAsGuest() {
     savePage('guest', 'guest');
+    localStorage.removeItem('user');
 }

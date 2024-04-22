@@ -10,7 +10,7 @@
  */
 function contactsTemplate(contact, i, j, firstNameInitial, lastNameInitial) {
     return /*html*/`
-        <div onclick="openOrCloseContact(${i}, ${j}, '${firstNameInitial}', '${lastNameInitial}')" class="contact-container animation${i}${j}">
+        <div onclick="desktopOrMobileFunction(${i}, ${j}, '${firstNameInitial}', '${lastNameInitial}')" class="contact-container animation${i}${j}">
             <div class="circle circle${i}${j}">${firstNameInitial}${lastNameInitial}</div>
             <div class="contact-description">
                 <span>${contact.name}</span>
@@ -50,5 +50,11 @@ function contactsRightSiteTemplate(contact, i, j, firstNameInitial, lastNameInit
             <span class="information-headline">Phone</span>
             <span id="contactPhone">${contact.phone}</span>
         </div>
+        <div style="display: none;" onclick="openOrCloseMobileEditDeleteContainer(event, 'backgroundMobileEditDeleteContainer')" id="backgroundMobileEditDeleteContainer" class="background-mobile-edit-delete-container">
+            <div class="mobile-edit-delete-container">
+                <div onclick="showEditContact('${firstNameInitial}', '${lastNameInitial}', '${contact.email}')" id="editMobile" class="edit"></div>
+                <div onclick="deleteContact('${contact.email}')" class="delete"></div>
+            </div>
+      </div>
     `;
 }
