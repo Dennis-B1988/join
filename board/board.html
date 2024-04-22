@@ -43,25 +43,26 @@
       </div>
     </div>
 
-
+    
     <div class="tasks-container-header">
       <div class="tasks-container-header-text">
         <span>To do</span>
-        <img onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="">
+        <img class="tasks-container-header-img" onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="">
       </div>
       <div class="tasks-container-header-text">
         <span>In progress</span>
-        <img onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="">
+        <img class="tasks-container-header-img" onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="">
       </div>
       <div class="tasks-container-header-text"><span>Await feedback</span>
-        <img onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="">
+        <img class="tasks-container-header-img" onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="">
       </div>
       <div class="tasks-container-header-text"><span>Done</span>
       </div>
     </div>
+
+
+
     <div class="tasks-container">
-
-
       <div ondrop="moveTo('todo')" ondragleave="removeHighlight('todo')"
         ondragover="allowDrop(event); highlight('todo')" id="todo" class="tasks-drag-and-drop"></div>
       <div ondrop="moveTo('inProgress')" ondragleave="removeHighlight('inProgress')"
