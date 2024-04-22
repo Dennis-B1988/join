@@ -269,7 +269,7 @@ h1 {
   margin-bottom: 90px;
   border-radius: 30px;
   height: 70%;
-  width: 25%;
+  width: 25%
 }
 .task-information-board {
   height: 100%;
@@ -285,6 +285,24 @@ h1 {
 .task-bottom {
   background-color: white;
 }
+#bigTaskContainerBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: all 0.5s ease;
+}
+#bigTaskContainerBackground.show-big-background {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
 .task-big-card {
   margin: 0px 130px 0px 130px;
   border-radius: 30px;
@@ -297,6 +315,13 @@ h1 {
   padding: 50px;
   z-index: 3;
   overflow: auto;
+  transition: all 0.5s ease;
+  transform: translateX(100%);
+  visibility: hidden;
+}
+.task-big-card.show-big-add-task {
+  transform: translateX(0);
+  visibility: visible;
 }
 .task-big-card p {
   font-weight: 400;
@@ -440,10 +465,4 @@ h1 {
   cursor: pointer;
   height: 22px;
   content: url(../assets/img/edit_hover.png);
-}
-
-@media (max-width: 1000px) {
-  .add-task-btn span {
-    display: none;
-  }
 }
