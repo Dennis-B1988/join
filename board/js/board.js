@@ -137,7 +137,7 @@ function showBigTodoHTML() {
 function renderBigTodoHTML(id) {
     let element = tasks.filter(task => task['id'] === id)[0];
     console.log(element)
-    document.body.innerHTML += generateBigTodoHTML(element);
+    document.getElementById('bigTaskContainerBackground').innerHTML = generateBigTodoHTML(element);
     changeBigPriority(element);
     for (let i = 0; i < element.assignedTo.length; i++) {
         const assignedContacts = element.assignedTo[i];
@@ -161,5 +161,12 @@ function changeBigPriority(element) {
         priority.src = '../assets/img/equal_orange.png';
     } else {
         priority.src = '../assets/img/urgent_red.png';
+    }
+}
+
+
+function openOrCloseBigBoard(event, id, child) {
+    if (event.target.tagName === child || event.target.id === id) {
+        showBigTodoHTML();
     }
 }
