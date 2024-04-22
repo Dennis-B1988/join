@@ -1,14 +1,14 @@
-function generateTodoHTML(element) {
+function generateTodoHTML(element, subTaskDone) {
     return /*html*/`
         <div onclick="renderBigTodoHTML(${element['id']})" id="${element['id']}" draggable="true" ondragstart="startDragging(${element['id']})" class="task-card">
             <span class="task-card-category">${element['category']}</span>
             <p class="task-card-title">${element['title']}</p>
             <p class="task-card-description">${element['description']}</p>
-            <div class="load-bar-container">
-                <div id="loadBar" class="load-bar">
-                <div id="loadBarProgress" class="load-bar-progress" role="progressbar" style="width: 0%;"></div>
+            <div id="loadBarContainer${element['id']}" class="load-bar-container">
+                <div class="load-bar">
+                    <div id="loadBar${element['id']}" class="load-bar-progress" role="progressbar" style="width: 0%;"></div>
                 </div>
-                <span>0/${element.subtasks.length} Subtasks</span>
+                <span id="subTaskDone${element['id']}">${subTaskDone}/${element.subtasks.length} Subtasks</span>
             </div>
             <div class="task-card-footer">
             <div class="task-card-footer-container" id="taskCardFooter${element.id}" >
@@ -69,11 +69,11 @@ function generateBigTodoAssignedToHTML(element, letters) {
 }
 
 
-function generateBigTodoSubTasksHTML(element, subTaskCompleted) {
+function generateBigTodoSubTasksHTML(j, subTaskCompleted, element) {
     return /*html*/`
         <div class="btc-footer-input-content">
-            <img src="${subTaskCompleted}" alt="">
-            <span>${element.subtask}</span>
+            <img id="btcFooterImg${j}" onclick="completedSubTask(${element.id}, ${j})" src="${subTaskCompleted}" alt="">
+            <span>${element.subtasks[j].subtask}</span>
         </div>
     `
 }

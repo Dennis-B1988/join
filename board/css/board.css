@@ -231,9 +231,13 @@ h1 {
   gap: 5px;
 }
 .load-bar {
-  background-color: #0038ff;
+  background-color: #F4F4F4;
   height: 8px;
   width: 50%;
+}
+.load-bar-progress{
+  background-color: #0038ff;
+  height: 8px;
 }
 .task-card-footer {
   display: flex;
