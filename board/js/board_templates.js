@@ -27,7 +27,7 @@ function generateBigTodoHTML(element) {
                 <div class="big-task-card-category">
                     ${element['category']}
                 </div>
-                <img class="task-big-card-close" src="../assets/img/board_close.png" alt="">
+                <img onclick="showBigTodoHTML()" class="task-big-card-close" src="../assets/img/board_close.png" alt="">
             </div>
             <span class="big-task-card-title">${element['title']}</span>
             <span class="big-task-card-description">${element['description']}</span>
@@ -49,9 +49,9 @@ function generateBigTodoHTML(element) {
             <br>
             <div id="btcFooterInput" class="btc-footer-input"></div>
             <div class="big-task-card-footer">
-                <div class="big-task-card-footer-container" id="taskCardFooter${element.id}">
+                <div class="big-task-card-footer-container">
             </div>
-            <img class="btc-footer-img-delete" id="prioImg${element.id}" src="../assets/img/delete_default.png" alt="">
+            <img class="btc-footer-img-delete" src="../assets/img/delete_default.png" alt="">
             <img src="../assets/img/big_card_separator.png" alt="">
             <img class="btc-footer-img-edit" src="../assets/img/edit_default.png" alt="">
         </div>
