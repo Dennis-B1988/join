@@ -451,7 +451,11 @@ function addSubtask() {
   const subtaskValue = subtaskInput.value.trim();
 
   if (subtaskValue) {
-    subtaskArray.push(subtaskValue);
+    let subtask = {
+      'subtask': subtaskValue,
+      'completed': false
+    }
+    subtaskArray.push(subtask);
     subtaskInput.value = '';
     renderSubtasks();
   }
@@ -616,7 +620,7 @@ function saveEditedSubtask(index) {
   const input = document.getElementById(`edit-input-${index}`);
   const text = input.value.trim();
   if (text) {
-    subtaskArray[index] = text;
+    subtaskArray[index].subtask = text;
     const listItem = document.getElementById(`subtask-${index}`);
     listItem.textContent = text;
     showSubtaskIcons(index);
