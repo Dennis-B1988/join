@@ -6,7 +6,11 @@ async function initLogin() {
     loadCredentialsFromLocalStorage();
 }
 
-
+/**
+ * Removes the 'page', 'user', and 'guest' items from the local storage if the current page is '/index.html'.
+ *
+ * @return {void} This function does not return a value.
+ */
 function removePageFromLocalStorage() {
     if (window.location.pathname === '/index.html') {
         localStorage.removeItem('page');
@@ -39,18 +43,22 @@ function userLogin() {
         showErrorMessage(emailLogin, noMatchEmailLogin);
     } else {
         rememberMeUser(index);
-        let user = users[index];
-        if (user.email === emailLogin.value && user.password === passwordLogin.value) {
-            savePage('user', index);
-            localStorage.removeItem('guest');
-            window.location.href = '../summary/summary.html';
-        }
-        if (user.email !== emailLogin.value) {
-            showErrorMessage(emailLogin, noMatchEmailLogin);
-        }
-        if (user.password !== passwordLogin.value) {
-            showErrorMessage(passwordLogin, noMatchPasswordLogin);
-        }
+        userLoginValidation(index, emailLogin, passwordLogin, noMatchEmailLogin, noMatchPasswordLogin);
+    }
+}
+
+function userLoginValidation(index, emailLogin, passwordLogin, noMatchEmailLogin, noMatchPasswordLogin) {
+    let user = users[index];
+    if (user.email === emailLogin.value && user.password === passwordLogin.value) {
+        savePage('user', index);
+        localStorage.removeItem('guest');
+        window.location.href = '../summary/summary.html';
+    }
+    if (user.email !== emailLogin.value) {
+        showErrorMessage(emailLogin, noMatchEmailLogin);
+    }
+    if (user.password !== passwordLogin.value) {
+        showErrorMessage(passwordLogin, noMatchPasswordLogin);
     }
 }
 
@@ -163,17 +171,21 @@ function passwordMatch() {
     let confirmPassword = document.getElementById('confirmPassword');
     let noMatchSignup = document.getElementById('noMatchSignup');
     if (passwordSignup.value !== confirmPassword.value) {
-        confirmPassword.style.borderColor = 'red';
-        noMatchSignup.style = '';
-        setTimeout(function () {
-            confirmPassword.style.borderColor = '';
-            noMatchSignup.style.display = 'none';
-        }, 3000);
+        passwordNoMatch(confirmPassword, noMatchSignup);
     } else {
         saveSignup();
         confirmPassword.style = '';
         noMatchSignup.style.display = 'none';
     }
+}
+
+function passwordNoMatch(confirmPassword, noMatchSignup) {
+    confirmPassword.style.borderColor = 'red';
+    noMatchSignup.style = '';
+    setTimeout(function () {
+        confirmPassword.style.borderColor = '';
+        noMatchSignup.style.display = 'none';
+    }, 3000);
 }
 
 
@@ -207,7 +219,12 @@ function saveSignup() {
     if (existingEmail(emailSignup)) {
         showErrorMessage(emailSignup, noMatchSignupEmail)
     } else {
-        let userSignup = {
+        saveSignupSuccess(name, emailSignup, passwordSignup, confirmPassword, checkmarkSignup);
+    }
+}
+
+function saveSignupSuccess(name, emailSignup, passwordSignup, confirmPassword, checkmarkSignup) {
+    let userSignup = {
             'name': name.value,
             'email': emailSignup.value,
             'password': passwordSignup.value,
@@ -217,9 +234,7 @@ function saveSignup() {
         saveUserToContactList(name, emailSignup);
         resetValuesAndSrc(name, emailSignup, passwordSignup, confirmPassword, checkmarkSignup);
         showSignupResponse();
-    }
 }
-
 
 function saveUserToContactList(name, emailSignup) {
     let user = {
@@ -247,17 +262,21 @@ function showSignupResponse() {
     let saveSignup = document.querySelector('.save-signup');
     saveSignup.style = '';
     setTimeout(function () {
-        signupAnimation.classList.add('animate');
-        setTimeout(function () {
-            saveSignup.style.display = 'none';
-            signupAnimation.classList.remove('animate');
-            handleSignupOrLogin('signup', 'login');
-            changeCheckmark();
-            noteCheckmark('checkmarkSignup');
-            changeIcon('passwordSignup', 'signupImg');
-            changeIcon('confirmPassword', 'confirmImg');
-        }, 1500);
+        showSignupAnimation(signupAnimation, saveSignup);
     }, 10);
+}
+
+function showSignupAnimation(signupAnimation, saveSignup) {
+    signupAnimation.classList.add('animate');
+    setTimeout(function () {
+        saveSignup.style.display = 'none';
+        signupAnimation.classList.remove('animate');
+        handleSignupOrLogin('signup', 'login');
+        changeCheckmark();
+        noteCheckmark('checkmarkSignup');
+        changeIcon('passwordSignup', 'signupImg');
+        changeIcon('confirmPassword', 'confirmImg');
+    }, 1500);
 }
 
 
