@@ -146,7 +146,8 @@ function renderBigTodoHTML(id) {
     }
     for (let j = 0; j < element.subtasks.length; j++) {
         const subTask = element.subtasks[j];
-        document.getElementById('btcFooterInput').innerHTML += generateBigTodoSubTasksHTML(subTask);
+        let subTaskCompleted = subTask.completed ? '../assets/img/board_check_button.png' : '../assets/img/board_check_ectangle.png';
+        document.getElementById('btcFooterInput').innerHTML += generateBigTodoSubTasksHTML(subTask, subTaskCompleted);
     }
     showBigTodoHTML();
 }

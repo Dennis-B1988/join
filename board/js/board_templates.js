@@ -71,11 +71,11 @@ function generateBigTodoAssignedToHTML(element, letters) {
 }
 
 
-function generateBigTodoSubTasksHTML(element) {
+function generateBigTodoSubTasksHTML(element, subTaskCompleted) {
     return /*html*/`
         <div class="btc-footer-input-content">
-            <img src="../assets/img/board_check_button.png" alt="">
-            <span>${element}</span>
+            <img src="${subTaskCompleted}" alt="">
+            <span>${element.subtask}</span>
         </div>
     `
 }
