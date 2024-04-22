@@ -68,10 +68,6 @@
   margin-top: 10px;
 }
 
-#title {
-  margin-top: 0;
-}
-
 .description {
   max-height: 300px;
   min-width: 100%;
@@ -95,10 +91,6 @@
 
 .form-right span {
   margin-top: 10px;
-}
-
-#due-date {
-  margin-top: 0;
 }
 
 .priority {
@@ -149,19 +141,6 @@
   z-index: 50;
 }
 
-.subtask-icons-container {
-  height: 18px;
-  width: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.subtask-icons-container:hover {
-  border-radius: 50%;
-  background-color: #d1d1d1;
-}
-
 input::placeholder {
   color: #757575;
 }
@@ -192,212 +171,10 @@ input[type='date']::-webkit-calendar-picker-indicator {
   border-radius: 50%;
 }
 
-.task-subtasks {
-  padding-right: 60px;
-}
-
-.task-subtasks-list {
-  max-height: 100px;
-  overflow: auto;
-  list-style-position: inside;
-  width: 100%;
-  font-size: 16px;
-  scrollbar-width: thin;
-}
-
-.subtask-icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 4px;
-}
-
-.subtask-input {
-  width: 15px;
-  height: 15px;
-  cursor: pointer;
-}
-
-.subtask-list {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-.subtask-list-item {
-  width: 100%;
-  padding-left: 21px;
-  padding-right: 65px;
-  font-size: 16px;
-  text-wrap: wrap;
-  overflow-wrap: break-word;
-}
-
-.subtask-icons {
-  display: none;
-  align-items: center;
-  gap: 4px;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  padding-right: 5px;
-}
-
-.subtask-icons-edit {
-  height: 20px;
-  align-items: center;
-  gap: 4px;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  padding-right: 5px;
-  display: flex;
-  align-items: center;
-}
-
-.subtask-icons-edit img {
-  height: 15px;
-}
-
-.edit-subtask-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.subtask-list:hover .subtask-icons {
-  display: flex;
-  transition: all 0.1s ease-in-out;
-}
-
-.subtask-list:hover {
-  background-color: #eeeeee;
-  border-radius: 10px;
-}
-
-.subtask-icons img {
-  height: 18px;
-}
-
-.subtask-edit-input {
-  height: 28px;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 4px 65px 4px 16px;
-  border-top: 0;
-  border-bottom: 1px solid #f6f7f8;
-  border-left: 0;
-  border-right: 0;
-  font-size: 16px;
-  font-size: 16px;
-  text-wrap: wrap;
-  overflow-wrap: break-word;
-}
-
-.task-bottom-container {
-  width: 100%;
-}
-
-.task-bottom {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
 .field-required {
   display: flex;
   justify-content: start;
   align-items: end;
-}
-
-.task-buttons {
-  display: flex;
-  gap: 16px;
-}
-
-.task-clear {
-  height: 56px;
-  width: 110px;
-  border: 1px solid #2a3647;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 16px;
-  gap: 4px;
-  cursor: pointer;
-  font-size: 20px;
-  background-color: transparent;
-}
-
-.task-clear:hover {
-  transition: all 0.1s ease-in-out;
-  border: 2px solid #29abe2;
-  color: #29abe2;
-  box-shadow: 0px 4px 4px 0px #00000040;
-}
-
-.task-clear:active {
-  transition: all 0.1s ease-in-out;
-  border: 1px solid #091931;
-  color: #091931;
-  box-shadow: 0px 4px 4px 0px #00000040;
-}
-
-.task-clear-img img {
-  transition: filter 0.1s ease-in-out;
-}
-
-.task-clear:hover .task-clear-svg {
-  fill: #29abe2;
-}
-
-.task-add {
-  height: 56px;
-  width: 183px;
-  background: #2a3647;
-  border-radius: 10px;
-  border: none;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 16px;
-  gap: 4px;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-.task-add:hover {
-  transition: all 0.1s ease-in-out;
-  background: #29abe2;
-  box-shadow: 0px 4px 4px 0px #00000040;
-}
-
-.task-add:active {
-  transition: all 0.1s ease-in-out;
-  background: #091931;
-  box-shadow: 0px 4px 4px 0px #00000040;
-}
-
-.task-add-img {
-  width: 15.49px;
-  height: 11.22px;
 }
 
 .search-input {
