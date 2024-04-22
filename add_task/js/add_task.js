@@ -12,6 +12,7 @@ async function initTasks() {
   await loadData();
   await initTemplate();
   createUserList();
+  
 }
 
 /**
@@ -364,9 +365,14 @@ function taskPriority() {
  * @listens event:DOMContentLoaded
  */
 document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById("add-task-form").addEventListener("keydown", function (event) {
+  stopFormSubmitOnEnter();
+});
+
+function stopFormSubmitOnEnter(){
+  document.getElementById("add-task-form").addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
       event.preventDefault();
     }
   });
-});
+}
+

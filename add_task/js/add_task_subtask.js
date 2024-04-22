@@ -20,11 +20,25 @@ function addSubtask() {
     let subtask = {
     'subtask': subtaskValue,
     'completed': false
+    }
+    subtaskArray.push(subtask);
+    subtaskInput.value = '';
+    renderSubtasks();
   }
-  subtaskArray.push(subtask);
-  subtaskInput.value = '';
-  renderSubtasks();
 }
+
+/**
+ * Adds an event listener to the task subtasks input for the Enter key press, triggering the addition of a subtask.
+ *
+ * @param {Event} event - The event object representing the key press.
+ * @return {void} This function does not return anything.
+ */
+function subtaskOnEnter(){
+document.getElementById('task-subtasks-input').addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      addSubtask();
+    }
+  });
 }
 
 /**
@@ -35,21 +49,21 @@ function addSubtask() {
  */
 function renderSubtasks() {
   const subtaskList = document.getElementById('task-subtasks-list');
-  subtaskList.innerHTML = subtaskArray.map((subtask, index) => addSubtaskList(subtask, index)).join('');
+  subtaskList.innerHTML = subtaskArray.map((subtask, i) => addSubtaskList(subtask, i)).join('');
 
   addSubtaskDoubleClick();
 }
 
 /**
  * Adds a double click event listener to each subtask item in the subtaskArray.
- * When a subtask item is double clicked, the editSubtask function is called with the index of the subtask item.
+ * When a subtask item is double clicked, the editSubtask function is called with the i of the subtask item.
  *
  * @return {void} This function does not return anything.
  */
 function addSubtaskDoubleClick() {
-  subtaskArray.forEach((_, index) => {
-    const subtaskItem = document.getElementById(`subtask-${index}`);
-    subtaskItem.addEventListener('dblclick', () => editSubtask(index));
+  subtaskArray.forEach((_, i) => {
+    const subtaskItem = document.getElementById(`subtask-${i}`);
+    subtaskItem.addEventListener('dblclick', () => editSubtask(i));
   });
 }
 
@@ -160,50 +174,64 @@ function handleInputIconsMouseUp(subtaskInput) {
 /**
  * Function to edit a subtask item.
  *
- * @param {number} index - The index of the subtask item to be edited.
+ * @param {number} i - The index of the subtask item to be edited.
  * @return {void} This function does not return anything.
  */
-function editSubtask(index) {
-  const listItem = document.getElementById(`subtask-${index}`);
+function editSubtask(i) {
+  const listItem = document.getElementById(`subtask-${i}`);
   const subtaskText = listItem.textContent.trim();
-  listItem.innerHTML = changeSubtaskToInput(index, subtaskText);
+  listItem.innerHTML = changeSubtaskToInput(i, subtaskText);
 
-  document.getElementById(`subtask-icons-${index}`).classList.add('hidden');
-  document.getElementById(`subtask-icons-${index}`).classList.remove('subtask-icons');
-  document.getElementById(`subtask-icons-edit-${index}`).classList.remove('hidden');
+  document.getElementById(`subtask-icons-${i}`).classList.add('hidden');
+  document.getElementById(`subtask-icons-${i}`).classList.remove('subtask-icons');
+  document.getElementById(`subtask-icons-edit-${i}`).classList.remove('hidden');
 
-  const inputElement = document.getElementById(`edit-input-${index}`);
+  const inputElement = document.getElementById(`edit-input-${i}`);
   inputElement.focus();
+  inputElement.selectionStart = inputElement.selectionEnd = inputElement.value.length;
 }
 
 /**
- * Saves the edited subtask at the specified index.
+ * Saves the edited subtask at the specified i.
  *
- * @param {number} index - The index of the subtask to be edited.
+ * @param {number} i - The index of the subtask to be edited.
  * @return {void} This function does not return anything.
  */
-function saveEditedSubtask(index) {
-  const input = document.getElementById(`edit-input-${index}`);
+function saveEditedSubtask(i) {
+  const input = document.getElementById(`edit-input-${i}`);
   const text = input.value.trim();
   if (text) {
-    subtaskArray[index].subtask = text;
-    const listItem = document.getElementById(`subtask-${index}`);
+    subtaskArray[i].subtask = text;
+    const listItem = document.getElementById(`subtask-${i}`);
     listItem.textContent = text;
-    showSubtaskIcons(index);
+    showSubtaskIcons(i);
   } else {
-    deleteSubtask(index);
+    deleteSubtask(i);
   }
 }
 
 /**
- * Shows the subtask icons for a given index.
+ * Saves the edited subtask when the Enter key is pressed.
  *
- * @param {number} index - The index of the subtask.
+ * @param {Event} event - The event object representing the key press.
+ * @param {number} index - The index of the subtask being edited.
  * @return {void} This function does not return anything.
  */
-function showSubtaskIcons(index) {
-  const icons = document.getElementById(`subtask-icons-${index}`);
-  const iconsEdit = document.getElementById(`subtask-icons-edit-${index}`);
+function saveEditedSubtaskOnEnter(event, index) {
+  if (event.key === "Enter") {
+    saveEditedSubtask(index);
+  }
+}
+
+/**
+ * Shows the subtask icons for a given i.
+ *
+ * @param {number} i - The index of the subtask.
+ * @return {void} This function does not return anything.
+ */
+function showSubtaskIcons(i) {
+  const icons = document.getElementById(`subtask-icons-${i}`);
+  const iconsEdit = document.getElementById(`subtask-icons-edit-${i}`);
   icons.classList.add('subtask-icons');
   icons.classList.remove('hidden');
   iconsEdit.classList.add('hidden');

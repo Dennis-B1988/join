@@ -40,13 +40,13 @@ function renderUser(dropdown, userIndex, userName, initials) {
 }
 
 /**
- * Sets the background color of the element with the id `user-initials-${index}` to the color specified in `contacts[index].color`.
+ * Sets the background color of the element with the id `user-initials-${i}` to the color specified in `contacts[i].color`.
  *
- * @param {number} index - The index of the user whose initials are being styled.
+ * @param {number} i - The index of the user whose initials are being styled.
  * @return {void} This function does not return anything.
  */
-function styleUserInitials(index) {
-  document.getElementById(`user-initials-${index}`).style.backgroundColor = contacts[index].color;
+function styleUserInitials(i) {
+  document.getElementById(`user-initials-${i}`).style.backgroundColor = contacts[i].color;
 }
 
 /**
@@ -65,7 +65,8 @@ function generateInitials(user) {
 }
 
 /**
- * Toggles the display of the assigned to dropdown. If the dropdown is currently hidden, it is displayed and the assigned icon is changed. If the dropdown is currently displayed, it is hidden and the assigned icon is changed.
+ * Toggles the display of the assigned to dropdown. If the dropdown is currently hidden, it is displayed and the assigned icon is changed. 
+ * If the dropdown is currently displayed, it is hidden and the assigned icon is changed.
  *
  * @return {void} This function does not return anything.
  */
@@ -84,44 +85,44 @@ function assignedToDropdown() {
 }
 
 /**
- * Toggles the checkmark image and updates the assigned users list and display based on the given index.
+ * Toggles the checkmark image and updates the assigned users list and display based on the given i.
  *
- * @param {number} index - The index of the user in the contacts array.
+ * @param {number} i - The index of the user in the contacts array.
  * @return {void} This function does not return a value.
  */
-function userCheckmark(index) {
-  const checkmark = document.getElementById(`checkmark-${index}`);
+function userCheckmark(i) {
+  const checkmark = document.getElementById(`checkmark-${i}`);
   if (checkmark.src.includes('/assets/img/checkmark-empty_dark.png')) {
     checkmark.src = '../assets/img/checkmark_checked_white.png';
-    addUserToAssignedUsers(index);
+    addUserToAssignedUsers(i);
     displayUsers();
-    checkedBackgroundDark(index);
+    checkedBackgroundDark(i);
   } else {
     checkmark.src = '../assets/img/checkmark-empty_dark.png';
-    removeUserFromAssignedUsers(index);
+    removeUserFromAssignedUsers(i);
     displayUsers();
-    checkedBackgroundWhite(index);
+    checkedBackgroundWhite(i);
   }
 }
 
 /**
  * Adds the user at the given index to the list of assigned users.
  *
- * @param {number} index - The index of the user to be added.
+ * @param {number} i - The index of the user to be added.
  * @return {void} This function does not return anything.
  */
-function addUserToAssignedUsers(index) {
-  assignedUsers.push(contacts[index]);
+function addUserToAssignedUsers(i) {
+  assignedUsers.push(contacts[i]);
 }
 
 /**
  * Removes a user from the list of assigned users.
  *
- * @param {number} index - The index of the user to be removed.
+ * @param {number} i - The index of the user to be removed.
  * @return {undefined} This function does not return a value.
  */
-function removeUserFromAssignedUsers(index) {
-  let userIndex = assignedUsers.findIndex(user => user.name === contacts[index].name);
+function removeUserFromAssignedUsers(i) {
+  let userIndex = assignedUsers.findIndex(user => user.name === contacts[i].name);
   if (userIndex !== -1) assignedUsers.splice(userIndex, 1);
 }
 
@@ -172,7 +173,9 @@ function displayUsers() {
  */
 function changeAssignedIcon() {
   const dropdownIcon = document.getElementById('assigned-to-icon');
-  dropdownIcon.src = dropdownIcon.src.endsWith('drop_down.png') ? '../assets/img/drop_down_mirror.png' : '../assets/img/drop_down.png';
+  const dropdownClosed = '../assets/img/drop_down.png';
+  const dropdownOpen = '../assets/img/drop_down_mirror.png';
+  dropdownIcon.src = dropdownIcon.src.endsWith('drop_down.png') ? dropdownOpen : dropdownClosed;
 }
 
 /**
@@ -191,7 +194,11 @@ function uncheckAll() {
   document.getElementById('assigned-to-users').innerHTML = '';
 }
 
-
+/**
+ * Sorts the usernames based on the current user, and updates the 'contacts' and 'assignedUsers' arrays accordingly.
+ *
+ * @return {void} This function does not return anything.
+ */
 function sortUsernames() {
   let currentUser;
   if (loadPage('user') === null || loadPage('user') === undefined) {
