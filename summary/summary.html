@@ -28,14 +28,14 @@
 
       <div class="summary-middle">
         <div class="summary-tasks">
-          <div class="summary-main-line-1">
+          <div class="summary-main-line-top">
             <div class="summary-main-tasks">
               <div class="summary-card-mid-size to-do">
                 <div class="summary-todo">
                   <img src="../assets/img/edit.png" alt="" />
                 </div>
                 <div class="summary-card-text">
-                  <p>1</p>
+                  <p id="to-do-count"></p>
                   <span>To-do</span>
                 </div>
               </div>
@@ -45,39 +45,40 @@
                   <img src="../assets/img/mark.png" alt="" />
                 </div>
                 <div class="summary-card-text">
-                  <p>1</p>
+                  <p id="done-count"></p>
                   <span>Done</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="summary-main-line-2">
+          <div class="summary-main-line-middle">
             <div class="summary-main-tasks">
               <div class="summary-card-big-size">
-                <div class="summary-urgent">
-                  <img src="../assets/img/low_white.png" alt="" />
-                </div>
+                <div class="summary-card-big-left">
+                  <div class="summary-urgent">
+                    <img src="../assets/img/low_white.png" alt="" />
+                  </div>
 
-                <div class="summary-card-text">
-                  <p>1</p>
-                  <span>Urgent</span>
+                  <div class="summary-card-text">
+                    <p id="urgent-count"></p>
+                    <span>Urgent</span>
+                  </div>
                 </div>
-                <img src="../assets/img/summary-urgent-separate.png" alt="" />
-
-                <div class="summary-user">
-                  <div id="currentDate"></div>
+                <div class="summary-urgent-separate"></div>
+                <div class="summary-deadline">
+                  <div id="due-date" class="due-date"></div>
                   <span>Upcoming Deadline</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="summary-main-line-3">
-            <div class="summary-main-tasks-3">
+          <div class="summary-main-line-bottom">
+            <div class="summary-main-tasks-bottom">
               <div class="summary-card-small-size">
                 <div class="summary-card-task-text">
-                  <p>5</p>
+                  <p id="task-total-count"></p>
                   <span
                     >Tasks on <br />
                     Board</span
@@ -85,18 +86,18 @@
                 </div>
               </div>
             </div>
-            <div class="summary-main-tasks-3">
+            <div class="summary-main-tasks-bottom">
               <div class="summary-card-small-size">
                 <div class="summary-card-task-text">
-                  <p>2</p>
+                  <p id="in-progress-count"></p>
                   <span>Tasks In Progress</span>
                 </div>
               </div>
             </div>
-            <div class="summary-main-tasks-3">
+            <div class="summary-main-tasks-bottom">
               <div class="summary-card-small-size">
                 <div class="summary-card-task-text">
-                  <p>2</p>
+                  <p id="awaiting-feedback-count"></p>
                   <span>Awaiting Feedback</span>
                 </div>
               </div>
@@ -104,7 +105,7 @@
           </div>
         </div>
         <div class="summary-user">
-          <div class="summary-user-345">
+          <div class="summary-user-message">
             <p>Good morning,</p>
             <span id="userName">Guest</span>
           </div>

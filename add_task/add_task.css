@@ -309,7 +309,7 @@ input[type='date']::-webkit-calendar-picker-indicator {
 
 .task-bottom-container {
   width: 100%;
-  background-color: #f6f7f8;
+  /* background-color: #f6f7f8; */
 }
 
 .task-bottom {
@@ -600,7 +600,6 @@ input:-webkit-autofill:focus {
   .task-title {
     width: 95%;
     font-size: 47px;
-    background-color: #f6f7f8;
     z-index: 600;
     margin-bottom: 10px;
     position: fixed;
@@ -611,7 +610,7 @@ input:-webkit-autofill:focus {
     overflow: auto;
     scrollbar-width: none;
     position: fixed;
-    top: 140px;
+    top: 150px;
     bottom: 170px;
   }
   .add-task-form {
@@ -707,7 +706,6 @@ input:-webkit-autofill:focus {
   }
   .task-title {
     font-size: 47px;
-    background-color: #f6f7f8;
     margin-bottom: 20px;
   }
   .form-left,
