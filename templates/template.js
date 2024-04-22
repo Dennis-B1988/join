@@ -1,8 +1,8 @@
-async function initTemplate() {
+function initTemplate() {
     showCategory();
     showCurrentInformation();
     hideHelpIcon();
-    extractInitials()
+    extractInitials();
 }
 
 
