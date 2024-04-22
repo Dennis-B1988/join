@@ -121,6 +121,62 @@ function toggleAnimation() {
 }
 
 
+function desktopOrMobileFunction(i, j, firstNameInitial, lastNameInitial) {
+    let windowWidth = window.innerWidth;
+    if (windowWidth > 750) {
+        openOrCloseContact(i, j, firstNameInitial, lastNameInitial);
+    } else {
+        mobileOpenOrCloseContact(i, j, firstNameInitial, lastNameInitial);
+    }
+}
+
+
+function mobileOpenOrCloseContact(i, j, firstNameInitial, lastNameInitial) {
+    toggleMobileLeftContainerOrRightContainer();
+    indexI = i;
+    indexJ = j;
+    const letterKey = letters[i];
+    duplicateFirstLetterOfFirstNameAndLastName(letterKey);
+    document.getElementById('bigContactContainer').innerHTML = contactsRightSiteTemplate(contactsForLetter[j], i, j, firstNameInitial, lastNameInitial);
+    document.querySelector(`.circle-big${i}${j}`).style.backgroundColor = contactsForLetter[j].color;
+}
+
+
+function toggleMobileLeftContainerOrRightContainer() {
+    document.querySelector('.left-container').style.display = 'none';
+    document.querySelector('.right-container').style.display = 'unset';
+    document.getElementById('goBackArrow').style.display = 'unset';
+    document.querySelector('.contact-mobile-line-img').style.display = 'unset';
+    document.querySelector('.contact-line-img').style.display = 'none';
+    document.querySelector('.menu-contact-option').style.display = 'unset';
+}
+
+
+function goBackToLeftContainer() {
+    document.querySelector('.left-container').style.display = 'unset';
+    document.querySelector('.right-container').style = '';
+    document.getElementById('goBackArrow').style.display = 'none';
+    document.querySelector('.contact-mobile-line-img').style.display = 'none';
+    document.querySelector('.contact-line-img').style.display = 'unset';
+    document.querySelector('.menu-contact-option').style.display = 'none';
+}
+
+
+function openOrCloseMobileEditDeleteContainer(event, id) {
+    let backgroundMobileEditDeleteContainer = document.getElementById('backgroundMobileEditDeleteContainer');
+    let targetElement = event.target;
+    if (targetElement.id === id) {
+        document.querySelector('.mobile-edit-delete-container').classList.remove('show-container');
+        backgroundMobileEditDeleteContainer.style.display = 'none';
+    } else {
+        backgroundMobileEditDeleteContainer.style = '';
+        setTimeout(() => {
+            document.querySelector('.mobile-edit-delete-container').classList.add('show-container');
+        }, 100);
+    }
+}
+
+
 /**
  * Opens or closes a contact based on the provided parameters.
  *
@@ -223,12 +279,16 @@ function addContactAndShowMessage(name, email, phone) {
     };
     contacts.push(contact);
     if (loadPage('guest') === 'guest') {
-        savePage( 'contacts', contacts);
+        savePage('contacts', contacts);
     } else {
         setItem('contacts', contacts);
     }
     resetValues();
-    showContacts();
+    if (window.innerWidth > 750) {
+        showContacts();
+    } else {
+        toggleMobileLeftContainerOrRightContainer()
+    }
     displayContactDetails(contact);
     highlightContactByName(contact);
     toggleContainersAndShowMessage();
@@ -395,7 +455,7 @@ function deleteContact(contactEmail) {
     document.getElementById('bigContainer').classList.remove('show-background');
     document.getElementById('smallContainer').classList.remove('show-add-contact');
     if (loadPage('guest') === 'guest') {
-        savePage( 'contacts', contacts);
+        savePage('contacts', contacts);
     } else {
         setItem('contacts', contacts);
     }
@@ -414,7 +474,7 @@ function saveEditContact() {
     editContact();
     toggleAnimation();
     if (loadPage('guest') === 'guest') {
-        savePage( 'contacts', contacts);
+        savePage('contacts', contacts);
     } else {
         setItem('contacts', contacts);
     }
