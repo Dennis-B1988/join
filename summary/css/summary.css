@@ -67,7 +67,7 @@
 }
 
 .summary-card-mid-size:hover .summary-todo img {
-  content: url(../assets/img/mark-blue.png);
+  content: url(../../assets/img/mark-blue.png);
 }
 
 .to-do:hover {
@@ -82,7 +82,7 @@
 }
 
 .to-do:hover .summary-todo img {
-  content: url(../assets/img/edit-blue.png);
+  content: url(../../assets/img/edit-blue.png);
 }
 
 .summary-card-big-size:hover {

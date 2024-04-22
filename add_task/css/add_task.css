@@ -171,7 +171,7 @@ input::placeholder {
 }
 
 input[type='date']::-webkit-calendar-picker-indicator {
-  background: url(../assets/img/date.png) no-repeat;
+  background: url(../../assets/img/date.png) no-repeat;
 }
 
 .task-category {
@@ -309,7 +309,6 @@ input[type='date']::-webkit-calendar-picker-indicator {
 
 .task-bottom-container {
   width: 100%;
-  /* background-color: #f6f7f8; */
 }
 
 .task-bottom {
