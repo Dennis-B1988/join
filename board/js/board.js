@@ -179,3 +179,16 @@ function openOrCloseBigAddTask(event, id) {
         showAddTask();
     }
 }
+
+
+function deleteTask(id) {
+    tasks.forEach(task => {
+        if (task['id'] === id) {
+            tasks.splice(tasks.indexOf(task), 1);
+        }
+    })
+    setItem('tasks', tasks);
+    loadData();
+    updateHTML();
+    showBigTodoHTML();
+}
