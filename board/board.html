@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../assets/fonts/fonts.css" />
   <link rel="stylesheet" href="../style.css" />
   <link rel="stylesheet" href="../templates/template.css" />
+  <link rel="stylesheet" href="../add_task/css/add_task_subtask_bottom.css">
   <link rel="stylesheet" href="../add_task/css/add_task.css" />
   <link rel="stylesheet" href="../add_task/css/add_task_media.css" />
   <link rel="stylesheet" href="./css/board.css">
@@ -18,78 +19,15 @@
   <script src="../js/config.js"></script>
   <script src="../js/script.js"></script>
   <script src="../add_task/add_task.js"></script>
-  <script src="board.js"></script>
+  <script src="./js/board.js"></script>
+  <script src="./js/board_templates.js"></script>
 </head>
 
 <body onload="initBoard()">
-  <div  class="big-screen" w3-include-html="../templates/navigation.html"></div>
+  <div class="big-screen" w3-include-html="../templates/navigation.html"></div>
 
 
-  <div style="display: none;" id="bigTaskContainer" class="task-big-card">
-    <div class="big-task-card-header">
-    <div class="big-task-card-category">
-      ${element['category']}
-    </div>
-    <img class="task-big-card-close" src="../assets/img/board_close.png" alt="">
-  </div>
-            <span class="big-task-card-title">${element['title']}</span>
-            <span class="big-task-card-description">${element['description']}</span>
-            <div class="container">
-              <div class="item item-text">Due date:</div>
-              <div class="item">24/04/2024</div>
-              <div class="item item-text">Priority:</div>
-              <div class="item">
-                <span>Medium</span>
-                <img src="../assets/img/equal_orange.png" alt="">
-              </div>
-          </div>
-          <div></div>
-          <div style="height: auto;">
-            <p>Assigned-To:</p>
-            <br>
-            <div class="big-task-card-contacts">
-            <div style="background-color: #1FD7C1" class="task-card-footer-contacts con" >EJ</div>
-            <span>Emmanuel Mauer</span>
-            <div>
-              <img src="" alt="">
-            </div>
-          </div>
-          <div class="big-task-card-contacts">
-            <div style="background-color: #462F8A" class="task-card-footer-contacts con" >MB</div>
-            <span>Marcel Bauer</span>
-            <div>
-              <img src="" alt="">
-            </div>
-          </div>
-          <div class="big-task-card-contacts">
-            <div style="background-color: #0038FF" class="task-card-footer-contacts con" >AM</div>
-            <span>Anton Mayer</span>
-          </div>
-          </div>
-          <div>
-          <p>Subtasks</p>
-          <br>
-          <div class="btc-footer-input">
-            <div class="btc-footer-input-content">
-            <img src="../assets/img/board_check_button.png" alt="">
-            <span>Implement Recipe Recommendation</span>
-            </div>
-            <div class="btc-footer-input-content">
-              <img src="../assets/img/board_check_ectangle.png" alt="">
-              <span>Start Page Layout</span>
-              </div>
-          </div>
-          </div>
-            <div class="big-task-card-footer">
-            <div class="big-task-card-footer-container" id="taskCardFooter${element.id}" >
-            </div>
-            <img class="btc-footer-img-delete" id="prioImg${element.id}" src="../assets/img/delete_default.png" alt="">
-            <img src="../assets/img/big_card_separator.png" alt="">
-            <img class="btc-footer-img-edit" src="../assets/img/edit_default.png" alt="">
-            </div>
-  </div>
-
-  <section  class="section-board">
+  <section class="section-board">
     <div class="board-header">
       <h1>Board</h1>
       <div class="board-header-search">
@@ -133,7 +71,7 @@
       </div>
       <div ondrop="moveTo('done')" ondragleave="removeHighlight('done')"
         ondragover="allowDrop(event); highlight('done')" id="done" class="tasks-drag-and-drop"></div>
-        
+
       <div id="backgroundAddTask" class="background-add-task">
         <div id="addTaskContainer" class="add-task add-task-container">
           <div class="task-information-board">
@@ -233,7 +171,7 @@
           </div>
         </div>
       </div>
-    </section>
+  </section>
 </body>
 
 </html>

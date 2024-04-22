@@ -1,7 +1,7 @@
 function addSubtaskList(subtaskContent, i) {
     return /*html*/ `
         <div id="subtask-list-${i}" class="subtask-list">        
-            <li id="subtask-${i}" class="subtask-list-item">${subtaskContent}</li>
+            <li id="subtask-${i}" class="subtask-list-item">${subtaskContent.subtask}</li>
             <div id="subtask-icons-${i}" class="subtask-icons">
                 <img onclick="editSubtask(${i})"  class="edit-subtask"  src="../assets/img/edit-blue.png" alt="" />
                 |

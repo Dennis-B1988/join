@@ -89,27 +89,6 @@ function changePriority(element) {
     }
 }
 
-function generateTodoHTML(element) {
-    return /*html*/`
-        <div id="${element['id']}" draggable="true" ondragstart="startDragging(${element['id']})" class="task-card">
-            <span class="task-card-category">${element['category']}</span>
-            <p class="task-card-title">${element['title']}</p>
-            <p class="task-card-description">${element['description']}</p>
-            <div class="load-bar-container">
-                <div id="loadBar" class="load-bar">
-                <div id="loadBarProgress" class="load-bar-progress" role="progressbar" style="width: 0%;"></div>
-                </div>
-                <span>0/${element.subtasks.length} Subtasks</span>
-            </div>
-            <div class="task-card-footer">
-            <div class="task-card-footer-container" id="taskCardFooter${element.id}" >
-            </div>
-            <img id="prioImg${element.id}" src="../assets/img/plus_dark.png" alt="">
-            </div>
-        </div> 
-    `;
-}
-
 
 function generateNoTasksToDo() {
     return /*html*/`
@@ -146,4 +125,41 @@ function removeHighlight(id) {
 function showAddTask() {
     document.getElementById('backgroundAddTask').classList.toggle('show-background');
     document.getElementById('addTaskContainer').classList.toggle('show-add-task');
+}
+
+
+function showBigTodoHTML() {
+    document.getElementById('bigTaskContainerBackground').classList.toggle('show-big-background');
+    document.getElementById('bigTaskContainer').classList.toggle('show-big-add-task');
+}
+
+
+function renderBigTodoHTML(id) {
+    let element = tasks.filter(task => task['id'] === id)[0];
+    console.log(element)
+    document.body.innerHTML += generateBigTodoHTML(element);
+    changeBigPriority(element);
+    for (let i = 0; i < element.assignedTo.length; i++) {
+        const assignedContacts = element.assignedTo[i];
+        let letters = lettersOfName(assignedContacts.name);
+        document.getElementById('bigTaskCardContactsContainer').innerHTML += generateBigTodoAssignedToHTML(assignedContacts, letters);
+    }
+    for (let j = 0; j < element.subtasks.length; j++) {
+        const subTask = element.subtasks[j];
+        let subTaskCompleted = subTask.completed ? '../assets/img/board_check_button.png' : '../assets/img/board_check_ectangle.png';
+        document.getElementById('btcFooterInput').innerHTML += generateBigTodoSubTasksHTML(subTask, subTaskCompleted);
+    }
+    showBigTodoHTML();
+}
+
+
+function changeBigPriority(element) {
+    let priority = document.getElementById(`prioBigImg${element.id}`);
+    if (element['priority'] === "Low") {
+        priority.src = '../assets/img/low_green.png';
+    } else if (element['priority'] === "Medium") {
+        priority.src = '../assets/img/equal_orange.png';
+    } else {
+        priority.src = '../assets/img/urgent_red.png';
+    }
 }
