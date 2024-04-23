@@ -4,6 +4,24 @@
   max-width: 1440px;
   position: relative;
 }
+.add-task-mobile {
+  background-color: white;
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-top: 150px;
+  margin-bottom: 90px;
+  border-radius: 30px;
+  height: 931px;
+
+}
+.add-task-container-mobile {
+  height: 55vh;
+  width: 525px;
+  display: flex;
+  transition: all 0.2s ease;
+  transform: translateX(100%);
+  visibility: hidden;
+}
 
 .red {
   color: #ff8090;
