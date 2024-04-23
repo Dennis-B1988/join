@@ -53,7 +53,7 @@ function generateBigTodoHTML(element) {
             </div>
             <img onclick="deleteTask(${element.id})" class="btc-footer-img-delete" src="../assets/img/delete_default.png" alt="">
             <img src="../assets/img/big_card_separator.png" alt="">
-            <img class="btc-footer-img-edit" src="../assets/img/edit_default.png" alt="">
+            <img onclick="toggleCSS()" class="btc-footer-img-edit" src="../assets/img/edit_default.png" alt="">
         </div>
     `;
 }
