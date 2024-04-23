@@ -281,7 +281,8 @@ h1 {
   width: 50%;
 }
 .load-bar-progress{
-  background-color: #0038ff;
+  border-radius: 16px;
+  background-color: #4589FF;
   height: 8px;
 }
 .task-card-footer {
