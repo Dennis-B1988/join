@@ -18,76 +18,75 @@
   }
 }
 
-@media (max-width: 1000px), (max-height: 720px) {
-  .task-information {
-    width: 100%;
-    margin-top: 50px;
-    margin-left: 0;
-    margin-right: 0;
-    justify-content: flex-start;
-  }
-  .task-top-container {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-  }
-  .task-title {
-    width: 95%;
-    font-size: 47px;
-    z-index: 600;
-    margin-bottom: 10px;
-    position: fixed;
-    top: 90px;
-  }
-  .task-form-container {
-    width: 100%;
-    overflow: auto;
-    scrollbar-width: none;
-    position: fixed;
-    top: 150px;
-    bottom: 170px;
-  }
-  .add-task-form {
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    gap: 8px;
-  }
-  .add-task-form textarea {
-    max-height: 75px;
-  }
-  .form-left,
-  .form-right {
-    width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .form-split {
-    display: none;
-  }
-  .priority span {
-    width: 30%;
-  }
-  .task-subtasks-list {
-    margin-bottom: 30px;
-  }
-  .task-bottom-container {
-    height: 90px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    padding-left: 20px;
-    padding-right: 20px;
-    position: fixed;
-    bottom: 90px;
-    z-index: 500;
-  }
-  .task-bottom {
-    gap: 5px;
-  }
-  .task-clear {
-    display: none;
-  }
+.task-information {
+  width: 100%;
+  margin-top: 50px;
+  margin-left: 0;
+  margin-right: 0;
+  justify-content: flex-start;
+}
+.task-top-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+.task-title {
+  display: none;
+  width: 95%;
+  font-size: 47px;
+  z-index: 600;
+  margin-bottom: 10px;
+  position: fixed;
+  top: 90px;
+}
+.task-form-container {
+  width: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+  position: fixed;
+  top: 50px;
+  bottom: 170px;
+}
+.add-task-form {
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+}
+.add-task-form textarea {
+  max-height: 75px;
+}
+.form-left,
+.form-right {
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.form-split {
+  display: none;
+}
+.priority span {
+  width: 30%;
+}
+.task-subtasks-list {
+  margin-bottom: 30px;
+}
+.task-bottom-container {
+  height: 90px;
+  padding-top: 75px;
+  padding-bottom: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: fixed;
+  bottom: 90px;
+  z-index: 500;
+}
+.task-bottom {
+  gap: 5px;
+}
+.task-clear {
+  display: none;
 }
 
 @media (max-width: 500px) {
