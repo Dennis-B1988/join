@@ -253,8 +253,10 @@ async function completedSubTask(id, j) {
 
 
 function toggleCSS() {
-    var links = document.querySelectorAll('.disableCssData');
-    links.forEach(link => link.disabled = true);
+    let disableCssData = document.querySelectorAll('.disableCssData');
+    let enableCssData = document.querySelectorAll('.enableCssData');
+    disableCssData.forEach(disable => disable.disabled = true);
+    enableCssData.forEach(enable => enable.disabled = false);
     showBigTodoHTML();
     showAddTask();
 }
