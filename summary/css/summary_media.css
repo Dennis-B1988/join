@@ -41,7 +41,7 @@
   }
 }
 
-@media (max-width: 1000px), (max-height: 720px) {
+@media (max-width: 1000px), (max-height: 719px) {
   .summary-content {
     margin-left: 16px;
     margin-right: 16px;
@@ -112,6 +112,10 @@
   .summary-user-message {
     width: unset;
     flex-direction: column;
+    align-items: center;
+  }
+  #user-name {
+    text-align: center;
   }
 }
 
@@ -174,6 +178,10 @@
   .summary-user-message {
     width: unset;
     flex-direction: column;
+    align-items: center;
+  }
+  #user-name {
+    text-align: center;
   }
 }
 

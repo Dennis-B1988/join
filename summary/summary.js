@@ -42,6 +42,11 @@ function showUserNameMobile(){
 }
 
 
+/**
+ * Displays a personalized greeting based on the current time of day.
+ *
+ * @return {void} This function does not return a value.
+ */
 function greetUser() {
   const greeting = greetUserTime();
 
@@ -50,6 +55,11 @@ function greetUser() {
 }
 
 
+/**
+ * Returns a personalized greeting based on the current time of day.
+ *
+ * @return {string} The greeting message.
+ */
 function greetUserTime(){
   const now = new Date();
   const hour = now.getHours();
