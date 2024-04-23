@@ -208,7 +208,19 @@ input[type='date']::-webkit-calendar-picker-indicator {
 
 .required {
   font-size: 12px;
-  color: #f6f7f8;
+  color: #fca7b1;
+}
+
+#title-required {
+  visibility: hidden;
+}
+
+#date-required {
+  visibility: hidden;
+}
+
+#category-required {
+  visibility: hidden;
 }
 
 .assigned-dropdown-item {

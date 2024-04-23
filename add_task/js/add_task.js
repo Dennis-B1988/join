@@ -125,15 +125,15 @@ function checkUser(){
  */
 function formFilled(title, date, category) {
   if (title == '') {
-    document.getElementById('title-required').style.color = '#FCA7B1';
+    document.getElementById('title-required').style.visibility = 'visible';
     document.getElementById('task-title').style.borderColor = '#FCA7B1';
   }
   if (date == '') {
-    document.getElementById('date-required').style.color = '#FCA7B1';
+    document.getElementById('date-required').style.visibility = 'visible';
     document.getElementById('task-date').style.borderColor = '#FCA7B1';
   }
   if (category == '') {
-    document.getElementById('category-required').style.color = '#FCA7B1';
+    document.getElementById('category-required').style.visibility = 'visible';
     document.getElementById('task-category').style.borderColor = '#FCA7B1';
   }
 }
@@ -148,15 +148,26 @@ function formFilled(title, date, category) {
 function clearTaskForm() {
   document.getElementById("add-task-form").reset();
   document.getElementById("task-subtasks-list").innerHTML = '';
-  document.getElementById("title-required").style.color = '#f6f7f8';
-  document.getElementById("date-required").style.color = '#f6f7f8';
-  document.getElementById("category-required").style.color = '#f6f7f8';
-  document.getElementById("task-title").style.borderColor = '#d1d1d1';
-  document.getElementById("task-date").style.borderColor = '#d1d1d1';
-  document.getElementById("task-category").style.borderColor = '#d1d1d1';
+  removeRequiredStyles();
   uncheckAll();
   subtaskCount = 0;
   subtaskArray = [];
+}
+
+
+/**
+ * Removes the required styles from the specified elements.
+ *
+ * @param {type} paramName - description of parameter
+ * @return {type} description of return value
+ */
+function removeRequiredStyles() {
+  document.getElementById("title-required").style.visibility = 'hidden';
+  document.getElementById("date-required").style.visibility = 'hidden';
+  document.getElementById("category-required").style.visibility = 'hidden';
+  document.getElementById("task-title").style.borderColor = '#d1d1d1';
+  document.getElementById("task-date").style.borderColor = '#d1d1d1';
+  document.getElementById("task-category").style.borderColor = '#d1d1d1';
 }
 
 

@@ -1,4 +1,5 @@
 async function initBoard() {
+    getCurrentDate();
     await includeHTML();
     await loadData();
     await initTemplate();
