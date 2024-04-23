@@ -7,6 +7,7 @@ function openSubtask() {
   document.getElementById('task-subtasks-input').focus();
 }
 
+
 /**
  * Adds a subtask to the subtaskArray and triggers a render of the updated subtasks list.
  *
@@ -27,6 +28,7 @@ function addSubtask() {
   }
 }
 
+
 /**
  * Adds an event listener to the task subtasks input for the Enter key press, triggering the addition of a subtask.
  *
@@ -41,6 +43,7 @@ document.getElementById('task-subtasks-input').addEventListener("keypress", func
   });
 }
 
+
 /**
  * Renders the subtasks list on the webpage.
  *
@@ -53,6 +56,7 @@ function renderSubtasks() {
 
   addSubtaskDoubleClick();
 }
+
 
 /**
  * Adds a double click event listener to each subtask item in the subtaskArray.
@@ -67,6 +71,7 @@ function addSubtaskDoubleClick() {
   });
 }
 
+
 /**
  * Empties the value of the task subtask input field.
  *
@@ -76,6 +81,7 @@ function addSubtaskDoubleClick() {
 function emptySubtask() {
   document.getElementById('task-subtasks-input').value = '';
 }
+
 
 /**
  * Deletes a subtask from the task list based on the given index.
@@ -97,11 +103,13 @@ function deleteSubtask(i) {
   }
 }
 
+
 /**
  * Sets up event listeners for subtask input when the DOM content is loaded.
  *
  */
 document.addEventListener('DOMContentLoaded', setupSubtaskInput);
+
 
 /**
  * Sets up the subtask input by adding event listeners to the subtask input, open subtask input, and input icons.
@@ -119,6 +127,7 @@ function setupSubtaskInput() {
   inputIcons.addEventListener('mouseup', handleInputIconsMouseUp.bind(null, subtaskInput));
 }
 
+
 /**
  * Handles the focus event on the subtask input.
  *
@@ -130,6 +139,7 @@ function handleSubtaskInputFocus(openSubtaskInput, inputIcons) {
   openSubtaskInput.style.display = 'none';
   inputIcons.style.display = 'flex';
 }
+
 
 /**
  * Handles the blur event on the subtask input.
@@ -148,6 +158,7 @@ function handleSubtaskInputBlur(subtaskInput, openSubtaskInput, inputIcons) {
   }, 100);
 }
 
+
 /**
  * Prevents the default behavior of an event and stops its propagation.
  *
@@ -158,6 +169,7 @@ function preventDefaultAndStopPropagation(event) {
   event.preventDefault();
   event.stopPropagation();
 }
+
 
 /**
  * Handles the mouse up event on the input icons.
@@ -170,6 +182,7 @@ function handleInputIconsMouseUp(subtaskInput) {
     subtaskInput.focus();
   }, 0);
 }
+
 
 /**
  * Function to edit a subtask item.
@@ -191,6 +204,7 @@ function editSubtask(i) {
   inputElement.selectionStart = inputElement.selectionEnd = inputElement.value.length;
 }
 
+
 /**
  * Saves the edited subtask at the specified i.
  *
@@ -210,6 +224,7 @@ function saveEditedSubtask(i) {
   }
 }
 
+
 /**
  * Saves the edited subtask when the Enter key is pressed.
  *
@@ -222,6 +237,7 @@ function saveEditedSubtaskOnEnter(event, index) {
     saveEditedSubtask(index);
   }
 }
+
 
 /**
  * Shows the subtask icons for a given i.

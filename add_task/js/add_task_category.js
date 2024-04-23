@@ -13,6 +13,7 @@ function renderCategory() {
   changeCategoryIcon();
 }
 
+
 /**
  * Fills the category dropdown with category elements.
  *
@@ -25,6 +26,7 @@ function categoryDropdownFill(categoryInput, categoryDropdown, dropdownToggle) {
   categoryDropdown.innerHTML = '';
   createCategoryElements(categoryInput, categoryDropdown, dropdownToggle);
 }
+
 
 /**
  * Creates category elements for the given category input and dropdown, and appends them to the dropdown.
@@ -39,6 +41,7 @@ function createCategoryElements(categoryInput, categoryDropdown) {
     categoryDropdown.appendChild(categoryElement);
   });
 }
+
 
 /**
  * Creates a category element with the given option, attaches an event listener to it, and returns it.
@@ -59,6 +62,7 @@ function createCategoryElement(option, categoryInput, categoryDropdown) {
   return categoryElement;
 }
 
+
 /**
  * Toggles the visibility of a dropdown menu based on its current state.
  *
@@ -77,6 +81,7 @@ function toggleDropdown(categoryInput, categoryDropdown, dropdownToggle) {
   }
 }
 
+
 /**
  * Changes the category icon based on its current source.
  *
@@ -94,20 +99,6 @@ function changeCategoryIcon() {
   }
 }
 
-/**
-   * Close all dropdowns when clicking outside of them.
-   *
-   * @param {MouseEvent} event - The click event.
-   * @return {void} This function does not return anything.
-   */
-document.addEventListener('DOMContentLoaded', function () {
-  document.body.addEventListener("click", function (event) {
-    let dropdownCategory = document.getElementById("task-category-dropdown");
-    let dropdownAssignedTo = document.getElementById("task-assigned-to-dropdown");
-    closeCategoryDropdown(event, dropdownCategory);
-    closeAssignedToDropdown(event, dropdownAssignedTo)
-  });
-});
 
 /**
  * Close the category dropdown when clicking outside of it.
@@ -116,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
  * @param {HTMLElement} dropdown - The category dropdown element.
  * @return {void} This function does not return anything.
  */
-function closeCategoryDropdown(event, dropdown) {
+function closeCategoryDropdownAnywhere(event, dropdown) {
   let clickedElement = event.target;
   let isDropdownClick = clickedElement.id === "task-category" ||
     clickedElement.id === "task-category-icon" ||
