@@ -6,6 +6,9 @@ function initTemplate() {
 }
 
 
+/**
+ * Function to show category based on the current window location.
+ */
 function showCategory() {
     if (window.location.pathname == '/add_task/add_task.html') {
         document.getElementById('addTask').classList.add('active');
@@ -22,6 +25,12 @@ function showCategory() {
 }
 
 
+/**
+ * Sets the background color, removes the 'hover' class, and hides the 'headerHelp' and 'headerUsername' elements
+ * for the current page if it is either the privacy policy or legal notice page.
+ *
+ * @return {void} This function does not return a value.
+ */
 function showCurrentInformation() {
     if (window.location.pathname == '/legal_information/privacy_policy.html') {
         document.getElementById('privacyPolicy').style.backgroundColor = '#091931'
@@ -38,6 +47,11 @@ function showCurrentInformation() {
 }
 
 
+/**
+ * Hides the help icon in the header if the current page is the help page.
+ *
+ * @return {void} This function does not return a value.
+ */
 function hideHelpIcon() {
     if (window.location.pathname == '/legal_information/help.html') {
         document.getElementById('headerHelp').style.display = 'none';
@@ -45,6 +59,11 @@ function hideHelpIcon() {
 }
 
 
+/**
+ * Extracts initials from the user's name and displays them in the header.
+ *
+ * @return {void} This function does not return anything.
+ */
 function extractInitials() {
     let headerUsername = document.getElementById('headerUsername');
     let index = parseFloat(loadPage('user'));
@@ -56,6 +75,13 @@ function extractInitials() {
     }
 }
 
+
+/**
+ * Toggles the display of the dropdown container.
+ *
+ * @param {none} - This function does not take any parameters.
+ * @return {none} - This function does not return any value.
+ */
 function targetDropdown() {
     let dropdownContainer = document.getElementById("dropdownContainer");
     if (dropdownContainer.style.display === "none") {
@@ -63,6 +89,14 @@ function targetDropdown() {
     }
 }
 
+
+/**
+ * Toggles the display of the dropdown container when the specified element is clicked.
+ *
+ * @param {Event} event - The click event.
+ * @param {string} id - The ID of the element that triggers the dropdown.
+ * @return {void} This function does not return anything.
+ */
 function openOrCloseDropdown(event, id) {
     let dropdwonContainer = document.getElementById('dropdownContainer');
     let targetElement = event.target;
@@ -72,6 +106,11 @@ function openOrCloseDropdown(event, id) {
 }
 
 
+/**
+ * Removes the 'guest' item from the local storage.
+ *
+ * @return {void} This function does not return a value.
+ */
 function logoutAsGuest() {
     localStorage.removeItem('guest');
 }

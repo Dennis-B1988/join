@@ -8,6 +8,7 @@
   overflow: auto;
   scrollbar-width: none;
 }
+
 .legale-notice {
   height: calc(100vh - 96px);
   width: 100%;
@@ -18,29 +19,35 @@
   overflow: auto;
   scrollbar-width: none;
 }
+
 .privacy-policy-footer {
   padding-bottom: 45px;
 }
+
 .privacy-policy-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 25px;
 }
+
 .privacy-policy-header h1 {
   font-weight: 700;
   font-size: 61px;
 }
+
 h2 {
   font-weight: 700;
   font-size: 32px;
   margin: 20px 0px -5px 0px;
 }
+
 h3 {
   font-weight: 700;
   font-size: 27px;
   margin: 30px 0px 30px 0px;
 }
+
 .privacy-policy-go-back {
   max-width: 1440px;
   height: 20px;
@@ -51,19 +58,23 @@ h3 {
   top: 200px;
   z-index: 100;
 }
+
 .privacy-policy-go-back img {
   cursor: pointer;
   margin-right: 50px;
 }
+
 .help-text-span h2 {
   margin-right: 22px;
   font-weight: 700;
 }
+
 .help-text-span-header p span {
   font-weight: 400;
   font-size: 20px;
   border: 0;
 }
+
 .help-text-span {
   display: flex;
   align-items: baseline;
@@ -79,6 +90,7 @@ h3 {
     padding-right: 28px;
     scrollbar-width: unset;
   }
+
   .legale-notice {
     height: unset;
     margin-top: 81px;
@@ -86,12 +98,15 @@ h3 {
     padding-left: 28px;
     padding-right: 28px;
   }
+
   .privacy-policy-header h1 {
     margin-top: 50px;
   }
+
   .privacy-policy-go-back {
     top: 128px;
   }
+
   .privacy-policy-go-back img {
     cursor: pointer;
     margin-right: 25px;

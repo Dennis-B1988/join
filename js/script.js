@@ -22,12 +22,24 @@ let contacts = [];
 let tasks = [];
 
 
+/**
+ * Generates a random color from the predefined colors array.
+ *
+ * @return {string} The randomly selected color.
+ */
 function randomColor() {
     const randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
 }
 
 
+/**
+ * Sets an item in the storage with the given key and value.
+ *
+ * @param {string} key - The key of the item to be set.
+ * @param {any} value - The value of the item to be set.
+ * @return {Promise<any>} A promise that resolves to the JSON response from the server.
+ */
 async function setItem(key, value) {
     const payload = { key, value, token: STORAGE_TOKEN };
     return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
@@ -35,6 +47,12 @@ async function setItem(key, value) {
 }
 
 
+/**
+ * Retrieves an item from the storage based on the provided key.
+ *
+ * @param {string} key - The key of the item to retrieve.
+ * @return {Promise<any>} A promise that resolves to the retrieved data.
+ */
 async function getItem(key) {
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
     return fetch(url).then(res => res.json()).then(res => {
@@ -45,6 +63,11 @@ async function getItem(key) {
 }
 
 
+/**
+ * Loads data from either local storage or a remote server based on the current user.
+ *
+ * @return {Promise<void>} A promise that resolves when the data has been loaded.
+ */
 async function loadData() {
     if (loadPage('guest') === 'guest') {
         users = dummyUserArray;
@@ -64,16 +87,30 @@ async function loadData() {
 }
 
 
+/**
+ * Navigates the browser history back by one step.
+ *
+ */
 function goBack() {
     window.history.back();
 }
 
 
+/**
+ * Navigates the browser history back by one step.
+ *
+ */
 function savePage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
 
+/**
+ * Retrieves an item from the local storage based on the provided key.
+ *
+ * @param {string} key - The key of the item to retrieve.
+ * @return {any} The parsed data from the local storage, or undefined if the item does not exist.
+ */
 function loadPage(key) {
     let dataFromLocalStorage = localStorage.getItem(key);
     if (dataFromLocalStorage) {
@@ -82,6 +119,11 @@ function loadPage(key) {
 }
 
 
+/**
+ * Asynchronously includes HTML content from specified URLs into HTML elements with the 'w3-include-html' attribute.
+ *
+ * @return {Promise<void>} A Promise that resolves when all HTML content has been successfully included.
+ */
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {

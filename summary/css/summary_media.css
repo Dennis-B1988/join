@@ -2,9 +2,11 @@
   .summary-card-mid-size {
     height: 140px;
   }
+
   .summary-card-big-size {
     height: 140px;
   }
+
   .summary-card-small-size {
     height: 150px;
   }
@@ -14,6 +16,7 @@
   .summary-user-message p {
     font-size: 36px;
   }
+
   .summary-user-message span {
     font-size: 47px;
   }
@@ -24,9 +27,11 @@
     flex-direction: column;
     gap: 20px;
   }
+
   .summary-user {
     width: 90%;
   }
+
   .summary-user-message {
     width: 100%;
     flex-direction: column;
@@ -46,6 +51,7 @@
     margin-left: 16px;
     margin-right: 16px;
   }
+
   .summary-header {
     flex-direction: column;
     justify-content: flex-start;
@@ -53,44 +59,57 @@
     gap: 0;
     margin-bottom: 0;
   }
+
   .summary-header img {
     margin: 0 0 0 31.5px;
   }
+
   .summary-header-title {
     font-size: 47px;
   }
+
   .summary-header-text {
     font-size: 24px;
   }
+
   .summary-separate {
     transform: rotate(90deg);
     order: 3;
   }
+
   .summary-tasks p {
     font-size: 47px;
   }
+
   .summary-tasks span {
     font-size: 14px;
   }
+
   .summary-tasks div {
     font-size: 14px;
   }
+
   .summary-card-text img {
     height: 68px;
   }
+
   .summary-card-mid-size {
     gap: 10px;
   }
+
   .summary-card-big-size:hover {
     color: white;
   }
+
   .summary-urgent-separate {
     height: 68px;
     border: 1px solid #d1d1d1;
   }
+
   .summary-deadline {
     gap: 8px;
   }
+
   .summary-user {
     width: 100%;
     position: absolute;
@@ -105,15 +124,18 @@
     background-color: #f6f7f8;
     transition: opacity 1.5s ease-in-out;
   }
+
   .hidden {
     opacity: 0;
     pointer-events: none;
   }
+
   .summary-user-message {
     width: unset;
     flex-direction: column;
     align-items: center;
   }
+
   #user-name {
     text-align: center;
   }
@@ -130,26 +152,32 @@
     height: 110px;
     width: 186px;
   }
+
   .summary-card-big-size {
     height: 110px;
     width: 396px;
     gap: 50px;
   }
+
   .summary-card-small-size {
     height: 116px;
     width: 116px;
   }
+
   .summary-tasks img {
     height: 18px;
   }
+
   .summary-urgent {
     height: 40px;
     width: 40px;
   }
+
   .summary-urgent img {
     height: 16px;
     width: 23px;
   }
+
   .summary-todo {
     height: 40px;
     width: 40px;
@@ -171,15 +199,18 @@
     background-color: #f6f7f8;
     transition: opacity 1.5s ease-in-out;
   }
+
   .hidden {
     opacity: 0;
     pointer-events: none;
   }
+
   .summary-user-message {
     width: unset;
     flex-direction: column;
     align-items: center;
   }
+
   #user-name {
     text-align: center;
   }
@@ -189,6 +220,7 @@
   .summary-content {
     margin-top: 80px;
   }
+
   .summary-header {
     flex-direction: column;
     justify-content: flex-start;
@@ -196,15 +228,19 @@
     gap: 0;
     margin-bottom: 0;
   }
+
   .summary-header img {
     margin: 0 0 0 31.5px;
   }
+
   .summary-header-title {
     font-size: 47px;
   }
+
   .summary-header-text {
     font-size: 24px;
   }
+
   .summary-separate {
     transform: rotate(90deg);
     order: 3;
@@ -217,48 +253,61 @@
     width: 186px;
     gap: 10px;
   }
+
   .summary-card-big-size {
     height: 110px;
     width: 396px;
     gap: 50px;
   }
+
   .summary-card-small-size {
     height: 116px;
     width: 116px;
   }
+
   .summary-tasks p {
     font-size: 47px;
   }
+
   .summary-tasks span {
     font-size: 14px;
   }
+
   .summary-tasks div {
     font-size: 14px;
   }
+
   .summary-tasks img {
     height: 18px;
   }
+
   .summary-urgent {
     height: 40px;
     width: 40px;
   }
+
   .summary-urgent img {
     height: 16px;
     width: 23px;
   }
+
   .summary-todo {
     height: 40px;
     width: 40px;
   }
+
   .summary-card-text img {
     height: 68px;
   }
+
   .summary-urgent-separate {
     height: 68px;
   }
+
   .summary-card-big-size:hover {
     color: white;
   }
+
   .summary-deadline {
     gap: 8px;
   }
@@ -275,6 +324,7 @@
     margin-left: 10px;
     margin-right: 10px;
   }
+
   .summary-header {
     margin: 0;
   }
@@ -284,31 +334,40 @@
   .summary-header-title {
     font-size: 34px;
   }
+
   .summary-header-text {
     font-size: 16px;
   }
+
   .summary-header img {
     margin: 0 0 0 31.5px;
   }
+
   .summary-tasks {
     align-items: center;
     gap: 10px;
   }
+
   .summary-main-line-middle {
     width: 305px;
   }
+
   .summary-main-tasks {
     gap: 10px;
   }
+
   .summary-card-mid-size {
     width: 150px;
   }
+
   .summary-card-big-size {
     gap: 16px;
   }
+
   .summary-main-line-bottom {
     gap: 3px;
   }
+
   .summary-card-small-size {
     width: 96px;
   }

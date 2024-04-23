@@ -10,6 +10,7 @@ async function initSummary() {
     loadSummary();
 }
 
+
 /**
  * Retrieves the username from local storage and displays it on the page.
  *
@@ -25,6 +26,7 @@ function showUserName() {
         userName.innerHTML = 'Guest';
     }
 }
+
 
 /**
  * Displays the username on mobile devices for a short duration before hiding it.
@@ -75,6 +77,7 @@ function greetUserTime(){
   return greeting;
 }
 
+
 /**
  * Function to handle upcoming urgent deadlines.
  *
@@ -94,6 +97,7 @@ function upcomingUrgentDeadline() {
     const nearestDate = findNearestDate(currentDate, urgentTasks);
     displayDueDate(nearestDate);
 }
+
 
 /**
  * Finds the nearest date to the current date from a list of tasks.
@@ -116,6 +120,7 @@ function findNearestDate(currentDate, tasks) {
     return nearestDate;
 }
 
+
 /**
  * Displays the formatted due date on the page.
  *
@@ -127,6 +132,7 @@ function displayDueDate(date) {
     const formattedDate = date.toLocaleDateString('en-US', options);
     document.getElementById('due-date').innerHTML = formattedDate;
 }
+
 
 /**
  * Calculates the number of tasks with the status 'todo' and updates the HTML element with the ID 'to-do-count' with the count.
@@ -143,6 +149,7 @@ function showToDos() {
     document.getElementById('to-do-count').innerHTML = totalToDos;
 }
 
+
 /**
  * Calculates the number of tasks with the status 'done' and updates the HTML element with the ID 'done-count' with the count.
  *
@@ -157,6 +164,7 @@ function showDone() {
     });
     document.getElementById('done-count').innerHTML = totalDone;
 }
+
 
 /**
  * Calculates the number of tasks with the priority 'Urgent' and updates the HTML element with the ID 'urgent-count' with the count.
@@ -173,6 +181,7 @@ function showUrgent() {
     document.getElementById('urgent-count').innerHTML = totalUrgent;
 }
 
+
 /**
  * Updates the HTML element with the ID 'task-total-count' to display the total number of tasks.
  *
@@ -181,6 +190,7 @@ function showUrgent() {
 function showTaksTotal() {
     document.getElementById('task-total-count').innerHTML = tasks.length;
 }
+
 
 /**
  * Calculates the number of tasks with the status 'inProgress' and updates the HTML element with the ID 'in-progress-count' with the count.
@@ -197,6 +207,7 @@ function showInProgress() {
     document.getElementById('in-progress-count').innerHTML = totalInProgress;
 }
 
+
 /**
  * Calculates the number of tasks with the status 'awaitFeedback' and updates the HTML element with the ID 'awaiting-feedback-count' with the count.
  *
@@ -211,6 +222,7 @@ function showAwaitFeedback() {
     });
     document.getElementById('awaiting-feedback-count').innerHTML = totalAwaitFeedback;
 }
+
 
 /**
  * Loads the summary by calling various functions to display the number of tasks in different states.
