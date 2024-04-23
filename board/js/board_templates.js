@@ -1,7 +1,7 @@
 function generateTodoHTML(element, subTaskDone) {
     return /*html*/`
         <div onclick="renderBigTodoHTML(${element['id']})" id="${element['id']}" draggable="true" ondragstart="startDragging(${element['id']})" class="task-card">
-            <span class="task-card-category">${element['category']}</span>
+            <span id="taskCardCategory${element['id']}" class="task-card-category">${element['category']}</span>
             <p class="task-card-title">${element['title']}</p>
             <p class="task-card-description">${element['description']}</p>
             <div id="loadBarContainer${element['id']}" class="load-bar-container">
@@ -24,9 +24,7 @@ function generateBigTodoHTML(element) {
     return /*html*/`
         <div id="bigTaskContainer" class="task-big-card">
             <div class="big-task-card-header">
-                <div class="big-task-card-category">
-                    ${element['category']}
-                </div>
+                <div id="taskBigCardCategory${element['id']}" class="big-task-card-category">${element['category']}</div>
                 <img onclick="showBigTodoHTML()" class="task-big-card-close" src="../assets/img/board_close.png" alt="">
             </div>
             <span class="big-task-card-title">${element['title']}</span>
@@ -53,7 +51,7 @@ function generateBigTodoHTML(element) {
             </div>
             <img onclick="deleteTask(${element.id})" class="btc-footer-img-delete" src="../assets/img/delete_default.png" alt="">
             <img src="../assets/img/big_card_separator.png" alt="">
-            <img onclick="toggleCSS()" class="btc-footer-img-edit" src="../assets/img/edit_default.png" alt="">
+            <img onclick="editTask(${element.id})" class="btc-footer-img-edit" src="../assets/img/edit_default.png" alt="">
         </div>
     `;
 }
