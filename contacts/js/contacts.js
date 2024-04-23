@@ -282,15 +282,16 @@ function addContactAndShowMessage(name, email, phone) {
         savePage('contacts', contacts);
     } else {
         setItem('contacts', contacts);
+
     }
     resetValues();
+    showContacts();
     if (window.innerWidth > 750) {
-        showContacts();
+        highlightContactByName(contact);
     } else {
         toggleMobileLeftContainerOrRightContainer()
     }
     displayContactDetails(contact);
-    highlightContactByName(contact);
     toggleContainersAndShowMessage();
 }
 
@@ -460,6 +461,9 @@ function deleteContact(contactEmail) {
         setItem('contacts', contacts);
     }
     showContacts();
+    if (window.innerWidth <= 750) {
+        goBackToLeftContainer()
+    }
 }
 
 
@@ -479,8 +483,13 @@ function saveEditContact() {
         setItem('contacts', contacts);
     }
     showContacts();
-    let animation = document.querySelector(`.animation${indexI}${indexJ}`);
-    animation.classList.add('contact-container-active');
+    if (window.innerWidth <= 750) {
+        document.querySelector('.mobile-edit-delete-container').classList.remove('show-container');
+        backgroundMobileEditDeleteContainer.style.display = 'none';
+    } else {
+        let animation = document.querySelector(`.animation${indexI}${indexJ}`);
+        animation.classList.add('contact-container-active');
+    }
 }
 
 

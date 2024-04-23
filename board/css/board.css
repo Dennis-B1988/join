@@ -147,7 +147,7 @@ h1 {
 
 .tasks-drag-and-drop {
   width: 25%;
-  min-height: 55vh;
+  height: 100%;
   gap: 5px;
 }
 .no-task-to-do {
@@ -230,7 +230,7 @@ h1 {
 }
 .add-task-container {
   height: 55vh;
-  width: 85%;
+  width: 525px;
   display: flex;
   transition: all 0.2s ease;
   transform: translateX(100%);
@@ -294,7 +294,7 @@ h1 {
   margin-top: 150px;
   margin-bottom: 90px;
   border-radius: 30px;
-  height: 70%;
+  height: 931px;
 
 }
 .task-information-board {

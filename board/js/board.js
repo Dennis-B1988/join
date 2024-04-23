@@ -251,3 +251,14 @@ async function completedSubTask(id, j) {
         }
     })
 }
+
+
+function toggleCSS() {
+    let disableCssData = document.querySelectorAll('.disableCssData');
+    let enableCssData = document.querySelectorAll('.enableCssData');
+    document.getElementById('changeName').innerHTML = "Ok";
+    disableCssData.forEach(disable => disable.disabled = true);
+    enableCssData.forEach(enable => enable.disabled = false);
+    showBigTodoHTML();
+    showAddTask();
+}

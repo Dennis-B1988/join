@@ -681,6 +681,17 @@
 }
 
 @media(max-width: 750px) {
+    #messageCreateContact {
+        transition: transform 0.2s ease;
+        transform: translateY(100%);
+        visibility: hidden;
+    }
+    
+    #messageCreateContact.show-message {
+        transform: translateY(0);
+        visibility: visible;
+    }
+
     .contact-description-big {
         transform: unset;
         visibility: unset;
