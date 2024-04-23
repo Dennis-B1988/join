@@ -10,9 +10,9 @@
     <link class="disableCssData" rel="stylesheet" href="../add_task/css/add_task_subtask_bottom.css" />
     <link class="disableCssData" rel="stylesheet" href="../add_task/css/add_task.css" />
     <link class="disableCssData" rel="stylesheet" href="../add_task/css/add_task_media.css" />
-    <link class="enableCssData" rel="stylesheet" href="./css/add_task_edit.css" disabled/>
-    <link class="enableCssData" rel="stylesheet" href="./css/add_task_media_edit.css" disabled/>
-    <link class="enableCssData" rel="stylesheet" href="./css/add_task_subtask_bottom_edit.css" disabled/>
+    <link class="enableCssData" rel="stylesheet" href="./css/add_task_subtask_bottom_edit.css" disabled />
+    <link class="enableCssData" rel="stylesheet" href="./css/add_task_edit.css" disabled />
+    <link class="enableCssData" rel="stylesheet" href="./css/add_task_media_edit.css" disabled />
     <link rel="stylesheet" href="./css/board.css" />
     <link rel="stylesheet" href="./css/board_media.css" />
     <link rel="shortcut icon" href="../assets/img/join_logo_blue.png" type="image/x-icon" />
@@ -69,7 +69,7 @@
 
       <div class="tasks-container">
         <div class="tasks-container-header-text-mobile">
-          <span>To do</span>
+          <span id="todoLink">To do</span>
           <img class="tasks-container-header-img" onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="" />
         </div>
         <div
@@ -80,7 +80,7 @@
           class="tasks-drag-and-drop"
         ></div>
         <div class="tasks-container-header-text-mobile">
-          <span>In progress</span>
+          <span id="inProgressLink">In progress</span>
           <img class="tasks-container-header-img" onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="" />
         </div>
         <div
@@ -91,7 +91,7 @@
           class="tasks-drag-and-drop"
         ></div>
         <div class="tasks-container-header-text-mobile">
-          <span>Await feedback</span>
+          <span id="awaitFeedbackLink">Await feedback</span>
           <img class="tasks-container-header-img" onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="" />
         </div>
         <div
@@ -102,7 +102,7 @@
           class="tasks-drag-and-drop"
         ></div>
         <div class="tasks-container-header-text-mobile">
-          <span>Done</span>
+          <span id="doneLink">Done</span>
         </div>
         <div
           ondrop="moveTo('done')"

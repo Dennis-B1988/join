@@ -29,8 +29,8 @@
   }
   .summary-user-message {
     width: 100%;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
@@ -152,7 +152,7 @@
   }
 }
 
-@media (max-width: 1300px) and (max-height: 970px) {
+@media (max-width: 1300px) and (max-height: 1010px) {
   .summary-user {
     width: 100%;
     position: absolute;

@@ -1,9 +1,11 @@
 async function initSummary() {
     await includeHTML();
     await loadData();
+    showUserName();
     initTemplate();   
     showUserName();
     showUserNameMobile();
+    greetUser();
     upcomingUrgentDeadline();
     loadSummary();
 }
@@ -14,11 +16,13 @@ async function initSummary() {
  * @return {void} This function does not return a value.
  */
 function showUserName() {
-    let userName = document.getElementById('userName');
+    let userName = document.getElementById('user-name');
     let index = parseFloat(loadPage('user'));
     if (localStorage.getItem('user') !== null) {
         let user = users[index];
         userName.innerHTML = user.name;
+    } else {
+        userName.innerHTML = 'Guest';
     }
 }
 
@@ -35,6 +39,30 @@ function showUserNameMobile(){
     setTimeout(function() {
         summaryUser.classList.add('hidden');
     }, 700);
+}
+
+
+function greetUser() {
+  const greeting = greetUserTime();
+
+  const greetingSpan = document.getElementById('user-greeting');
+  greetingSpan.innerHTML = greeting;
+}
+
+
+function greetUserTime(){
+  const now = new Date();
+  const hour = now.getHours();
+  let greeting;
+
+  if (hour >= 5 && hour < 12) {
+    greeting = 'Good Morning,';
+  } else if (hour >= 12 && hour < 18) {
+    greeting = 'Good Afternoon,';
+  } else {
+    greeting = 'Good Evening,';
+  }
+  return greeting;
 }
 
 /**

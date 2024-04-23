@@ -189,16 +189,6 @@ function getCurrentDate() {
 
 
 /**
- * Prevent the enter key from submitting the add task form.
- *
- * @listens event:DOMContentLoaded
- */
-document.addEventListener('DOMContentLoaded', function () {
-  stopFormSubmitOnEnter();
-});
-
-
-/**
  * Prevents the form from being submitted when the Enter key is pressed.
  *
  * @param {Event} event - The keypress event.
@@ -215,7 +205,9 @@ function stopFormSubmitOnEnter(){
 
 /**
  * Close all dropdowns when clicking outside of them.
+ * Prevent the enter key from submitting the add task form.
  *
+ * @listens event:DOMContentLoaded
  * @param {MouseEvent} event - The click event.
  * @return {void} This function does not return anything.
  */
@@ -226,4 +218,5 @@ document.addEventListener('DOMContentLoaded', function () {
     closeCategoryDropdownAnywhere(event, dropdownCategory);
     closeAssignedToDropdownAnywhere(event, dropdownAssignedTo);
   });
+  stopFormSubmitOnEnter();
 });
