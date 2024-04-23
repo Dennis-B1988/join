@@ -20,6 +20,9 @@
   .add-task-btn{
     display: none;
   }
+  .add-task{
+    display: none;
+  }
   .add-task-btn-href{
     display: flex;
   }
@@ -112,6 +115,7 @@
   .tasks-container-header-text-mobile{
     display: none !important;
   }
+  
    
 }
 
