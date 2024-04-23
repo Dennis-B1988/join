@@ -9,6 +9,7 @@ function createUserList() {
   renderUserList(assignedDropdown);
 }
 
+
 /**
  * Renders a user list in the dropdown.
  *
@@ -26,6 +27,7 @@ function renderUserList(assignedDropdown) {
     styleUserInitials(i);
   }
 }
+
 
 /**
  * Renders a user in the dropdown.
@@ -47,6 +49,7 @@ function renderUser(dropdown, userIndex, userName, initials) {
   dropdown.innerHTML += renderAssignedToDropdown(userIndex, userLabel, initials);
 }
 
+
 /**
  * Sets the background color of the element with the id `user-initials-${i}` to the color specified in `contacts[i].color`.
  *
@@ -56,6 +59,7 @@ function renderUser(dropdown, userIndex, userName, initials) {
 function styleUserInitials(i) {
   document.getElementById(`user-initials-${i}`).style.backgroundColor = contacts[i].color;
 }
+
 
 /**
  * Generates initials from a user's full name.
@@ -72,6 +76,7 @@ function generateInitials(user) {
   return initials;
 }
 
+
 /**
  * Toggles the display of the assigned to dropdown. If the dropdown is currently hidden, it is displayed and the assigned icon is changed. 
  * If the dropdown is currently displayed, it is hidden and the assigned icon is changed.
@@ -82,15 +87,39 @@ function assignedToDropdown() {
   let assignedToDropdown = document.getElementById('task-assigned-to-dropdown');
   let assignedToDropdownContainer = document.getElementById('task-assigned-to-dropdown-container');
   if (assignedToDropdown.style.display !== 'flex') {
-    assignedToDropdown.style.display = 'flex';
-    assignedToDropdownContainer.style.display = 'flex';
+    openAssignedToDropdown(assignedToDropdown, assignedToDropdownContainer);
     changeAssignedIcon();
   } else {
-    assignedToDropdown.style.display = 'none';
-    assignedToDropdownContainer.style.display = 'none';
+    closeAssignedToDropdown(assignedToDropdown, assignedToDropdownContainer);
     changeAssignedIcon();
   }
 }
+
+
+/**
+ * Sets the display property of the assignedToDropdown and assignedToDropdownContainer elements to 'flex'.
+ *
+ * @param {Element} assignedToDropdown - The assignedToDropdown element to be displayed.
+ * @param {Element} assignedToDropdownContainer - The assignedToDropdownContainer element to be displayed.
+ */
+function openAssignedToDropdown(assignedToDropdown, assignedToDropdownContainer) {
+  assignedToDropdown.style.display = 'flex';
+  assignedToDropdownContainer.style.display = 'flex';
+}
+
+
+/**
+ * Sets the display property of assignedToDropdown and assignedToDropdownContainer elements to 'none'.
+ *
+ * @param {Element} assignedToDropdown - The assignedToDropdown element to be hidden.
+ * @param {Element} assignedToDropdownContainer - The assignedToDropdownContainer element to be hidden.
+ * @return {void}
+ */
+function closeAssignedToDropdown(assignedToDropdown, assignedToDropdownContainer) {
+  assignedToDropdown.style.display = 'none';
+  assignedToDropdownContainer.style.display = 'none';
+}
+
 
 /**
  * Toggles the checkmark image and updates the assigned users list and display based on the given i.
@@ -113,6 +142,7 @@ function userCheckmark(i) {
   }
 }
 
+
 /**
  * Adds the user at the given index to the list of assigned users.
  *
@@ -122,6 +152,7 @@ function userCheckmark(i) {
 function addUserToAssignedUsers(i) {
   assignedUsers.push(contacts[i]);
 }
+
 
 /**
  * Removes a user from the list of assigned users.
@@ -134,6 +165,7 @@ function removeUserFromAssignedUsers(i) {
   if (userIndex !== -1) assignedUsers.splice(userIndex, 1);
 }
 
+
 /**
  * Sets the background color of the assigned dropdown item to a dark color and the text color of the assigned dropdown user to white.
  *
@@ -145,6 +177,7 @@ function checkedBackgroundDark(i) {
   document.getElementById(`assigned-dropdown-user-${i}`).style.color = 'rgb(255, 255, 255)';
 }
 
+
 /**
  * Set the background color of the assigned dropdown item to white and the text color to black.
  *
@@ -155,6 +188,7 @@ function checkedBackgroundWhite(i) {
   document.getElementById(`assigned-dropdown-item-${i}`).style.backgroundColor = 'rgb(255, 255, 255)';
   document.getElementById(`assigned-dropdown-user-${i}`).style.color = 'rgb(0, 0, 0)';
 }
+
 
 /**
  * Renders the list of assigned users by populating the 'assigned-to-users' element with user information and styling.
@@ -173,6 +207,7 @@ function displayUsers() {
   }
 }
 
+
 /**
  * Changes the assigned icon based on its current source.
  *
@@ -185,6 +220,7 @@ function changeAssignedIcon() {
   const dropdownOpen = '../assets/img/drop_down_mirror.png';
   dropdownIcon.src = dropdownIcon.src.endsWith('drop_down.png') ? dropdownOpen : dropdownClosed;
 }
+
 
 /**
  * Unchecks all the checkboxes by setting their source to an empty dark checkmark image, clears the assigned users array,
@@ -202,6 +238,7 @@ function uncheckAll() {
   document.getElementById('assigned-to-users').innerHTML = '';
 }
 
+
 /**
  * Sorts the usernames based on the current user, and updates the 'contacts' and 'assignedUsers' arrays accordingly.
  *
@@ -218,6 +255,7 @@ function sortUsernames() {
   }
 }
 
+
 /**
  * Sorts the contacts array based on the current user's name.
  *
@@ -231,6 +269,7 @@ function sortContacts(currentUser) {
     return firstUser.name.localeCompare(otherUser.name);
   });
 }
+
 
 /**
  * Sorts the assignedUsers array based on the currentUser's name.
@@ -246,6 +285,7 @@ function sortAssignedUsers(currentUser) {
   });
 }
 
+
 /**
  * Close assigned to dropdown when clicking outside of it.
  *
@@ -253,7 +293,7 @@ function sortAssignedUsers(currentUser) {
  * @param {HTMLElement} dropdown - The assigned to dropdown element.
  * @return {void}
  */
-function closeAssignedToDropdown(event, dropdown) {
+function closeAssignedToDropdownAnywhere(event, dropdown) {
   let clickedElement = event.target;
   let isDropdownClick = clickedElement.id === "task-assigned-to" ||
     clickedElement.id === "assigned-to-icon" ||

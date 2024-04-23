@@ -3,6 +3,7 @@ async function initBoard() {
     await loadData();
     await initTemplate();
     updateHTML();
+    createUserList();
     console.log(tasks)
 }
 

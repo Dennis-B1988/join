@@ -6,14 +6,20 @@ let categoryList = ['Technical Task', 'User Story'];
 let subtaskArray = [];
 let assignedUsers = [];
 
+
+/**
+ * Initializes the tasks functionality.
+ *
+ * @return {Promise<void>} A promise that resolves when the initialization is complete.
+ */
 async function initTasks() {
   getCurrentDate();
   await includeHTML();
   await loadData();
   await initTemplate();
   createUserList();
-  
 }
+
 
 /**
  * Handles form submission by retrieving input values and calling relevant functions based on conditions.
@@ -34,6 +40,7 @@ function onSubmit() {
   }
 }
 
+
 /**
  * Displays a success message and redirects to the board page after a short delay.
  *
@@ -47,19 +54,39 @@ function taskSuccess() {
   }, 1500);
 }
 
+
 /**
- * Adds a new task to the tasks array, saves it to local storage, and clears the task form.
+ * Executes a series of functions upon successful form submission.
  *
  * @param {string} title - The title of the task.
  * @param {string} description - The description of the task.
- * @param {string} date - The date of the task.
+ * @param {string} date - The due date of the task.
  * @param {string} category - The category of the task.
- * @param {string} priority - The priority of the task.
- * @param {string[]} subtaskArray - An array of subtasks for the task.
+ * @param {string} priority - The priority level of the task.
+ * @param {Array} subtaskArray - An array of subtasks associated with the task.
  * @return {void} This function does not return anything.
  */
 function submitSuccess(title, description, date, category, priority, subtaskArray) {
   const currentTimestamp = Math.floor(Date.now() / 1000);
+  pushTasks(currentTimestamp, title, description, date, priority, category, subtaskArray);
+  checkUser();
+  clearTaskForm();
+}
+
+
+/**
+ * Pushes a new task object into the tasks array with the provided details.
+ *
+ * @param {number} currentTimestamp - The timestamp of the task creation.
+ * @param {string} title - The title of the task.
+ * @param {string} description - The description of the task.
+ * @param {string} date - The due date of the task.
+ * @param {string} priority - The priority level of the task.
+ * @param {string} category - The category of the task.
+ * @param {Array} subtaskArray - An array of subtasks associated with the task.
+ * @return {void}
+ */
+function pushTasks(currentTimestamp, title, description, date, priority, category, subtaskArray) {
   tasks.push({
     "id": currentTimestamp,
     "title": title,
@@ -71,13 +98,22 @@ function submitSuccess(title, description, date, category, priority, subtaskArra
     "subtasks": subtaskArray,
     "status": 'todo',
   });
+}
+
+
+/**
+ * Checks the user type and saves or sets tasks accordingly.
+ *
+ * @return {void} This function does not return anything.
+ */
+function checkUser(){
   if (loadPage('guest') === 'guest') {
     savePage('tasks', tasks);
   } else {
     setItem('tasks', tasks);
   }
-  clearTaskForm();
 }
+
 
 /**
  * Checks if the title, date, or category input fields are empty and applies red border and error message if so.
@@ -102,6 +138,7 @@ function formFilled(title, date, category) {
   }
 }
 
+
 /**
  * Clears the task form by resetting the form elements and clearing the subtask list.
  * Also resets the styling of the required fields and unchecks all checkboxes.
@@ -122,6 +159,7 @@ function clearTaskForm() {
   subtaskArray = [];
 }
 
+
 /**
  * Generates the current date and sets it as the minimum value for the task date input field.
  *
@@ -138,226 +176,6 @@ function getCurrentDate() {
   }
 }
 
-/**
- * Sets the style for the urgent priority.
- *
- * @return {undefined} No return value.
- */
-function urgentStyle() {
-  urgentChangeClasses();
-  document.getElementById('urgent').style.background = '#FF3D00'
-  document.getElementById('urgent').style.color = '#FFFFFF'
-  document.getElementById('urgent-img').src = '../assets/img/urgent_white.png';
-  mediumDisable();
-  lowDisable();
-}
-
-/**
- * Sets the style for the medium priority.
- *
- * @return {undefined} No return value.
- */
-function mediumStyle() {
-  mediumChangeClasses();
-  document.getElementById('medium').style.background = '#FFA800'
-  document.getElementById('medium').style.color = '#FFFFFF'
-  document.getElementById('medium-img').src = '../assets/img/equal_white.png';
-  urgentDisable();
-  lowDisable();
-}
-
-/**
- * Sets the style for the low priority.
- *
- * @return {undefined} No return value.
- */
-function lowStyle() {
-  lowChangeClasses();
-  document.getElementById('low').style.background = '#7AE229'
-  document.getElementById('low').style.color = '#FFFFFF'
-  document.getElementById('low-img').src = '../assets/img/low_white.png';
-  urgentDisable();
-  mediumDisable();
-}
-
-/**
- * Changes the priority of a task to "Urgent".
- *
- * @return {void} 
- */
-function changePriorityUrgent() {
-  medium = low = false;
-  if (urgent) {
-    urgent = false;
-    document.getElementById('urgent').classList.add('prio-hover');
-    urgentRemoveStyle();
-    disablePriority();
-  } else {
-    urgent = true;
-    urgentStyle();
-  }
-}
-
-/**
- * Initializes tasks by calling various functions.
- *
- * @return {Promise<void>} Promise that resolves when all tasks are completed
- */
-function changePriorityMedium() {
-  urgent = low = false;
-  if (medium) {
-    medium = false;
-    document.getElementById('medium').classList.add('prio-hover');
-    mediumRemoveStyle();
-    disablePriority();
-  } else {
-    medium = true;
-    mediumStyle();
-  }
-}
-
-/**
- * Changes the priority of a task to "Low".
- *
- * @return {void} 
- */
-function changePriorityLow() {
-  urgent = medium = false;
-  if (low) {
-    low = false;
-    document.getElementById('low').classList.add('prio-hover');
-    lowRemoveStyle();
-    disablePriority();
-  } else {
-    low = true;
-    lowStyle();
-  }
-}
-
-/**
- * Changes the classes of the priority elements when the urgent priority is selected.
- *
- * @return {void} This function does not return anything.
- */
-function urgentChangeClasses() {
-  document.getElementById('urgent').classList.remove('prio-hover');
-  document.getElementById('medium').classList.add('prio-hover');
-  document.getElementById('low').classList.add('prio-hover');
-}
-
-/**
- * Changes the classes of the priority elements when the medium priority is selected.
- *
- * @return {void} This function does not return anything.
- */
-function mediumChangeClasses() {
-  document.getElementById('urgent').classList.add('prio-hover');
-  document.getElementById('medium').classList.remove('prio-hover');
-  document.getElementById('low').classList.add('prio-hover');
-}
-
-/**
- * Changes the classes of the priority elements when the low priority is selected.
- *
- * @return {void} This function does not return anything.
- */
-function lowChangeClasses() {
-  document.getElementById('urgent').classList.add('prio-hover');
-  document.getElementById('medium').classList.add('prio-hover');
-  document.getElementById('low').classList.remove('prio-hover');
-}
-
-/**
- * Removes the style for the urgent priority by setting the text color to black.
- *
- * @return {void} This function does not return anything.
- */
-function urgentRemoveStyle() {
-  if (urgent) {
-    document.getElementById('urgent').style.color = '#000000';
-  }
-}
-
-/**
- * Removes the style for the medium priority by setting the text color to black.
- *
- * @return {void} This function does not return anything.
- */
-function mediumRemoveStyle() {
-  if (medium) {
-    document.getElementById('medium').style.color = '#000000';
-  }
-}
-
-/**
- * Removes the style for the low priority by setting the text color to black.
- *
- * @return {void} This function does not return anything.
- */
-function lowRemoveStyle() {
-  if (low) {
-    document.getElementById('low').style.color = '#000000';
-  }
-}
-
-/**
- * Disables the urgent priority by setting the background color to white, text color to black,
- * and changing the image source to '../assets/img/urgent_red.png'.
- *
- * @return {void} This function does not return anything.
- */
-function urgentDisable() {
-  document.getElementById('urgent').style.background = '#FFFFFF'
-  document.getElementById('urgent').style.color = '#000000'
-  document.getElementById('urgent-img').src = '../assets/img/urgent_red.png';
-}
-
-/**
- * Disables the medium priority by setting the background color to white, text color to black,
- * and changing the image source to '../assets/img/equal_orange.png'.
- *
- * @return {void} This function does not return anything.
- */
-function mediumDisable() {
-  document.getElementById('medium').style.background = '#FFFFFF'
-  document.getElementById('medium').style.color = '#000000'
-  document.getElementById('medium-img').src = '../assets/img/equal_orange.png';
-}
-
-/**
- * Disables the low priority by setting the background color to white, text color to black,
- * and changing the image source to '../assets/img/low_green.png'.
- *
- * @return {void} This function does not return anything.
- */
-function lowDisable() {
-  document.getElementById('low').style.background = '#FFFFFF'
-  document.getElementById('low').style.color = '#000000'
-  document.getElementById('low-img').src = '../assets/img/low_green.png';
-}
-
-/**
- * Disables the priority selection by setting the `urgent`, `medium`, and `low` variables to `false`.
- * Also updates the background color and image source of the priority elements.
- *
- * @return {void} This function does not return anything.
- */
-function disablePriority() {
-  urgent = medium = low = false;
-  urgentDisable();
-  mediumDisable();
-  lowDisable();
-}
-
-/**
- * A function that determines the priority of a task based on the values of the `urgent`, `medium`, and `low` variables.
- *
- * @return {string|null} The priority of the task, which can be "Urgent", "Medium", "Low", or `null` if none of the variables are `true`.
- */
-function taskPriority() {
-  priority = urgent ? 'Urgent' : medium ? 'Medium' : low ? 'Low' : null;
-  return priority;
-}
 
 /**
  * Prevent the enter key from submitting the add task form.
@@ -368,6 +186,13 @@ document.addEventListener('DOMContentLoaded', function () {
   stopFormSubmitOnEnter();
 });
 
+
+/**
+ * Prevents the form from being submitted when the Enter key is pressed.
+ *
+ * @param {Event} event - The keypress event.
+ * @return {void} This function does not return anything.
+ */
 function stopFormSubmitOnEnter(){
   document.getElementById("add-task-form").addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
@@ -376,3 +201,18 @@ function stopFormSubmitOnEnter(){
   });
 }
 
+
+/**
+ * Close all dropdowns when clicking outside of them.
+ *
+ * @param {MouseEvent} event - The click event.
+ * @return {void} This function does not return anything.
+ */
+document.addEventListener('DOMContentLoaded', function () {
+  document.body.addEventListener("click", function (event) {
+    let dropdownCategory = document.getElementById("task-category-dropdown");
+    let dropdownAssignedTo = document.getElementById("task-assigned-to-dropdown");
+    closeCategoryDropdownAnywhere(event, dropdownCategory);
+    closeAssignedToDropdownAnywhere(event, dropdownAssignedTo);
+  });
+});

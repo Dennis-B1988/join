@@ -1,3 +1,10 @@
+/**
+ * Generates an HTML subtask list item with edit and delete icons.
+ *
+ * @param {Object} subtaskContent - The content of the subtask.
+ * @param {number} i - The index of the subtask.
+ * @return {string} The HTML string representing the subtask list item.
+ */
 function addSubtaskList(subtaskContent, i) {
     return /*html*/ `
         <div id="subtask-list-${i}" class="subtask-list">        
@@ -20,12 +27,29 @@ function addSubtaskList(subtaskContent, i) {
     `;
 }
 
-function changeSubtaskToInput(index, subtaskText){
+
+/**
+ * Generates an HTML input element with the given index and subtask text.
+ *
+ * @param {number} i - The index of the subtask.
+ * @param {string} subtaskText - The text of the subtask.
+ * @return {string} The HTML input element as a string.
+ */
+function changeSubtaskToInput(i, subtaskText){
     return /*html*/ `
-        <input type="text" id="edit-input-${index}" class="subtask-edit-input" value="${subtaskText}" onkeypress="saveEditedSubtaskOnEnter(event, ${index})" />
+        <input type="text" id="edit-input-${i}" class="subtask-edit-input" value="${subtaskText}" onkeypress="saveEditedSubtaskOnEnter(event, ${index})" />
     `;
 }
 
+
+/**
+ * Renders an assigned to dropdown item with the given index, user label, and initials.
+ *
+ * @param {number} i - The index of the dropdown item.
+ * @param {string} userLabel - The label of the user.
+ * @param {string} initials - The initials of the user.
+ * @return {string} The HTML for the assigned to dropdown item.
+ */
 function renderAssignedToDropdown(i, userLabel, initials) {
     return /*html*/ `
         <div onclick="userCheckmark(${i})" class="assigned-dropdown-item" id="assigned-dropdown-item-${i}">
@@ -40,6 +64,15 @@ function renderAssignedToDropdown(i, userLabel, initials) {
     `;
 }
 
+
+/**
+ * Renders an assigned to dropdown item with the given index, user label, and initials.
+ *
+ * @param {number} i - The index of the dropdown item.
+ * @param {string} userLabel - The label of the user.
+ * @param {string} initials - The initials of the user.
+ * @return {string} The HTML for the assigned to dropdown item.
+ */
 function renderAssignedToDropdownLoggedUser(i, user, initials) {
     return /*html*/ `
         <div onclick="userCheckmark(${i})" class="assigned-dropdown-item" id="assigned-dropdown-item-${i}">
@@ -54,6 +87,14 @@ function renderAssignedToDropdownLoggedUser(i, user, initials) {
     `;
 }
 
+
+/**
+ * Renders an assigned to users element with the given index and initials.
+ *
+ * @param {number} i - The index of the assigned user.
+ * @param {string} initials - The initials of the assigned user.
+ * @return {string} The HTML for the assigned to users element.
+ */
 function renderAssignedToUsers(i, initials){
     return /*html*/ `
         <div id="assigned-to-users-checked-${i}" class="assigned-to-users-checked">${initials}</div>
