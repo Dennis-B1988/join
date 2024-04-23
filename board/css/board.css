@@ -147,7 +147,7 @@ h1 {
 
 .tasks-drag-and-drop {
   width: 25%;
-  min-height: 55vh;
+  height: 100%;
   gap: 5px;
 }
 .no-task-to-do {
