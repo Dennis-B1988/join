@@ -282,15 +282,16 @@ function addContactAndShowMessage(name, email, phone) {
         savePage('contacts', contacts);
     } else {
         setItem('contacts', contacts);
+
     }
     resetValues();
+    showContacts();
     if (window.innerWidth > 750) {
-        showContacts();
+        highlightContactByName(contact);
     } else {
         toggleMobileLeftContainerOrRightContainer()
     }
     displayContactDetails(contact);
-    highlightContactByName(contact);
     toggleContainersAndShowMessage();
 }
 

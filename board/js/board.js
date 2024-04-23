@@ -250,3 +250,11 @@ async function completedSubTask(id, j) {
         }
     })
 }
+
+
+function toggleCSS() {
+    var links = document.querySelectorAll('.disableCssData');
+    links.forEach(link => link.disabled = true);
+    showBigTodoHTML();
+    showAddTask();
+}
