@@ -683,12 +683,12 @@
 @media(max-width: 750px) {
     #messageCreateContact {
         transition: transform 0.2s ease;
-        transform: translateX(100%);
+        transform: translateY(100%);
         visibility: hidden;
     }
     
     #messageCreateContact.show-message {
-        transform: translateX(0);
+        transform: translateY(0);
         visibility: visible;
     }
 
