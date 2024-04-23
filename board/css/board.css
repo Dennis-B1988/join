@@ -68,6 +68,28 @@ h1 {
   position: relative;
 }
 
+.find-task-input-mobile {
+  display: none;
+  background-color: white;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid #a8a8a8;
+  border-radius: 10px;
+  width: 312px;
+  gap: 10px;
+  padding-right: 25px;
+  position: relative;
+}
+
+.find-task-input-mobile input {
+  outline: none;
+  border: none;
+  height: 48px;
+  font-weight: 400;
+  font-size: 15px;
+  position: relative;
+}
+
 .search-img {
   position: absolute;
   top: 50%;
@@ -127,6 +149,7 @@ h1 {
 .tasks-container-header-text-mobile {
   display: flex !important;
   align-items: center !important;
+  margin-top: 40px;
   justify-content: space-between !important;
   width: 100% !important;
   text-align: start !important;

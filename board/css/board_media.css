@@ -13,6 +13,16 @@
   }
 }
 @media (max-width: 1000px) {
+  .tasks-container-header{
+    height: 30%;
+  }
+  .find-task-input-mobile{
+    display: flex;
+  }
+  
+  .find-task-input {
+    display: none;
+  }
   .section-board {
     padding-left: 20px;
     padding-right: 20px;
@@ -87,12 +97,10 @@
   .tasks-container-header-text-mobile{
     display: none !important;
   }
-  
+   
 }
+
 @media (max-width: 720px) {
-  .find-task-input {
-    display: none;
-  }
 }
 @media (max-width: 400px) {
   .add-task-btn span{
@@ -100,6 +108,9 @@
   }
   .add-task-btn{
     width: 50px;
+  }
+  .find-task-input-mobile{
+    width: 290px;
   }
 
 }
