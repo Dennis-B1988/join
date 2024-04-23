@@ -262,3 +262,7 @@ function toggleCSS() {
     showBigTodoHTML();
     showAddTask();
 }
+
+function redirectToTaskPage() {
+    window.location.href = "../../add_task/add_task.html";
+}

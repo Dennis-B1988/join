@@ -46,6 +46,28 @@ h1 {
 .add-task-btn:hover {
   background-color: #29abe2;
 }
+.add-task-btn-href {
+  width: 160px;
+  height: 48px;
+  border-radius: 10px;
+  text-align: center;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: white;
+  border: 1px;
+  background-color: #2a3647;
+
+}
+.add-task-btn-href span {
+  width: 92px;
+  font-weight: 600;
+  font-size: 20px;
+}
+.add-task-btn-href:hover {
+  background-color: #29abe2;
+}
 .find-task-input {
   background-color: white;
   display: flex;
@@ -315,7 +337,7 @@ h1 {
   background-color: white;
   margin-left: 150px;
   margin-right: 150px;
-  margin-top: 150px;
+  margin-top: 90px;
   margin-bottom: 90px;
   border-radius: 30px;
   height: 931px;

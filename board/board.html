@@ -49,6 +49,10 @@
             <span>Add task</span>
             <img src="../assets/img/add.png" alt="" />
           </div>
+          <div onclick="redirectToTaskPage()" class="add-task-btn-href">
+            <span>Add task</span>
+            <img src="../assets/img/add.png" alt="" />
+          </div>
         </div>
       </div>
       
@@ -123,10 +127,9 @@
         <div
           onclick="openOrCloseBigAddTask(event, 'backgroundAddTask')"
           id="backgroundAddTask"
-          class="background-add-task"
-        >
+          class="background-add-task">
           <div id="addTaskContainer" class="add-task add-task-container-mobile">
-            <div class="task-information">
+            <div class="task-information-board">
               <div class="task-top-container">
                 <h1 class="task-title">Add Task</h1>
                 <div class="task-form-container">
