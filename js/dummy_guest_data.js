@@ -25,9 +25,18 @@ let dummyTaskArray = [
         "priority": "Urgent",
         "category": "User Story",
         "subtasks": [
-            "Entwurf des Authentifizierungssystems",
-            "Integration in die Benutzeroberfläche",
-            "Tests und Fehlerbehebung"
+            {
+                "subtask": "Entwurf des Authentifizierungssystems",
+                "completed": false
+            },
+            {
+                "subtask": "Integration in die Benutzeroberfläche",
+                "completed": false
+            },
+            {
+                "subtask": "Tests und Fehlerbehebung",
+                "completed": false
+            }
         ],
         "status": "todo"
     },
@@ -47,9 +56,18 @@ let dummyTaskArray = [
         "priority": "Medium",
         "category": "Technical Task",
         "subtasks": [
-            "Datenbankanalyse",
-            "Optimierung der SQL-Abfragen",
-            "Überprüfung der Ergebnisse"
+            {
+                "subtask": "Datenbankanalyse",
+                "completed": false
+            },
+            {
+                "subtask": "Optimierung der SQL-Abfragen",
+                "completed": false
+            },
+            {
+                "subtask": "Überprüfung der Ergebnisse",
+                "completed": false
+            }
         ],
         "status": "todo"
     },
@@ -69,9 +87,18 @@ let dummyTaskArray = [
         "priority": "Low",
         "category": "User Story",
         "subtasks": [
-            "Design des Widgets",
-            "Implementierung der Funktionalitäten",
-            "Anpassungen basierend auf Feedback"
+            {
+                "subtask": "Design des Widgets",
+                "completed": false
+            },
+            {
+                "subtask": "Implementierung der Funktionalitäten",
+                "completed": false
+            },
+            {
+                "subtask": "Anpassungen basierend auf Feedback",
+                "completed": false
+            }
         ],
         "status": "todo"
     },
@@ -91,9 +118,18 @@ let dummyTaskArray = [
         "priority": "Urgent",
         "category": "Technical Task",
         "subtasks": [
-            "Auswahl geeigneter Zahlungsanbieter",
-            "Integration in die Checkout-Seite",
-            "Testen der Zahlungsabwicklung"
+            {
+                "subtask": "Auswahl geeigneter Zahlungsanbieter",
+                "completed": false
+            },
+            {
+                "subtask": "Integration in die Checkout-Seite",
+                "completed": false
+            },
+            {
+                "subtask": "Testen der Zahlungsabwicklung",
+                "completed": false
+            }
         ],
         "status": "todo"
     },
@@ -113,9 +149,18 @@ let dummyTaskArray = [
         "priority": "Medium",
         "category": "User Story",
         "subtasks": [
-            "Recherche zu aktuellen Datenschutzgesetzen",
-            "Überarbeitung der Richtlinientexte",
-            "Einholen rechtlicher Expertise"
+            {
+                "subtask": "Recherche zu aktuellen Datenschutzgesetzen",
+                "completed": false
+            },
+            {
+                "subtask": "Überarbeitung der Richtlinientexte",
+                "completed": false
+            },
+            {
+                "subtask": "Einholen rechtlicher Expertise",
+                "completed": false
+            }
         ],
         "status": "todo"
     }
