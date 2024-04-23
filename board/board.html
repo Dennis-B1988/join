@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="./css/board.css" />
     <link rel="stylesheet" href="./css/board_media.css" />
     <link rel="shortcut icon" href="../assets/img/join_logo_blue.png" type="image/x-icon" />
+    <script id="DragDropTouch" src="https://bernardo-castilho.github.io/DragDropTouch/DragDropTouch.js"></script>
     <script src="../templates/template.js"></script>
     <script src="../js/dummy_guest_data.js"></script>
     <script src="../js/config.js"></script>
@@ -48,11 +49,22 @@
             <span>Add task</span>
             <img src="../assets/img/add.png" alt="" />
           </div>
+          <div onclick="redirectToTaskPage()" class="add-task-btn-href">
+            <span>Add task</span>
+            <img src="../assets/img/add.png" alt="" />
+          </div>
         </div>
       </div>
+      
 
       <div class="tasks-container-header">
+        <div class="find-task-input-mobile">
+          <input id="findTask" oninput="searchTasks()" placeholder="Find Task" type="text" />
+          <img src="../assets/img/board-search-seperator.png" alt="" />
+          <img class="search-img" src="../assets/img/search.png" alt="" />
+        </div>
         <div class="tasks-container-header-text">
+          
           <span>To do</span>
           <img class="tasks-container-header-img" onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="" />
         </div>
@@ -115,10 +127,9 @@
         <div
           onclick="openOrCloseBigAddTask(event, 'backgroundAddTask')"
           id="backgroundAddTask"
-          class="background-add-task"
-        >
-          <div id="addTaskContainer" class="add-task add-task-container">
-            <div class="task-information">
+          class="background-add-task">
+          <div id="addTaskContainer" class="add-task add-task-container-mobile">
+            <div class="task-information-board">
               <div class="task-top-container">
                 <h1 class="task-title">Add Task</h1>
                 <div class="task-form-container">

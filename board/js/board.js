@@ -361,3 +361,8 @@ function onSubmitOrEditTask() {
         showBigTodoHTML();
     }
 }
+
+
+function redirectToTaskPage() {
+    window.location.href = "../../add_task/add_task.html";
+}

@@ -154,6 +154,7 @@ header {
   transform: scale(1.1);
   color: #29abe2;
 }
+
 .doard-header-dropdown-container {
   position: fixed;
   max-width: 1440px;
@@ -164,6 +165,7 @@ header {
   bottom: 0;
   z-index: 998;
 }
+
 .doard-header-dropdown {
   z-index: 999;
   position: absolute;
@@ -175,6 +177,7 @@ header {
   background-color: #2a3647;
   border-radius: 20px 0px 20px 20px;
 }
+
 .sub-div {
   text-align: center;
   display: flex;
@@ -188,13 +191,16 @@ header {
   gap: 50px;
   border-radius: 2px;
 }
+
 .sub-div:hover {
   background-color: #303d50;
   color: #fff;
 }
+
 .sub-div a {
   text-decoration: none;
 }
+
 #help-none {
   display: none;
 }
@@ -204,21 +210,26 @@ header {
     position: fixed;
     top: 0;
   }
+
   header {
     height: 80px;
     padding-left: 20px;
     padding-right: 20px;
   }
+
   .header-title {
     display: none;
   }
+
   .header-logo {
     display: block;
     width: 32px;
   }
+
   .header-username-img {
     display: none;
   }
+
   .side-bar {
     height: 80px;
     width: 100%;
@@ -232,20 +243,24 @@ header {
     padding: 0;
     font-size: 14px;
   }
+
   .side-bar-logo {
     display: none;
   }
+
   .side-bar-main {
     width: 100%;
     padding-left: 16px;
     padding-right: 16px;
   }
+
   .side-bar-container {
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
     gap: 0;
   }
+
   .category {
     height: 80px;
     width: 76px;
@@ -253,19 +268,24 @@ header {
     justify-content: center;
     padding: 8px 0px 8px 0px;
   }
+
   .category span {
     width: 80px;
     text-align: center;
   }
+
   .category:hover {
     border-radius: 10px;
   }
+
   .active {
     border-radius: 10px;
   }
+
   #help-none {
     display: unset;
   }
+
   .doard-header-dropdown {
     height: 200px;
   }
@@ -276,6 +296,7 @@ header {
     padding-left: 10px;
     padding-right: 10px;
   }
+
   .side-bar-main {
     padding-left: 10px;
     padding-right: 10px;
@@ -287,6 +308,7 @@ header {
     padding-left: 16px;
     padding-right: 16px;
   }
+
   .side-bar-main {
     padding-left: 16px;
     padding-right: 16px;

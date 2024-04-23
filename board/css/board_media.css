@@ -4,6 +4,10 @@
     padding-right: 20px;
 
   }
+  .add-task{
+    margin-left: 50px;
+    margin-right: 50px;
+  }
 }
 @media (max-width: 1050px) {
   .section-board {
@@ -13,8 +17,30 @@
   }
 }
 @media (max-width: 1000px) {
+  .add-task-btn{
+    display: none;
+  }
+  .background-add-task.show-background{
+    display: none;
+  }
+  .add-task{
+    display: none;
+  }
+  .add-task-btn-href{
+    display: flex;
+  }
+  .tasks-container-header{
+    height: 30%;
+  }
+  .find-task-input-mobile{
+    display: flex;
+  }
+  
+  .find-task-input {
+    display: none;
+  }
   .section-board {
-    padding-left: 20px;
+    padding-left: 15px;
     padding-right: 20px;
     margin-top: 80px;
   }
@@ -82,24 +108,31 @@
     content: url(../../assets/img/board_plus_button.png);
     height: 25px;
   }
+  .add-task{
+    width: 100%;
+    margin: 1px;
+  }
+  
 }
 @media (min-width: 1000px){
   .tasks-container-header-text-mobile{
     display: none !important;
   }
   
+   
 }
+
 @media (max-width: 720px) {
-  .find-task-input {
-    display: none;
-  }
 }
 @media (max-width: 400px) {
-  .add-task-btn span{
+  .add-task-btn-href span{
     display: none;
   }
-  .add-task-btn{
+  .add-task-btn-href{
     width: 50px;
+  }
+  .find-task-input-mobile{
+    width: 290px;
   }
 
 }
