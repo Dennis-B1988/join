@@ -1,8 +1,3 @@
-let currentDraggedElement;
-let currentIndex;
-let editId;
-
-
 async function initBoard() {
     getCurrentDate();
     await includeHTML();
@@ -12,6 +7,10 @@ async function initBoard() {
     createUserList();
     console.log(tasks)
 }
+
+
+let currentDraggedElement;
+let currentIndex;
 
 
 function updateHTML() {
@@ -29,9 +28,9 @@ function updateHTML() {
             subTaskProgressBar(element, subTaskDone)
             generateContacts(element)
             changePriority(element)
-            changeCategoryColor(element.id);
         }
     });
+    changeCategoryColor();
 }
 
 
@@ -69,7 +68,7 @@ function searchTasks() {
             document.getElementById(task['status']).innerHTML += generateTodoHTML(task, subTaskDone);
             subTaskProgressBar(task, subTaskDone)
             changePriority(task)
-            changeCategoryColor(task.id)
+            changeCategoryColor()
             generateContacts(task)
         })
         if (document.getElementById(task['status']).innerHTML === '') {
@@ -96,23 +95,15 @@ function startDragging(id) {
 }
 
 
-function changeCategoryColor(id) {
-    let category = document.getElementById(`taskCardCategory${id}`);
-        if (category.innerHTML === "User Story") {
-            category.style.backgroundColor = '#0038FF';
+function changeCategoryColor() {
+    let category = document.querySelectorAll('.task-card-category');
+    category.forEach(cate => {
+        if (cate.innerHTML === "User Story") {
+            cate.style.backgroundColor = '#1FD7C1';
         } else {
-            category.style.backgroundColor = '#1FD7C1';
+            cate.style.backgroundColor = '#0038FF';
         }
-}
-
-
-function changeBigCategoryColor(id) {
-    let bigCategory = document.getElementById(`taskBigCardCategory${id}`);
-        if (bigCategory.innerHTML === "User Story") {
-            bigCategory.style.backgroundColor = '#0038FF';
-        } else {
-            bigCategory.style.backgroundColor = '#1FD7C1';
-        }
+    })
 }
 
 
@@ -167,7 +158,6 @@ function removeHighlight(id) {
 function showAddTask() {
     document.getElementById('backgroundAddTask').classList.toggle('show-background');
     document.getElementById('addTaskContainer').classList.toggle('show-add-task');
-    clearTaskForm();
 }
 
 
@@ -183,7 +173,6 @@ function renderBigTodoHTML(id) {
     let element = tasks.filter(task => task['id'] === id)[0];
     document.getElementById('bigTaskContainerBackground').innerHTML = generateBigTodoHTML(element);
     changeBigPriority(element);
-    changeBigCategoryColor(element.id);
     for (let i = 0; i < element.assignedTo.length; i++) {
         const assignedContacts = element.assignedTo[i];
         let letters = lettersOfName(assignedContacts.name);
@@ -218,12 +207,8 @@ function openOrCloseBigBoard(event, id) {
 
 
 function openOrCloseBigAddTask(event, id) {
-    let changeName = document.getElementById('changeName');
     if (event.target.id === id) {
         showAddTask();
-        if (changeName.innerHTML === 'Ok') {
-            toggleCSS();
-        }
     }
 }
 
@@ -255,7 +240,7 @@ async function completedSubTask(id, j) {
     })
     setItem('tasks', tasks);
     tasks.forEach(task => {
-        if (task.id === id) {
+        if(task.id === id) {
             let subTaskDone = doneSubTasks(task.id);
             subTaskProgressBar(task, subTaskDone);
             task.subtasks.forEach((subTask, j) => {
@@ -271,97 +256,12 @@ async function completedSubTask(id, j) {
 function toggleCSS() {
     let disableCssData = document.querySelectorAll('.disableCssData');
     let enableCssData = document.querySelectorAll('.enableCssData');
-    let changeName = document.getElementById('changeName');
-    if (changeName.innerHTML === "Create Task") {
-        changeName.innerHTML = "Ok";
-    } else {
-        changeName.innerHTML = "Create Task";
-    }
-    disableCssData.forEach(disable => disable.disabled = !disable.disabled);
-    enableCssData.forEach(enable => enable.disabled = !enable.disabled);
-}
-
-
-function editTask(id) {
-    editId = id;
-    let taskTitle = document.getElementById('task-title');
-    let taskDescription = document.getElementById('task-description');
-    let taskDate = document.getElementById('task-date');
-    let taskCategory = document.getElementById('task-category');
+    document.getElementById('changeName').innerHTML = "Ok";
+    disableCssData.forEach(disable => disable.disabled = true);
+    enableCssData.forEach(enable => enable.disabled = false);
     showBigTodoHTML();
     showAddTask();
-    toggleCSS();
-    let currentTask = tasks.filter(task => task['id'] === id)[0];
-    currentTask['assignedTo'].forEach(subTask => {
-    if (tasks.includes(subTask)) {
-       return;
-    } else {
-        assignedUsers.push(subTask);
-    }
-    })
-    taskTitle.value = currentTask['title'];
-    taskDescription.value = currentTask['description'];
-    displayUsers();
-    taskDate.value = currentTask['date'];
-    if (currentTask['priority'] === "Low") {
-        changePriorityLow();
-    }
-    if (currentTask['priority'] === "Medium") {
-        medium = false;
-        changePriorityMedium();
-    }
-    if (currentTask['priority'] === "Urgent") {
-        changePriorityUrgent();
-    }
-    taskCategory.value = currentTask['category'];
-    currentTask.subtasks.forEach((subTask, i) => {
-        subtaskArray.push(subTask);
-        document.getElementById('task-subtasks-list').innerHTML += addSubtaskList(subTask, i);
-    })
 }
-
-
-async function saveEditTask() {
-    let taskTitle = document.getElementById('task-title');
-    let taskDescription = document.getElementById('task-description');
-    let taskDate = document.getElementById('task-date');
-    let taskCategory = document.getElementById('task-category');
-    let currentTask = tasks.filter(task => task['id'] === editId)[0];
-    currentTask['title'] = taskTitle.value;
-    currentTask['description'] = taskDescription.value;
-    currentTask['assignedTo'] = assignedUsers;
-    currentTask['date'] = taskDate.value;
-    if (medium) {
-        currentTask['priority'] = "Medium";
-    }
-    if (urgent) {
-        currentTask['priority'] = "Urgent";
-    }
-    if (low) {
-        currentTask['priority'] = "Low";
-    }
-    currentTask['category'] = taskCategory.value;
-    currentTask['subtasks'] = subtaskArray;
-    setItem('tasks', tasks);
-    await loadData();
-    updateHTML();
-}
-
-
-function onSubmitOrEditTask() {
-    let changeName = document.getElementById('changeName');
-    if (changeName.innerHTML === "Create Task") {
-        onsubmit();
-    } else {
-        saveEditTask();
-        toggleCSS();
-        showBigTodoHTML();
-        showAddTask();
-        renderBigTodoHTML(editId);
-        showBigTodoHTML();
-    }
-}
-
 
 function redirectToTaskPage() {
     window.location.href = "../../add_task/add_task.html";
