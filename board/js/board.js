@@ -29,7 +29,7 @@ function updateHTML() {
             changePriority(element)
         }
     });
-    changeCategoryColor()
+    changeCategoryColor();
 }
 
 
