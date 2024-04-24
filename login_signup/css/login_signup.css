@@ -30,11 +30,11 @@
 
 @keyframes fade-in-mobile {
     0% {
-        background-image: url(../assets/img/join_logo.png);
+        background-image: url(../../assets/img/join_logo.png);
     }
 
     100% {
-        background-image: url(../assets/img/join_logo_blue.png);
+        background-image: url(../../assets/img/join_logo_blue.png);
     }
 }
 
@@ -71,7 +71,7 @@
 }
 
 .logo-effect {
-    background-image: url(../assets/img/join_logo_blue.png);
+    background-image: url(../../assets/img/join_logo_blue.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;

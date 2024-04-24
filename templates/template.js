@@ -72,6 +72,8 @@ function extractInitials() {
         let nameParts = user.name.split(' ');
         let initials = nameParts.map(part => part.charAt(0)).join('');
         headerUsername.innerHTML = initials;
+    } else {
+        headerUsername.innerHTML = 'G';
     }
 }
 

@@ -10,7 +10,6 @@ async function initBoard() {
     await initTemplate();
     updateHTML();
     localStorage.removeItem('boardStatus');
-    // createUserList();
     console.log(tasks)
 }
 
