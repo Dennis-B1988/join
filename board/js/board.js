@@ -3,6 +3,19 @@ let currentIndex;
 let editId;
 
 
+/**
+ * Initializes the board functionality.
+ *
+ * This function performs the following steps:
+ * 1. Calls the `getCurrentDate` function to get the current date.
+ * 2. Calls the `includeHTML` function asynchronously to include HTML.
+ * 3. Calls the `loadData` function asynchronously to load data.
+ * 4. Calls the `initTemplate` function asynchronously to initialize the template.
+ * 5. Calls the `updateHTML` function to update the HTML.
+ * 6. Removes the 'boardStatus' item from the local storage.
+ *
+ * @return {Promise<void>} A promise that resolves when the board initialization is complete.
+ */
 async function initBoard() {
     getCurrentDate();
     await includeHTML();
@@ -10,31 +23,66 @@ async function initBoard() {
     await initTemplate();
     updateHTML();
     localStorage.removeItem('boardStatus');
-    console.log(tasks)
 }
 
 
+/**
+ * Updates the HTML for each task status.
+ *
+ * @return {void} This function does not return anything.
+ */
 function updateHTML() {
     let taskStatus = ['todo', 'inProgress', 'awaitFeedback', 'done'];
     taskStatus.forEach(status => {
-        let taskStatus = tasks.filter(task => task['status'] === status);
-        document.getElementById(status).innerHTML = '';
-        if (taskStatus.length === 0) {
-            document.getElementById(status).innerHTML = generateNoTasksToDo();
-        }
-        for (let i = 0; i < taskStatus.length; i++) {
-            const element = taskStatus[i];
-            let subTaskDone = doneSubTasks(element.id);
-            document.getElementById(status).innerHTML += generateTodoHTML(element, subTaskDone);
-            subTaskProgressBar(element, subTaskDone)
-            generateContacts(element)
-            changePriority(element)
-            changeCategoryColor(element.id);
-        }
+        
+        updateHTMLLoop(status);
     });
 }
 
 
+/**
+ * Updates the HTML for a specific task status.
+ *
+ * @param {string} status - The status of the tasks to update.
+ * @return {void} This function does not return anything.
+ */
+function updateHTMLLoop(status) {
+    let taskStatus = tasks.filter(task => task['status'] === status);
+    document.getElementById(status).innerHTML = '';
+    if (taskStatus.length === 0) {
+        document.getElementById(status).innerHTML = generateNoTasksToDo();
+    }
+    for (let i = 0; i < taskStatus.length; i++) {
+        const element = taskStatus[i];
+        let subTaskDone = doneSubTasks(element.id);
+        document.getElementById(status).innerHTML += generateTodoHTML(element, subTaskDone);
+        updateHTMLFunctions(element, subTaskDone);
+    }
+}
+
+
+/**
+ * Updates the HTML elements related to a task based on its status and subtask completion.
+ *
+ * @param {Object} element - The task object containing the necessary information.
+ * @param {number} subTaskDone - The number of completed subtasks for the task.
+ * @return {void} This function does not return anything.
+ */
+function updateHTMLFunctions(element, subTaskDone) {
+    subTaskProgressBar(element, subTaskDone)
+    generateContacts(element)
+    changePriority(element)
+    changeCategoryColor(element.id);
+}
+
+
+/**
+ * Updates the progress bar for a given subtask.
+ *
+ * @param {Object} element - The task object containing the subtasks.
+ * @param {number} subTaskDone - The number of completed subtasks.
+ * @return {void} This function does not return anything.
+ */
 function subTaskProgressBar(element, subTaskDone) {
     let loadWidth = subTaskDone === 0 ? 0 : 100 / element.subtasks.length * subTaskDone;
     document.getElementById(`loadBar${element['id']}`).style.width = `${loadWidth}%`;
@@ -46,6 +94,12 @@ function subTaskProgressBar(element, subTaskDone) {
 }
 
 
+/**
+ * Generates the contacts section for a task card footer based on the assigned contacts of the given element.
+ *
+ * @param {Object} element - The task object containing the assigned contacts.
+ * @return {void} This function does not return anything.
+ */
 function generateContacts(element) {
     let taskCardFooter = document.getElementById(`taskCardFooter${element.id}`);
     for (let j = 0; j < element.assignedTo.length; j++) {
@@ -58,23 +112,21 @@ function generateContacts(element) {
 }
 
 
+/**
+ * Searches for tasks based on the input in the specified container.
+ *
+ * @param {string} container - The ID of the container element.
+ * @return {void} This function does not return anything.
+ */
 function searchTasks(container) {
     let searchTasks = document.getElementById(container);
     tasks.forEach(task => {
         document.getElementById(task['status']).innerHTML = '';
         let filteredTasks = tasks.filter(task => task['title'].toLowerCase().includes(searchTasks.value.toLowerCase()) || task['description'].toLowerCase().includes(searchTasks.value.toLowerCase()));
         filteredTasks.forEach(task => {
-            document.getElementById(task['status']).innerHTML = '';
-            let subTaskDone = doneSubTasks(task.id);
-            document.getElementById(task['status']).innerHTML += generateTodoHTML(task, subTaskDone);
-            subTaskProgressBar(task, subTaskDone)
-            changePriority(task)
-            changeCategoryColor(task.id)
-            generateContacts(task)
+            searchTasksHTML(task);
         })
-        if (document.getElementById(task['status']).innerHTML === '') {
-            document.getElementById(task['status']).innerHTML = generateNoTasksToDo();
-        }
+        searchTasksHTMLGenerate(task);
     })
     if (searchTasks.value.length === 0) {
         updateHTML();
@@ -82,11 +134,53 @@ function searchTasks(container) {
 }
 
 
+/**
+ * Updates the HTML elements related to a task based on its status and subtask completion.
+ *
+ * @param {Object} task - The task object to update the HTML for.
+ * @return {void} This function does not return anything.
+ */
+function searchTasksHTML(task){
+    document.getElementById(task['status']).innerHTML = '';
+    let subTaskDone = doneSubTasks(task.id);
+    document.getElementById(task['status']).innerHTML += generateTodoHTML(task, subTaskDone);
+    subTaskProgressBar(task, subTaskDone);
+    changePriority(task);
+    changeCategoryColor(task.id);
+    generateContacts(task);
+}
+
+
+/**
+ * Generates the HTML content for a task if it is empty.
+ *
+ * @param {Object} task - The task object to generate HTML for.
+ * @return {void} This function does not return anything.
+ */
+function searchTasksHTMLGenerate(task){
+    if (document.getElementById(task['status']).innerHTML === '') {
+        document.getElementById(task['status']).innerHTML = generateNoTasksToDo();
+    }
+}
+
+
+/**
+ * Returns the initials of a given name.
+ *
+ * @param {string} name - The name to extract initials from.
+ * @return {string} The initials of the name, with each word's first letter capitalized and concatenated.
+ */
 function lettersOfName(name) {
     return name.split(' ').map(word => word[0].toUpperCase()).join('');
 }
 
 
+/**
+ * Starts the dragging process for a given element with the specified ID.
+ *
+ * @param {string} id - The ID of the element to start dragging.
+ * @return {void} This function does not return anything.
+ */
 function startDragging(id) {
     currentDraggedElement = id;
     currentIndex = tasks.findIndex(task => task.id === id);
@@ -96,6 +190,12 @@ function startDragging(id) {
 }
 
 
+/**
+ * Changes the background color of the category element based on its innerHTML value.
+ *
+ * @param {number} id - The id of the category element.
+ * @return {void} This function does not return anything.
+ */
 function changeCategoryColor(id) {
     let category = document.getElementById(`taskCardCategory${id}`);
         if (category.innerHTML === "User Story") {
@@ -106,6 +206,12 @@ function changeCategoryColor(id) {
 }
 
 
+/**
+ * Changes the background color of the big category element based on its innerHTML value.
+ *
+ * @param {number} id - The id of the big category element.
+ * @return {void} This function does not return anything.
+ */
 function changeBigCategoryColor(id) {
     let bigCategory = document.getElementById(`taskBigCardCategory${id}`);
         if (bigCategory.innerHTML === "User Story") {
@@ -116,6 +222,12 @@ function changeBigCategoryColor(id) {
 }
 
 
+/**
+ * Changes the priority of an element and updates the corresponding image source.
+ *
+ * @param {Object} element - The element to change the priority for.
+ * @return {void} This function does not return anything.
+ */
 function changePriority(element) {
     let priority = document.getElementById(`prioImg${element.id}`);
     if (element['priority'] === "Low") {
@@ -128,6 +240,11 @@ function changePriority(element) {
 }
 
 
+/**
+ * Generates the HTML content for displaying a message when there are no tasks to do.
+ *
+ * @return {string} The HTML content for the message.
+ */
 function generateNoTasksToDo() {
     return /*html*/`
         <div class="no-task-to-do">
@@ -137,11 +254,23 @@ function generateNoTasksToDo() {
 }
 
 
+/**
+ * Prevents the default behavior of the drag and drop event.
+ *
+ * @param {DragEvent} ev - The drag and drop event.
+ * @return {void} This function does not return anything.
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
 
+/**
+ * Moves a task to a specified category and updates the task list.
+ *
+ * @param {string} category - The category to move the task to.
+ * @return {void} This function does not return anything.
+ */
 function moveTo(category) {
     if (tasks[currentIndex]['id'] === currentDraggedElement) {
         tasks[currentIndex]['status'] = category;
@@ -154,224 +283,23 @@ function moveTo(category) {
 }
 
 
+/**
+ * Adds the 'drag-area-highlight' class to the element with the specified ID.
+ *
+ * @param {string} id - The ID of the element to highlight.
+ * @return {void} This function does not return anything.
+ */
 function highlight(id) {
     document.getElementById(id).classList.add('drag-area-highlight');
 }
 
 
+/**
+ * Removes the 'drag-area-highlight' class from the element with the specified ID.
+ *
+ * @param {string} id - The ID of the element to remove the highlight from.
+ * @return {void} This function does not return anything.
+ */
 function removeHighlight(id) {
     document.getElementById(id).classList.remove('drag-area-highlight');
-}
-
-
-function createTaskBoard(status) {
-    taskStatus = status;
-    showAddTask();
-}
-
-
-function showAddTask() {
-    document.getElementById('backgroundAddTask').classList.toggle('show-background');
-    document.getElementById('addTaskContainer').classList.toggle('show-add-task');
-    clearTaskForm();
-}
-
-
-function showBigTodoHTML() {
-    document.getElementById('bigTaskContainerBackground').classList.toggle('show-big-background');
-    setTimeout(() => {
-        document.getElementById('bigTaskContainer').classList.toggle('show-big-add-task');
-    }, 10);
-}
-
-
-function renderBigTodoHTML(id) {
-    let element = tasks.filter(task => task['id'] === id)[0];
-    document.getElementById('bigTaskContainerBackground').innerHTML = generateBigTodoHTML(element);
-    changeBigPriority(element);
-    changeBigCategoryColor(element.id);
-    for (let i = 0; i < element.assignedTo.length; i++) {
-        const assignedContacts = element.assignedTo[i];
-        let letters = lettersOfName(assignedContacts.name);
-        document.getElementById('bigTaskCardContactsContainer').innerHTML += generateBigTodoAssignedToHTML(assignedContacts, letters);
-    }
-    for (let j = 0; j < element.subtasks.length; j++) {
-        const subTask = element.subtasks[j];
-        let subTaskCompleted = subTask.completed ? '../assets/img/board_check_button.png' : '../assets/img/board_check_ectangle.png';
-        document.getElementById('btcFooterInput').innerHTML += generateBigTodoSubTasksHTML(j, subTaskCompleted, element);
-    }
-    showBigTodoHTML();
-}
-
-
-function changeBigPriority(element) {
-    let priority = document.getElementById(`prioBigImg${element.id}`);
-    if (element['priority'] === "Low") {
-        priority.src = '../assets/img/low_green.png';
-    } else if (element['priority'] === "Medium") {
-        priority.src = '../assets/img/equal_orange.png';
-    } else {
-        priority.src = '../assets/img/urgent_red.png';
-    }
-}
-
-
-function openOrCloseBigBoard(event, id) {
-    if (event.target.id === id) {
-        showBigTodoHTML();
-    }
-}
-
-
-function openOrCloseBigAddTask(event, id) {
-    let changeName = document.getElementById('changeName');
-    if (event.target.id === id) {
-        showAddTask();
-        if (changeName.innerHTML === 'Ok') {
-            toggleCSS();
-        }
-    }
-}
-
-
-function deleteTask(id) {
-    tasks.forEach(task => {
-        if (task['id'] === id) {
-            tasks.splice(tasks.indexOf(task), 1);
-        }
-    })
-    setItem('tasks', tasks);
-    loadData();
-    updateHTML();
-    showBigTodoHTML();
-}
-
-
-function doneSubTasks(id) {
-    let subTasks = tasks.filter(task => task['id'] === id)[0].subtasks;
-    return subTasks.filter(subTask => subTask['completed'] === true).length
-}
-
-
-async function completedSubTask(id, j) {
-    tasks.forEach(task => {
-        if (task.id === id) {
-            task.subtasks[j].completed = !task.subtasks[j].completed;
-        }
-    })
-    setItem('tasks', tasks);
-    tasks.forEach(task => {
-        if (task.id === id) {
-            let subTaskDone = doneSubTasks(task.id);
-            subTaskProgressBar(task, subTaskDone);
-            task.subtasks.forEach((subTask, j) => {
-                let subTaskCompleted = subTask.completed ? '../assets/img/board_check_button.png' : '../assets/img/board_check_ectangle.png';
-                document.getElementById(`btcFooterImg${j}`).src = subTaskCompleted;
-            })
-            document.getElementById(`subTaskDone${task['id']}`).innerHTML = `${subTaskDone}/${task.subtasks.length} Subtasks`;
-        }
-    })
-}
-
-
-function toggleCSS() {
-    let disableCssData = document.querySelectorAll('.disableCssData');
-    let enableCssData = document.querySelectorAll('.enableCssData');
-    let changeName = document.getElementById('changeName');
-    if (changeName.innerHTML === "Create Task") {
-        changeName.innerHTML = "Ok";
-    } else {
-        changeName.innerHTML = "Create Task";
-    }
-    disableCssData.forEach(disable => disable.disabled = !disable.disabled);
-    enableCssData.forEach(enable => enable.disabled = !enable.disabled);
-}
-
-
-function editTask(id) {
-    editId = id;
-    let taskTitle = document.getElementById('task-title');
-    let taskDescription = document.getElementById('task-description');
-    let taskDate = document.getElementById('task-date');
-    let taskCategory = document.getElementById('task-category');
-    showBigTodoHTML();
-    showAddTask();
-    toggleCSS();
-    let currentTask = tasks.filter(task => task['id'] === id)[0];
-    currentTask['assignedTo'].forEach(subTask => {
-    if (tasks.includes(subTask)) {
-       return;
-    } else {
-        assignedUsers.push(subTask);
-    }
-    })
-    taskTitle.value = currentTask['title'];
-    taskDescription.value = currentTask['description'];
-    displayUsers();
-    taskDate.value = currentTask['date'];
-    if (currentTask['priority'] === "Low") {
-        changePriorityLow();
-    }
-    if (currentTask['priority'] === "Medium") {
-        medium = false;
-        changePriorityMedium();
-    }
-    if (currentTask['priority'] === "Urgent") {
-        changePriorityUrgent();
-    }
-    taskCategory.value = currentTask['category'];
-    currentTask.subtasks.forEach((subTask, i) => {
-        subtaskArray.push(subTask);
-        document.getElementById('task-subtasks-list').innerHTML += addSubtaskList(subTask, i);
-    })
-}
-
-
-async function saveEditTask() {
-    let taskTitle = document.getElementById('task-title');
-    let taskDescription = document.getElementById('task-description');
-    let taskDate = document.getElementById('task-date');
-    let taskCategory = document.getElementById('task-category');
-    let currentTask = tasks.filter(task => task['id'] === editId)[0];
-    currentTask['title'] = taskTitle.value;
-    currentTask['description'] = taskDescription.value;
-    currentTask['assignedTo'] = assignedUsers;
-    currentTask['date'] = taskDate.value;
-    if (medium) {
-        currentTask['priority'] = "Medium";
-    }
-    if (urgent) {
-        currentTask['priority'] = "Urgent";
-    }
-    if (low) {
-        currentTask['priority'] = "Low";
-    }
-    currentTask['category'] = taskCategory.value;
-    currentTask['subtasks'] = subtaskArray;
-    setItem('tasks', tasks);
-    await loadData();
-    updateHTML();
-}
-
-
-function onSubmitOrEditTask() {
-    let changeName = document.getElementById('changeName');
-    if (changeName.innerHTML === "Create Task") {
-        onSubmit();
-        showAddTask();
-        updateHTML();
-    } else {
-        saveEditTask();
-        toggleCSS();
-        showBigTodoHTML();
-        showAddTask();
-        renderBigTodoHTML(editId);
-        showBigTodoHTML();
-    }
-}
-
-
-function redirectToTaskPage(boardStatus) {
-    savePage('boardStatus', boardStatus);
-    window.location.href = "../../add_task/add_task.html";
 }
