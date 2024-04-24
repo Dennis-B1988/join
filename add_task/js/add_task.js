@@ -35,7 +35,7 @@ function onSubmit() {
   taskPriority();
   if (title && date && category !== '') {
     submitSuccess(title, description, date, category, priority, subtaskArray);
-    taskSuccess();
+    window.location.href === '../add_task/add_task.html' ? taskSuccess() : null;
   } else {
     formFilled(title, date, category);
   }

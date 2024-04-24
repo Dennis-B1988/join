@@ -58,8 +58,8 @@ function generateContacts(element) {
 }
 
 
-function searchTasks() {
-    let searchTasks = document.getElementById('findTask');
+function searchTasks(container) {
+    let searchTasks = document.getElementById(container);
     tasks.forEach(task => {
         document.getElementById(task['status']).innerHTML = '';
         let filteredTasks = tasks.filter(task => task['title'].toLowerCase().includes(searchTasks.value.toLowerCase()) || task['description'].toLowerCase().includes(searchTasks.value.toLowerCase()));
@@ -358,6 +358,8 @@ function onSubmitOrEditTask() {
     let changeName = document.getElementById('changeName');
     if (changeName.innerHTML === "Create Task") {
         onSubmit();
+        showAddTask();
+        updateHTML();
     } else {
         saveEditTask();
         toggleCSS();
