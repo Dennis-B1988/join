@@ -2,52 +2,54 @@
   .section-board {
     padding-left: 250px;
     padding-right: 10px;
-
   }
-  
 }
+
 @media (max-width: 1211px) {
   .section-board {
     padding-left: 250px;
     padding-right: 20px;
-
   }
-  .add-task{
+  .add-task {
     margin-left: 50px;
     margin-right: 50px;
   }
 }
+
 @media (max-width: 1050px) {
   .section-board {
     padding-left: 240px;
     padding-right: 10px;
-
   }
 }
+
 @media (max-width: 1000px) {
-  .add-task-btn{
+  .add-task-btn {
     display: none;
   }
-  
-  .add-task-btn-href{
+
+  .add-task-btn-href {
     display: flex;
   }
-  .tasks-container-header{
+  
+  .tasks-container-header {
     height: 30%;
   }
-  .find-task-input-mobile{
+
+  .find-task-input-mobile {
     display: flex;
   }
-  
+
   .find-task-input {
     display: none;
   }
+
   .section-board {
     padding-left: 15px;
     padding-right: 20px;
     margin-top: 80px;
   }
-  .tasks-container-header-text{
+  .tasks-container-header-text {
     display: none;
   }
   .tasks-container {
@@ -85,12 +87,10 @@
     overflow: auto;
   }
 
-  
-
   .tasks-drag-and-drop {
     scrollbar-width: thin;
   }
-  .tasks-container-header-text-moible{
+  .tasks-container-header-text-moible {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -101,56 +101,53 @@
     font-size: 20px;
     color: #42526e;
   }
+
   .tasks-container-header-text-mobile img {
     height: 30px;
   }
+
   .tasks-container-header-text-mobile img:hover {
     cursor: pointer;
     content: url(../../assets/img/board_plus_button.png);
     height: 25px;
   }
-  .add-task{
+
+  .add-task {
     width: 80%;
     margin: 20px;
   }
-  
 }
-@media (min-width: 1000px){
-  .tasks-container-header-text-mobile{
+
+@media (min-width: 1000px) {
+  .tasks-container-header-text-mobile {
     display: none !important;
   }
-  
-   
 }
 
 @media (max-width: 720px) {
-  .add-task{
+  .add-task {
     width: 95%;
     margin: 20px;
   }
-  .task-bottom{
+  .task-bottom {
     right: 0;
-    
   }
 }
+
 @media (max-width: 428px) {
-  .task-bottom-container{
+  .task-bottom-container {
     right: 0px;
-    
   }
 }
+
 @media (max-width: 400px) {
-  .add-task-btn-href span{
+  .add-task-btn-href span {
     display: none;
   }
-  .add-task-btn-href{
+  .add-task-btn-href {
     width: 50px;
   }
-  .find-task-input-mobile{
+  .find-task-input-mobile {
     width: 290px;
   }
-
 }
-  
-
-
