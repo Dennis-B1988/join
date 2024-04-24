@@ -6,6 +6,9 @@ let categoryList = ['Technical Task', 'User Story'];
 let subtaskArray = [];
 let assignedUsers = [];
 let taskStatus = 'todo';
+if (localStorage.getItem('boardStatus') !== null) {
+  taskStatus = loadPage('boardStatus');
+}
 
 
 /**
@@ -35,7 +38,7 @@ function onSubmit() {
   taskPriority();
   if (title && date && category !== '') {
     submitSuccess(title, description, date, category, priority, subtaskArray);
-    window.location.href === '../add_task/add_task.html' ? taskSuccess() : null;
+    window.location.pathname === '/add_task/add_task.html' ? taskSuccess() : null;
   } else {
     formFilled(title, date, category);
   }

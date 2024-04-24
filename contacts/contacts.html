@@ -161,7 +161,7 @@
                 <input
                   type="text"
                   id="name"
-                  pattern="[A-Z][a-z]+ [A-Z][a-z]+"
+                  pattern="[A-ZÄÖÜ][a-zäöüß]+ [A-ZÄÖÜ][a-zäöüß]+"
                   title="Bitte geben Sie Ihren Vor- (Leerzeichen) Nachnamen ein, mit Großbuchstaben am Anfang jedes Namens."
                   placeholder="Name"
                   required
@@ -177,8 +177,8 @@
                 <input
                   type="tel"
                   id="phone"
-                  pattern="^\+\d{2}\s\d{4}\s\d{3}\s\d{2}\s\d{1}$"
-                  title="Bitte beachten Sie: Geben Sie Ihre Telefonnummer im internationalen Format ein (+xx xxxx xxx xx x)"
+                  pattern="[0-9]*"
+                  title="Bitte nur Zahlen eingeben"
                   placeholder="Phone"
                   required
                 />

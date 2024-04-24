@@ -356,12 +356,14 @@ function displayContactDetails(contact) {
  */
 function highlightContactByName(contact) {
     document.querySelectorAll('.contact-container').forEach(contactContainer => {
-        const firstSpan = contactContainer.querySelector('span');
-        if (firstSpan.innerHTML === contact.name) {
-            const parentElement = firstSpan.parentElement.parentElement;
-            parentElement.classList.add('contact-container-active');
-            parentElement.scrollIntoView({ behavior: 'auto', block: 'center' });
-        }
+        const emailSpan = contactContainer.querySelectorAll('.contact-email');
+        emailSpan.forEach(span => {
+            if (span.innerHTML === contact.email) {
+                const parentElement = span.parentElement.parentElement;
+                parentElement.classList.add('contact-container-active');
+                parentElement.scrollIntoView({ behavior: 'auto', block: 'center' });
+            }
+        })
     });
 }
 

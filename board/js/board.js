@@ -9,6 +9,7 @@ async function initBoard() {
     await loadData();
     await initTemplate();
     updateHTML();
+    localStorage.removeItem('boardStatus');
     // createUserList();
     console.log(tasks)
 }
@@ -371,6 +372,7 @@ function onSubmitOrEditTask() {
 }
 
 
-function redirectToTaskPage() {
+function redirectToTaskPage(boardStatus) {
+    savePage('boardStatus', boardStatus);
     window.location.href = "../../add_task/add_task.html";
 }

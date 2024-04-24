@@ -58,7 +58,6 @@
       </div>
     </div>
 
-
     <div class="tasks-container-header">
       <div class="find-task-input-mobile">
         <input id="findTaskMobile" oninput="searchTasks('findTaskMobile')" placeholder="Find Task" type="text" />
@@ -84,19 +83,19 @@
     <div class="tasks-container">
       <div class="tasks-container-header-text-mobile">
         <span id="todoLink">To do</span>
-        <img class="tasks-container-header-img" onclick="redirectToTaskPage()" src="../assets/img/plus_dark.png" alt="" />
+        <img class="tasks-container-header-img" onclick="redirectToTaskPage('todo')" src="../assets/img/plus_dark.png" alt="" />
       </div>
       <div ondrop="moveTo('todo')" ondragleave="removeHighlight('todo')"
         ondragover="allowDrop(event); highlight('todo')" id="todo" class="tasks-drag-and-drop"></div>
       <div class="tasks-container-header-text-mobile">
         <span id="inProgressLink">In progress</span>
-        <img class="tasks-container-header-img" onclick="redirectToTaskPage()" src="../assets/img/plus_dark.png" alt="" />
+        <img class="tasks-container-header-img" onclick="redirectToTaskPage('inProgress')" src="../assets/img/plus_dark.png" alt="" />
       </div>
       <div ondrop="moveTo('inProgress')" ondragleave="removeHighlight('inProgress')"
         ondragover="allowDrop(event); highlight('inProgress')" id="inProgress" class="tasks-drag-and-drop"></div>
       <div class="tasks-container-header-text-mobile">
         <span id="awaitFeedbackLink">Await feedback</span>
-        <img class="tasks-container-header-img" onclick="redirectToTaskPage()" src="../assets/img/plus_dark.png" alt="" />
+        <img class="tasks-container-header-img" onclick="redirectToTaskPage('awaitFeedback')" src="../assets/img/plus_dark.png" alt="" />
       </div>
       <div ondrop="moveTo('awaitFeedback')" ondragleave="removeHighlight('awaitFeedback')"
         ondragover="allowDrop(event); highlight('awaitFeedback')" id="awaitFeedback" class="tasks-drag-and-drop"></div>
