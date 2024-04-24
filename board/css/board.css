@@ -273,14 +273,7 @@ h1 {
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 999;
 }
-.add-task-container {
-  height: 55vh;
-  width: 525px;
-  display: flex;
-  transition: all 0.2s ease;
-  transform: translateX(100%);
-  visibility: hidden;
-}
+
 .add-task-container.show-add-task {
   transform: translateX(0);
   visibility: visible;
@@ -334,16 +327,7 @@ h1 {
   height: 42px;
   width: 42px;
 }
-.add-task {
-  background-color: white;
-  margin-left: 150px;
-  margin-right: 150px;
-  margin-top: 90px;
-  margin-bottom: 90px;
-  border-radius: 30px;
-  height: 931px;
 
-}
 .task-information-board {
   height: 100%;
   display: flex;
@@ -354,9 +338,6 @@ h1 {
 }
 .add-task-container {
   display: inline;
-}
-.task-bottom {
-  background-color: white;
 }
 #bigTaskContainerBackground {
   position: fixed;

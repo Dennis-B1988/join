@@ -20,12 +20,7 @@
   .add-task-btn{
     display: none;
   }
-  .background-add-task.show-background{
-    display: none;
-  }
-  .add-task{
-    display: none;
-  }
+  
   .add-task-btn-href{
     display: flex;
   }
@@ -109,8 +104,8 @@
     height: 25px;
   }
   .add-task{
-    width: 100%;
-    margin: 1px;
+    width: 80%;
+    margin: 20px;
   }
   
 }
@@ -123,6 +118,20 @@
 }
 
 @media (max-width: 720px) {
+  .add-task{
+    width: 95%;
+    margin: 20px;
+  }
+  .task-bottom{
+    right: 0;
+    
+  }
+}
+@media (max-width: 428px) {
+  .task-bottom-container{
+    right: 0px;
+    
+  }
 }
 @media (max-width: 400px) {
   .add-task-btn-href span{
