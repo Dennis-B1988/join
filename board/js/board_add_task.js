@@ -127,6 +127,7 @@ function openOrCloseBigAddTask(event, id) {
         showAddTask();
         if (changeName.innerHTML === 'Ok') {
             toggleCSS();
+            document.getElementById('taskCategory').style.pointerEvents = '';
         }
     }
 }
@@ -237,6 +238,7 @@ function toggleCSS() {
  * @return {void} This function does not return anything.
  */
 function editTask(id) {
+    document.getElementById('taskCategory').style.pointerEvents = 'none';
     editId = id;
     let taskTitle = document.getElementById('task-title');
     let taskDescription = document.getElementById('task-description');
@@ -413,6 +415,7 @@ function onSubmitOrEditTask() {
  * @return {void} This function does not return anything.
  */
 function changeToNormalTaskView() {
+    document.getElementById('taskCategory').style.pointerEvents = '';
     saveEditTask();
     toggleCSS();
     showBigTodoHTML();
