@@ -4,6 +4,7 @@
   max-width: 1440px;
   position: relative;
 }
+
 .add-task {
   background-color: white;
   margin-left: 150px;
@@ -12,8 +13,8 @@
   margin-bottom: 90px;
   border-radius: 30px;
   height: 931px;
-
 }
+
 .add-task-container {
   height: 80%;
   width: 525px;
@@ -22,6 +23,7 @@
   transform: translateX(100%);
   visibility: hidden;
 }
+
 .add-task-mobile {
   background-color: white;
   margin-left: 150px;
@@ -30,8 +32,8 @@
   margin-bottom: 90px;
   border-radius: 30px;
   height: 931px;
-
 }
+
 .add-task-container-mobile {
   height: 55vh;
   width: 525px;
