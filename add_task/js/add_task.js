@@ -5,6 +5,7 @@ let priority = null;
 let categoryList = ['Technical Task', 'User Story'];
 let subtaskArray = [];
 let assignedUsers = [];
+let taskStatus = 'todo';
 
 
 /**
@@ -96,7 +97,7 @@ function pushTasks(currentTimestamp, title, description, date, priority, categor
     "priority": priority,
     "category": category,
     "subtasks": subtaskArray,
-    "status": 'todo',
+    "status": taskStatus,
   });
 }
 

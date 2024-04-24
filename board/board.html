@@ -46,7 +46,7 @@
         </div>
         <br />
 
-        <div onclick="showAddTask()" class="add-task-btn">
+        <div onclick="createTaskBoard('todo')" class="add-task-btn">
           <span>Add task</span>
           <img src="../assets/img/add.png" alt="" />
         </div>
@@ -67,15 +67,15 @@
       <div class="tasks-container-header-text">
 
         <span>To do</span>
-        <img class="tasks-container-header-img" onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="" />
+        <img class="tasks-container-header-img" onclick="createTaskBoard('todo')" src="../assets/img/plus_dark.png" alt="" />
       </div>
       <div class="tasks-container-header-text">
         <span>In progress</span>
-        <img class="tasks-container-header-img" onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="" />
+        <img class="tasks-container-header-img" onclick="createTaskBoard('inProgress')" src="../assets/img/plus_dark.png" alt="" />
       </div>
       <div class="tasks-container-header-text">
         <span>Await feedback</span>
-        <img class="tasks-container-header-img" onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="" />
+        <img class="tasks-container-header-img" onclick="createTaskBoard('awaitFeedback')" src="../assets/img/plus_dark.png" alt="" />
       </div>
       <div class="tasks-container-header-text"><span>Done</span></div>
     </div>
@@ -83,19 +83,19 @@
     <div class="tasks-container">
       <div class="tasks-container-header-text-mobile">
         <span id="todoLink">To do</span>
-        <img class="tasks-container-header-img" onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="" />
+        <img class="tasks-container-header-img" onclick="createTaskBoard('todo')" src="../assets/img/plus_dark.png" alt="" />
       </div>
       <div ondrop="moveTo('todo')" ondragleave="removeHighlight('todo')"
         ondragover="allowDrop(event); highlight('todo')" id="todo" class="tasks-drag-and-drop"></div>
       <div class="tasks-container-header-text-mobile">
         <span id="inProgressLink">In progress</span>
-        <img class="tasks-container-header-img" onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="" />
+        <img class="tasks-container-header-img" onclick="createTaskBoard('inProgress')" src="../assets/img/plus_dark.png" alt="" />
       </div>
       <div ondrop="moveTo('inProgress')" ondragleave="removeHighlight('inProgress')"
         ondragover="allowDrop(event); highlight('inProgress')" id="inProgress" class="tasks-drag-and-drop"></div>
       <div class="tasks-container-header-text-mobile">
         <span id="awaitFeedbackLink">Await feedback</span>
-        <img class="tasks-container-header-img" onclick="showAddTask()" src="../assets/img/plus_dark.png" alt="" />
+        <img class="tasks-container-header-img" onclick="createTaskBoard('awaitFeedback')" src="../assets/img/plus_dark.png" alt="" />
       </div>
       <div ondrop="moveTo('awaitFeedback')" ondragleave="removeHighlight('awaitFeedback')"
         ondragover="allowDrop(event); highlight('awaitFeedback')" id="awaitFeedback" class="tasks-drag-and-drop"></div>

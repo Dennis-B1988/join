@@ -164,6 +164,12 @@ function removeHighlight(id) {
 }
 
 
+function createTaskBoard(status) {
+    taskStatus = status;
+    showAddTask();
+}
+
+
 function showAddTask() {
     document.getElementById('backgroundAddTask').classList.toggle('show-background');
     document.getElementById('addTaskContainer').classList.toggle('show-add-task');
@@ -351,7 +357,7 @@ async function saveEditTask() {
 function onSubmitOrEditTask() {
     let changeName = document.getElementById('changeName');
     if (changeName.innerHTML === "Create Task") {
-        onsubmit();
+        onSubmit();
     } else {
         saveEditTask();
         toggleCSS();
