@@ -8,14 +8,10 @@
   height: 931px;
 }
 .add-task-container {
-  height: 55vh;
   display: flex;
   transition: all 0.2s ease;
   transform: translateX(100%);
   visibility: hidden;
-}
-.task-top-container {
-  height: 70%;
 }
 
 @media (max-width: 1000px) {
