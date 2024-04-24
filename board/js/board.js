@@ -274,7 +274,11 @@ function allowDrop(ev) {
 function moveTo(category) {
     if (tasks[currentIndex]['id'] === currentDraggedElement) {
         tasks[currentIndex]['status'] = category;
-        setItem('tasks', tasks);
+        if (loadPage('guest') === 'guest') {
+            savePage('tasks', tasks);
+        } else {
+            setItem('tasks', tasks);
+        }
     }
     document.getElementById('findTask').value = '';
     loadData();

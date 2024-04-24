@@ -58,7 +58,7 @@ function renderBigTodoHTML(id) {
  * @param {Object} element - The big todo item object.
  * @return {void} This function does not return a value.
  */
-function renderBigTodoAssigned(element){
+function renderBigTodoAssigned(element) {
     for (let i = 0; i < element.assignedTo.length; i++) {
         const assignedContacts = element.assignedTo[i];
         let letters = lettersOfName(assignedContacts.name);
@@ -73,7 +73,7 @@ function renderBigTodoAssigned(element){
  * @param {Object} element - The big todo item object.
  * @return {void} This function does not return a value.
  */
-function renderBigSubTasks(element){
+function renderBigSubTasks(element) {
     for (let j = 0; j < element.subtasks.length; j++) {
         const subTask = element.subtasks[j];
         let subTaskCompleted = subTask.completed ? '../assets/img/board_check_button.png' : '../assets/img/board_check_ectangle.png';
@@ -144,7 +144,11 @@ function deleteTask(id) {
             tasks.splice(tasks.indexOf(task), 1);
         }
     })
-    setItem('tasks', tasks);
+    if (loadPage('guest') === 'guest') {
+        savePage('tasks', tasks);
+    } else {
+        setItem('tasks', tasks);
+    }
     loadData();
     updateHTML();
     showBigTodoHTML();
@@ -176,7 +180,11 @@ async function completedSubTask(id, j) {
             task.subtasks[j].completed = !task.subtasks[j].completed;
         }
     })
-    setItem('tasks', tasks);
+    if (loadPage('guest') === 'guest') {
+        savePage('tasks', tasks);
+    } else {
+        setItem('tasks', tasks);
+    }
     tasks.forEach(task => {
         completedSubTaskChecked(task, id);
     })
@@ -190,7 +198,7 @@ async function completedSubTask(id, j) {
  * @param {number} id - The id of the task containing the subtask.
  * @return {void} This function does not return anything.
  */
-function completedSubTaskChecked(task, id){
+function completedSubTaskChecked(task, id) {
     if (task.id === id) {
         let subTaskDone = doneSubTasks(task.id);
         subTaskProgressBar(task, subTaskDone);
@@ -251,7 +259,7 @@ function editTask(id) {
  * @param {Array} tasks - An array of task objects to check against.
  * @return {void} This function does not return anything.
  */
-function checkTaskSubtasks(currentTask, tasks) {  
+function checkTaskSubtasks(currentTask, tasks) {
     currentTask['assignedTo'].forEach(subTask => {
         if (tasks.includes(subTask)) {
             return;
@@ -268,7 +276,7 @@ function checkTaskSubtasks(currentTask, tasks) {
  * @param {Object} currentTask - The task object whose subtasks are being processed.
  * @return {void} This function does not return anything.
  */
-function editPushSubtasks(currentTask){
+function editPushSubtasks(currentTask) {
     currentTask.subtasks.forEach((subTask, i) => {
         subtaskArray.push(subTask);
         document.getElementById('task-subtasks-list').innerHTML += addSubtaskList(subTask, i);
@@ -303,7 +311,7 @@ function checkEditValues(taskTitle, taskDescription, taskDate, taskCategory, cur
  * @param {Object} currentTask - The task object to check the priority of.
  * @return {void} This function does not return anything.
  */
-function checkPriority(currentTask){
+function checkPriority(currentTask) {
     if (currentTask['priority'] === "Low") {
         changePriorityLow();
     }
@@ -330,8 +338,11 @@ async function saveEditTask() {
     let currentTask = tasks.filter(task => task['id'] === editId)[0];
     saveEditValues(currentTask, taskTitle, taskDescription, taskDate, taskCategory);
     updatePriorityOnSave(currentTask);
-    
-    setItem('tasks', tasks);
+    if (loadPage('guest') === 'guest') {
+        savePage('tasks', tasks);
+    } else {
+        setItem('tasks', tasks);
+    }
     await loadData();
     updateHTML();
 }
@@ -362,7 +373,7 @@ function saveEditValues(currentTask, taskTitle, taskDescription, taskDate, taskC
  * @param {Object} currentTask - The task object to update the priority of.
  * @return {void} This function does not return anything.
  */
-function updatePriorityOnSave(currentTask){
+function updatePriorityOnSave(currentTask) {
     if (medium) {
         currentTask['priority'] = "Medium";
     }
@@ -401,7 +412,7 @@ function onSubmitOrEditTask() {
  *
  * @return {void} This function does not return anything.
  */
-function changeToNormalTaskView(){
+function changeToNormalTaskView() {
     saveEditTask();
     toggleCSS();
     showBigTodoHTML();
