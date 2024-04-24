@@ -14,8 +14,9 @@
     transform: translateX(100%);
     visibility: hidden;
   }
-
-
+  .task-top-container {
+    height: 70%;
+  }
   @media (max-width: 1000px) {
   .background-add-task.show-background{
     display: none;
