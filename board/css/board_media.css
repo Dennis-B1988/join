@@ -148,6 +148,24 @@
     width: 90%;
     padding: 20px;
   }
+  .big-task-card-contacts-generate {
+    max-height: 110px;
+  }
+  .big-task-card-title{
+    margin:0;
+  }
+  .task-big-card {
+    height: 640px;
+  }
+  .big-task-card-title{
+    font-size: 40px;
+  }
+  .item{
+    padding: 0px;
+  }
+  .btc-footer-input{
+    min-height: 50px;
+  }
 }
 
 @media (max-width: 428px) {
@@ -155,7 +173,7 @@
     right: 0px;
   }
   .task-big-card{
-    padding: 20px 10px 10px 10px;
+    padding: 20px 20px 10px 20px;
     width: 100%;
   }
 }
