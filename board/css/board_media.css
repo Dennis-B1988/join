@@ -132,11 +132,31 @@
   .task-bottom {
     right: 0;
   }
+  .task-big-card{
+    margin: 0px 15px 0px 15px;
+    height: 640px;
+  }
+  .task-task-container{
+    /* overflow: auto; */
+    
+  }
+}
+@media (max-width: 550px) {
+  .task-big-card{
+    margin: 0px;
+    font-size: smaller;
+    width: 90%;
+    padding: 20px;
+  }
 }
 
 @media (max-width: 428px) {
   .task-bottom-container {
     right: 0px;
+  }
+  .task-big-card{
+    padding: 20px 10px 10px 10px;
+    width: 100%;
   }
 }
 
@@ -150,4 +170,5 @@
   .find-task-input-mobile {
     width: 290px;
   }
+  
 }
