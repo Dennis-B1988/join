@@ -9,7 +9,6 @@ async function initBoard() {
     await loadData();
     await initTemplate();
     updateHTML();
-    localStorage.removeItem('boardStatus');
     // createUserList();
     console.log(tasks)
 }
@@ -59,8 +58,8 @@ function generateContacts(element) {
 }
 
 
-function searchTasks(container) {
-    let searchTasks = document.getElementById(container);
+function searchTasks() {
+    let searchTasks = document.getElementById('findTask');
     tasks.forEach(task => {
         document.getElementById(task['status']).innerHTML = '';
         let filteredTasks = tasks.filter(task => task['title'].toLowerCase().includes(searchTasks.value.toLowerCase()) || task['description'].toLowerCase().includes(searchTasks.value.toLowerCase()));
@@ -162,12 +161,6 @@ function highlight(id) {
 
 function removeHighlight(id) {
     document.getElementById(id).classList.remove('drag-area-highlight');
-}
-
-
-function createTaskBoard(status) {
-    taskStatus = status;
-    showAddTask();
 }
 
 
@@ -301,7 +294,7 @@ function editTask(id) {
     let currentTask = tasks.filter(task => task['id'] === id)[0];
     currentTask['assignedTo'].forEach(subTask => {
     if (tasks.includes(subTask)) {
-    return;
+       return;
     } else {
         assignedUsers.push(subTask);
     }
@@ -358,9 +351,7 @@ async function saveEditTask() {
 function onSubmitOrEditTask() {
     let changeName = document.getElementById('changeName');
     if (changeName.innerHTML === "Create Task") {
-        onSubmit();
-        showAddTask();
-        updateHTML();
+        onsubmit();
     } else {
         saveEditTask();
         toggleCSS();
@@ -372,7 +363,6 @@ function onSubmitOrEditTask() {
 }
 
 
-function redirectToTaskPage(boardStatus) {
-    savePage('boardStatus', boardStatus);
+function redirectToTaskPage() {
     window.location.href = "../../add_task/add_task.html";
 }
