@@ -1,27 +1,26 @@
 .add-task {
-    background-color: white;
-    margin-left: 150px;
-    margin-right: 150px;
-    margin-top: 90px;
-    margin-bottom: 90px;
-    border-radius: 30px;
-    height: 931px;
-  
-  }
-  .add-task-container {
-    height: 55vh;
-    display: flex;
-    transition: all 0.2s ease;
-    transform: translateX(100%);
-    visibility: hidden;
-  }
-
-
-  @media (max-width: 1000px) {
-  .background-add-task.show-background{
+  background-color: white;
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-top: 90px;
+  margin-bottom: 90px;
+  border-radius: 30px;
+  height: 931px;
+}
+.add-task-container {
+  display: flex;
+  transition: all 0.2s ease;
+  transform: translateX(100%);
+  visibility: hidden;
+}
+.task-top-container {
+  height: 70%;
+}
+@media (max-width: 1000px) {
+  .background-add-task.show-background {
     display: none;
   }
-  .add-task{
+  .add-task {
     display: none;
   }
-}  
+}

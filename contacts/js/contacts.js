@@ -121,6 +121,15 @@ function toggleAnimation() {
 }
 
 
+/**
+ * Executes different functions based on the window width.
+ *
+ * @param {number} i - The index of the letter in the alphabet.
+ * @param {number} j - The index of the contact within the letter.
+ * @param {string} firstNameInitial - The initial of the first name of the contact.
+ * @param {string} lastNameInitial - The initial of the last name of the contact.
+ * @return {undefined} This function does not return a value.
+ */
 function desktopOrMobileFunction(i, j, firstNameInitial, lastNameInitial) {
     let windowWidth = window.innerWidth;
     if (windowWidth > 750) {
@@ -131,6 +140,15 @@ function desktopOrMobileFunction(i, j, firstNameInitial, lastNameInitial) {
 }
 
 
+/**
+ * Opens or closes a contact based on the provided parameters.
+ *
+ * @param {number} i - The index of the letter in the alphabet.
+ * @param {number} j - The index of the contact within the letter.
+ * @param {string} firstNameInitial - The initial of the first name of the contact.
+ * @param {string} lastNameInitial - The initial of the last name of the contact.
+ * @return {undefined} This function does not return a value.
+ */
 function mobileOpenOrCloseContact(i, j, firstNameInitial, lastNameInitial) {
     toggleMobileLeftContainerOrRightContainer();
     indexI = i;
@@ -142,6 +160,11 @@ function mobileOpenOrCloseContact(i, j, firstNameInitial, lastNameInitial) {
 }
 
 
+/**
+ * Toggles the display of the left and right containers on mobile devices.
+ *
+ * @return {void} This function does not return a value.
+ */
 function toggleMobileLeftContainerOrRightContainer() {
     document.querySelector('.left-container').style.display = 'none';
     document.querySelector('.right-container').style.display = 'unset';
@@ -152,6 +175,12 @@ function toggleMobileLeftContainerOrRightContainer() {
 }
 
 
+/**
+ * Sets the display style of various elements to show the left container and hide the right container,
+ * as well as hide the go back arrow, contact mobile line image, and menu contact option.
+ *
+ * @return {void} This function does not return a value.
+ */
 function goBackToLeftContainer() {
     document.querySelector('.left-container').style.display = 'unset';
     document.querySelector('.right-container').style = '';
@@ -162,6 +191,13 @@ function goBackToLeftContainer() {
 }
 
 
+/**
+ * Toggles the visibility of the mobile edit/delete container based on the event and ID.
+ *
+ * @param {Event} event - The event that triggered the function.
+ * @param {string} id - The ID of the element triggering the function.
+ * @return {void} This function does not return a value.
+ */
 function openOrCloseMobileEditDeleteContainer(event, id) {
     let backgroundMobileEditDeleteContainer = document.getElementById('backgroundMobileEditDeleteContainer');
     let targetElement = event.target;
@@ -436,94 +472,4 @@ function renderContacts(contactsContainer, contactsForLetter, i) {
             circle.style.backgroundColor = contact.color;
         });
     });
-}
-
-
-/**
- * Deletes a contact from the contacts list based on the provided contact email.
- *
- * @param {string} contactEmail - The email of the contact to be deleted.
- * @return {void} This function does not return a value.
- */
-function deleteContact(contactEmail) {
-    let email = document.getElementById('email');
-    if (contactEmail === 'contact.email') {
-        contactEmail = email.value;
-    }
-    const index = contacts.findIndex(contact => contact.email === contactEmail);
-    contacts.splice(index, 1);
-    document.getElementById('bigContactContainer').classList.remove('show-contact');
-    document.getElementById('bigContainer').classList.remove('show-background');
-    document.getElementById('smallContainer').classList.remove('show-add-contact');
-    if (loadPage('guest') === 'guest') {
-        savePage('contacts', contacts);
-    } else {
-        setItem('contacts', contacts);
-    }
-    showContacts();
-    if (window.innerWidth <= 750) {
-        goBackToLeftContainer()
-    }
-}
-
-
-/**
- * Saves the edited contact by updating the contact information, toggling the animation,
- * updating the contacts list in local storage, showing the updated contacts, and adding
- * the 'contact-container-active' class to the animation element.
- *
- * @return {void} This function does not return a value.
- */
-function saveEditContact() {
-    editContact();
-    toggleAnimation();
-    if (loadPage('guest') === 'guest') {
-        savePage('contacts', contacts);
-    } else {
-        setItem('contacts', contacts);
-    }
-    showContacts();
-    if (window.innerWidth <= 750) {
-        document.querySelector('.mobile-edit-delete-container').classList.remove('show-container');
-        backgroundMobileEditDeleteContainer.style.display = 'none';
-    } else {
-        let animation = document.querySelector(`.animation${indexI}${indexJ}`);
-        animation.classList.add('contact-container-active');
-    }
-}
-
-
-/**
- * Updates the contact details with the values from the input fields and displays them in the contact container.
- *
- * @param {none} none - This function does not take any parameters.
- * @return {void} This function does not return a value.
- */
-function editContact() {
-    let name = document.getElementById('name');
-    let email = document.getElementById('email');
-    let phone = document.getElementById('phone');
-    let contactName = document.getElementById('contactName');
-    let contactEmail = document.getElementById('contactEmail');
-    let contactPhone = document.getElementById('contactPhone');
-    findedContact[0].name = name.value;
-    findedContact[0].email = email.value;
-    findedContact[0].phone = phone.value;
-    contactName.innerHTML = name.value;
-    contactEmail.innerHTML = email.value;
-    contactPhone.innerHTML = phone.value;
-}
-
-
-/**
- * Submits the add or edit form and saves the contact information.
- *
- * @return {undefined} This function does not return a value.
- */
-function submitAddOrEdit() {
-    if (document.getElementById('editHeadline').style.display === '') {
-        saveEditContact();
-    } else {
-        saveContacts();
-    }
 }
