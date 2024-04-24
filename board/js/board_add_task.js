@@ -313,6 +313,7 @@ function checkEditValues(taskTitle, taskDescription, taskDate, taskCategory, cur
  */
 function checkPriority(currentTask) {
     if (currentTask['priority'] === "Low") {
+        low = false;
         changePriorityLow();
     }
     if (currentTask['priority'] === "Medium") {
@@ -320,6 +321,7 @@ function checkPriority(currentTask) {
         changePriorityMedium();
     }
     if (currentTask['priority'] === "Urgent") {
+        urgent = false;
         changePriorityUrgent();
     }
 }
