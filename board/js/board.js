@@ -184,9 +184,7 @@ function lettersOfName(name) {
 function startDragging(id) {
     currentDraggedElement = id;
     currentIndex = tasks.findIndex(task => task.id === id);
-    console.log(tasks[currentIndex].id)
     document.getElementById(tasks[currentIndex].id).classList.add('dragging')
-    console.log(currentIndex)
 }
 
 
