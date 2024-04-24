@@ -5,10 +5,10 @@
   }
   
   .task-big-card {
-    scrollbar-width: thin;
+       scrollbar-width: thin;
     margin: 0px 130px 0px 130px;
     border-radius: 30px;
-    height: 931px;
+    height: auto;
     max-height: 100%;
     width: 525px;
     display: flex;
@@ -198,5 +198,5 @@
   .big-task-card-contacts-generate{
     overflow: auto;
     scrollbar-width: thin;
-    max-height: 350px;
+    max-height: 225px;
   }
