@@ -9,7 +9,7 @@ async function initBoard() {
     await loadData();
     await initTemplate();
     updateHTML();
-    createUserList();
+    // createUserList();
     console.log(tasks)
 }
 

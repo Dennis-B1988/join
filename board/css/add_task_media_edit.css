@@ -46,7 +46,7 @@
   scrollbar-width: none;
   position: fixed;
   top: 50px;
-  bottom: 170px;
+  bottom: 120px;
 }
 .add-task-form {
   flex-direction: column;
@@ -74,12 +74,9 @@
 }
 .task-bottom-container {
   height: 90px;
-  padding-top: 75px;
-  padding-bottom: 16px;
-  padding-left: 20px;
-  padding-right: 20px;
   position: fixed;
-  bottom: 90px;
+  right: 30px;
+  bottom: 5px;
   z-index: 500;
 }
 .task-bottom {
