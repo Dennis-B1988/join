@@ -301,7 +301,7 @@ function editTask(id) {
     let currentTask = tasks.filter(task => task['id'] === id)[0];
     currentTask['assignedTo'].forEach(subTask => {
     if (tasks.includes(subTask)) {
-       return;
+    return;
     } else {
         assignedUsers.push(subTask);
     }
