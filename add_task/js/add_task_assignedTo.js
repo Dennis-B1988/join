@@ -16,6 +16,19 @@ function createUserList() {
  * @param {HTMLElement} assignedDropdown - The dropdown element to render the user list in.
  * @return {void} This function does not return anything.
  */
+// function renderUserList(assignedDropdown) {
+//   sortUsernames();
+
+//   for (let i = 0; i < contacts.length; i++) {
+//     let user = contacts[i].name;
+//     let initials = generateInitials(user);
+
+//     renderUser(assignedDropdown, i, user, initials);
+//     styleUserInitials(i);
+//   }
+// }
+
+
 function renderUserList(assignedDropdown) {
   sortUsernames();
 
@@ -25,6 +38,7 @@ function renderUserList(assignedDropdown) {
 
     renderUser(assignedDropdown, i, user, initials);
     styleUserInitials(i);
+    checkIfMarked(user, i);
   }
 }
 
@@ -87,6 +101,7 @@ function assignedToDropdown() {
   let assignedToDropdown = document.getElementById('task-assigned-to-dropdown');
   let assignedToDropdownContainer = document.getElementById('task-assigned-to-dropdown-container');
   if (assignedToDropdown.style.display !== 'flex') {
+    createUserList();
     openAssignedToDropdown(assignedToDropdown, assignedToDropdownContainer);
     changeAssignedIcon();
   } else {
@@ -209,6 +224,24 @@ function displayUsers() {
 
 
 /**
+ * Checks if a user is marked and updates the checkmark image accordingly.
+ *
+ * @param {string} user - The user to check.
+ * @param {number} i - The index of the user.
+ * @return {void} This function does not return anything.
+ */
+function checkIfMarked(user, i){
+  for(let j = 0; j < assignedUsers.length; j++){
+    if(user === assignedUsers[j].name){
+      const checkmark = document.getElementById(`checkmark-${i}`);
+      checkmark.src = '../assets/img/checkmark_checked_white.png';
+      checkedBackgroundDark(i);
+    }
+  }
+}
+
+
+/**
  * Changes the assigned icon based on its current source.
  *
  * @param {string} id - The id of the assigned icon element.
@@ -229,11 +262,11 @@ function changeAssignedIcon() {
  * @return {undefined} This function does not return a value.
  */
 function uncheckAll() {
-  for (let i = 0; i < contacts.length; i++) {
-    const checkmark = document.getElementById(`checkmark-${i}`);
-    checkmark.src = '../assets/img/checkmark-empty_dark.png';
-    checkedBackgroundWhite(i);
-  }
+  // for (let i = 0; i < contacts.length; i++) {
+  //   const checkmark = document.getElementById(`checkmark-${i}`);
+  //   checkmark.src = '../assets/img/checkmark-empty_dark.png';
+  //   checkedBackgroundWhite(i);
+  // }
   assignedUsers = [];
   document.getElementById('assigned-to-users').innerHTML = '';
 }
@@ -305,3 +338,20 @@ function closeAssignedToDropdownAnywhere(event, dropdown) {
     document.getElementById('assigned-to-icon').src = '../assets/img/drop_down.png';
   }
 }
+
+
+
+
+
+// function TestrenderUserList(assignedDropdown) {
+//   sortUsernames();
+
+//   for (let i = 0; i < contacts.length; i++) {
+//     let user = contacts[i].name;
+//     let initials = generateInitials(user);
+
+//     renderUser(assignedDropdown, i, user, initials);
+//     styleUserInitials(i);
+//     checkIfMarked();
+//   }
+// }
