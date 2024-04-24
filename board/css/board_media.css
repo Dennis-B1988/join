@@ -1,3 +1,11 @@
+@media (max-width: 1500px) {
+  .section-board {
+    padding-left: 250px;
+    padding-right: 10px;
+
+  }
+  
+}
 @media (max-width: 1211px) {
   .section-board {
     padding-left: 250px;
@@ -77,12 +85,10 @@
     overflow: auto;
   }
 
-  .tasks-drag-and-drop::-webkit-scrollbar {
-    display: none;
-  }
+  
 
   .tasks-drag-and-drop {
-    scrollbar-width: none;
+    scrollbar-width: thin;
   }
   .tasks-container-header-text-moible{
     display: flex;

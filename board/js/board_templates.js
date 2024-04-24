@@ -41,7 +41,7 @@ function generateBigTodoHTML(element) {
             <div style="height: auto;">
                 <p>Assigned To:</p>
                 <br>
-                <div id="bigTaskCardContactsContainer"></div>
+                <div class="big-task-card-contacts-generate" id="bigTaskCardContactsContainer"></div>
             </div>
             <p>Subtasks</p>
             <br>
