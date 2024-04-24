@@ -191,7 +191,7 @@ h1 {
 }
 
 .tasks-drag-and-drop {
-  width: 25%;
+  width: 22%;
   height: 100%;
   gap: 5px;
 }
@@ -235,16 +235,17 @@ h1 {
   align-items: center;
   background-color: #0038ff;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 15px;
   border-radius: 8px;
   color: white;
   padding: 10px 25px 10px 25px;
   /* padding: 4px, 16px, 4px, 16px; */
-  height: 27px;
+  min-height: 27px;
   width: fit-content;
 }
 .task-card-title {
   font-weight: 700;
+  word-wrap: break-word;
   font-size: 16px;
   color: #2a3647;
   box-sizing: border-box;
@@ -358,9 +359,11 @@ h1 {
   z-index: 999;
 }
 .task-big-card {
+  scrollbar-width: thin;
   margin: 0px 130px 0px 130px;
   border-radius: 30px;
   height: auto;
+  max-height: 100%;
   width: 525px;
   display: flex;
   flex-direction: column;
@@ -462,6 +465,9 @@ h1 {
   font-size: 13px;
 }
 .btc-footer-input {
+  overflow: auto;
+  scrollbar-width: thin;
+  max-height: 250px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -519,4 +525,9 @@ h1 {
   cursor: pointer;
   height: 22px;
   content: url(../../assets/img/edit_hover.png);
+}
+.big-task-card-contacts-generate{
+  overflow: auto;
+  scrollbar-width: thin;
+  max-height: 350px;
 }
