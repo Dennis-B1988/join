@@ -11,24 +11,11 @@ function createUserList() {
 
 
 /**
- * Renders a user list in the dropdown.
+ * Renders a user list in the assigned to dropdown.
  *
  * @param {HTMLElement} assignedDropdown - The dropdown element to render the user list in.
  * @return {void} This function does not return anything.
  */
-// function renderUserList(assignedDropdown) {
-//   sortUsernames();
-
-//   for (let i = 0; i < contacts.length; i++) {
-//     let user = contacts[i].name;
-//     let initials = generateInitials(user);
-
-//     renderUser(assignedDropdown, i, user, initials);
-//     styleUserInitials(i);
-//   }
-// }
-
-
 function renderUserList(assignedDropdown) {
   sortUsernames();
 
@@ -338,20 +325,3 @@ function closeAssignedToDropdownAnywhere(event, dropdown) {
     document.getElementById('assigned-to-icon').src = '../assets/img/drop_down.png';
   }
 }
-
-
-
-
-
-// function TestrenderUserList(assignedDropdown) {
-//   sortUsernames();
-
-//   for (let i = 0; i < contacts.length; i++) {
-//     let user = contacts[i].name;
-//     let initials = generateInitials(user);
-
-//     renderUser(assignedDropdown, i, user, initials);
-//     styleUserInitials(i);
-//     checkIfMarked();
-//   }
-// }
