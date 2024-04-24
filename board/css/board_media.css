@@ -136,11 +136,8 @@
     margin: 0px 15px 0px 15px;
     height: 640px;
   }
-  .task-task-container{
-    /* overflow: auto; */
-    
-  }
 }
+
 @media (max-width: 550px) {
   .task-big-card{
     margin: 0px;
