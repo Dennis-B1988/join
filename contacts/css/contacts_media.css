@@ -263,29 +263,23 @@
     top: 55%;
   }
 
-    .add-contact-left {
-        height: 45%;
-    }
+  .add-contact-left {
+    height: 45%;
+  }
 
-    .add-contact-right {
-        height: 55%;
-    }
+  .add-contact-right {
+    height: 55%;
+  }
 
-    .circle-big {
-        width: 70px;
-        height: 70px;
-        font-size: 27px;
-        top: 45%;
-    }
-
-    .add-contact-right-contact-icon {
-        height: 70px;
-        top: 45%;
-    }
-}
   .circle-big {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     font-size: 27px;
+    top: 45%;
+  }
+
+  .add-contact-right-contact-icon {
+    height: 70px;
+    top: 45%;
   }
 }
