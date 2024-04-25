@@ -87,12 +87,13 @@ async function loadData() {
 }
 
 
-/**
- * Navigates the browser history back by one step.
- *
- */
+
 function goBack() {
-    window.history.back();
+    if (document.querySelector('.side-bar-container').style.opacity === '0') {
+        window.close();
+    } else {
+        window.history.back();
+    }
 }
 
 

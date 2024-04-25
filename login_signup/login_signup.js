@@ -15,6 +15,7 @@ async function initLogin() {
 function removePageFromLocalStorage() {
     if (window.location.pathname === '/index.html') {
         localStorage.removeItem('page');
+        localStorage.removeItem('noPage');
         localStorage.removeItem('user');
         localStorage.removeItem('guest');
     }
@@ -34,19 +35,6 @@ function animationLogo() {
 
 
 /**
- * Shows the current information from the login page.
- *
- * @param {string} comeFromPage - The page the user came from.
- * @return {void} This function does not return a value.
- */
-function showCurrentInformationFromLogin() {
-    let comeFromPage = loadPage('page');
-    document.querySelector('.side-bar-container').style.opacity = comeFromPage === 'page' ? '0' : '1';
-    document.querySelector('.side-bar-container').style.pointerEvents = comeFromPage === 'page' ? 'none' : '';
-}
-
-
-/**
  * Logs in a user by checking if the provided email and password match any existing user in the system.
  * If a match is found, the user is remembered and validated. If no match is found, an error message is displayed.
  *
@@ -61,6 +49,7 @@ function userLogin() {
     if (index === -1) {
         showErrorMessage(emailLogin, noMatchEmailLogin);
     } else {
+        localStorage.removeItem('noPage');
         rememberMeUser(index);
         userLoginValidation(index, emailLogin, passwordLogin, noMatchEmailLogin, noMatchPasswordLogin);
     }
@@ -442,6 +431,7 @@ function showSignupAnimation(signupAnimation, saveSignup) {
  * @return {void} This function does not return a value.
  */
 function loginAsGuest() {
+    localStorage.removeItem('noPage');
     savePage('guest', 'guest');
     localStorage.removeItem('user');
 }
