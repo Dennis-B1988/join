@@ -153,6 +153,7 @@ function clearTaskForm() {
   document.getElementById("task-subtasks-list").innerHTML = '';
   removeRequiredStyles();
   uncheckAll();
+  changePriorityMedium();
   subtaskCount = 0;
   subtaskArray = [];
 }
