@@ -2,7 +2,7 @@ let dummyUserArray = [
     {
         'name': 'Guest',
         'email': 'guest@example.com',
-        'phone': '+11 5555 123 45 6',
+        'phone': '115555123456',
         'color': '#808080',
     }
 ];
@@ -17,7 +17,7 @@ let dummyTaskArray = [
             {
                 "name": "John Doe",
                 "email": "john.doe@example.com",
-                "phone": "+1 555 123456",
+                "phone": "1555123456",
                 "color": "#FF5733"
             }
         ],
@@ -48,7 +48,7 @@ let dummyTaskArray = [
             {
                 "name": "Emily Johnson",
                 "email": "emily.johnson@example.com",
-                "phone": "+1 555 246810",
+                "phone": "1555246810",
                 "color": "#8C33FF"
             }
         ],
@@ -79,7 +79,7 @@ let dummyTaskArray = [
             {
                 "name": "Michael Taylor",
                 "email": "michael.taylor@example.com",
-                "phone": "+1 555 246801",
+                "phone": "1555246801",
                 "color": "#33FF66"
             }
         ],
@@ -110,7 +110,7 @@ let dummyTaskArray = [
             {
                 "name": "Olivia Lopez",
                 "email": "olivia.lopez@example.com",
-                "phone": "+1 555 913578",
+                "phone": "1555913578",
                 "color": "#FFD700"
             }
         ],
@@ -141,7 +141,7 @@ let dummyTaskArray = [
             {
                 "name": "Robert Garcia",
                 "email": "robert.garcia@example.com",
-                "phone": "+1 555 468135",
+                "phone": "1555468135",
                 "color": "#FF5733"
             }
         ],
@@ -171,61 +171,61 @@ let dummyContactsArray = [
     {
         "name": "John Doe",
         "email": "john.doe@example.com",
-        "phone": "+1 555 123456",
+        "phone": "1555123456",
         "color": "#FF5733"
     },
     {
         "name": "Alice Smith",
         "email": "alice.smith@example.com",
-        "phone": "+1 555 987654",
+        "phone": "1555987654",
         "color": "#337AFF"
     },
     {
         "name": "Emily Johnson",
         "email": "emily.johnson@example.com",
-        "phone": "+1 555 246810",
+        "phone": "1555246810",
         "color": "#8C33FF"
     },
     {
         "name": "David Brown",
         "email": "david.brown@example.com",
-        "phone": "+1 555 369258",
+        "phone": "1555369258",
         "color": "#FFD700"
     },
     {
         "name": "Sophia Wilson",
         "email": "sophia.wilson@example.com",
-        "phone": "+1 555 135792",
+        "phone": "1555135792",
         "color": "#33FF66"
     },
     {
         "name": "Robert Garcia",
         "email": "robert.garcia@example.com",
-        "phone": "+1 555 468135",
+        "phone": "1555468135",
         "color": "#FF5733"
     },
     {
         "name": "Emma Martinez",
         "email": "emma.martinez@example.com",
-        "phone": "+1 555 579246",
+        "phone": "1555579246",
         "color": "#337AFF"
     },
     {
         "name": "William Miller",
         "email": "william.miller@example.com",
-        "phone": "+1 555 802468",
+        "phone": "1555802468",
         "color": "#8C33FF"
     },
     {
         "name": "Olivia Lopez",
         "email": "olivia.lopez@example.com",
-        "phone": "+1 555 913578",
+        "phone": "1555913578",
         "color": "#FFD700"
     },
     {
         "name": "Michael Taylor",
         "email": "michael.taylor@example.com",
-        "phone": "+1 555 246801",
+        "phone": "1555246801",
         "color": "#33FF66"
     }
 ];

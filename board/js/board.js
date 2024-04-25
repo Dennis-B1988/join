@@ -35,7 +35,7 @@ async function initBoard() {
 function updateHTML() {
     let taskStatus = ['todo', 'inProgress', 'awaitFeedback', 'done'];
     taskStatus.forEach(status => {
-        
+
         updateHTMLLoop(status);
     });
 }
@@ -141,7 +141,7 @@ function searchTasks(container) {
  * @param {Object} task - The task object to update the HTML for.
  * @return {void} This function does not return anything.
  */
-function searchTasksHTML(task){
+function searchTasksHTML(task) {
     document.getElementById(task['status']).innerHTML = '';
     let subTaskDone = doneSubTasks(task.id);
     document.getElementById(task['status']).innerHTML += generateTodoHTML(task, subTaskDone);
@@ -158,7 +158,7 @@ function searchTasksHTML(task){
  * @param {Object} task - The task object to generate HTML for.
  * @return {void} This function does not return anything.
  */
-function searchTasksHTMLGenerate(task){
+function searchTasksHTMLGenerate(task) {
     if (document.getElementById(task['status']).innerHTML === '') {
         document.getElementById(task['status']).innerHTML = generateNoTasksToDo();
     }
@@ -197,11 +197,11 @@ function startDragging(id) {
  */
 function changeCategoryColor(id) {
     let category = document.getElementById(`taskCardCategory${id}`);
-        if (category.innerHTML === "User Story") {
-            category.style.backgroundColor = '#0038FF';
-        } else {
-            category.style.backgroundColor = '#1FD7C1';
-        }
+    if (category.innerHTML === "User Story") {
+        category.style.backgroundColor = '#0038FF';
+    } else {
+        category.style.backgroundColor = '#1FD7C1';
+    }
 }
 
 
@@ -213,11 +213,11 @@ function changeCategoryColor(id) {
  */
 function changeBigCategoryColor(id) {
     let bigCategory = document.getElementById(`taskBigCardCategory${id}`);
-        if (bigCategory.innerHTML === "User Story") {
-            bigCategory.style.backgroundColor = '#0038FF';
-        } else {
-            bigCategory.style.backgroundColor = '#1FD7C1';
-        }
+    if (bigCategory.innerHTML === "User Story") {
+        bigCategory.style.backgroundColor = '#0038FF';
+    } else {
+        bigCategory.style.backgroundColor = '#1FD7C1';
+    }
 }
 
 
