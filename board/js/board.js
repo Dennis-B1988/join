@@ -23,6 +23,7 @@ async function initBoard() {
     await initTemplate();
     updateHTML();
     localStorage.removeItem('boardStatus');
+    updateContainerHeights();
 }
 
 
@@ -281,7 +282,29 @@ function moveTo(category) {
     document.getElementById('findTask').value = '';
     loadData();
     updateHTML();
+    updateContainerHeights();
     removeHighlight(category);
+}
+
+
+/**
+ * Updates the heights of containers to match the height of the tallest container.
+ *
+ * @return {void} This function does not return anything.
+ */
+function updateContainerHeights() {
+  const containers = document.querySelectorAll('.tasks-drag-and-drop');
+  let maxHeight = 0;
+  containers.forEach(container => {
+    container.style.height = 'auto';
+    const containerHeight = container.clientHeight;
+    if (containerHeight > maxHeight) {
+      maxHeight = containerHeight;
+    }
+  });
+  containers.forEach(container => {
+    container.style.height = maxHeight + 'px';
+  });
 }
 
 
