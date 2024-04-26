@@ -61,6 +61,7 @@ h1 {
   display: none;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   gap: 5px;
   color: white;
   border: 1px;
