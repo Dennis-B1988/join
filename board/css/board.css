@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 20% 5% 65%;
-} 
+}
 
 .board-header {
   display: flex;
@@ -210,7 +210,6 @@ h1 {
 
 .tasks-drag-and-drop {
   width: 22%;
-  height: 100%;
   gap: 5px;
 }
 
@@ -320,14 +319,14 @@ h1 {
 }
 
 .load-bar {
-  background-color: #F4F4F4;
+  background-color: #f4f4f4;
   height: 8px;
   width: 50%;
 }
 
-.load-bar-progress{
+.load-bar-progress {
   border-radius: 16px;
-  background-color: #4589FF;
+  background-color: #4589ff;
   height: 8px;
 }
 
