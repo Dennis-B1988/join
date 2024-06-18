@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 20% 5% 65%;
-}
+} 
 
 .board-header {
   display: flex;
@@ -61,6 +61,7 @@ h1 {
   display: none;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   gap: 5px;
   color: white;
   border: 1px;
@@ -318,14 +319,14 @@ h1 {
 }
 
 .load-bar {
-  background-color: #f4f4f4;
+  background-color: #F4F4F4;
   height: 8px;
   width: 50%;
 }
 
-.load-bar-progress {
+.load-bar-progress{
   border-radius: 16px;
-  background-color: #4589ff;
+  background-color: #4589FF;
   height: 8px;
 }
 

@@ -10,6 +10,7 @@
     padding-left: 250px;
     padding-right: 20px;
   }
+
   .add-task {
     margin-left: 50px;
     margin-right: 50px;
@@ -23,7 +24,8 @@
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1000px),
+(max-height: 720px) {
   .add-task-btn {
     display: none;
   }
@@ -49,13 +51,16 @@
     padding-right: 20px;
     margin-top: 80px;
   }
+
   .tasks-container-header-text {
     display: none;
   }
+
   .tasks-container {
     width: 100%;
     flex-direction: column;
   }
+
   .tasks-drag-and-drop {
     width: 100%;
     min-height: 350px;
@@ -65,6 +70,7 @@
     flex: 1;
     box-sizing: border-box;
   }
+
   .task-card {
     min-width: 260px;
     max-width: 270px;
@@ -72,6 +78,7 @@
     overflow: auto;
     margin: 5px;
   }
+
   .task-card {
     overflow: auto;
   }
@@ -83,6 +90,7 @@
   .task-card {
     scrollbar-width: none;
   }
+
   .tasks-drag-and-drop {
     overflow: auto;
   }
@@ -90,6 +98,7 @@
   .tasks-drag-and-drop {
     scrollbar-width: thin;
   }
+
   .tasks-container-header-text-moible {
     display: flex;
     align-items: center;
@@ -129,9 +138,11 @@
     width: 95%;
     margin: 20px;
   }
+
   .task-bottom {
     right: 0;
   }
+
   .task-big-card {
     margin: 0px 15px 0px 15px;
     height: 640px;
@@ -145,21 +156,27 @@
     width: 90%;
     padding: 20px;
   }
+
   .big-task-card-contacts-generate {
     max-height: 110px;
   }
+
   .big-task-card-title {
     margin: 0;
   }
+
   .task-big-card {
     height: 640px;
   }
+
   .big-task-card-title {
     font-size: 40px;
   }
+
   .item {
     padding: 0px;
   }
+
   .btc-footer-input {
     min-height: 100px;
   }
@@ -169,6 +186,7 @@
   .task-bottom-container {
     right: 0px;
   }
+
   .task-big-card {
     padding: 20px 20px 10px 20px;
     width: 100%;
@@ -179,10 +197,13 @@
   .add-task-btn-href span {
     display: none;
   }
+
   .add-task-btn-href {
     width: 50px;
   }
+
   .find-task-input-mobile {
     width: 290px;
   }
+
 }

@@ -435,5 +435,5 @@ function changeToNormalTaskView() {
  */
 function redirectToTaskPage(boardStatus) {
     savePage('boardStatus', boardStatus);
-    window.location.href = "../../add_task/add_task.html";
+    window.location.href = "../add_task/add_task.html";
 }

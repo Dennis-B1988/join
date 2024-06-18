@@ -71,7 +71,7 @@ function userLoginValidation(index, emailLogin, passwordLogin, noMatchEmailLogin
     if (user.email === emailLogin.value && user.password === passwordLogin.value) {
         savePage('user', index);
         localStorage.removeItem('guest');
-        window.location.href = '../summary/summary.html';
+        window.location.href = './summary/summary.html';
     }
     if (user.email !== emailLogin.value) {
         showErrorMessage(emailLogin, noMatchEmailLogin);
@@ -93,7 +93,7 @@ function rememberMeUser(index) {
     let checkmarkLogin = document.getElementById('checkmarkLogin');
     if (checkmarkLogin.src.includes('/assets/img/checkmark_checked_dark.png')) {
         savePage('rememberMeUser', index);
-        savePage('rememberMeCheckmark', '/assets/img/checkmark_checked_dark.png');
+        savePage('rememberMeCheckmark', './assets/img/checkmark_checked_dark.png');
     } else {
         localStorage.removeItem('rememberMeUser');
         localStorage.removeItem('rememberMeCheckmark');
@@ -111,7 +111,7 @@ function loadCredentialsFromLocalStorage() {
     let passwordLogin = document.getElementById('passwordLogin');
     let loginImg = document.getElementById('loginImg');
     let checkmarkLogin = document.getElementById('checkmarkLogin');
-    if (loadPage('rememberMeCheckmark') === '/assets/img/checkmark_checked_dark.png') {
+    if (loadPage('rememberMeCheckmark') === './assets/img/checkmark_checked_dark.png') {
         emailLogin.value = users[loadPage('rememberMeUser')].email;
         passwordLogin.value = users[loadPage('rememberMeUser')].password;
         loginImg.src = './assets/img/visibility_off.png';

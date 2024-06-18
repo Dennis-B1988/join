@@ -87,11 +87,7 @@ async function loadData() {
 }
 
 
-/**
- * Navigates the user back in history or closes the window based on the visibility of the side bar container.
- *
- * @return {void} This function does not return a value.
- */
+
 function goBack() {
     if (document.querySelector('.side-bar-container').style.opacity === '0') {
         window.close();

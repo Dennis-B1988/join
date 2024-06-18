@@ -37,7 +37,7 @@ function onSubmit() {
   taskPriority();
   if (title && date && category !== '') {
     submitSuccess(title, description, date, category, priority, subtaskArray);
-    window.location.pathname === '/add_task/add_task.html' ? taskSuccess() : null;
+    window.location.pathname === '/join/add_task/add_task.html' ? taskSuccess() : null;
   } else {
     formFilled(title, date, category);
   }

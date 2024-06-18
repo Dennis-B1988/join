@@ -37,6 +37,7 @@
   }
 
   .task-title {
+    max-width: 1440px;
     width: 95%;
     font-size: 47px;
     z-index: 600;
@@ -46,6 +47,7 @@
   }
 
   .task-form-container {
+    max-width: 1440px;
     width: 100%;
     overflow: auto;
     scrollbar-width: none;
@@ -85,6 +87,7 @@
   }
 
   .task-bottom-container {
+    max-width: 1440px;
     height: 90px;
     padding-top: 16px;
     padding-bottom: 16px;

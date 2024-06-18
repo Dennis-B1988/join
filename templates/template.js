@@ -10,16 +10,16 @@ function initTemplate() {
  * Function to show category based on the current window location.
  */
 function showCategory() {
-    if (window.location.pathname == '/add_task/add_task.html') {
+    if (window.location.pathname == '/join/add_task/add_task.html') {
         document.getElementById('addTask').classList.add('active');
     }
-    if (window.location.pathname == '/summary/summary.html') {
+    if (window.location.pathname == '/join/summary/summary.html') {
         document.getElementById('summary').classList.add('active');
     }
-    if (window.location.pathname == '/board/board.html') {
+    if (window.location.pathname == '/join/board/board.html') {
         document.getElementById('board').classList.add('active');
     }
-    if (window.location.pathname == '/contacts/contacts.html') {
+    if (window.location.pathname == '/join/contacts/contacts.html') {
         document.getElementById('contact').classList.add('active');
     }
 }
@@ -32,13 +32,13 @@ function showCategory() {
  * @return {void} This function does not return a value.
  */
 function showCurrentInformation() {
-    if (window.location.pathname == '/legal_information/privacy_policy.html') {
+    if (window.location.pathname == '/join/legal_information/privacy_policy.html') {
         document.getElementById('privacyPolicy').style.backgroundColor = '#091931'
         document.getElementById('privacyPolicy').classList.remove('hover');
         document.getElementById('headerHelp').style.display = 'none';
         document.getElementById('headerUsername').style.display = 'none';
     }
-    if (window.location.pathname == '/legal_information/legal_notice.html') {
+    if (window.location.pathname == '/join/legal_information/legal_notice.html') {
         document.getElementById('legalNotice').style.backgroundColor = '#091931';
         document.getElementById('legalNotice').classList.remove('hover');
         document.getElementById('headerHelp').style.display = 'none';
@@ -53,7 +53,7 @@ function showCurrentInformation() {
  * @return {void} This function does not return a value.
  */
 function hideHelpIcon() {
-    if (window.location.pathname == '/legal_information/help.html') {
+    if (window.location.pathname == '/join/legal_information/help.html') {
         document.getElementById('headerHelp').style.display = 'none';
     }
 }

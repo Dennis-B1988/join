@@ -231,6 +231,8 @@ header {
   }
 
   .side-bar {
+    max-width: 1440px;
+    margin: 0 auto;
     height: 80px;
     width: 100%;
     position: fixed;

@@ -88,14 +88,14 @@ function greetUserTime(){
 function upcomingUrgentDeadline() {
     const currentDate = new Date();
     const urgentTasks = tasks.filter(task => task.priority === 'Urgent');
+
+    const nearestDate = findNearestDate(currentDate, urgentTasks);
+    displayDueDate(nearestDate);
     
-    if (urgentTasks.length === 0) {
+    if (urgentTasks.length === 0 || nearestDate < currentDate) {
         document.getElementById('due-date').innerHTML = "No urgent tasks";
         return;
     }
-    
-    const nearestDate = findNearestDate(currentDate, urgentTasks);
-    displayDueDate(nearestDate);
 }
 
 
