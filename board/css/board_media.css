@@ -24,8 +24,7 @@
   }
 }
 
-@media (max-width: 1000px),
-(max-height: 720px) {
+@media (max-width: 1000px), (max-height: 719px) {
   .add-task-btn {
     display: none;
   }
@@ -127,7 +126,7 @@
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1000px) and (min-height: 720px) {
   .tasks-container-header-text-mobile {
     display: none !important;
   }
@@ -205,5 +204,4 @@
   .find-task-input-mobile {
     width: 290px;
   }
-
 }

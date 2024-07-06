@@ -205,7 +205,7 @@ header {
   display: none;
 }
 
-@media (max-width: 1000px), (max-height: 720px) {
+@media (max-width: 1000px), (max-height: 719px) {
   .big-screen {
     position: fixed;
     top: 0;

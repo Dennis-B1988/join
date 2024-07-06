@@ -432,6 +432,7 @@ function showSignupAnimation(signupAnimation, saveSignup) {
  */
 function loginAsGuest() {
     localStorage.removeItem('noPage');
+    localStorage.removeItem('guest');
     savePage('guest', 'guest');
     localStorage.removeItem('user');
 }

@@ -216,7 +216,13 @@
   }
 }
 
-@media (max-width: 1300px) and (max-height: 835px) {
+@media (min-width: 1001px) and (max-height: 760px) {
+  .summary-content {
+    margin-top: 50px;
+  }
+}
+
+@media (max-height: 719px) {
   .summary-content {
     margin-top: 80px;
   }

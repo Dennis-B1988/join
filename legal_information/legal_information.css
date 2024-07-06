@@ -81,7 +81,7 @@ h3 {
   justify-content: space-between;
 }
 
-@media (max-width: 1000px), (max-height: 720px) {
+@media (max-width: 1000px), (max-height: 719px) {
   .privacy-policy {
     height: unset;
     margin-top: 81px;

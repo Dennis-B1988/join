@@ -1,285 +1,285 @@
-@media(max-width: 1430px) {
-    #contacts {
-        padding: 13px 5px;
-    }
+@media (max-width: 1430px) {
+  #contacts {
+    padding: 13px 5px;
+  }
 }
 
-@media(max-width: 1350px) {
-    .add-contact-small-container {
-        flex-direction: column;
-        height: 85vh;
-        width: 55%;
-        position: relative;
-    }
+@media (max-width: 1350px) {
+  .add-contact-small-container {
+    flex-direction: column;
+    height: 85vh;
+    width: 55%;
+    position: relative;
+  }
 
-    .add-contact-left {
-        width: unset;
-        border-radius: unset;
-        border-top-left-radius: 30px;
-        border-top-right-radius: 30px;
-        height: 50%;
-    }
+  .add-contact-left {
+    width: unset;
+    border-radius: unset;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    height: 50%;
+  }
 
-    .add-contact-right {
-        height: 50%;
-        width: unset;
-        border-radius: unset;
-        border-bottom-left-radius: 30px;
-        border-bottom-right-radius: 30px;
-        position: unset;
-    }
+  .add-contact-right {
+    height: 50%;
+    width: unset;
+    border-radius: unset;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    position: unset;
+  }
 
-    .add-contact-left-logo-img {
-        display: none;
-    }
+  .add-contact-left-logo-img {
+    display: none;
+  }
 
-    .add-contact-right-contact-icon {
-        top: 50%;
-        transform: translate(-50%, -50%);
-        left: 50%;
-    }
+  .add-contact-right-contact-icon {
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+  }
 
-    .create-contact-container {
-        top: 58%;
-        transform: unset;
-        right: 50%;
-        transform: translateX(50%);
-    }
+  .create-contact-container {
+    top: 58%;
+    transform: unset;
+    right: 50%;
+    transform: translateX(50%);
+  }
 
-    #cancel {
-        display: none;
-    }
+  #cancel {
+    display: none;
+  }
 
-    .create-contact-button-container {
-        justify-content: center;
-    }
+  .create-contact-button-container {
+    justify-content: center;
+  }
 
-    .close-icon {
-        display: none;
-    }
+  .close-icon {
+    display: none;
+  }
 
-    .close-icon-mobile {
-        display: unset;
-    }
+  .close-icon-mobile {
+    display: unset;
+  }
 }
 
-@media(max-width: 1250px) {
-    .right-container h2 {
-        font-size: 47px;
-    }
+@media (max-width: 1250px) {
+  .right-container h2 {
+    font-size: 47px;
+  }
 
-    .right-container-header {
-        gap: 20px;
-    }
+  .right-container-header {
+    gap: 20px;
+  }
 
-    .header-text {
-        font-size: 20px;
-    }
+  .header-text {
+    font-size: 20px;
+  }
 
-    .contact-action-big span {
-        font-weight: 700;
-        font-size: 36px;
-    }
+  .contact-action-big span {
+    font-weight: 700;
+    font-size: 36px;
+  }
 
-    .left-container {
-        width: 50%;
-    }
+  .left-container {
+    width: 50%;
+  }
 }
 
-@media(max-width: 1000px) {
-    .contacts {
-        height: 100%;
-        width: 100%;
-        margin-left: unset;
-        margin-top: 80px;
-        margin-bottom: 70px;
-    }
+@media (max-width: 1000px) {
+  .contacts {
+    height: 100%;
+    width: 100%;
+    margin-left: unset;
+    margin-top: 80px;
+    margin-bottom: 70px;
+  }
 
-    .add-contact-small-container {
-        width: 70%;
-    }
+  .add-contact-small-container {
+    width: 70%;
+  }
 }
 
-@media(max-width: 750px) {
-    #messageCreateContact {
-        transition: transform 0.2s ease;
-        transform: translateY(100%);
-        visibility: hidden;
-    }
+@media (max-width: 750px) {
+  #messageCreateContact {
+    transition: transform 0.2s ease;
+    transform: translateY(100%);
+    visibility: hidden;
+  }
 
-    #messageCreateContact.show-message {
-        transform: translateY(0);
-        visibility: visible;
-    }
+  #messageCreateContact.show-message {
+    transform: translateY(0);
+    visibility: visible;
+  }
 
-    .contact-description-big {
-        transform: unset;
-        visibility: unset;
-        gap: 20px;
-    }
+  .contact-description-big {
+    transform: unset;
+    visibility: unset;
+    gap: 20px;
+  }
 
-    #contacts {
-        padding-left: 30px;
-    }
+  #contacts {
+    padding-left: 30px;
+  }
 
-    .left-container {
-        width: 100%;
-    }
+  .left-container {
+    width: 100%;
+  }
 
-    .new-contact-container {
-        padding: 20px 15px;
-    }
+  .new-contact-container {
+    padding: 20px 15px;
+  }
 
-    .right-container {
-        display: none;
-        width: 100%;
-        padding: 50px 32px;
-    }
+  .right-container {
+    display: none;
+    width: 100%;
+    padding: 50px 32px;
+  }
 
-    .add-new-contact-button {
-        display: none;
-    }
+  .add-new-contact-button {
+    display: none;
+  }
 
-    .scrollbar-arrow-top {
-        display: none;
-    }
+  .scrollbar-arrow-top {
+    display: none;
+  }
 
-    .scrollbar-arrow-bottom {
-        display: none;
-    }
+  .scrollbar-arrow-bottom {
+    display: none;
+  }
 
-    ::-webkit-scrollbar {
-        width: 4px;
-    }
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
 
-    .add-contact-mobile-img {
-        display: unset;
-        right: 30px;
-    }
+  .add-contact-mobile-img {
+    display: unset;
+    right: 30px;
+  }
 
-    .add-contact-small-container {
-        transform: translateY(100%);
-        width: 85%;
-    }
+  .add-contact-small-container {
+    transform: translateY(100%);
+    width: 85%;
+  }
 
-    .add-contact-small-container.show-add-contact {
-        transform: translateY(0);
-    }
+  .add-contact-small-container.show-add-contact {
+    transform: translateY(0);
+  }
 
-    .right-container-header {
-        flex-direction: column;
-        align-items: unset;
-        padding-bottom: 50px;
-    }
+  .right-container-header {
+    flex-direction: column;
+    align-items: unset;
+    padding-bottom: 50px;
+  }
 
-    .edit-delete-container {
-        display: none;
-    }
+  .edit-delete-container {
+    display: none;
+  }
 
-    .contact-upper-container {
-        gap: 20px;
-        align-items: center;
-    }
+  .contact-upper-container {
+    gap: 20px;
+    align-items: center;
+  }
 }
 
-@media(max-width: 550px) {
-    .add-contact-left {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-	
-	.create-contact-container{
-		width: 90%;
-	}
+@media (max-width: 550px) {
+  .add-contact-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
 
-    .create-contact-input-container input {
-        width: 100%;
-    }
+  .create-contact-container {
+    width: 90%;
+  }
+
+  .create-contact-input-container input {
+    width: 100%;
+  }
 }
 
-@media(max-width: 500px) {
-    #contacts {
-        padding-left: 0;
-    }
+@media (max-width: 500px) {
+  #contacts {
+    padding-left: 0;
+  }
 
-    .add-contact-mobile-img {
-        height: 56px;
-        width: 56px;
-    }
+  .add-contact-mobile-img {
+    height: 56px;
+    width: 56px;
+  }
 
-    .create-contact-container {
-        gap: 20px;
-    }
+  .create-contact-container {
+    gap: 20px;
+  }
 }
 
-@media(max-width: 420px) {
-    .contact-container {
-        align-items: center;
-        gap: 10px
-    }
+@media (max-width: 420px) {
+  .contact-container {
+    align-items: center;
+    gap: 10px;
+  }
 
-    .contact-email {
-        display: none;
-    }
+  .contact-email {
+    display: none;
+  }
 
-    .underline {
-        width: 250px;
-    }
+  .underline {
+    width: 250px;
+  }
 
-    #goBackArrow {
-        height: 22px;
-    }
+  #goBackArrow {
+    height: 22px;
+  }
 
-    .contact-action-big span {
-        font-size: 30px;
-    }
+  .contact-action-big span {
+    font-size: 30px;
+  }
 }
 
-@media (max-height: 740px) {
-    .contacts {
-        height: 100%;
-        width: 100%;
-        margin-left: unset;
-        margin-top: 80px;
-        margin-bottom: 70px;
-    }
+@media (max-height: 719px) {
+  .contacts {
+    height: 100%;
+    width: 100%;
+    margin-left: unset;
+    margin-top: 80px;
+    margin-bottom: 70px;
+  }
 
-    .right-container {
-        overflow-Y: auto;
-        overflow-x: hidden;
-    }
+  .right-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 
-    .add-contact-small-container {
-        height: 100%;
-    }
+  .add-contact-small-container {
+    height: 100%;
+  }
 
-    .add-contact-right-contact-icon {
-        height: 80px;
-    }
+  .add-contact-right-contact-icon {
+    height: 80px;
+  }
 
-    .create-contact-container {
-        top: 55%;
-    }
+  .create-contact-container {
+    top: 55%;
+  }
 
-    .add-contact-left {
-        height: 45%;
-    }
+  .add-contact-left {
+    height: 45%;
+  }
 
-    .add-contact-right {
-        height: 55%;
-    }
+  .add-contact-right {
+    height: 55%;
+  }
 
-    .circle-big {
-        width: 70px;
-        height: 70px;
-        font-size: 27px;
-        top: 45%;
-    }
+  .circle-big {
+    width: 70px;
+    height: 70px;
+    font-size: 27px;
+    top: 45%;
+  }
 
-    .add-contact-right-contact-icon {
-        height: 70px;
-        top: 45%;
-    }
+  .add-contact-right-contact-icon {
+    height: 70px;
+    top: 45%;
+  }
 }
