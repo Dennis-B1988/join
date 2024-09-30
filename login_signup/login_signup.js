@@ -1,7 +1,7 @@
 async function initLogin() {
     removePageFromLocalStorage();
     await includeHTML();
-    await loadData();
+    // await loadData(); // Database disabled
     animationLogo();
     loadCredentialsFromLocalStorage();
 }

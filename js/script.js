@@ -41,9 +41,13 @@ function randomColor() {
  * @return {Promise<any>} A promise that resolves to the JSON response from the server.
  */
 async function setItem(key, value) {
-    const payload = { key, value, token: STORAGE_TOKEN };
-    return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
-        .then(res => res.json());
+    console.error('Sign up currently not working because the Database was disabled, please use Guest log in.');
+    return; // Backend disabled by DA. Building a new version with Firebase.
+
+    // Old backend connection
+    // const payload = { key, value, token: STORAGE_TOKEN };
+    // return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
+    //     .then(res => res.json());
 }
 
 
